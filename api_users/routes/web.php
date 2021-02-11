@@ -14,5 +14,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return "API GATEWAY \n";
+    return $router->app->version();
 });

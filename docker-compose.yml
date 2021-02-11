@@ -1,0 +1,89 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  #PHP API_GATEWAY
+  api_gateway:
+    build:
+      context: .
+      dockerfile: deployment/dockers/api_gateway.dockerfile
+    image: api_gateway
+    container_name: api_gateway
+    #restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: api_gateway
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./api_gateway/:/var/www/api_gateway
+      #- ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #PHP API_USERS
+  api_users:
+    build:
+      context: .
+      dockerfile: deployment/dockers/api_users.dockerfile
+    image: api_users
+    container_name: api_users
+    #restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: api_gateway
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./api_users/:/var/www/api_users
+      #- ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    build:
+      context: .
+      dockerfile: deployment/dockers/nginx.dockerfile
+    image: nginx
+    container_name: webserver
+    #restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: webserver
+      SERVICE_TAGS: dev
+    ports:
+      - "127.0.0.2:81:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      #- ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  #MySQL Service
+#  db:
+#    image: mysql:5.7.22
+#    container_name: db
+#    restart: unless-stopped
+#    tty: true
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_DATABASE: laravel
+#      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+#      SERVICE_TAGS: dev
+#      SERVICE_NAME: mysql
+#    volumes:
+#      - dbdata:/var/lib/mysql/
+#      - ./mysql/my.cnf:/etc/mysql/my.cnf
+#    networks:
+#      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
