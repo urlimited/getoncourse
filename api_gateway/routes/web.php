@@ -14,5 +14,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return "API GATEWAY \n";
+    return "Hello worls \n";
 });
