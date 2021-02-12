@@ -16,6 +16,10 @@ echo "VM running project specific shells from file project.sh"
 # install nginx
 . /home/vagrant/deployment/scripts/components/nginx.sh
 
+# install nginx
+. /home/vagrant/deployment/scripts/components/nodejs.sh
+
+sudo apt-get update
 
 # install kubernetes
 # . /home/vagrant/deployment/scripts/components/kubernetes.sh
