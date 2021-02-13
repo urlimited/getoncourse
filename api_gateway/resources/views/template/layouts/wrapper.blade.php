@@ -22,6 +22,7 @@
 </head>
 <body data-sidebar="dark" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false"
       data-topbar="light">
+
 @yield('content')
 <script src="/template/js/main.chunk.js"></script>
 <script src="/template/js/main.js"></script>

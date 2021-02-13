@@ -30,7 +30,7 @@ services:
     #restart: unless-stopped
     tty: true
     environment:
-      SERVICE_NAME: api_gateway
+      SERVICE_NAME: api_users
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
@@ -60,30 +60,32 @@ services:
     networks:
       - app-network
 
+
   #MySQL Service
-#  db:
-#    image: mysql:5.7.22
-#    container_name: db
-#    restart: unless-stopped
-#    tty: true
-#    ports:
-#      - "3306:3306"
-#    environment:
-#      MYSQL_DATABASE: laravel
-#      MYSQL_ROOT_PASSWORD: your_mysql_root_password
-#      SERVICE_TAGS: dev
-#      SERVICE_NAME: mysql
-#    volumes:
-#      - dbdata:/var/lib/mysql/
-#      - ./mysql/my.cnf:/etc/mysql/my.cnf
-#    networks:
-#      - app-network
+  users_mysql:
+    image: mysql:8.0.23
+    container_name: users_mysql
+    #restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: users
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: users_mysql
+    volumes:
+      - dbdata_users:/var/lib/mysql/
+      #- ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
 
 #Docker Networks
 networks:
   app-network:
     driver: bridge
+
 #Volumes
 volumes:
-  dbdata:
+  dbdata_users:
     driver: local
