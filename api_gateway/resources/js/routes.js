@@ -48,7 +48,6 @@ export default function(){
                 <Route exact path={routes.ROUTE_TO_REPORTS + ":urlReportTypeId"} component={() => <DashboardLayout Page={ReportsListClient} Modals={ReportsClientModal} />}/>
                 <Route exact path={routes.ROUTE_TO_ARRANGEMENTS + ":urlReportId"} component={() => <DashboardLayout Page={ArrangementsClient} Modals={ArrangementsModal} />}/>
                 <Route exact path={routes.ROUTE_TO_DASHBOARD} component={() => <DashboardLayout Page={ReportsListClient} Modals={SectionsModal} />}/>
-                <Route exact path={routes.ROUTE_TO_REPORTS_MANAGEMENT + ":report_type_id"} component={() => <DashboardLayout Page={ReportsManagement} Modals={SectionsModal}/>}/>
                 <Route exact path={routes.ROUTE_TO_REPORTS_MANAGEMENT + ":report_type_id/:section_id"} component={() => <DashboardLayout Page={CriteriaManagement} Modals={CriteriaModal}/>}/>
                 <Route exact path="" component={() => <DashboardLayout Page={ReportsListClient} Modals={SectionsModal} />}/>
                 {/*<Route exact path={routes.ROUTE_TO_DASHBOARD} render={() => <DashboardLayout Page={ReportsClientPage} Modals={ProductsModals} />} />*/}
