@@ -2048,6 +2048,8 @@
                 <div class="col-sm-6">2021 © Skote.</div>
                 <div class="col-sm-6">
                     <div class="text-sm-right d-none d-sm-block">Design &amp; Develop by Themesbrand</div>
+
+
                 </div>
             </div>
         </div>
