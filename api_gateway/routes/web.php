@@ -12,23 +12,15 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-/*Временные роуты*/
+
 $router->get('/', function () use ($router) {
-    return view('welcome');
-});
-
-$router->get('/login', function () use ($router) {
-    return view('auth.login');
-});
-
-$router->get('/register', function () use ($router) {
-    return view('auth.register');
+    return "Hello world \n";
 });
 
 $router->get('/api/{path}', function ($path) {
     return $path;
 });
 
-$router->get('/{path: .*}', function () {
+$router->get('/{param:.*}', function () {
     return view('frontend');
 });
