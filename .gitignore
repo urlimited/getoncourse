@@ -1,2 +1,6 @@
 .idea
 /deployment/.vagrant/
+/.bash_history
+/.node_repl_history
+/.sudo_as_admin_successful
+/.cache/
