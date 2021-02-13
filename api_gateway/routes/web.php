@@ -14,5 +14,13 @@
 */
 
 $router->get('/', function () use ($router) {
-    return "Hello worls \n";
+    return "Hello world \n";
+});
+
+$router->get('/api/{path}', function ($path) {
+    return $path;
+});
+
+$router->get('/{param:.*}', function () {
+    return view('frontend');
 });
