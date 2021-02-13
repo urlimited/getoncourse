@@ -14,16 +14,13 @@
                                     <div class="text-primary p-4"><h5 class="text-primary">Welcome Back !</h5>
                                         <p>Sign in to continue to Skote.</p></div>
                                 </div>
-                                <div class="col-5 align-self-end col"><img src="/static/media/profile-img.43b59e59.png"
-                                                                           alt="" class="img-fluid"></div>
+                                <div class="col-5 align-self-end col"></div>
                             </div>
                         </div>
                         <div class="pt-0 card-body">
                             <div><a href="/">
                                     <div class="avatar-md profile-user-wid mb-4"><span
-                                            class="avatar-title rounded-circle bg-light"><img
-                                                src="/static/media/logo.a0143fa8.svg" alt="" class="rounded-circle"
-                                                height="34"></span></div>
+                                            class="avatar-title rounded-circle bg-light"></span></div>
                                 </a></div>
                             <div class="p-2">
                                 <form novalidate="" action="#" method="get" class="form-horizontal av-invalid">
@@ -55,23 +52,23 @@
                                         <ul class="list-inline">
                                             <li class="list-inline-item"><a
                                                     class="social-list-item bg-primary text-white border-primary"
-                                                    href="/pages-login"><i class="mdi mdi-facebook"></i></a></li>
+                                                    href="#"><i class="mdi mdi-facebook"></i></a></li>
                                             <li class="list-inline-item"><a
                                                     class="social-list-item bg-info text-white border-info"
-                                                    href="/pages-login"><i class="mdi mdi-twitter"></i></a></li>
+                                                    href="#"><i class="mdi mdi-twitter"></i></a></li>
                                             <li class="list-inline-item"><a
                                                     class="social-list-item bg-danger text-white border-danger"
-                                                    href="/pages-login"><i class="mdi mdi-google"></i></a></li>
+                                                    href="#"><i class="mdi mdi-google"></i></a></li>
                                         </ul>
                                     </div>
-                                    <div class="mt-4 text-center"><a class="text-muted" href="/pages-forgot-pwd"><i
+                                    <div class="mt-4 text-center"><a class="text-muted" href="#"><i
                                                 class="mdi mdi-lock mr-1"></i> Forgot your password?</a></div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="mt-5 text-center"><p>Don't have an account ? <a class="font-weight-medium text-primary"
-                                                                                href="/pages-register"> Signup now </a>
+                                                                                href="#"> Signup now </a>
                         </p>
                         <p>© 2021 Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p></div>
                 </div>
