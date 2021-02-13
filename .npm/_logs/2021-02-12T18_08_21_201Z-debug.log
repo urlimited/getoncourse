@@ -1,0 +1,1129 @@
+0 verbose cli [ '/usr/bin/node', '/usr/local/bin/npm', 'install', 'node-sass' ]
+1 info using npm@7.5.3
+2 info using node@v12.20.2
+3 timing config:load:defaults Completed in 3ms
+4 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 2ms
+5 timing config:load:builtin Completed in 3ms
+6 timing config:load:cli Completed in 2ms
+7 timing config:load:env Completed in 0ms
+8 timing config:load:file:/home/vagrant/api_gateway/.npmrc Completed in 0ms
+9 timing config:load:project Completed in 1ms
+10 timing config:load:file:/home/vagrant/.npmrc Completed in 1ms
+11 timing config:load:user Completed in 1ms
+12 timing config:load:file:/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:cafile Completed in 0ms
+15 timing config:load:validate Completed in 0ms
+16 timing config:load:setUserAgent Completed in 1ms
+17 timing config:load:setEnvs Completed in 2ms
+18 timing config:load Completed in 13ms
+19 verbose npm-session a27d287187d67e9c
+20 timing npm:load Completed in 39ms
+21 http fetch GET 200 https://registry.npmjs.org/npm 20ms (from cache)
+22 timing arborist:ctor Completed in 0ms
+23 timing arborist:ctor Completed in 1ms
+24 timing idealTree:init Completed in 2234ms
+25 timing idealTree:userRequests Completed in 2ms
+26 silly idealTree buildDeps
+27 silly fetch manifest node-sass@^4.14.1
+28 http fetch GET 304 https://registry.npmjs.org/node-sass 380ms (from cache)
+29 silly placeDep ROOT node-sass@4.14.1 OK for: oncourse@1.0.0 want: ^4.14.1
+30 silly fetch manifest async-foreach@^0.1.3
+31 silly fetch manifest chalk@^1.1.1
+32 silly fetch manifest cross-spawn@^3.0.0
+33 silly fetch manifest gaze@^1.0.0
+34 silly fetch manifest get-stdin@^4.0.1
+35 silly fetch manifest in-publish@^2.0.0
+36 silly fetch manifest meow@^3.7.0
+37 silly fetch manifest nan@^2.13.2
+38 silly fetch manifest node-gyp@^3.8.0
+39 silly fetch manifest npmlog@^4.0.0
+40 silly fetch manifest request@^2.88.0
+41 silly fetch manifest sass-graph@2.2.5
+42 silly fetch manifest stdout-stream@^1.4.0
+43 silly fetch manifest true-case-path@^1.0.2
+44 http fetch GET 304 https://registry.npmjs.org/chalk 139ms (from cache)
+45 http fetch GET 304 https://registry.npmjs.org/stdout-stream 200ms (from cache)
+46 http fetch GET 304 https://registry.npmjs.org/gaze 337ms (from cache)
+47 http fetch GET 304 https://registry.npmjs.org/cross-spawn 366ms (from cache)
+48 http fetch GET 304 https://registry.npmjs.org/npmlog 361ms (from cache)
+49 http fetch GET 304 https://registry.npmjs.org/sass-graph 359ms (from cache)
+50 http fetch GET 304 https://registry.npmjs.org/true-case-path 358ms (from cache)
+51 http fetch GET 304 https://registry.npmjs.org/in-publish 371ms (from cache)
+52 http fetch GET 304 https://registry.npmjs.org/node-gyp 368ms (from cache)
+53 http fetch GET 304 https://registry.npmjs.org/get-stdin 376ms (from cache)
+54 http fetch GET 304 https://registry.npmjs.org/nan 378ms (from cache)
+55 http fetch GET 304 https://registry.npmjs.org/request 392ms (from cache)
+56 http fetch GET 304 https://registry.npmjs.org/async-foreach 406ms (from cache)
+57 http fetch GET 304 https://registry.npmjs.org/meow 407ms (from cache)
+58 timing idealTree:#root Completed in 811ms
+59 silly placeDep ROOT async-foreach@0.1.3 OK for: node-sass@4.14.1 want: ^0.1.3
+60 silly placeDep node_modules/node-sass chalk@1.1.3 OK for: node-sass@4.14.1 want: ^1.1.1
+61 silly placeDep node_modules/node-sass cross-spawn@3.0.1 OK for: node-sass@4.14.1 want: ^3.0.0
+62 silly placeDep ROOT gaze@1.1.3 OK for: node-sass@4.14.1 want: ^1.0.0
+63 silly placeDep ROOT get-stdin@4.0.1 OK for: node-sass@4.14.1 want: ^4.0.1
+64 silly placeDep ROOT in-publish@2.0.1 OK for: node-sass@4.14.1 want: ^2.0.0
+65 silly placeDep ROOT meow@3.7.0 OK for: node-sass@4.14.1 want: ^3.7.0
+66 silly placeDep ROOT nan@2.14.2 OK for: node-sass@4.14.1 want: ^2.13.2
+67 silly placeDep ROOT node-gyp@3.8.0 OK for: node-sass@4.14.1 want: ^3.8.0
+68 silly placeDep ROOT npmlog@4.1.2 OK for: node-sass@4.14.1 want: ^4.0.0
+69 silly placeDep ROOT request@2.88.2 OK for: node-sass@4.14.1 want: ^2.88.0
+70 silly placeDep ROOT sass-graph@2.2.5 OK for: node-sass@4.14.1 want: 2.2.5
+71 silly placeDep ROOT stdout-stream@1.4.1 OK for: node-sass@4.14.1 want: ^1.4.0
+72 silly placeDep ROOT true-case-path@1.0.3 OK for: node-sass@4.14.1 want: ^1.0.2
+73 silly fetch manifest ansi-styles@^2.2.1
+74 silly fetch manifest has-ansi@^2.0.0
+75 silly fetch manifest strip-ansi@^3.0.0
+76 silly fetch manifest supports-color@^2.0.0
+77 silly fetch manifest lru-cache@^4.0.1
+78 silly fetch manifest which@^1.2.9
+79 silly fetch manifest globule@^1.0.0
+80 silly fetch manifest camelcase-keys@^2.0.0
+81 silly fetch manifest decamelize@^1.1.2
+82 silly fetch manifest loud-rejection@^1.0.0
+83 silly fetch manifest map-obj@^1.0.1
+84 silly fetch manifest normalize-package-data@^2.3.4
+85 silly fetch manifest read-pkg-up@^1.0.1
+86 silly fetch manifest redent@^1.0.0
+87 silly fetch manifest trim-newlines@^1.0.0
+88 silly fetch manifest fstream@^1.0.0
+89 silly fetch manifest nopt@2 || 3
+90 silly fetch manifest osenv@0
+91 silly fetch manifest rimraf@2
+92 silly fetch manifest semver@~5.3.0
+93 silly fetch manifest tar@^2.0.0
+94 silly fetch manifest which@1
+95 silly fetch manifest are-we-there-yet@~1.1.2
+96 silly fetch manifest console-control-strings@~1.1.0
+97 silly fetch manifest gauge@~2.7.3
+98 silly fetch manifest set-blocking@~2.0.0
+99 silly fetch manifest aws-sign2@~0.7.0
+100 silly fetch manifest aws4@^1.8.0
+101 silly fetch manifest caseless@~0.12.0
+102 silly fetch manifest combined-stream@~1.0.6
+103 silly fetch manifest extend@~3.0.2
+104 silly fetch manifest forever-agent@~0.6.1
+105 silly fetch manifest form-data@~2.3.2
+106 silly fetch manifest har-validator@~5.1.3
+107 silly fetch manifest http-signature@~1.2.0
+108 silly fetch manifest is-typedarray@~1.0.0
+109 silly fetch manifest isstream@~0.1.2
+110 silly fetch manifest json-stringify-safe@~5.0.1
+111 silly fetch manifest oauth-sign@~0.9.0
+112 silly fetch manifest performance-now@^2.1.0
+113 silly fetch manifest qs@~6.5.2
+114 silly fetch manifest tough-cookie@~2.5.0
+115 silly fetch manifest tunnel-agent@^0.6.0
+116 silly fetch manifest scss-tokenizer@^0.2.3
+117 silly fetch manifest yargs@^13.3.2
+118 http fetch GET 200 https://registry.npmjs.org/json-stringify-safe 146ms (from cache)
+119 http fetch GET 304 https://registry.npmjs.org/supports-color 303ms (from cache)
+120 http fetch GET 304 https://registry.npmjs.org/strip-ansi 307ms (from cache)
+121 http fetch GET 304 https://registry.npmjs.org/which 306ms (from cache)
+122 http fetch GET 304 https://registry.npmjs.org/lru-cache 310ms (from cache)
+123 http fetch GET 304 https://registry.npmjs.org/globule 309ms (from cache)
+124 http fetch GET 304 https://registry.npmjs.org/ansi-styles 328ms (from cache)
+125 http fetch GET 304 https://registry.npmjs.org/map-obj 319ms (from cache)
+126 http fetch GET 304 https://registry.npmjs.org/camelcase-keys 327ms (from cache)
+127 http fetch GET 304 https://registry.npmjs.org/normalize-package-data 325ms (from cache)
+128 http fetch GET 304 https://registry.npmjs.org/decamelize 355ms (from cache)
+129 http fetch GET 304 https://registry.npmjs.org/trim-newlines 347ms (from cache)
+130 http fetch GET 304 https://registry.npmjs.org/loud-rejection 360ms (from cache)
+131 http fetch GET 304 https://registry.npmjs.org/redent 427ms (from cache)
+132 http fetch GET 304 https://registry.npmjs.org/read-pkg-up 431ms (from cache)
+133 http fetch GET 304 https://registry.npmjs.org/osenv 427ms (from cache)
+134 http fetch GET 304 https://registry.npmjs.org/has-ansi 451ms (from cache)
+135 http fetch GET 304 https://registry.npmjs.org/are-we-there-yet 421ms (from cache)
+136 http fetch GET 304 https://registry.npmjs.org/nopt 440ms (from cache)
+137 http fetch GET 304 https://registry.npmjs.org/fstream 448ms (from cache)
+138 http fetch GET 304 https://registry.npmjs.org/gauge 440ms (from cache)
+139 http fetch GET 304 https://registry.npmjs.org/tar 462ms (from cache)
+140 http fetch GET 304 https://registry.npmjs.org/aws-sign2 447ms (from cache)
+141 http fetch GET 304 https://registry.npmjs.org/console-control-strings 454ms (from cache)
+142 http fetch GET 304 https://registry.npmjs.org/semver 486ms (from cache)
+143 http fetch GET 304 https://registry.npmjs.org/extend 482ms (from cache)
+144 http fetch GET 304 https://registry.npmjs.org/aws4 485ms (from cache)
+145 http fetch GET 304 https://registry.npmjs.org/caseless 485ms (from cache)
+146 http fetch GET 304 https://registry.npmjs.org/forever-agent 495ms (from cache)
+147 http fetch GET 304 https://registry.npmjs.org/set-blocking 505ms (from cache)
+148 http fetch GET 304 https://registry.npmjs.org/combined-stream 502ms (from cache)
+149 http fetch GET 304 https://registry.npmjs.org/form-data 503ms (from cache)
+150 http fetch GET 304 https://registry.npmjs.org/har-validator 515ms (from cache)
+151 http fetch GET 304 https://registry.npmjs.org/is-typedarray 519ms (from cache)
+152 http fetch GET 304 https://registry.npmjs.org/isstream 520ms (from cache)
+153 http fetch GET 304 https://registry.npmjs.org/http-signature 525ms (from cache)
+154 http fetch GET 304 https://registry.npmjs.org/tough-cookie 519ms (from cache)
+155 http fetch GET 304 https://registry.npmjs.org/scss-tokenizer 529ms (from cache)
+156 http fetch GET 304 https://registry.npmjs.org/qs 543ms (from cache)
+157 http fetch GET 304 https://registry.npmjs.org/oauth-sign 547ms (from cache)
+158 http fetch GET 304 https://registry.npmjs.org/performance-now 547ms (from cache)
+159 http fetch GET 304 https://registry.npmjs.org/tunnel-agent 538ms (from cache)
+160 http fetch GET 304 https://registry.npmjs.org/rimraf 585ms (from cache)
+161 http fetch GET 304 https://registry.npmjs.org/yargs 541ms (from cache)
+162 timing idealTree:node_modules/node-sass Completed in 675ms
+163 timing idealTree:node_modules/async-foreach Completed in 0ms
+164 silly placeDep ROOT globule@1.3.2 OK for: gaze@1.1.3 want: ^1.0.0
+165 timing idealTree:node_modules/gaze Completed in 12ms
+166 timing idealTree:node_modules/get-stdin Completed in 0ms
+167 timing idealTree:node_modules/globule Completed in 0ms
+168 timing idealTree:node_modules/in-publish Completed in 0ms
+169 silly placeDep ROOT camelcase-keys@2.1.0 OK for: meow@3.7.0 want: ^2.0.0
+170 silly placeDep ROOT decamelize@1.2.0 OK for: meow@3.7.0 want: ^1.1.2
+171 silly placeDep ROOT loud-rejection@1.6.0 OK for: meow@3.7.0 want: ^1.0.0
+172 silly placeDep ROOT map-obj@1.0.1 OK for: meow@3.7.0 want: ^1.0.1
+173 silly placeDep ROOT normalize-package-data@2.5.0 OK for: meow@3.7.0 want: ^2.3.4
+174 silly placeDep ROOT read-pkg-up@1.0.1 OK for: meow@3.7.0 want: ^1.0.1
+175 silly placeDep ROOT redent@1.0.0 OK for: meow@3.7.0 want: ^1.0.0
+176 silly placeDep ROOT trim-newlines@1.0.0 OK for: meow@3.7.0 want: ^1.0.0
+177 silly fetch manifest camelcase@^2.0.0
+178 silly fetch manifest currently-unhandled@^0.4.1
+179 silly fetch manifest hosted-git-info@^2.1.4
+180 silly fetch manifest validate-npm-package-license@^3.0.1
+181 silly fetch manifest find-up@^1.0.0
+182 silly fetch manifest read-pkg@^1.0.0
+183 silly fetch manifest indent-string@^2.1.0
+184 silly fetch manifest strip-indent@^1.0.1
+185 http fetch GET 304 https://registry.npmjs.org/indent-string 150ms (from cache)
+186 http fetch GET 304 https://registry.npmjs.org/validate-npm-package-license 164ms (from cache)
+187 http fetch GET 304 https://registry.npmjs.org/find-up 180ms (from cache)
+188 http fetch GET 304 https://registry.npmjs.org/read-pkg 181ms (from cache)
+189 http fetch GET 304 https://registry.npmjs.org/camelcase 191ms (from cache)
+190 http fetch GET 304 https://registry.npmjs.org/strip-indent 184ms (from cache)
+191 http fetch GET 304 https://registry.npmjs.org/currently-unhandled 194ms (from cache)
+192 http fetch GET 304 https://registry.npmjs.org/hosted-git-info 194ms (from cache)
+193 timing idealTree:node_modules/meow Completed in 211ms
+194 silly placeDep node_modules/camelcase-keys camelcase@2.1.1 OK for: camelcase-keys@2.1.0 want: ^2.0.0
+195 timing idealTree:node_modules/camelcase-keys Completed in 2ms
+196 timing idealTree:node_modules/decamelize Completed in 0ms
+197 silly placeDep ROOT currently-unhandled@0.4.1 OK for: loud-rejection@1.6.0 want: ^0.4.1
+198 silly fetch manifest array-find-index@^1.0.1
+199 http fetch GET 304 https://registry.npmjs.org/array-find-index 100ms (from cache)
+200 timing idealTree:node_modules/loud-rejection Completed in 105ms
+201 silly placeDep ROOT array-find-index@1.0.2 OK for: currently-unhandled@0.4.1 want: ^1.0.1
+202 timing idealTree:node_modules/currently-unhandled Completed in 2ms
+203 timing idealTree:node_modules/array-find-index Completed in 0ms
+204 timing idealTree:node_modules/map-obj Completed in 0ms
+205 timing idealTree:node_modules/nan Completed in 0ms
+206 silly placeDep ROOT fstream@1.0.12 OK for: node-gyp@3.8.0 want: ^1.0.0
+207 silly placeDep ROOT nopt@3.0.6 OK for: node-gyp@3.8.0 want: 2 || 3
+208 silly placeDep ROOT osenv@0.1.5 OK for: node-gyp@3.8.0 want: 0
+209 silly placeDep node_modules/node-gyp rimraf@2.7.1 OK for: node-gyp@3.8.0 want: 2
+210 silly placeDep node_modules/node-gyp semver@5.3.0 OK for: node-gyp@3.8.0 want: ~5.3.0
+211 silly placeDep ROOT tar@2.2.2 OK for: node-gyp@3.8.0 want: ^2.0.0
+212 silly placeDep node_modules/node-gyp which@1.3.1 OK for: node-gyp@3.8.0 want: 1
+213 silly fetch manifest abbrev@1
+214 silly fetch manifest os-homedir@^1.0.0
+215 silly fetch manifest os-tmpdir@^1.0.0
+216 silly fetch manifest block-stream@*
+217 http fetch GET 200 https://registry.npmjs.org/os-homedir 53ms (from cache)
+218 http fetch GET 304 https://registry.npmjs.org/abbrev 130ms (from cache)
+219 http fetch GET 304 https://registry.npmjs.org/block-stream 126ms (from cache)
+220 http fetch GET 304 https://registry.npmjs.org/os-tmpdir 135ms (from cache)
+221 timing idealTree:node_modules/node-gyp Completed in 153ms
+222 silly placeDep node_modules/fstream rimraf@2.7.1 OK for: fstream@1.0.12 want: 2
+223 timing idealTree:node_modules/fstream Completed in 1ms
+224 silly placeDep ROOT abbrev@1.1.1 OK for: nopt@3.0.6 want: 1
+225 timing idealTree:node_modules/nopt Completed in 2ms
+226 timing idealTree:node_modules/abbrev Completed in 0ms
+227 silly placeDep ROOT hosted-git-info@2.8.8 OK for: normalize-package-data@2.5.0 want: ^2.1.4
+228 silly placeDep ROOT validate-npm-package-license@3.0.4 OK for: normalize-package-data@2.5.0 want: ^3.0.1
+229 silly fetch manifest spdx-correct@^3.0.0
+230 silly fetch manifest spdx-expression-parse@^3.0.0
+231 http fetch GET 304 https://registry.npmjs.org/spdx-expression-parse 108ms (from cache)
+232 http fetch GET 304 https://registry.npmjs.org/spdx-correct 126ms (from cache)
+233 timing idealTree:node_modules/normalize-package-data Completed in 131ms
+234 timing idealTree:node_modules/hosted-git-info Completed in 0ms
+235 silly placeDep ROOT are-we-there-yet@1.1.5 OK for: npmlog@4.1.2 want: ~1.1.2
+236 silly placeDep ROOT console-control-strings@1.1.0 OK for: npmlog@4.1.2 want: ~1.1.0
+237 silly placeDep ROOT gauge@2.7.4 OK for: npmlog@4.1.2 want: ~2.7.3
+238 silly placeDep ROOT set-blocking@2.0.0 OK for: npmlog@4.1.2 want: ~2.0.0
+239 silly fetch manifest delegates@^1.0.0
+240 silly fetch manifest aproba@^1.0.3
+241 silly fetch manifest has-unicode@^2.0.0
+242 silly fetch manifest string-width@^1.0.1
+243 silly fetch manifest strip-ansi@^3.0.1
+244 silly fetch manifest wide-align@^1.1.0
+245 http fetch GET 304 https://registry.npmjs.org/string-width 145ms (from cache)
+246 http fetch GET 304 https://registry.npmjs.org/has-unicode 151ms (from cache)
+247 http fetch GET 304 https://registry.npmjs.org/wide-align 153ms (from cache)
+248 http fetch GET 304 https://registry.npmjs.org/aproba 172ms (from cache)
+249 http fetch GET 304 https://registry.npmjs.org/delegates 175ms (from cache)
+250 timing idealTree:node_modules/npmlog Completed in 185ms
+251 silly placeDep ROOT delegates@1.0.0 OK for: are-we-there-yet@1.1.5 want: ^1.0.0
+252 timing idealTree:node_modules/are-we-there-yet Completed in 3ms
+253 timing idealTree:node_modules/console-control-strings Completed in 0ms
+254 timing idealTree:node_modules/delegates Completed in 0ms
+255 silly placeDep ROOT aproba@1.2.0 OK for: gauge@2.7.4 want: ^1.0.3
+256 silly placeDep ROOT has-unicode@2.0.1 OK for: gauge@2.7.4 want: ^2.0.0
+257 silly placeDep node_modules/gauge string-width@1.0.2 OK for: gauge@2.7.4 want: ^1.0.1
+258 silly placeDep node_modules/gauge strip-ansi@3.0.1 OK for: gauge@2.7.4 want: ^3.0.1
+259 silly placeDep ROOT wide-align@1.1.3 OK for: gauge@2.7.4 want: ^1.1.0
+260 silly fetch manifest code-point-at@^1.0.0
+261 silly fetch manifest is-fullwidth-code-point@^1.0.0
+262 silly fetch manifest ansi-regex@^2.0.0
+263 silly fetch manifest string-width@^1.0.2 || 2
+264 http fetch GET 304 https://registry.npmjs.org/ansi-regex 109ms (from cache)
+265 http fetch GET 304 https://registry.npmjs.org/code-point-at 114ms (from cache)
+266 http fetch GET 304 https://registry.npmjs.org/is-fullwidth-code-point 123ms (from cache)
+267 timing idealTree:node_modules/gauge Completed in 134ms
+268 timing idealTree:node_modules/aproba Completed in 0ms
+269 timing idealTree:node_modules/has-unicode Completed in 0ms
+270 silly placeDep ROOT os-homedir@1.0.2 OK for: osenv@0.1.5 want: ^1.0.0
+271 silly placeDep ROOT os-tmpdir@1.0.2 OK for: osenv@0.1.5 want: ^1.0.0
+272 timing idealTree:node_modules/osenv Completed in 5ms
+273 timing idealTree:node_modules/os-homedir Completed in 0ms
+274 timing idealTree:node_modules/os-tmpdir Completed in 0ms
+275 silly placeDep node_modules/read-pkg-up find-up@1.1.2 OK for: read-pkg-up@1.0.1 want: ^1.0.0
+276 silly placeDep ROOT read-pkg@1.1.0 OK for: read-pkg-up@1.0.1 want: ^1.0.0
+277 silly fetch manifest path-exists@^2.0.0
+278 silly fetch manifest pinkie-promise@^2.0.0
+279 silly fetch manifest load-json-file@^1.0.0
+280 silly fetch manifest path-type@^1.0.0
+281 http fetch GET 304 https://registry.npmjs.org/path-exists 127ms (from cache)
+282 http fetch GET 304 https://registry.npmjs.org/path-type 117ms (from cache)
+283 http fetch GET 304 https://registry.npmjs.org/pinkie-promise 127ms (from cache)
+284 http fetch GET 304 https://registry.npmjs.org/load-json-file 146ms (from cache)
+285 timing idealTree:node_modules/read-pkg-up Completed in 162ms
+286 silly placeDep ROOT load-json-file@1.1.0 OK for: read-pkg@1.1.0 want: ^1.0.0
+287 silly placeDep node_modules/read-pkg path-type@1.1.0 OK for: read-pkg@1.1.0 want: ^1.0.0
+288 silly fetch manifest parse-json@^2.2.0
+289 silly fetch manifest pify@^2.0.0
+290 silly fetch manifest strip-bom@^2.0.0
+291 http fetch GET 304 https://registry.npmjs.org/parse-json 100ms (from cache)
+292 http fetch GET 304 https://registry.npmjs.org/pify 118ms (from cache)
+293 http fetch GET 304 https://registry.npmjs.org/strip-bom 145ms (from cache)
+294 timing idealTree:node_modules/read-pkg Completed in 151ms
+295 silly placeDep node_modules/load-json-file parse-json@2.2.0 OK for: load-json-file@1.1.0 want: ^2.2.0
+296 silly placeDep ROOT pify@2.3.0 OK for: load-json-file@1.1.0 want: ^2.0.0
+297 silly placeDep ROOT pinkie-promise@2.0.1 OK for: load-json-file@1.1.0 want: ^2.0.0
+298 silly placeDep ROOT strip-bom@2.0.0 OK for: load-json-file@1.1.0 want: ^2.0.0
+299 silly fetch manifest pinkie@^2.0.0
+300 silly fetch manifest is-utf8@^0.2.0
+301 http fetch GET 304 https://registry.npmjs.org/pinkie 117ms (from cache)
+302 http fetch GET 304 https://registry.npmjs.org/is-utf8 119ms (from cache)
+303 timing idealTree:node_modules/load-json-file Completed in 128ms
+304 timing idealTree:node_modules/pify Completed in 0ms
+305 silly placeDep ROOT pinkie@2.0.4 OK for: pinkie-promise@2.0.1 want: ^2.0.0
+306 timing idealTree:node_modules/pinkie-promise Completed in 2ms
+307 timing idealTree:node_modules/pinkie Completed in 0ms
+308 silly placeDep node_modules/redent indent-string@2.1.0 OK for: redent@1.0.0 want: ^2.1.0
+309 silly placeDep ROOT strip-indent@1.0.1 OK for: redent@1.0.0 want: ^1.0.1
+310 silly fetch manifest repeating@^2.0.0
+311 http fetch GET 304 https://registry.npmjs.org/repeating 106ms (from cache)
+312 timing idealTree:node_modules/redent Completed in 112ms
+313 silly placeDep ROOT aws-sign2@0.7.0 OK for: request@2.88.2 want: ~0.7.0
+314 silly placeDep ROOT aws4@1.11.0 OK for: request@2.88.2 want: ^1.8.0
+315 silly placeDep ROOT caseless@0.12.0 OK for: request@2.88.2 want: ~0.12.0
+316 silly placeDep ROOT combined-stream@1.0.8 OK for: request@2.88.2 want: ~1.0.6
+317 silly placeDep ROOT extend@3.0.2 OK for: request@2.88.2 want: ~3.0.2
+318 silly placeDep ROOT forever-agent@0.6.1 OK for: request@2.88.2 want: ~0.6.1
+319 silly placeDep ROOT form-data@2.3.3 OK for: request@2.88.2 want: ~2.3.2
+320 silly placeDep ROOT har-validator@5.1.5 OK for: request@2.88.2 want: ~5.1.3
+321 silly placeDep ROOT http-signature@1.2.0 OK for: request@2.88.2 want: ~1.2.0
+322 silly placeDep ROOT is-typedarray@1.0.0 OK for: request@2.88.2 want: ~1.0.0
+323 silly placeDep ROOT isstream@0.1.2 OK for: request@2.88.2 want: ~0.1.2
+324 silly placeDep ROOT json-stringify-safe@5.0.1 OK for: request@2.88.2 want: ~5.0.1
+325 silly placeDep ROOT oauth-sign@0.9.0 OK for: request@2.88.2 want: ~0.9.0
+326 silly placeDep ROOT performance-now@2.1.0 OK for: request@2.88.2 want: ^2.1.0
+327 silly placeDep node_modules/request qs@6.5.2 OK for: request@2.88.2 want: ~6.5.2
+328 silly placeDep ROOT tough-cookie@2.5.0 OK for: request@2.88.2 want: ~2.5.0
+329 silly placeDep ROOT tunnel-agent@0.6.0 OK for: request@2.88.2 want: ^0.6.0
+330 silly fetch manifest delayed-stream@~1.0.0
+331 silly fetch manifest asynckit@^0.4.0
+332 silly fetch manifest har-schema@^2.0.0
+333 silly fetch manifest assert-plus@^1.0.0
+334 silly fetch manifest jsprim@^1.2.2
+335 silly fetch manifest sshpk@^1.7.0
+336 silly fetch manifest psl@^1.1.28
+337 http fetch GET 200 https://registry.npmjs.org/jsprim 22ms (from cache)
+338 http fetch GET 304 https://registry.npmjs.org/har-schema 134ms (from cache)
+339 http fetch GET 304 https://registry.npmjs.org/psl 138ms (from cache)
+340 http fetch GET 304 https://registry.npmjs.org/asynckit 156ms (from cache)
+341 http fetch GET 304 https://registry.npmjs.org/sshpk 153ms (from cache)
+342 http fetch GET 304 https://registry.npmjs.org/assert-plus 157ms (from cache)
+343 http fetch GET 304 https://registry.npmjs.org/delayed-stream 164ms (from cache)
+344 timing idealTree:node_modules/request Completed in 200ms
+345 timing idealTree:node_modules/aws-sign2 Completed in 0ms
+346 timing idealTree:node_modules/aws4 Completed in 0ms
+347 timing idealTree:node_modules/caseless Completed in 0ms
+348 silly placeDep ROOT delayed-stream@1.0.0 OK for: combined-stream@1.0.8 want: ~1.0.0
+349 timing idealTree:node_modules/combined-stream Completed in 2ms
+350 timing idealTree:node_modules/delayed-stream Completed in 0ms
+351 timing idealTree:node_modules/extend Completed in 0ms
+352 timing idealTree:node_modules/forever-agent Completed in 0ms
+353 silly placeDep ROOT asynckit@0.4.0 OK for: form-data@2.3.3 want: ^0.4.0
+354 timing idealTree:node_modules/form-data Completed in 2ms
+355 timing idealTree:node_modules/asynckit Completed in 0ms
+356 silly placeDep ROOT har-schema@2.0.0 OK for: har-validator@5.1.5 want: ^2.0.0
+357 timing idealTree:node_modules/har-validator Completed in 2ms
+358 timing idealTree:node_modules/har-schema Completed in 0ms
+359 silly placeDep ROOT assert-plus@1.0.0 OK for: http-signature@1.2.0 want: ^1.0.0
+360 silly placeDep ROOT jsprim@1.4.1 OK for: http-signature@1.2.0 want: ^1.2.2
+361 silly placeDep ROOT sshpk@1.16.1 OK for: http-signature@1.2.0 want: ^1.7.0
+362 silly fetch manifest extsprintf@1.3.0
+363 silly fetch manifest json-schema@0.2.3
+364 silly fetch manifest verror@1.10.0
+365 silly fetch manifest asn1@~0.2.3
+366 silly fetch manifest dashdash@^1.12.0
+367 silly fetch manifest getpass@^0.1.1
+368 silly fetch manifest jsbn@~0.1.0
+369 silly fetch manifest tweetnacl@~0.14.0
+370 silly fetch manifest ecc-jsbn@~0.1.1
+371 silly fetch manifest bcrypt-pbkdf@^1.0.0
+372 http fetch GET 200 https://registry.npmjs.org/ecc-jsbn 27ms (from cache)
+373 http fetch GET 200 https://registry.npmjs.org/getpass 48ms (from cache)
+374 http fetch GET 304 https://registry.npmjs.org/json-schema 132ms (from cache)
+375 http fetch GET 304 https://registry.npmjs.org/jsbn 142ms (from cache)
+376 http fetch GET 304 https://registry.npmjs.org/asn1 164ms (from cache)
+377 http fetch GET 304 https://registry.npmjs.org/verror 167ms (from cache)
+378 http fetch GET 304 https://registry.npmjs.org/extsprintf 173ms (from cache)
+379 http fetch GET 304 https://registry.npmjs.org/dashdash 173ms (from cache)
+380 http fetch GET 304 https://registry.npmjs.org/bcrypt-pbkdf 178ms (from cache)
+381 http fetch GET 304 https://registry.npmjs.org/tweetnacl 216ms (from cache)
+382 timing idealTree:node_modules/http-signature Completed in 245ms
+383 timing idealTree:node_modules/assert-plus Completed in 0ms
+384 timing idealTree:node_modules/is-typedarray Completed in 0ms
+385 timing idealTree:node_modules/isstream Completed in 0ms
+386 timing idealTree:node_modules/json-stringify-safe Completed in 0ms
+387 silly placeDep ROOT extsprintf@1.3.0 OK for: jsprim@1.4.1 want: 1.3.0
+388 silly placeDep ROOT json-schema@0.2.3 OK for: jsprim@1.4.1 want: 0.2.3
+389 silly placeDep ROOT verror@1.10.0 OK for: jsprim@1.4.1 want: 1.10.0
+390 timing idealTree:node_modules/jsprim Completed in 22ms
+391 timing idealTree:node_modules/extsprintf Completed in 0ms
+392 timing idealTree:node_modules/json-schema Completed in 0ms
+393 timing idealTree:node_modules/oauth-sign Completed in 0ms
+394 timing idealTree:node_modules/performance-now Completed in 0ms
+395 silly placeDep ROOT scss-tokenizer@0.2.3 OK for: sass-graph@2.2.5 want: ^0.2.3
+396 silly placeDep node_modules/sass-graph yargs@13.3.2 OK for: sass-graph@2.2.5 want: ^13.3.2
+397 silly fetch manifest js-base64@^2.1.8
+398 silly fetch manifest source-map@^0.4.2
+399 silly fetch manifest cliui@^5.0.0
+400 silly fetch manifest find-up@^3.0.0
+401 silly fetch manifest require-main-filename@^2.0.0
+402 silly fetch manifest string-width@^3.0.0
+403 silly fetch manifest which-module@^2.0.0
+404 silly fetch manifest y18n@^4.0.0
+405 silly fetch manifest yargs-parser@^13.1.2
+406 http fetch GET 304 https://registry.npmjs.org/yargs-parser 139ms (from cache)
+407 http fetch GET 304 https://registry.npmjs.org/require-main-filename 145ms (from cache)
+408 http fetch GET 304 https://registry.npmjs.org/js-base64 150ms (from cache)
+409 http fetch GET 304 https://registry.npmjs.org/y18n 145ms (from cache)
+410 http fetch GET 304 https://registry.npmjs.org/which-module 149ms (from cache)
+411 http fetch GET 304 https://registry.npmjs.org/source-map 156ms (from cache)
+412 http fetch GET 304 https://registry.npmjs.org/cliui 159ms (from cache)
+413 timing idealTree:node_modules/sass-graph Completed in 168ms
+414 silly placeDep ROOT js-base64@2.6.4 OK for: scss-tokenizer@0.2.3 want: ^2.1.8
+415 silly placeDep node_modules/scss-tokenizer source-map@0.4.4 OK for: scss-tokenizer@0.2.3 want: ^0.4.2
+416 silly fetch manifest amdefine@>=0.0.4
+417 http fetch GET 304 https://registry.npmjs.org/amdefine 109ms (from cache)
+418 timing idealTree:node_modules/scss-tokenizer Completed in 115ms
+419 timing idealTree:node_modules/js-base64 Completed in 0ms
+420 timing idealTree:node_modules/set-blocking Completed in 0ms
+421 silly placeDep ROOT asn1@0.2.4 OK for: sshpk@1.16.1 want: ~0.2.3
+422 silly placeDep ROOT bcrypt-pbkdf@1.0.2 OK for: sshpk@1.16.1 want: ^1.0.0
+423 silly placeDep ROOT dashdash@1.14.1 OK for: sshpk@1.16.1 want: ^1.12.0
+424 silly placeDep ROOT ecc-jsbn@0.1.2 OK for: sshpk@1.16.1 want: ~0.1.1
+425 silly placeDep ROOT getpass@0.1.7 OK for: sshpk@1.16.1 want: ^0.1.1
+426 silly placeDep ROOT jsbn@0.1.1 OK for: sshpk@1.16.1 want: ~0.1.0
+427 silly placeDep ROOT tweetnacl@0.14.5 OK for: sshpk@1.16.1 want: ~0.14.0
+428 timing idealTree:node_modules/sshpk Completed in 27ms
+429 timing idealTree:node_modules/asn1 Completed in 0ms
+430 timing idealTree:node_modules/bcrypt-pbkdf Completed in 0ms
+431 timing idealTree:node_modules/dashdash Completed in 0ms
+432 timing idealTree:node_modules/ecc-jsbn Completed in 0ms
+433 timing idealTree:node_modules/getpass Completed in 0ms
+434 timing idealTree:node_modules/jsbn Completed in 0ms
+435 timing idealTree:node_modules/stdout-stream Completed in 0ms
+436 silly placeDep ROOT is-utf8@0.2.1 OK for: strip-bom@2.0.0 want: ^0.2.0
+437 timing idealTree:node_modules/strip-bom Completed in 3ms
+438 timing idealTree:node_modules/is-utf8 Completed in 0ms
+439 timing idealTree:node_modules/strip-indent Completed in 0ms
+440 silly placeDep ROOT block-stream@0.0.9 OK for: tar@2.2.2 want: *
+441 timing idealTree:node_modules/tar Completed in 2ms
+442 timing idealTree:node_modules/block-stream Completed in 0ms
+443 silly placeDep ROOT psl@1.8.0 OK for: tough-cookie@2.5.0 want: ^1.1.28
+444 timing idealTree:node_modules/tough-cookie Completed in 1ms
+445 timing idealTree:node_modules/psl Completed in 0ms
+446 timing idealTree:node_modules/trim-newlines Completed in 0ms
+447 timing idealTree:node_modules/true-case-path Completed in 0ms
+448 timing idealTree:node_modules/tunnel-agent Completed in 0ms
+449 timing idealTree:node_modules/tweetnacl Completed in 1ms
+450 silly placeDep ROOT spdx-correct@3.1.1 OK for: validate-npm-package-license@3.0.4 want: ^3.0.0
+451 silly placeDep ROOT spdx-expression-parse@3.0.1 OK for: validate-npm-package-license@3.0.4 want: ^3.0.0
+452 silly fetch manifest spdx-license-ids@^3.0.0
+453 silly fetch manifest spdx-exceptions@^2.1.0
+454 http fetch GET 304 https://registry.npmjs.org/spdx-license-ids 122ms (from cache)
+455 http fetch GET 304 https://registry.npmjs.org/spdx-exceptions 123ms (from cache)
+456 timing idealTree:node_modules/validate-npm-package-license Completed in 126ms
+457 silly placeDep ROOT spdx-license-ids@3.0.7 OK for: spdx-correct@3.1.1 want: ^3.0.0
+458 timing idealTree:node_modules/spdx-correct Completed in 4ms
+459 silly placeDep ROOT spdx-exceptions@2.3.0 OK for: spdx-expression-parse@3.0.1 want: ^2.1.0
+460 timing idealTree:node_modules/spdx-expression-parse Completed in 2ms
+461 timing idealTree:node_modules/spdx-exceptions Completed in 0ms
+462 timing idealTree:node_modules/spdx-license-ids Completed in 0ms
+463 timing idealTree:node_modules/verror Completed in 0ms
+464 silly placeDep node_modules/wide-align string-width@2.1.1 OK for: wide-align@1.1.3 want: ^1.0.2 || 2
+465 silly fetch manifest is-fullwidth-code-point@^2.0.0
+466 silly fetch manifest strip-ansi@^4.0.0
+467 timing idealTree:node_modules/wide-align Completed in 4ms
+468 timing idealTree:node_modules/camelcase-keys/node_modules/camelcase Completed in 0ms
+469 timing idealTree:node_modules/fstream/node_modules/rimraf Completed in 0ms
+470 silly placeDep ROOT code-point-at@1.1.0 OK for: string-width@1.0.2 want: ^1.0.0
+471 silly placeDep node_modules/gauge is-fullwidth-code-point@1.0.0 OK for: string-width@1.0.2 want: ^1.0.0
+472 silly fetch manifest number-is-nan@^1.0.0
+473 http fetch GET 304 https://registry.npmjs.org/number-is-nan 95ms (from cache)
+474 timing idealTree:node_modules/gauge/node_modules/string-width Completed in 100ms
+475 timing idealTree:node_modules/code-point-at Completed in 0ms
+476 silly placeDep ROOT number-is-nan@1.0.1 OK for: is-fullwidth-code-point@1.0.0 want: ^1.0.0
+477 timing idealTree:node_modules/gauge/node_modules/is-fullwidth-code-point Completed in 2ms
+478 timing idealTree:node_modules/number-is-nan Completed in 0ms
+479 silly placeDep node_modules/gauge ansi-regex@2.1.1 OK for: strip-ansi@3.0.1 want: ^2.0.0
+480 timing idealTree:node_modules/gauge/node_modules/strip-ansi Completed in 1ms
+481 timing idealTree:node_modules/gauge/node_modules/ansi-regex Completed in 0ms
+482 timing idealTree:node_modules/load-json-file/node_modules/parse-json Completed in 0ms
+483 timing idealTree:node_modules/node-gyp/node_modules/rimraf Completed in 0ms
+484 timing idealTree:node_modules/node-gyp/node_modules/semver Completed in 0ms
+485 timing idealTree:node_modules/node-gyp/node_modules/which Completed in 0ms
+486 silly placeDep node_modules/node-sass ansi-styles@2.2.1 OK for: chalk@1.1.3 want: ^2.2.1
+487 silly placeDep ROOT has-ansi@2.0.0 OK for: chalk@1.1.3 want: ^2.0.0
+488 silly placeDep node_modules/node-sass strip-ansi@3.0.1 OK for: chalk@1.1.3 want: ^3.0.0
+489 silly placeDep node_modules/node-sass supports-color@2.0.0 OK for: chalk@1.1.3 want: ^2.0.0
+490 timing idealTree:node_modules/node-sass/node_modules/chalk Completed in 4ms
+491 silly placeDep node_modules/has-ansi ansi-regex@2.1.1 OK for: has-ansi@2.0.0 want: ^2.0.0
+492 timing idealTree:node_modules/has-ansi Completed in 1ms
+493 timing idealTree:node_modules/has-ansi/node_modules/ansi-regex Completed in 0ms
+494 timing idealTree:node_modules/node-sass/node_modules/ansi-styles Completed in 0ms
+495 silly placeDep node_modules/node-sass lru-cache@4.1.5 OK for: cross-spawn@3.0.1 want: ^4.0.1
+496 silly placeDep node_modules/node-sass which@1.3.1 OK for: cross-spawn@3.0.1 want: ^1.2.9
+497 silly fetch manifest pseudomap@^1.0.2
+498 silly fetch manifest yallist@^2.1.2
+499 http fetch GET 304 https://registry.npmjs.org/yallist 102ms (from cache)
+500 http fetch GET 304 https://registry.npmjs.org/pseudomap 129ms (from cache)
+501 timing idealTree:node_modules/node-sass/node_modules/cross-spawn Completed in 133ms
+502 silly placeDep ROOT pseudomap@1.0.2 OK for: lru-cache@4.1.5 want: ^1.0.2
+503 silly placeDep node_modules/node-sass yallist@2.1.2 OK for: lru-cache@4.1.5 want: ^2.1.2
+504 timing idealTree:node_modules/node-sass/node_modules/lru-cache Completed in 3ms
+505 timing idealTree:node_modules/pseudomap Completed in 0ms
+506 silly placeDep node_modules/node-sass ansi-regex@2.1.1 OK for: strip-ansi@3.0.1 want: ^2.0.0
+507 timing idealTree:node_modules/node-sass/node_modules/strip-ansi Completed in 2ms
+508 timing idealTree:node_modules/node-sass/node_modules/ansi-regex Completed in 0ms
+509 timing idealTree:node_modules/node-sass/node_modules/supports-color Completed in 0ms
+510 timing idealTree:node_modules/node-sass/node_modules/which Completed in 0ms
+511 timing idealTree:node_modules/node-sass/node_modules/yallist Completed in 0ms
+512 silly placeDep node_modules/read-pkg-up path-exists@2.1.0 OK for: find-up@1.1.2 want: ^2.0.0
+513 timing idealTree:node_modules/read-pkg-up/node_modules/find-up Completed in 1ms
+514 timing idealTree:node_modules/read-pkg-up/node_modules/path-exists Completed in 0ms
+515 timing idealTree:node_modules/read-pkg/node_modules/path-type Completed in 0ms
+516 silly placeDep ROOT repeating@2.0.1 OK for: indent-string@2.1.0 want: ^2.0.0
+517 silly fetch manifest is-finite@^1.0.0
+518 http fetch GET 304 https://registry.npmjs.org/is-finite 202ms (from cache)
+519 timing idealTree:node_modules/redent/node_modules/indent-string Completed in 204ms
+520 silly placeDep ROOT is-finite@1.1.0 OK for: repeating@2.0.1 want: ^1.0.0
+521 timing idealTree:node_modules/repeating Completed in 2ms
+522 timing idealTree:node_modules/is-finite Completed in 0ms
+523 timing idealTree:node_modules/request/node_modules/qs Completed in 0ms
+524 silly placeDep node_modules/sass-graph cliui@5.0.0 OK for: yargs@13.3.2 want: ^5.0.0
+525 silly placeDep node_modules/sass-graph find-up@3.0.0 OK for: yargs@13.3.2 want: ^3.0.0
+526 silly placeDep ROOT require-main-filename@2.0.0 OK for: yargs@13.3.2 want: ^2.0.0
+527 silly placeDep node_modules/sass-graph string-width@3.1.0 OK for: yargs@13.3.2 want: ^3.0.0
+528 silly placeDep ROOT which-module@2.0.0 OK for: yargs@13.3.2 want: ^2.0.0
+529 silly placeDep node_modules/sass-graph y18n@4.0.1 OK for: yargs@13.3.2 want: ^4.0.0
+530 silly placeDep node_modules/sass-graph yargs-parser@13.1.2 OK for: yargs@13.3.2 want: ^13.1.2
+531 silly fetch manifest strip-ansi@^5.2.0
+532 silly fetch manifest wrap-ansi@^5.1.0
+533 silly fetch manifest locate-path@^3.0.0
+534 silly fetch manifest emoji-regex@^7.0.1
+535 silly fetch manifest strip-ansi@^5.1.0
+536 silly fetch manifest camelcase@^5.0.0
+537 http fetch GET 304 https://registry.npmjs.org/locate-path 109ms (from cache)
+538 http fetch GET 304 https://registry.npmjs.org/wrap-ansi 111ms (from cache)
+539 http fetch GET 304 https://registry.npmjs.org/emoji-regex 111ms (from cache)
+540 timing idealTree:node_modules/sass-graph/node_modules/yargs Completed in 120ms
+541 timing idealTree:node_modules/require-main-filename Completed in 0ms
+542 timing idealTree:node_modules/which-module Completed in 0ms
+543 silly placeDep node_modules/sass-graph strip-ansi@5.2.0 OK for: cliui@5.0.0 want: ^5.2.0
+544 silly placeDep node_modules/sass-graph wrap-ansi@5.1.0 OK for: cliui@5.0.0 want: ^5.1.0
+545 silly fetch manifest ansi-regex@^4.1.0
+546 silly fetch manifest ansi-styles@^3.2.0
+547 timing idealTree:node_modules/sass-graph/node_modules/cliui Completed in 9ms
+548 silly placeDep node_modules/sass-graph locate-path@3.0.0 OK for: find-up@3.0.0 want: ^3.0.0
+549 silly fetch manifest p-locate@^3.0.0
+550 silly fetch manifest path-exists@^3.0.0
+551 http fetch GET 304 https://registry.npmjs.org/p-locate 115ms (from cache)
+552 timing idealTree:node_modules/sass-graph/node_modules/find-up Completed in 121ms
+553 silly placeDep node_modules/sass-graph p-locate@3.0.0 OK for: locate-path@3.0.0 want: ^3.0.0
+554 silly placeDep node_modules/sass-graph path-exists@3.0.0 OK for: locate-path@3.0.0 want: ^3.0.0
+555 timing idealTree:node_modules/sass-graph/node_modules/locate-path Completed in 1ms
+556 timing idealTree:node_modules/sass-graph/node_modules/p-locate Completed in 0ms
+557 timing idealTree:node_modules/sass-graph/node_modules/path-exists Completed in 0ms
+558 silly placeDep node_modules/sass-graph emoji-regex@7.0.3 OK for: string-width@3.1.0 want: ^7.0.1
+559 silly placeDep node_modules/sass-graph is-fullwidth-code-point@2.0.0 OK for: string-width@3.1.0 want: ^2.0.0
+560 timing idealTree:node_modules/sass-graph/node_modules/string-width Completed in 1ms
+561 timing idealTree:node_modules/sass-graph/node_modules/emoji-regex Completed in 0ms
+562 timing idealTree:node_modules/sass-graph/node_modules/is-fullwidth-code-point Completed in 0ms
+563 silly placeDep node_modules/sass-graph ansi-regex@4.1.0 OK for: strip-ansi@5.2.0 want: ^4.1.0
+564 timing idealTree:node_modules/sass-graph/node_modules/strip-ansi Completed in 1ms
+565 timing idealTree:node_modules/sass-graph/node_modules/ansi-regex Completed in 0ms
+566 silly placeDep node_modules/sass-graph ansi-styles@3.2.1 OK for: wrap-ansi@5.1.0 want: ^3.2.0
+567 timing idealTree:node_modules/sass-graph/node_modules/wrap-ansi Completed in 0ms
+568 timing idealTree:node_modules/sass-graph/node_modules/ansi-styles Completed in 0ms
+569 timing idealTree:node_modules/sass-graph/node_modules/y18n Completed in 0ms
+570 silly placeDep node_modules/sass-graph camelcase@5.3.1 OK for: yargs-parser@13.1.2 want: ^5.0.0
+571 timing idealTree:node_modules/sass-graph/node_modules/yargs-parser Completed in 1ms
+572 timing idealTree:node_modules/sass-graph/node_modules/camelcase Completed in 0ms
+573 silly placeDep ROOT amdefine@1.0.1 OK for: source-map@0.4.4 want: >=0.0.4
+574 timing idealTree:node_modules/scss-tokenizer/node_modules/source-map Completed in 3ms
+575 timing idealTree:node_modules/amdefine Completed in 0ms
+576 silly placeDep node_modules/wide-align is-fullwidth-code-point@2.0.0 OK for: string-width@2.1.1 want: ^2.0.0
+577 silly placeDep node_modules/wide-align strip-ansi@4.0.0 OK for: string-width@2.1.1 want: ^4.0.0
+578 silly fetch manifest ansi-regex@^3.0.0
+579 timing idealTree:node_modules/wide-align/node_modules/string-width Completed in 9ms
+580 timing idealTree:node_modules/wide-align/node_modules/is-fullwidth-code-point Completed in 0ms
+581 silly placeDep node_modules/wide-align ansi-regex@3.0.0 OK for: strip-ansi@4.0.0 want: ^3.0.0
+582 timing idealTree:node_modules/wide-align/node_modules/strip-ansi Completed in 2ms
+583 timing idealTree:node_modules/wide-align/node_modules/ansi-regex Completed in 0ms
+584 timing idealTree:buildDeps Completed in 4660ms
+585 timing idealTree:fixDepFlags Completed in 28ms
+586 timing idealTree Completed in 6941ms
+587 timing reify:loadTrees Completed in 6943ms
+588 silly reify mark deleted [ '/home/vagrant/api_gateway/node_modules/bindings' ]
+589 silly reify mark deleted [ '/home/vagrant/api_gateway/node_modules/file-uri-to-path' ]
+590 timing reify:diffTrees Completed in 69ms
+591 silly reify mark retired [
+591 silly reify   '/home/vagrant/api_gateway/node_modules/acorn',
+591 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/acorn'
+591 silly reify ]
+592 silly reify mark retired [
+592 silly reify   '/home/vagrant/api_gateway/node_modules/ansi-html',
+592 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/ansi-html'
+592 silly reify ]
+593 silly reify mark retired [
+593 silly reify   '/home/vagrant/api_gateway/node_modules/autoprefixer',
+593 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/autoprefixer'
+593 silly reify ]
+594 silly reify mark retired [
+594 silly reify   '/home/vagrant/api_gateway/node_modules/babel',
+594 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/babel',
+594 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/babel-node',
+594 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/babel-external-helpers'
+594 silly reify ]
+595 silly reify mark retired [
+595 silly reify   '/home/vagrant/api_gateway/node_modules/atob',
+595 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/atob'
+595 silly reify ]
+596 silly reify mark retired [ '/home/vagrant/api_gateway/node_modules/bindings' ]
+597 silly reify mark retired [
+597 silly reify   '/home/vagrant/api_gateway/node_modules/concat',
+597 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/concat'
+597 silly reify ]
+598 silly reify mark retired [
+598 silly reify   '/home/vagrant/api_gateway/node_modules/core-js-compat/node_modules/semver',
+598 silly reify   '/home/vagrant/api_gateway/node_modules/core-js-compat/node_modules/.bin/semver'
+598 silly reify ]
+599 silly reify mark retired [
+599 silly reify   '/home/vagrant/api_gateway/node_modules/cross-env',
+599 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/cross-env',
+599 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/cross-env-shell'
+599 silly reify ]
+600 silly reify mark retired [
+600 silly reify   '/home/vagrant/api_gateway/node_modules/cssesc',
+600 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/cssesc'
+600 silly reify ]
+601 silly reify mark retired [
+601 silly reify   '/home/vagrant/api_gateway/node_modules/css-loader/node_modules/semver',
+601 silly reify   '/home/vagrant/api_gateway/node_modules/css-loader/node_modules/.bin/semver'
+601 silly reify ]
+602 silly reify mark retired [
+602 silly reify   '/home/vagrant/api_gateway/node_modules/envinfo',
+602 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/envinfo'
+602 silly reify ]
+603 silly reify mark retired [
+603 silly reify   '/home/vagrant/api_gateway/node_modules/esprima',
+603 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/esparse',
+603 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/esvalidate'
+603 silly reify ]
+604 silly reify mark retired [ '/home/vagrant/api_gateway/node_modules/file-uri-to-path' ]
+605 silly reify mark retired [
+605 silly reify   '/home/vagrant/api_gateway/node_modules/he',
+605 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/he'
+605 silly reify ]
+606 silly reify mark retired [
+606 silly reify   '/home/vagrant/api_gateway/node_modules/html-minifier-terser/node_modules/terser',
+606 silly reify   '/home/vagrant/api_gateway/node_modules/html-minifier-terser/node_modules/.bin/terser'
+606 silly reify ]
+607 silly reify mark retired [
+607 silly reify   '/home/vagrant/api_gateway/node_modules/import-local',
+607 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/import-local-fixture'
+607 silly reify ]
+608 silly reify mark retired [
+608 silly reify   '/home/vagrant/api_gateway/node_modules/jsesc',
+608 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/jsesc'
+608 silly reify ]
+609 silly reify mark retired [
+609 silly reify   '/home/vagrant/api_gateway/node_modules/json5',
+609 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/json5'
+609 silly reify ]
+610 silly reify mark retired [
+610 silly reify   '/home/vagrant/api_gateway/node_modules/js-yaml',
+610 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/js-yaml'
+610 silly reify ]
+611 silly reify mark retired [
+611 silly reify   '/home/vagrant/api_gateway/node_modules/laravel-mix',
+611 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/mix',
+611 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/laravel-mix'
+611 silly reify ]
+612 silly reify mark retired [
+612 silly reify   '/home/vagrant/api_gateway/node_modules/loader-utils/node_modules/json5',
+612 silly reify   '/home/vagrant/api_gateway/node_modules/loader-utils/node_modules/.bin/json5'
+612 silly reify ]
+613 silly reify mark retired [
+613 silly reify   '/home/vagrant/api_gateway/node_modules/make-dir/node_modules/semver',
+613 silly reify   '/home/vagrant/api_gateway/node_modules/make-dir/node_modules/.bin/semver'
+613 silly reify ]
+614 silly reify mark retired [
+614 silly reify   '/home/vagrant/api_gateway/node_modules/miller-rabin',
+614 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/miller-rabin'
+614 silly reify ]
+615 silly reify mark retired [
+615 silly reify   '/home/vagrant/api_gateway/node_modules/mkdirp',
+615 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/mkdirp'
+615 silly reify ]
+616 silly reify mark retired [
+616 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/uuid',
+616 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.bin/uuid'
+616 silly reify ]
+617 silly reify mark retired [
+617 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/semver',
+617 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.bin/semver'
+617 silly reify ]
+618 silly reify mark retired [
+618 silly reify   '/home/vagrant/api_gateway/node_modules/nanoid',
+618 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/nanoid'
+618 silly reify ]
+619 silly reify mark retired [
+619 silly reify   '/home/vagrant/api_gateway/node_modules/postcss-loader/node_modules/semver',
+619 silly reify   '/home/vagrant/api_gateway/node_modules/postcss-loader/node_modules/.bin/semver'
+619 silly reify ]
+620 silly reify mark retired [
+620 silly reify   '/home/vagrant/api_gateway/node_modules/regjsparser',
+620 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/regjsparser'
+620 silly reify ]
+621 silly reify mark retired [
+621 silly reify   '/home/vagrant/api_gateway/node_modules/resolve-url-loader/node_modules/json5',
+621 silly reify   '/home/vagrant/api_gateway/node_modules/resolve-url-loader/node_modules/.bin/json5'
+621 silly reify ]
+622 silly reify mark retired [
+622 silly reify   '/home/vagrant/api_gateway/node_modules/sass-loader/node_modules/semver',
+622 silly reify   '/home/vagrant/api_gateway/node_modules/sass-loader/node_modules/.bin/semver'
+622 silly reify ]
+623 silly reify mark retired [
+623 silly reify   '/home/vagrant/api_gateway/node_modules/semver',
+623 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/semver'
+623 silly reify ]
+624 silly reify mark retired [
+624 silly reify   '/home/vagrant/api_gateway/node_modules/svgo',
+624 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/svgo'
+624 silly reify ]
+625 silly reify mark retired [
+625 silly reify   '/home/vagrant/api_gateway/node_modules/terser',
+625 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/terser'
+625 silly reify ]
+626 silly reify mark retired [
+626 silly reify   '/home/vagrant/api_gateway/node_modules/uuid',
+626 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/uuid'
+626 silly reify ]
+627 silly reify mark retired [
+627 silly reify   '/home/vagrant/api_gateway/node_modules/webpack-dev-server',
+627 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/webpack-dev-server'
+627 silly reify ]
+628 silly reify mark retired [
+628 silly reify   '/home/vagrant/api_gateway/node_modules/webpack-cli',
+628 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/webpack-cli'
+628 silly reify ]
+629 silly reify mark retired [
+629 silly reify   '/home/vagrant/api_gateway/node_modules/which',
+629 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/node-which'
+629 silly reify ]
+630 silly reify mark retired [
+630 silly reify   '/home/vagrant/api_gateway/node_modules/webpack',
+630 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/webpack'
+630 silly reify ]
+631 silly reify mark retired [
+631 silly reify   '/home/vagrant/api_gateway/node_modules/@babel/parser',
+631 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/parser'
+631 silly reify ]
+632 silly reify moves {
+632 silly reify   '/home/vagrant/api_gateway/node_modules/acorn': '/home/vagrant/api_gateway/node_modules/.acorn-iebnfKPv',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/acorn': '/home/vagrant/api_gateway/node_modules/.bin/.acorn-PmdSaedD',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/ansi-html': '/home/vagrant/api_gateway/node_modules/.ansi-html-ONGC0YmD',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/ansi-html': '/home/vagrant/api_gateway/node_modules/.bin/.ansi-html-vMua33Im',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/autoprefixer': '/home/vagrant/api_gateway/node_modules/.autoprefixer-nHiUQZaR',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/autoprefixer': '/home/vagrant/api_gateway/node_modules/.bin/.autoprefixer-i5c4e6VZ',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/babel': '/home/vagrant/api_gateway/node_modules/.babel-Mr8MQNMM',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/babel': '/home/vagrant/api_gateway/node_modules/.bin/.babel-XdetCZOE',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/babel-node': '/home/vagrant/api_gateway/node_modules/.bin/.babel-node-UNG9pcAa',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/babel-external-helpers': '/home/vagrant/api_gateway/node_modules/.bin/.babel-external-helpers-6FaBE0RM',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/atob': '/home/vagrant/api_gateway/node_modules/.atob-7KynkzGf',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/atob': '/home/vagrant/api_gateway/node_modules/.bin/.atob-d9ZqNFYV',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/bindings': '/home/vagrant/api_gateway/node_modules/.bindings-xA3INErG',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/concat': '/home/vagrant/api_gateway/node_modules/.concat-BhuQ92ux',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/concat': '/home/vagrant/api_gateway/node_modules/.bin/.concat-2qIc1YO5',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/core-js-compat/node_modules/semver': '/home/vagrant/api_gateway/node_modules/core-js-compat/node_modules/.semver-5uxwzoW4',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/core-js-compat/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/core-js-compat/node_modules/.bin/.semver-g3hb0K0u',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/cross-env': '/home/vagrant/api_gateway/node_modules/.cross-env-NaT0JPcc',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/cross-env': '/home/vagrant/api_gateway/node_modules/.bin/.cross-env-DF53Ztbt',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/cross-env-shell': '/home/vagrant/api_gateway/node_modules/.bin/.cross-env-shell-lSDUZJ3K',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/cssesc': '/home/vagrant/api_gateway/node_modules/.cssesc-BjhLp4Sw',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/cssesc': '/home/vagrant/api_gateway/node_modules/.bin/.cssesc-2rBRM6g7',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/css-loader/node_modules/semver': '/home/vagrant/api_gateway/node_modules/css-loader/node_modules/.semver-DoTIb0HC',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/css-loader/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/css-loader/node_modules/.bin/.semver-mGpb5fvO',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/envinfo': '/home/vagrant/api_gateway/node_modules/.envinfo-ETE7s2sM',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/envinfo': '/home/vagrant/api_gateway/node_modules/.bin/.envinfo-80PYxwzt',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/esprima': '/home/vagrant/api_gateway/node_modules/.esprima-xIubCUh5',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/esparse': '/home/vagrant/api_gateway/node_modules/.bin/.esparse-HLAY6daP',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/esvalidate': '/home/vagrant/api_gateway/node_modules/.bin/.esvalidate-EqtIxOhV',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/file-uri-to-path': '/home/vagrant/api_gateway/node_modules/.file-uri-to-path-GwfHv2yR',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/he': '/home/vagrant/api_gateway/node_modules/.he-7nvbBLza',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/he': '/home/vagrant/api_gateway/node_modules/.bin/.he-ssKoWf9D',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/html-minifier-terser/node_modules/terser': '/home/vagrant/api_gateway/node_modules/html-minifier-terser/node_modules/.terser-FYfzRzgU',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/html-minifier-terser/node_modules/.bin/terser': '/home/vagrant/api_gateway/node_modules/html-minifier-terser/node_modules/.bin/.terser-NJhxd0FW',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/import-local': '/home/vagrant/api_gateway/node_modules/.import-local-GiZGsltH',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/import-local-fixture': '/home/vagrant/api_gateway/node_modules/.bin/.import-local-fixture-zPR6yL50',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/jsesc': '/home/vagrant/api_gateway/node_modules/.jsesc-VXPSdzHR',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/jsesc': '/home/vagrant/api_gateway/node_modules/.bin/.jsesc-5Q6j8zT2',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/json5': '/home/vagrant/api_gateway/node_modules/.json5-rKAYKUUO',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/json5': '/home/vagrant/api_gateway/node_modules/.bin/.json5-9E6ZI45D',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/js-yaml': '/home/vagrant/api_gateway/node_modules/.js-yaml-pEsbipJ6',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/js-yaml': '/home/vagrant/api_gateway/node_modules/.bin/.js-yaml-Nz4fqg1b',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/laravel-mix': '/home/vagrant/api_gateway/node_modules/.laravel-mix-IzlLoDX0',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/mix': '/home/vagrant/api_gateway/node_modules/.bin/.mix-d3S86FgX',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/laravel-mix': '/home/vagrant/api_gateway/node_modules/.bin/.laravel-mix-nEhltbVh',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/loader-utils/node_modules/json5': '/home/vagrant/api_gateway/node_modules/loader-utils/node_modules/.json5-yve9un7P',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/loader-utils/node_modules/.bin/json5': '/home/vagrant/api_gateway/node_modules/loader-utils/node_modules/.bin/.json5-FQ2Kzz7P',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/make-dir/node_modules/semver': '/home/vagrant/api_gateway/node_modules/make-dir/node_modules/.semver-N1LhytaN',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/make-dir/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/make-dir/node_modules/.bin/.semver-OhUETRo4',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/miller-rabin': '/home/vagrant/api_gateway/node_modules/.miller-rabin-ijTstcsC',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/miller-rabin': '/home/vagrant/api_gateway/node_modules/.bin/.miller-rabin-rfC5ccLO',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/mkdirp': '/home/vagrant/api_gateway/node_modules/.mkdirp-AwhnWobt',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/mkdirp': '/home/vagrant/api_gateway/node_modules/.bin/.mkdirp-3WcOCyic',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/uuid': '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.uuid-03AlRYU7',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.bin/uuid': '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.bin/.uuid-fF2ccC4c',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/semver': '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.semver-ouixtNne',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/node-notifier/node_modules/.bin/.semver-EcXt3ewM',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/nanoid': '/home/vagrant/api_gateway/node_modules/.nanoid-IHGlZ7E0',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/nanoid': '/home/vagrant/api_gateway/node_modules/.bin/.nanoid-fZgwn4SD',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/postcss-loader/node_modules/semver': '/home/vagrant/api_gateway/node_modules/postcss-loader/node_modules/.semver-a9PJG81C',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/postcss-loader/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/postcss-loader/node_modules/.bin/.semver-evBPALyu',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/regjsparser': '/home/vagrant/api_gateway/node_modules/.regjsparser-LhEW9qwe',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/regjsparser': '/home/vagrant/api_gateway/node_modules/.bin/.regjsparser-5ZYGI8W4',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/resolve-url-loader/node_modules/json5': '/home/vagrant/api_gateway/node_modules/resolve-url-loader/node_modules/.json5-xy9Hehbl',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/resolve-url-loader/node_modules/.bin/json5': '/home/vagrant/api_gateway/node_modules/resolve-url-loader/node_modules/.bin/.json5-aqK1UVib',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/sass-loader/node_modules/semver': '/home/vagrant/api_gateway/node_modules/sass-loader/node_modules/.semver-PAV0wMKU',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/sass-loader/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/sass-loader/node_modules/.bin/.semver-ag5kA5YO',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/semver': '/home/vagrant/api_gateway/node_modules/.semver-q2pjCteP',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/semver': '/home/vagrant/api_gateway/node_modules/.bin/.semver-WNFrLaNF',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/svgo': '/home/vagrant/api_gateway/node_modules/.svgo-EUXb8CQk',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/svgo': '/home/vagrant/api_gateway/node_modules/.bin/.svgo-dzhcfOyg',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/terser': '/home/vagrant/api_gateway/node_modules/.terser-z0dlrDnM',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/terser': '/home/vagrant/api_gateway/node_modules/.bin/.terser-OkIi8bWd',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/uuid': '/home/vagrant/api_gateway/node_modules/.uuid-w8fFRdpG',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/uuid': '/home/vagrant/api_gateway/node_modules/.bin/.uuid-IKfbVYTu',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/webpack-dev-server': '/home/vagrant/api_gateway/node_modules/.webpack-dev-server-yy7CY3SP',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/webpack-dev-server': '/home/vagrant/api_gateway/node_modules/.bin/.webpack-dev-server-IMvNe5Ap',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/webpack-cli': '/home/vagrant/api_gateway/node_modules/.webpack-cli-lCNVbqfW',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/webpack-cli': '/home/vagrant/api_gateway/node_modules/.bin/.webpack-cli-k0ZC1tnZ',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/which': '/home/vagrant/api_gateway/node_modules/.which-3icRxyHb',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/node-which': '/home/vagrant/api_gateway/node_modules/.bin/.node-which-VF2oEKhK',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/webpack': '/home/vagrant/api_gateway/node_modules/.webpack-M6eVcaYX',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/webpack': '/home/vagrant/api_gateway/node_modules/.bin/.webpack-D00Yiu7U',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/@babel/parser': '/home/vagrant/api_gateway/node_modules/@babel/.parser-wrgSbDKP',
+632 silly reify   '/home/vagrant/api_gateway/node_modules/.bin/parser': '/home/vagrant/api_gateway/node_modules/.bin/.parser-kX7fydHX'
+632 silly reify }
+633 timing reify:retireShallow Completed in 57ms
+634 timing reify:createSparse Completed in 58ms
+635 timing reify:loadBundles Completed in 0ms
+636 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 884ms
+637 timing auditReport:getReport Completed in 890ms
+638 timing auditReport:init Completed in 0ms
+639 timing reify:audit Completed in 891ms
+640 timing reifyNode:node_modules/spdx-exceptions Completed in 953ms
+641 warn deprecated har-validator@5.1.5: this library is no longer supported
+642 warn deprecated babel@6.23.0: In 6.x, the babel package has been deprecated in favor of babel-cli. Check https://opencollective.com/babel to support the Babel maintainers
+643 timing reifyNode:node_modules/osenv Completed in 957ms
+644 timing reifyNode:node_modules/get-stdin Completed in 958ms
+645 timing reifyNode:node_modules/repeating Completed in 975ms
+646 timing reifyNode:node_modules/is-finite Completed in 975ms
+647 timing reifyNode:node_modules/spdx-license-ids Completed in 975ms
+648 timing reifyNode:node_modules/has-ansi Completed in 976ms
+649 timing reifyNode:node_modules/has-ansi/node_modules/ansi-regex Completed in 977ms
+650 timing reifyNode:node_modules/is-utf8 Completed in 976ms
+651 timing reifyNode:node_modules/number-is-nan Completed in 977ms
+652 timing reifyNode:node_modules/code-point-at Completed in 977ms
+653 timing reifyNode:node_modules/oauth-sign Completed in 977ms
+654 timing reifyNode:node_modules/pify Completed in 978ms
+655 timing reifyNode:node_modules/pinkie Completed in 978ms
+656 timing reifyNode:node_modules/pinkie-promise Completed in 978ms
+657 timing reifyNode:node_modules/read-pkg Completed in 978ms
+658 timing reifyNode:node_modules/strip-bom Completed in 978ms
+659 timing reifyNode:node_modules/os-homedir Completed in 978ms
+660 timing reifyNode:node_modules/load-json-file Completed in 979ms
+661 timing reifyNode:node_modules/has-unicode Completed in 978ms
+662 timing reifyNode:node_modules/wide-align/node_modules/is-fullwidth-code-point Completed in 978ms
+663 timing reifyNode:node_modules/os-tmpdir Completed in 979ms
+664 timing reifyNode:node_modules/read-pkg/node_modules/path-type Completed in 979ms
+665 timing reifyNode:node_modules/wide-align/node_modules/strip-ansi Completed in 980ms
+666 timing reifyNode:node_modules/wide-align/node_modules/ansi-regex Completed in 980ms
+667 timing reifyNode:node_modules/aproba Completed in 979ms
+668 timing reifyNode:node_modules/wide-align Completed in 981ms
+669 timing reifyNode:node_modules/gauge/node_modules/is-fullwidth-code-point Completed in 980ms
+670 timing reifyNode:node_modules/gauge/node_modules/ansi-regex Completed in 980ms
+671 timing reifyNode:node_modules/gauge/node_modules/strip-ansi Completed in 981ms
+672 timing reifyNode:node_modules/wide-align/node_modules/string-width Completed in 981ms
+673 timing reifyNode:node_modules/abbrev Completed in 980ms
+674 timing reifyNode:node_modules/trim-newlines Completed in 981ms
+675 timing reifyNode:node_modules/validate-npm-package-license Completed in 982ms
+676 timing reifyNode:node_modules/array-find-index Completed in 981ms
+677 timing reifyNode:node_modules/gauge/node_modules/string-width Completed in 982ms
+678 timing reifyNode:node_modules/map-obj Completed in 980ms
+679 timing reifyNode:node_modules/redent Completed in 981ms
+680 timing reifyNode:node_modules/redent/node_modules/indent-string Completed in 982ms
+681 timing reifyNode:node_modules/read-pkg-up/node_modules/path-exists Completed in 981ms
+682 timing reifyNode:node_modules/read-pkg-up Completed in 981ms
+683 timing reifyNode:node_modules/decamelize Completed in 981ms
+684 timing reifyNode:node_modules/read-pkg-up/node_modules/find-up Completed in 981ms
+685 timing reifyNode:node_modules/true-case-path Completed in 981ms
+686 timing reifyNode:node_modules/camelcase-keys/node_modules/camelcase Completed in 982ms
+687 timing reifyNode:node_modules/camelcase-keys Completed in 982ms
+688 timing reifyNode:node_modules/sass-graph/node_modules/ansi-regex Completed in 982ms
+689 timing reifyNode:node_modules/sass-graph/node_modules/is-fullwidth-code-point Completed in 981ms
+690 timing reifyNode:node_modules/sass-graph/node_modules/locate-path Completed in 981ms
+691 timing reifyNode:node_modules/sass-graph/node_modules/path-exists Completed in 982ms
+692 timing reifyNode:node_modules/sass-graph/node_modules/wrap-ansi Completed in 982ms
+693 timing reifyNode:node_modules/sass-graph/node_modules/ansi-styles Completed in 983ms
+694 timing reifyNode:node_modules/sass-graph/node_modules/p-locate Completed in 982ms
+695 timing reifyNode:node_modules/sass-graph/node_modules/string-width Completed in 982ms
+696 timing reifyNode:node_modules/sass-graph/node_modules/find-up Completed in 982ms
+697 timing reifyNode:node_modules/meow Completed in 982ms
+698 timing reifyNode:node_modules/node-sass/node_modules/ansi-regex Completed in 983ms
+699 timing reifyNode:node_modules/node-sass/node_modules/supports-color Completed in 983ms
+700 timing reifyNode:node_modules/node-sass/node_modules/ansi-styles Completed in 983ms
+701 timing reifyNode:node_modules/node-sass/node_modules/strip-ansi Completed in 984ms
+702 timing reifyNode:node_modules/node-sass/node_modules/chalk Completed in 984ms
+703 timing reifyNode:node_modules/which-module Completed in 998ms
+704 timing reifyNode:node_modules/require-main-filename Completed in 999ms
+705 timing reifyNode:node_modules/assert-plus Completed in 998ms
+706 timing reifyNode:node_modules/block-stream Completed in 1000ms
+707 timing reifyNode:node_modules/tunnel-agent Completed in 999ms
+708 timing reifyNode:node_modules/js-base64 Completed in 999ms
+709 timing reifyNode:node_modules/is-typedarray Completed in 999ms
+710 timing reifyNode:node_modules/forever-agent Completed in 999ms
+711 timing reifyNode:node_modules/aws-sign2 Completed in 1000ms
+712 timing reifyNode:node_modules/strip-indent Completed in 1000ms
+713 timing reifyNode:node_modules/caseless Completed in 1001ms
+714 timing reifyNode:node_modules/set-blocking Completed in 999ms
+715 timing reifyNode:node_modules/console-control-strings Completed in 999ms
+716 timing reifyNode:node_modules/sass-graph/node_modules/camelcase Completed in 997ms
+717 timing reifyNode:node_modules/sass-graph/node_modules/strip-ansi Completed in 996ms
+718 timing reifyNode:node_modules/sass-graph/node_modules/y18n Completed in 997ms
+719 timing reifyNode:node_modules/node-sass/node_modules/lru-cache Completed in 996ms
+720 timing reifyNode:node_modules/spdx-correct Completed in 1013ms
+721 timing reifyNode:node_modules/combined-stream Completed in 1013ms
+722 timing reifyNode:node_modules/fstream/node_modules/rimraf Completed in 1011ms
+723 timing reifyNode:node_modules/loud-rejection Completed in 1010ms
+724 timing reifyNode:node_modules/globule Completed in 1010ms
+725 timing reifyNode:node_modules/currently-unhandled Completed in 1011ms
+726 timing reifyNode:node_modules/sass-graph/node_modules/cliui Completed in 1008ms
+727 timing reifyNode:node_modules/node-gyp/node_modules/rimraf Completed in 1008ms
+728 timing reifyNode:node_modules/node-sass/node_modules/yallist Completed in 1008ms
+729 timing reifyNode:node_modules/import-local Completed in 1006ms
+730 timing reifyNode:node_modules/amdefine Completed in 1023ms
+731 timing reifyNode:node_modules/pseudomap Completed in 1028ms
+732 timing reifyNode:node_modules/getpass Completed in 1033ms
+733 timing reifyNode:node_modules/delayed-stream Completed in 1034ms
+734 timing reifyNode:node_modules/har-validator Completed in 1043ms
+735 timing reifyNode:node_modules/babel Completed in 1034ms
+736 timing reifyNode:node_modules/sass-graph Completed in 1048ms
+737 timing reifyNode:node_modules/node-gyp/node_modules/which Completed in 1054ms
+738 timing reifyNode:node_modules/npmlog Completed in 1054ms
+739 timing reifyNode:node_modules/node-sass/node_modules/which Completed in 1056ms
+740 timing reifyNode:node_modules/which Completed in 1055ms
+741 timing reifyNode:node_modules/mkdirp Completed in 1059ms
+742 timing reifyNode:node_modules/spdx-expression-parse Completed in 1080ms
+743 timing reifyNode:node_modules/bcrypt-pbkdf Completed in 1081ms
+744 timing reifyNode:node_modules/jsprim Completed in 1081ms
+745 timing reifyNode:node_modules/gaze Completed in 1074ms
+746 timing reifyNode:node_modules/delegates Completed in 1103ms
+747 timing reifyNode:node_modules/hosted-git-info Completed in 1102ms
+748 timing reifyNode:node_modules/isstream Completed in 1117ms
+749 timing reifyNode:node_modules/extend Completed in 1118ms
+750 timing reifyNode:node_modules/ansi-html Completed in 1105ms
+751 timing reifyNode:node_modules/aws4 Completed in 1119ms
+752 timing reifyNode:node_modules/load-json-file/node_modules/parse-json Completed in 1119ms
+753 timing reifyNode:node_modules/in-publish Completed in 1116ms
+754 timing reifyNode:node_modules/cssesc Completed in 1114ms
+755 timing reifyNode:node_modules/jsbn Completed in 1131ms
+756 timing reifyNode:node_modules/verror Completed in 1132ms
+757 timing reifyNode:node_modules/are-we-there-yet Completed in 1130ms
+758 timing reifyNode:node_modules/node-gyp/node_modules/semver Completed in 1126ms
+759 timing reifyNode:node_modules/async-foreach Completed in 1125ms
+760 timing reifyNode:node_modules/sass-graph/node_modules/yargs-parser Completed in 1127ms
+761 timing reifyNode:node_modules/semver Completed in 1123ms
+762 timing reifyNode:node_modules/regjsparser Completed in 1124ms
+763 timing reifyNode:node_modules/regjsparser/node_modules/jsesc Completed in 1126ms
+764 timing reifyNode:node_modules/miller-rabin Completed in 1128ms
+765 timing reifyNode:node_modules/ecc-jsbn Completed in 1143ms
+766 timing reifyNode:node_modules/extsprintf Completed in 1143ms
+767 timing reifyNode:node_modules/json-stringify-safe Completed in 1143ms
+768 timing reifyNode:node_modules/stdout-stream Completed in 1138ms
+769 timing reifyNode:node_modules/jsesc Completed in 1145ms
+770 timing reifyNode:node_modules/asn1 Completed in 1161ms
+771 timing reifyNode:node_modules/sass-graph/node_modules/emoji-regex Completed in 1156ms
+772 timing reifyNode:node_modules/sass-loader/node_modules/semver Completed in 1156ms
+773 timing reifyNode:node_modules/make-dir/node_modules/semver Completed in 1156ms
+774 timing reifyNode:node_modules/cross-env Completed in 1158ms
+775 timing reifyNode:node_modules/normalize-package-data Completed in 1170ms
+776 timing reifyNode:node_modules/nopt Completed in 1172ms
+777 timing reifyNode:node_modules/atob Completed in 1174ms
+778 timing reifyNode:node_modules/dashdash Completed in 1191ms
+779 timing reifyNode:node_modules/node-sass/node_modules/cross-spawn Completed in 1188ms
+780 timing reifyNode:node_modules/scss-tokenizer Completed in 1203ms
+781 timing reifyNode:node_modules/he Completed in 1193ms
+782 timing reifyNode:node_modules/envinfo Completed in 1193ms
+783 timing reifyNode:node_modules/tough-cookie Completed in 1212ms
+784 timing reifyNode:node_modules/form-data Completed in 1231ms
+785 timing reifyNode:node_modules/http-signature Completed in 1232ms
+786 timing reifyNode:node_modules/concat Completed in 1225ms
+787 timing reifyNode:node_modules/asynckit Completed in 1252ms
+788 timing reifyNode:node_modules/performance-now Completed in 1252ms
+789 timing reifyNode:node_modules/resolve-url-loader/node_modules/json5 Completed in 1276ms
+790 timing reifyNode:node_modules/uuid Completed in 1279ms
+791 timing reifyNode:node_modules/tweetnacl Completed in 1294ms
+792 timing reifyNode:node_modules/har-schema Completed in 1295ms
+793 timing reifyNode:node_modules/gauge Completed in 1293ms
+794 timing reifyNode:node_modules/loader-utils/node_modules/json5 Completed in 1289ms
+795 timing reifyNode:node_modules/esprima Completed in 1322ms
+796 timing reifyNode:node_modules/fstream Completed in 1344ms
+797 warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+798 timing reifyNode:node_modules/nanoid Completed in 1339ms
+799 timing reifyNode:node_modules/request/node_modules/qs Completed in 1353ms
+800 timing reifyNode:node_modules/request Completed in 1362ms
+801 timing reifyNode:node_modules/scss-tokenizer/node_modules/source-map Completed in 1383ms
+802 timing reifyNode:node_modules/psl Completed in 1387ms
+803 timing reifyNode:node_modules/json5 Completed in 1396ms
+804 timing reifyNode:node_modules/webpack-cli Completed in 1480ms
+805 timing reifyNode:node_modules/json-schema Completed in 1494ms
+806 timing reifyNode:node_modules/node-notifier/node_modules/semver Completed in 1512ms
+807 timing reifyNode:node_modules/postcss-loader/node_modules/semver Completed in 1513ms
+808 timing reifyNode:node_modules/core-js-compat/node_modules/semver Completed in 1522ms
+809 timing reifyNode:node_modules/css-loader/node_modules/semver Completed in 1522ms
+810 timing reifyNode:node_modules/sass-graph/node_modules/yargs Completed in 1573ms
+811 timing reifyNode:node_modules/sshpk Completed in 1582ms
+812 timing reifyNode:node_modules/js-yaml Completed in 1616ms
+813 timing reifyNode:node_modules/acorn Completed in 1673ms
+814 timing reifyNode:node_modules/node-notifier/node_modules/uuid Completed in 1675ms
+815 timing reifyNode:node_modules/nan Completed in 1683ms
+816 timing reifyNode:node_modules/@babel/parser Completed in 1707ms
+817 timing reifyNode:node_modules/webpack-dev-server Completed in 1717ms
+818 timing reifyNode:node_modules/svgo Completed in 1726ms
+819 timing reifyNode:node_modules/autoprefixer Completed in 1732ms
+820 timing reifyNode:node_modules/html-minifier-terser/node_modules/terser Completed in 1754ms
+821 timing reifyNode:node_modules/laravel-mix Completed in 1755ms
+822 timing reifyNode:node_modules/terser Completed in 1784ms
+823 timing reifyNode:node_modules/tar Completed in 1831ms
+824 timing reifyNode:node_modules/node-gyp Completed in 1864ms
+825 timing reifyNode:node_modules/node-sass Completed in 2134ms
+826 timing reifyNode:node_modules/webpack Completed in 2218ms
+827 timing reify:unpack Completed in 2232ms
+828 timing reify:unretire Completed in 17ms
+829 timing build:queue Completed in 57ms
+830 timing build:link:node_modules/node-gyp Completed in 24ms
+831 timing build:link:node_modules/nopt Completed in 23ms
+832 timing build:link:node_modules/in-publish Completed in 24ms
+833 timing build:link:node_modules/strip-indent Completed in 24ms
+834 timing build:link:node_modules/node-sass Completed in 24ms
+835 timing build:link:node_modules/autoprefixer Completed in 32ms
+836 timing build:link:node_modules/concat Completed in 31ms
+837 timing build:link:node_modules/@babel/parser Completed in 33ms
+838 timing build:link:node_modules/cross-env Completed in 31ms
+839 timing build:link:node_modules/envinfo Completed in 31ms
+840 timing build:link:node_modules/cssesc Completed in 31ms
+841 timing build:link:node_modules/he Completed in 31ms
+842 timing build:link:node_modules/ansi-html Completed in 32ms
+843 timing build:link:node_modules/atob Completed in 32ms
+844 timing build:link:node_modules/esprima Completed in 31ms
+845 timing build:link:node_modules/acorn Completed in 33ms
+846 timing build:link:node_modules/nanoid Completed in 31ms
+847 timing build:link:node_modules/json5 Completed in 31ms
+848 timing build:link:node_modules/semver Completed in 30ms
+849 timing build:link:node_modules/miller-rabin Completed in 31ms
+850 timing build:link:node_modules/laravel-mix Completed in 31ms
+851 timing build:link:node_modules/jsesc Completed in 31ms
+852 timing build:link:node_modules/regjsparser Completed in 30ms
+853 timing build:link:node_modules/uuid Completed in 30ms
+854 timing build:link:node_modules/mkdirp Completed in 31ms
+855 timing build:link:node_modules/which Completed in 29ms
+856 timing build:link:node_modules/core-js-compat/node_modules/semver Completed in 29ms
+857 timing build:link:node_modules/svgo Completed in 30ms
+858 timing build:link:node_modules/webpack-dev-server Completed in 30ms
+859 timing build:link:node_modules/webpack Completed in 30ms
+860 timing build:link:node_modules/terser Completed in 30ms
+861 timing build:link:node_modules/css-loader/node_modules/semver Completed in 29ms
+862 timing build:link:node_modules/babel Completed in 32ms
+863 timing build:link:node_modules/webpack-cli Completed in 30ms
+864 timing build:link:node_modules/loader-utils/node_modules/json5 Completed in 30ms
+865 timing build:link:node_modules/node-gyp/node_modules/rimraf Completed in 30ms
+866 timing build:link:node_modules/html-minifier-terser/node_modules/terser Completed in 30ms
+867 timing build:link:node_modules/make-dir/node_modules/semver Completed in 30ms
+868 timing build:link:node_modules/node-notifier/node_modules/semver Completed in 30ms
+869 timing build:link:node_modules/js-yaml Completed in 32ms
+870 timing build:link:node_modules/postcss-loader/node_modules/semver Completed in 29ms
+871 timing build:link:node_modules/node-notifier/node_modules/uuid Completed in 30ms
+872 timing build:link:node_modules/regjsparser/node_modules/jsesc Completed in 29ms
+873 timing build:link:node_modules/node-sass/node_modules/which Completed in 29ms
+874 timing build:link:node_modules/sass-loader/node_modules/semver Completed in 29ms
+875 timing build:link:node_modules/import-local Completed in 33ms
+876 timing build:link:node_modules/fstream/node_modules/rimraf Completed in 30ms
+877 timing build:link:node_modules/node-gyp/node_modules/which Completed in 30ms
+878 timing build:link:node_modules/node-gyp/node_modules/semver Completed in 30ms
+879 timing build:link:node_modules/resolve-url-loader/node_modules/json5 Completed in 29ms
+880 timing build:link Completed in 35ms
+881 info run node-sass@4.14.1 install node_modules/node-sass node scripts/install.js
+882 info run node-sass@4.14.1 install { code: 1, signal: null }
+883 timing reify:rollback:createSparse Completed in 800ms
+884 timing reify:rollback:retireShallow Completed in 29ms
+885 timing command:install Completed in 10585ms
+886 verbose stack Error: command failed
+886 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/@npmcli/promise-spawn/index.js:64:27)
+886 verbose stack     at ChildProcess.emit (events.js:314:20)
+886 verbose stack     at maybeClose (internal/child_process.js:1022:16)
+886 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:287:5)
+887 verbose pkgid node-sass@4.14.1
+888 verbose cwd /home/vagrant/api_gateway
+889 verbose Linux 5.4.0-52-generic
+890 verbose argv "/usr/bin/node" "/usr/local/bin/npm" "install" "node-sass"
+891 verbose node v12.20.2
+892 verbose npm  v7.5.3
+893 error code 1
+894 error path /home/vagrant/api_gateway/node_modules/node-sass
+895 error command failed
+896 error command sh -c node scripts/install.js
+897 error internal/modules/cjs/loader.js:303
+897 error       throw err;
+897 error       ^
+897 error
+897 error Error: Cannot find module '/home/vagrant/api_gateway/node_modules/core-util-is/lib/util.js'. Please verify that the package.json has a valid "main" entry
+897 error     at tryPackage (internal/modules/cjs/loader.js:295:19)
+897 error     at Function.Module._findPath (internal/modules/cjs/loader.js:508:18)
+897 error     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:802:27)
+897 error     at Function.Module._load (internal/modules/cjs/loader.js:667:27)
+897 error     at Module.require (internal/modules/cjs/loader.js:887:19)
+897 error     at require (internal/modules/cjs/helpers.js:74:18)
+897 error     at Object.<anonymous> (/home/vagrant/api_gateway/node_modules/verror/lib/verror.js:9:19)
+897 error     at Module._compile (internal/modules/cjs/loader.js:999:30)
+897 error     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+897 error     at Module.load (internal/modules/cjs/loader.js:863:32) {
+897 error   code: 'MODULE_NOT_FOUND',
+897 error   path: '/home/vagrant/api_gateway/node_modules/core-util-is/package.json',
+897 error   requestPath: 'core-util-is'
+897 error }
+898 verbose exit 1
