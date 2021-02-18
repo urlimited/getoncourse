@@ -13,7 +13,13 @@ services:
     environment:
       SERVICE_NAME: api_gateway
       SERVICE_TAGS: dev
-    working_dir: /var/www
+      XDEBUG_ENABLED: 1
+      XDEBUG_REMOTE_AUTOSTART: 1
+      XDEBUG_MAXNESTING_LEVEL: 1000
+      XDEBUG_REMOTE_CONNECT_BACK: 1
+      XDEBUG_REMOTE_HOST: host.docker.internal
+      PHP_IDE_CONFIG: serverName=localhost
+    working_dir: /var/www/api_gateway
     volumes:
       - ./api_gateway/:/var/www/api_gateway
       #- ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
@@ -34,8 +40,8 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
-      - ./api_users/:/var/www/api_users
-      #- ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      #- ./api_users/:/var/www/api_users
+      - ./deployment/configs/php_api_users.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
 
@@ -62,21 +68,22 @@ services:
 
 
   #MySQL Service
-  users_mysql:
+  mysql_users:
     image: mysql:8.0.23
-    container_name: users_mysql
+    container_name: mysql_users
     #restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
+    command: --init-file /data/application/init.sql
     environment:
-      MYSQL_DATABASE: users
       MYSQL_ROOT_PASSWORD: secret
       SERVICE_TAGS: dev
-      SERVICE_NAME: users_mysql
+      SERVICE_NAME: mysql_users
     volumes:
       - dbdata_users:/var/lib/mysql/
       #- ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./deployment/configs/mysql_users_init.sql:/data/application/init.sql
     networks:
       - app-network
 
