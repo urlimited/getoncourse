@@ -39,6 +39,11 @@ class User extends AbstractEntity implements JWTSubject, AuthenticatableContract
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="integer", options={"default" : 2}, nullable=false)
+     */
+    private $role;
+
 
 
     public function setName(string $username){

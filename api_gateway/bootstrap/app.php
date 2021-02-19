@@ -100,6 +100,7 @@ $app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
+$app->register(BenSampo\Enum\EnumServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
