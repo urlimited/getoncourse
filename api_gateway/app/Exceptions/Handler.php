@@ -49,6 +49,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if($exception instanceof \Anik\Form\ValidationException)
+            return response(['error' => $exception->getResponse()], 422);
+
         return parent::render($request, $exception);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Entities\User;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,12 +17,12 @@ class AuthController extends Controller
     /**
      * Store a new user.
      *
-     * @param Request $request
+     * @param RegisterRequest $request
      * @param EntityManagerInterface $entityManager
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function register(Request $request, EntityManagerInterface $entityManager)
+    public function register(RegisterRequest $request, EntityManagerInterface $entityManager)
     {
         //validate incoming request
         $this->validate($request, [
@@ -55,11 +57,11 @@ class AuthController extends Controller
     /**
      * Get a JWT via given credentials.
      *
-     * @param Request $request
+     * @param LoginRequest $request
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         //validate incoming request
         $this->validate($request, [
