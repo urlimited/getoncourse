@@ -99,6 +99,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
+$app->register(Anik\Form\FormRequestServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
