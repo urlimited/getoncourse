@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-console.log("adwawda");
-=======
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './routes';
@@ -9,7 +6,7 @@ import App from './routes';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <App/>
     </React.StrictMode>,
     document.getElementById('app')
 );
@@ -18,4 +15,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 //serviceWorker.unregister();
->>>>>>> origin/master
+

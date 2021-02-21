@@ -31,7 +31,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 });
 
-$router->get('/login', function () use ($router) {
+/*$router->get('/login', function () use ($router) {
+>>>>>>> de9ec735ed3bfab9e421a431552f429709484c5e
     return view('auth.login');
 });
 
