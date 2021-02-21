@@ -67,7 +67,7 @@ services:
       - app-network
 
 
-  #MySQL Service
+  #MySQL Service users
   mysql_users:
     image: mysql:8.0.23
     container_name: mysql_users
@@ -87,6 +87,28 @@ services:
     networks:
       - app-network
 
+
+  #MySQL Service users
+  mysql_courses:
+    image: mysql:8.0.23
+    container_name: mysql_courses
+    #restart: unless-stopped
+    tty: true
+    ports:
+      - "3307:3306"
+    command: --init-file /data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql_courses
+    volumes:
+      - dbdata_courses:/var/lib/mysql/
+      #- ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./deployment/configs/mysql_courses_init.sql:/data/application/init.sql
+    networks:
+      - app-network
+
+
 #Docker Networks
 networks:
   app-network:
@@ -95,4 +117,6 @@ networks:
 #Volumes
 volumes:
   dbdata_users:
+    driver: local
+  dbdata_courses:
     driver: local
