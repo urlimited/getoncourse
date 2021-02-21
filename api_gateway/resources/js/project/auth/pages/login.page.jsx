@@ -17,6 +17,7 @@ const Page = ({apiAuthAttempt, pageErrors}) => {
             if (field.value === "")
                 _illegalFields.push({label: field.label, msg: "Please, fill in this field"});
         });
+        console.log(email)
 
         //setIllegalFields(_illegalFields);
         showErrors(_illegalFields)

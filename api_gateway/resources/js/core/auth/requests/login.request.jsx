@@ -9,7 +9,7 @@ import {Response} from "../../defaults/models/response.model";
 
 
 export const apiAuthRequest = (login, pass) => dispatch => {
-    console.log(login, pass)
+    console.log("login and pass:"+ login, pass)
     dispatch(core_events.eventInitRequest());
     return fetch(constants.API_AUTH_ATTEMPT, (new DefaultRequest()).setParams({
         method: "post",

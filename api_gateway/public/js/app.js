@@ -2475,7 +2475,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "EVENT_REQUEST_INITIATED": () => (/* binding */ EVENT_REQUEST_INITIATED),
 /* harmony export */   "EVENT_REQUEST_PROCESSED": () => (/* binding */ EVENT_REQUEST_PROCESSED)
 /* harmony export */ });
-var API_BASE_URL = "https://rcsystem.azurewebsites.net/api";
+var API_BASE_URL = "/api";
 var API_AUTH_ATTEMPT = API_BASE_URL + "/auth/login";
 var API_LOGOUT = API_BASE_URL + "/users/logout";
 var API_GET_USER = API_BASE_URL + "/auth/get_user";
@@ -2746,7 +2746,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var apiAuthRequest = function apiAuthRequest(login, pass) {
   return function (dispatch) {
-    console.log(login, pass);
+    console.log("login and pass:" + login, pass);
     dispatch(_events__WEBPACK_IMPORTED_MODULE_2__.eventInitRequest());
     return fetch(_constants_constants__WEBPACK_IMPORTED_MODULE_0__.API_AUTH_ATTEMPT, new _defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__.DefaultRequest().setParams({
       method: "post",
@@ -3521,7 +3521,8 @@ var Page = function Page(_ref) {
         label: field.label,
         msg: "Please, fill in this field"
       });
-    }); //setIllegalFields(_illegalFields);
+    });
+    console.log(email); //setIllegalFields(_illegalFields);
 
     showErrors(_illegalFields);
     if (_illegalFields.length === 0) apiAuthAttempt(email, password);
