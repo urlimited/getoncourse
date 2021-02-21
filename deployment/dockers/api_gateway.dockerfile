@@ -1,11 +1,20 @@
 FROM php:7.4-fpm
 
+# Install Xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+RUN echo "zend_extension=$(find $(php-config --extension-dir) -name xdebug.so)" \
+             > /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-enable pdo_mysql
+
 # Copy composer.lock and composer.json
-COPY api_gateway /var/www/
 #COPY ../../composer.lock composer.json /var/www/
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/api_gateway
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -40,7 +49,10 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 #COPY . /var/www
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+#COPY --chown=www:www . /var/www
+COPY --chown=www:www api_gateway /var/www/api_gateway
+
+
 
 # Change current user to www
 USER www
