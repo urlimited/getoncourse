@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
     return view('welcome');
 });
 
-$router->get('/login', function () use ($router) {
+/*$router->get('/login', function () use ($router) {
     return view('auth.login');
 });
 
@@ -27,7 +27,7 @@ $router->get('/register', function () use ($router) {
 
 $router->get('/api/{path}', function ($path) {
     return $path;
-});
+});*/
 
 $router->get('/{path: .*}', function () {
     return view('frontend');
