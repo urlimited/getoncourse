@@ -19,4 +19,13 @@
     //return phpinfo();
 });*/
 
-$router->get('/', 'UsersController@detailUser');
+$router->get('/', function(){
+    return "Hello it is okay";
+});
+$router->get('/courses/get_courses', 'CoursesController@getCourses');
+$router->get('/courses/get_course_details', 'CoursesController@getCourseDetails');
+$router->post('/courses/create_course', 'CoursesController@createCourse');
+$router->post('/courses/clone_course', 'CoursesController@cloneCourse');
+$router->put('/courses/update_course', 'CoursesController@updateCourse');
+$router->put('/courses/soft_delete_course', 'CoursesController@softDeleteCourse');
+$router->delete('/courses/delete_course', 'CoursesController@deleteCourse');

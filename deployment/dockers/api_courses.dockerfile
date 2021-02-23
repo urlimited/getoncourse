@@ -4,10 +4,10 @@ RUN docker-php-ext-enable pdo_mysql
 
 # Copy composer.lock and composer.json
 #COPY api_users /var/www/
-#COPY ../../composer.lock composer.json /var/www/
+
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/api_courses
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -42,7 +42,8 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 #COPY . /var/www
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+COPY --chown=www:www api_courses /var/www/api_courses
+#COPY --chown=www:www api_courses/composer.lock ../../composer.json /var/www/
 
 # Change current user to www
 USER www

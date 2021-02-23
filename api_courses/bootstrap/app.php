@@ -98,8 +98,11 @@ if (class_exists('Laravel\Tinker\TinkerServiceProvider')) {
     $app->configure('tinker');
     $app->register(Laravel\Tinker\TinkerServiceProvider::class);
 }
+$app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
+$app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
+$app->register(Anik\Form\FormRequestServiceProvider::class);
+$app->register(BenSampo\Enum\EnumServiceProvider::class);
 
-//$app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 
 
 /*
