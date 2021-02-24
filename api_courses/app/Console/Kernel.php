@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        "App\Console\Commands\RunCoverageTests"
     ];
 
     /**
@@ -26,4 +26,5 @@ class Kernel extends ConsoleKernel
     {
         //
     }
+
 }

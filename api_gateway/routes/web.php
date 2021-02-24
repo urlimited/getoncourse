@@ -14,13 +14,26 @@
 */
 /*Временные роуты*/
 $router->get('/', function () use ($router) {
-    return view('welcome');
+    $client = new \GuzzleHttp\Client();
+    return $client->request('GET', 'http://webserver/courses/get_courses', [
+        'headers' => [
+            'Host' => 'courses.oncourse.local'
+        ]
+    ]);
+    //return "awdad";
 });
 
 $router->group(['middleware' => 'auth', 'prefix' => 'api'], function() use ($router){
     $router->group(['prefix' => 'users'], function() use ($router){
-        //$router->get('get_users', "UsersController@getUsers");
         $router->get('get_user', "UsersController@getUser");
+    });
+
+    $router->group(['prefix' => 'api'], function() use ($router){
+        $router->group(['prefix' => 'courses'], function() use ($router){
+            $router->get('get_courses', 'CoursesController@getCourses');
+            $router->get('get_course_details', 'CoursesController@getCourseDetails');
+            $router->post('create_course', 'CoursesController@createCourse');
+        });
     });
 });
 
@@ -43,7 +56,7 @@ $router->get('/register', function () use ($router) {
 /*$router->get('/api/{path}', function ($path) {
     return $path;
 });*/
-
+/*
 $router->get('/{path: .*}', function () {
     return view('frontend');
-});
+});*/

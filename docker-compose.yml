@@ -27,21 +27,21 @@ services:
       - app-network
 
   #PHP API_USERS
-  api_users:
+  api_courses:
     build:
       context: .
-      dockerfile: deployment/dockers/api_users.dockerfile
-    image: api_users
-    container_name: api_users
+      dockerfile: deployment/dockers/api_courses.dockerfile
+    image: api_courses
+    container_name: api_courses
     #restart: unless-stopped
     tty: true
     environment:
-      SERVICE_NAME: api_users
+      SERVICE_NAME: api_courses
       SERVICE_TAGS: dev
-    working_dir: /var/www
+    working_dir: /var/www/api_courses
     volumes:
-      #- ./api_users/:/var/www/api_users
-      - ./deployment/configs/php_api_users.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./api_courses/:/var/www/api_courses
+      #- ./deployment/configs/php_api_users.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
 
@@ -67,14 +67,14 @@ services:
       - app-network
 
 
-  #MySQL Service
+  #MySQL Service users
   mysql_users:
     image: mysql:8.0.23
     container_name: mysql_users
     #restart: unless-stopped
     tty: true
     ports:
-      - "3306:3306"
+      - "3308:3306"
     command: --init-file /data/application/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: secret
@@ -87,6 +87,28 @@ services:
     networks:
       - app-network
 
+
+  #MySQL Service courses
+  mysql_courses:
+    image: mysql:8.0.23
+    container_name: mysql_courses
+    #restart: unless-stopped
+    tty: true
+    ports:
+      - "3307:3306"
+    command: --init-file /data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql_courses
+    volumes:
+      - dbdata_courses:/var/lib/mysql/
+      #- ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./deployment/configs/mysql_courses_init.sql:/data/application/init.sql
+    networks:
+      - app-network
+
+
 #Docker Networks
 networks:
   app-network:
@@ -95,4 +117,6 @@ networks:
 #Volumes
 volumes:
   dbdata_users:
+    driver: local
+  dbdata_courses:
     driver: local
