@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Entities\Repositories\CourseRepository")
  * @ORM\Table(name="courses")
  */
-class Course
+class Course extends AbstractEntity
 {
     /**
      * @ORM\Id

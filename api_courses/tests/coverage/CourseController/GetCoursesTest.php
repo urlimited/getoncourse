@@ -1,10 +1,13 @@
 <?php
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
+use App\Entities\Course;
+use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use LaravelDoctrine\ORM\Testing\Factory;
 
 class GetCoursesTest extends TestCase
 {
+    use DatabaseMigrations, DatabaseTransactions;
     /**
      * Standard scenario of receiving courses from database
      *
@@ -12,12 +15,15 @@ class GetCoursesTest extends TestCase
      */
     public function testGetCoursesFromDatabase()
     {
+        //$this->beginDatabaseTransaction();
+        $this->runDatabaseMigrations();
+
+        $some = entity(Course::class)->make();
+
         $this->get('/courses/get_courses');
 
-        dd("adawdwa");
-
         $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+            ['database' => []], $this->response->getContent()
         );
     }
 }

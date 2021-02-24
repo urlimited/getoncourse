@@ -38,6 +38,17 @@ return [
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
+        ],
+        'testing' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_TESTING_HOST'),
+            'database'  => env('DB_TESTING_DATABASE'),
+            'username'  => env('DB_TESTING_USERNAME'),
+            'password'  => env('DB_TESTING_PASSWORD'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
         ]
     ],
 ];
