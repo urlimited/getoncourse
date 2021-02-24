@@ -41,15 +41,15 @@ export default function(){
     return <Provider store={store}>
         <Router history={history}>
             <Switch>
-                <Route exact path={routes.ROUTE_TO_LOGIN_PAGE} component={LoginPage}/>
-                <Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId"} component={() => <DashboardLayout Page={SingleReportClient} Modals={DashboardModal} />}/>
+                <Route exact={routes.ROUTE_TO_LOGIN_PAGE} component={LoginPage}/>
+                {/*<Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId"} component={() => <DashboardLayout Page={SingleReportClient} Modals={DashboardModal} />}/>
                 <Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId/:urlSectionId"} component={() => <DashboardLayout Page={SingleReportClientSection} Modals={DashboardModal} />}/>
                 <Route exact path={routes.ROUTE_TO_REPORTS} component={() => <DashboardLayout Page={ReportsListClient} Modals={ReportsClientModal} />}/>
                 <Route exact path={routes.ROUTE_TO_REPORTS + ":urlReportTypeId"} component={() => <DashboardLayout Page={ReportsListClient} Modals={ReportsClientModal} />}/>
                 <Route exact path={routes.ROUTE_TO_ARRANGEMENTS + ":urlReportId"} component={() => <DashboardLayout Page={ArrangementsClient} Modals={ArrangementsModal} />}/>
                 <Route exact path={routes.ROUTE_TO_DASHBOARD} component={() => <DashboardLayout Page={ReportsListClient} Modals={SectionsModal} />}/>
                 <Route exact path={routes.ROUTE_TO_REPORTS_MANAGEMENT + ":report_type_id/:section_id"} component={() => <DashboardLayout Page={CriteriaManagement} Modals={CriteriaModal}/>}/>
-                <Route exact path="" component={() => <DashboardLayout Page={ReportsListClient} Modals={SectionsModal} />}/>
+                <Route exact path="" component={() => <DashboardLayout Page={ReportsListClient} Modals={SectionsModal} />}/>*/}
                 {/*<Route exact path={routes.ROUTE_TO_DASHBOARD} render={() => <DashboardLayout Page={ReportsClientPage} Modals={ProductsModals} />} />*/}
             </Switch>
         </Router>

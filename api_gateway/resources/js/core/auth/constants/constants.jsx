@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://rcsystem.azurewebsites.net/api";
+export const API_BASE_URL = "/api";
 export const API_AUTH_ATTEMPT = API_BASE_URL + "/auth/login";
 export const API_LOGOUT = API_BASE_URL + "/users/logout";
 export const API_GET_USER = API_BASE_URL + "/auth/get_user";
