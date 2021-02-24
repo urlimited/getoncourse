@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Course;
 use App\Entities\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Facades\Request;
@@ -9,7 +10,12 @@ use Illuminate\Support\Facades\Request;
 class CoursesController extends Controller
 {
     public function getCourses(Request $request, EntityManagerInterface $entityManager){
-        return "get_course";
+        $courses = $entityManager->getRepository(Course::class)
+            ->findAll();
+
+        return response()->json(['courses' => collect($courses)->map(function($course){
+            return $course->toJSON();
+        })], 200) ;
     }
 
     public function getCourseDetails(Request $request, EntityManagerInterface $entityManager){

@@ -2,7 +2,9 @@
 
 namespace App\Entities\Repositories;
 
-class CourseRepository
+use Doctrine\ORM\EntityRepository;
+
+class CourseRepository extends EntityRepository
 {
 
 }

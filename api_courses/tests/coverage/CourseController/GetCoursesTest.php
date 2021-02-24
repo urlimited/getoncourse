@@ -8,6 +8,7 @@ use LaravelDoctrine\ORM\Testing\Factory;
 class GetCoursesTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
+
     /**
      * Standard scenario of receiving courses from database
      *
@@ -18,12 +19,13 @@ class GetCoursesTest extends TestCase
         //$this->beginDatabaseTransaction();
         $this->runDatabaseMigrations();
 
-        $some = entity(Course::class)->make();
-
         $this->get('/courses/get_courses');
 
         $this->assertEquals(
-            ['database' => []], $this->response->getContent()
+            // To test
+            json_encode(['courses' => app('db')->table('courses')->select('*')->get()]),
+            // Testable
+            $this->response->getContent()
         );
     }
 }
