@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Course;
 use App\Http\Requests\CloneCourseRequest;
 use App\Http\Requests\CreateCourseRequest;
+use App\Http\Requests\DeleteCourseRequest;
 use App\Http\Requests\GetCourseDetailsRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Facades\Request;
@@ -55,7 +56,15 @@ class CoursesController extends Controller
         return "soft delete course";
     }
 
-    public function deleteCourse(Request $request, EntityManagerInterface $entityManager){
-        return "delete course";
+    public function deleteCourse(DeleteCourseRequest $request, EntityManagerInterface $entityManager){
+        $deletedCourse = $entityManager->getRepository(Course::class)
+            ->find($request->course_id);
+
+        $toDelete = clone $deletedCourse;
+
+        $entityManager->remove($deletedCourse);
+        $entityManager->flush();
+
+        return response()->json(['course' => $toDelete->toJSON()], 200);
     }
 }

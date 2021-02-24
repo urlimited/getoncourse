@@ -5,7 +5,7 @@ use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
 
-class CloneCourseTest extends TestCase
+class DeleteCourseTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
 
@@ -14,7 +14,7 @@ class CloneCourseTest extends TestCase
      *
      * @return void
      */
-    public function testCloneCourseWithData()
+    public function testDeleteCourseWithData()
     {
         //$this->beginDatabaseTransaction();
         $this->runDatabaseMigrations();
@@ -23,28 +23,27 @@ class CloneCourseTest extends TestCase
             'course_id' => 2
         ];
 
-        $this->post('/courses/clone_course', $request_data, [
+        $deleted_course = (new Course(app('db')->table('courses')->where('id', '=', $request_data['course_id'])->first()));
+
+        $this->delete('/courses/delete_course', $request_data, [
             'Accept' => 'application/json'
         ]);
 
         $this->assertResponseStatus(200);
 
-        // Response is equal to the last one in database
+        // Response is equal to the deleted one
         $this->assertEquals(
             json_encode(
-                ['course' => (new Course(app('db')->table('courses')->orderByDesc('id')->first()))->toJSON()]
+                ['course' => $deleted_course->toJSON()]
             ),
             $this->response->getContent()
         );
 
-        // In database it is also equals
-        $this->assertEquals(
-            (collect((new Course(app('db')->table('courses')->where('id', '=', $request_data['course_id'])->first()))->toJSON())->except('id'))->toArray(),
-            (collect((new Course(app('db')->table('courses')->orderByDesc('id')->first()))->toJSON())->except('id'))->toArray(),
-        );
+        // In database there is no deleted course
+        $this->notSeeInDatabase('courses', $deleted_course->toJSON());
     }
 
-    public function testFailToCloneCourseWithoutData(){
+    public function testFailToDeleteCourseWithoutData(){
         $this->runDatabaseMigrations();
 
         $this->post('/courses/clone_course', [
