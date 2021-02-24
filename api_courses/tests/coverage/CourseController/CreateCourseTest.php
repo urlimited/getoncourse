@@ -5,7 +5,7 @@ use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
 
-class GetCoursesTest extends TestCase
+class CreateCourseTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
 
@@ -14,20 +14,19 @@ class GetCoursesTest extends TestCase
      *
      * @return void
      */
-    public function testGetCoursesFromDatabase()
+    public function testCreateCourseWithData()
     {
         //$this->beginDatabaseTransaction();
         $this->runDatabaseMigrations();
 
-        $this->get('/courses/get_courses');
+        $course = entity(Course::class)->make();
+
+        $this->post('/courses/create_course', $course->toDB(), [
+            'Accept' => 'application/json'
+        ]);
 
         $this->assertResponseStatus(200);
 
-        $this->assertEquals(
-            // To test
-            json_encode(['courses' => app('db')->table('courses')->select(['id', 'name', 'description', 'author_id'])->get()]),
-            // Testable
-            $this->response->getContent()
-        );
+        $this->seeInDatabase('courses', $course->toDB());
     }
 }

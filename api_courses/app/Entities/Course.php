@@ -27,7 +27,7 @@ class Course extends AbstractEntity
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=350)
      */
     protected $description;
 
@@ -44,6 +44,10 @@ class Course extends AbstractEntity
      *      )
      */
     protected $categories;
+
+    public function __construct($data){
+        $this->fill($data);
+    }
 
     /**
      * getters

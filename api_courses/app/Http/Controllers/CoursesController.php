@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Course;
-use App\Entities\User;
+use App\Http\Requests\CreateCourseRequest;
+use App\Http\Requests\GetCourseDetailsRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Facades\Request;
 
@@ -18,12 +19,19 @@ class CoursesController extends Controller
         })], 200) ;
     }
 
-    public function getCourseDetails(Request $request, EntityManagerInterface $entityManager){
-        return "get all courses";
+    public function getCourseDetails(GetCourseDetailsRequest $request, EntityManagerInterface $entityManager){
+        $course = $entityManager->getRepository(Course::class)
+            ->find($request->course_id);
+
+        return response()->json(['course' => $course->toJSON()], 200);
     }
 
-    public function createCourse(Request $request, EntityManagerInterface $entityManager){
-        return "course created";
+    public function createCourse(CreateCourseRequest $request, EntityManagerInterface $entityManager){
+        $course = new Course($request->all());
+        $entityManager->persist($course);
+        $entityManager->flush();
+
+        return response('success', 200);
     }
 
     public function cloneCourse(Request $request, EntityManagerInterface $entityManager){

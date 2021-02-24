@@ -13,6 +13,6 @@ $factory->define(Course::class, function(Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'description' => $faker->sentences(6, true),
-        'author_id' => $faker->numberBetween(1, 10)
+        'authorId' => $faker->numberBetween(1, 10)
     ];
 });
