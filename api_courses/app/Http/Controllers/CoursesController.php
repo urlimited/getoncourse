@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Course;
+use App\Http\Requests\CloneCourseRequest;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\GetCourseDetailsRequest;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,8 +35,16 @@ class CoursesController extends Controller
         return response('success', 200);
     }
 
-    public function cloneCourse(Request $request, EntityManagerInterface $entityManager){
-        return "clone course";
+    public function cloneCourse(CloneCourseRequest $request, EntityManagerInterface $entityManager){
+        $sampleCourse = $entityManager->getRepository(Course::class)
+            ->find($request->course_id);
+
+        $newCourse = new Course($sampleCourse->toDB());
+
+        $entityManager->persist($newCourse);
+        $entityManager->flush();
+
+        return response()->json(['course' => $newCourse->toJSON()], 200);
     }
 
     public function updateCourse(Request $request, EntityManagerInterface $entityManager){

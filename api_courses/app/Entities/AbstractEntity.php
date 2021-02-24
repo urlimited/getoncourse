@@ -20,6 +20,9 @@ abstract class AbstractEntity
         })->toArray();
     }
 
+    /**
+     * @return array
+     */
     public function toDB(){
         return collect($this->dbFields)->flatMap(function($f){
             if(!property_exists($this, $f))
