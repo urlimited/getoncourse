@@ -25,8 +25,15 @@ $router->get('/', function () use ($router) {
 
 $router->group(['middleware' => 'auth', 'prefix' => 'api'], function() use ($router){
     $router->group(['prefix' => 'users'], function() use ($router){
-        //$router->get('get_users', "UsersController@getUsers");
         $router->get('get_user', "UsersController@getUser");
+    });
+
+    $router->group(['prefix' => 'api'], function() use ($router){
+        $router->group(['prefix' => 'courses'], function() use ($router){
+            $router->get('get_courses', 'CoursesController@getCourses');
+            $router->get('get_course_details', 'CoursesController@getCourseDetails');
+            $router->post('create_course', 'CoursesController@createCourse');
+        });
     });
 });
 
