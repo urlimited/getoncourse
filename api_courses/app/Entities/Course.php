@@ -45,6 +45,11 @@ class Course extends AbstractEntity
      */
     protected $categories;
 
+    /**
+     * @ORM\Column(type="integer", options={"default" : null}, nullable=true, name="deleted_at")
+     */
+    protected $deletedAt;
+
     public function __construct($data){
         $this->fill($data);
     }
@@ -79,6 +84,10 @@ class Course extends AbstractEntity
     public function getAuthorId()
     {
         return $this->authorId;
+    }
+
+    public function setDeletedAt(int $time){
+        $this->deletedAt = $time;
     }
 
 
