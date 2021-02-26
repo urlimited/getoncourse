@@ -40,9 +40,7 @@ class CoursesController extends Controller
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
             ],
-            'query' => [
-                'id' => $request->id
-            ]
+            'query' => $request->all()
         ]);
     }
 
@@ -54,28 +52,20 @@ class CoursesController extends Controller
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
             ],
-            'form_params' => [
-                'author_id' => $request->author_id,
-                'description' => $request->description,
-                'name' => $request->name
-            ]
+            'form_params' => $request->all()
         ]);
     }
 
     public function updateCourse(Request $request)
     {
         $client = new Client();
+
         return $client->request('PUT', 'http://webserver/courses/update_course', [
             'headers' => [
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
             ],
-            'form_params' => [
-                'id' => $request->id,
-                'author_id' => $request->author_id,
-                'description' => $request->description,
-                'name' => $request->name
-            ]
+            'form_params' => $request->all()
         ]);
     }
 
@@ -86,7 +76,8 @@ class CoursesController extends Controller
             'headers' => [
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
-            ]
+            ],
+            'form_params' => $request->all()
         ]);
     }
 
@@ -97,7 +88,8 @@ class CoursesController extends Controller
             'headers' => [
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
-            ]
+            ],
+            'form_params' => $request->all()
         ]);
     }
 
@@ -108,7 +100,8 @@ class CoursesController extends Controller
             'headers' => [
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
-            ]
+            ],
+            'form_params' => $request->all()
         ]);
     }
 }
