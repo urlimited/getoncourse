@@ -17,15 +17,15 @@ class GetCourseDetailsRequest extends FormRequest
     public function rules()
     {
         return [
-            'course_id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
+            'id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
         ];
     }
 
     public function messages()
     {
         return [
-            'course_id.required' => 'You should provide course_id in your request',
-            'course_id.integer' => 'Your course id should be integer',
+            'id.required' => 'You should provide course_id in your request',
+            'id.integer' => 'Your course id should be integer',
         ];
     }
 }

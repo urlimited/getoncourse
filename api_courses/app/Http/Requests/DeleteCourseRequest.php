@@ -17,7 +17,7 @@ class DeleteCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'course_id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
+            'id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
         ];
     }
 }

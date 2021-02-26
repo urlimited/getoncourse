@@ -20,10 +20,10 @@ class DeleteCourseTest extends TestCase
         $this->runDatabaseMigrations();
 
         $request_data = [
-            'course_id' => 2
+            'id' => 2
         ];
 
-        $deleted_course = (new Course(app('db')->table('courses')->where('id', '=', $request_data['course_id'])->first()));
+        $deleted_course = (new Course(app('db')->table('courses')->where('id', '=', $request_data['id'])->first()));
 
         $this->delete('/courses/delete_course', $request_data, [
             'Accept' => 'application/json'

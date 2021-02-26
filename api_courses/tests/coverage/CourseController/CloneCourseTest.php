@@ -20,7 +20,7 @@ class CloneCourseTest extends TestCase
         $this->runDatabaseMigrations();
 
         $request_data = [
-            'course_id' => 2
+            'id' => 2
         ];
 
         $this->post('/courses/clone_course', $request_data, [
@@ -39,7 +39,7 @@ class CloneCourseTest extends TestCase
 
         // In database it is also equals
         $this->assertEquals(
-            (collect((new Course(app('db')->table('courses')->where('id', '=', $request_data['course_id'])->first()))->toJSON())->except('id'))->toArray(),
+            (collect((new Course(app('db')->table('courses')->where('id', '=', $request_data['id'])->first()))->toJSON())->except('id'))->toArray(),
             (collect((new Course(app('db')->table('courses')->orderByDesc('id')->first()))->toJSON())->except('id'))->toArray(),
         );
     }

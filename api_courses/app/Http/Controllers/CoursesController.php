@@ -25,7 +25,7 @@ class CoursesController extends Controller
 
     public function getCourseDetails(GetCourseDetailsRequest $request, EntityManagerInterface $entityManager){
         $course = $entityManager->getRepository(Course::class)
-            ->find($request->course_id);
+            ->find($request->id);
 
         return response()->json(['course' => $course->toJSON()], 200);
     }
@@ -35,12 +35,12 @@ class CoursesController extends Controller
         $entityManager->persist($course);
         $entityManager->flush();
 
-        return response('success', 200);
+        return response(['course' => $course->toJSON()], 200);
     }
 
     public function cloneCourse(CloneCourseRequest $request, EntityManagerInterface $entityManager){
         $sampleCourse = $entityManager->getRepository(Course::class)
-            ->find($request->course_id);
+            ->find($request->id);
 
         $newCourse = new Course($sampleCourse->toDB());
 
@@ -52,7 +52,7 @@ class CoursesController extends Controller
 
     public function updateCourse(UpdateCourseRequest $request, EntityManagerInterface $entityManager){
         $course = $entityManager->getRepository(Course::class)
-            ->find($request->input('id'));
+            ->find($request->id);
 
         $course->fill($request->all());
 
@@ -76,7 +76,7 @@ class CoursesController extends Controller
 
     public function deleteCourse(DeleteCourseRequest $request, EntityManagerInterface $entityManager){
         $deletedCourse = $entityManager->getRepository(Course::class)
-            ->find($request->course_id);
+            ->find($request->id);
 
         $toDelete = clone $deletedCourse;
 

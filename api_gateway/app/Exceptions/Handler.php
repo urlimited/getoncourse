@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use \GuzzleHttp\Exception\ClientException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
@@ -50,7 +51,10 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if($exception instanceof \Anik\Form\ValidationException)
-            return response(['error' => $exception->getResponse()], 422);
+            return response()->json(['error' => $exception->getResponse()], 422);
+
+        if($exception instanceof ClientException)
+            return response()->json(json_decode($exception->getResponse()->getBody()->getContents()), $exception->getCode());
 
         return parent::render($request, $exception);
     }

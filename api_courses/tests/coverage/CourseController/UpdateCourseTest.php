@@ -56,4 +56,26 @@ class UpdateCourseTest extends TestCase
 
         $this->assertResponseStatus(422);
     }
+
+    public function testFailToUpdateSoftDeletedCourse(){
+        $this->runDatabaseMigrations();
+
+        $request_data = array_merge(
+            entity(Course::class)->make()->toJSON(),
+            ['id' => 2]
+        );
+
+        $old_course_details = (new Course(app('db')->table('courses')->find($request_data['id'])))->toJSON();
+
+        // Soft delete target course
+        $this->put('/courses/soft_delete_course', ['id' => $request_data['id']], [
+            'Accept' => 'application/json'
+        ]);
+
+        $this->put('/courses/update_course', $request_data, [
+            'Accept' => 'application/json'
+        ]);
+
+        $this->assertResponseStatus(422);
+    }
 }
