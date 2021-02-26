@@ -29,4 +29,18 @@ class CreateCourseTest extends TestCase
 
         $this->seeInDatabase('courses', $course->toDB());
     }
+
+    public function testFailToCreateCourseCourseWithoutData(){
+        $this->runDatabaseMigrations();
+
+        $course_details = entity(Course::class)->make()->toDB();
+
+        foreach($course_details as $c => $value){
+            $this->post('/courses/create_course', collect($course_details)->except($c)->toArray(), [
+                'Accept' => 'application/json'
+            ]);
+
+            $this->assertResponseStatus(422);
+        }
+    }
 }

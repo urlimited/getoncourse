@@ -23,17 +23,19 @@ $router->get('/', function () use ($router) {
     //return "awdad";
 });
 
-$router->group(['middleware' => 'auth', 'prefix' => 'api'], function() use ($router){
-    $router->group(['prefix' => 'users'], function() use ($router){
+$router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'users'], function () use ($router) {
         $router->get('get_user', "UsersController@getUser");
     });
 
-    $router->group(['prefix' => 'api'], function() use ($router){
-        $router->group(['prefix' => 'courses'], function() use ($router){
-            $router->get('get_courses', 'CoursesController@getCourses');
-            $router->get('get_course_details', 'CoursesController@getCourseDetails');
-            $router->post('create_course', 'CoursesController@createCourse');
-        });
+    $router->group(['prefix' => 'courses'], function () use ($router) {
+        $router->get('get_courses', 'CoursesController@getCourses');
+        $router->get('get_course_details', 'CoursesController@getCourseDetails');
+        $router->post('create_course', 'CoursesController@createCourse');
+        $router->put('update_course', 'CoursesController@updateCourse');
+        $router->post('clone_course', 'CoursesController@cloneCourse');
+        $router->put('soft_delete_course', 'CoursesController@softDeleteCourse');
+        $router->delete('delete_course', 'CoursesController@deleteCourse');
     });
 });
 

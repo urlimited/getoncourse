@@ -17,7 +17,7 @@ class CreateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'author_id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
+            'author_id' => ['required', 'integer'],
             'description' => ['required', 'string', 'max: 350'],
             'name' => ['required', 'string', 'max: 25', 'min: 10'],
         ];

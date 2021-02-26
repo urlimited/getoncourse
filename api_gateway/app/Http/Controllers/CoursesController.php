@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 
 class CoursesController extends Controller
 {
@@ -16,31 +17,97 @@ class CoursesController extends Controller
         //
     }
 
-    public function getCourses(Request $request){
-        $client = new \GuzzleHttp\Client();
-        return $client->request('GET', 'http://webserver/courses/get_courses', [
+    public function getCourses(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'GET',
+            'http://webserver/courses/get_courses', [
             'headers' => [
-                'Host' => 'courses.oncourse.local'
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
             ]
         ]);
     }
 
-    //TODO: add params into request
-    public function getCourseDetails(Request $request){
-        $client = new \GuzzleHttp\Client();
-        return $client->request('GET', 'http://webserver/courses/get_course_details', [
+    public function getCourseDetails(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'GET',
+            'http://webserver/courses/get_course_details', [
             'headers' => [
-                'Host' => 'courses.oncourse.local'
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'query' => [
+                'id' => $request->id
             ]
         ]);
     }
 
-    //TODO: add params into request
-    public function createCourse(Request $request){
-        $client = new \GuzzleHttp\Client();
-        return $client->request('GET', 'http://webserver/courses/create_course', [
+    public function createCourse(Request $request)
+    {
+        $client = new Client();
+        return $client->request('POST', 'http://webserver/courses/create_course', [
             'headers' => [
-                'Host' => 'courses.oncourse.local'
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'form_params' => [
+                'author_id' => $request->author_id,
+                'description' => $request->description,
+                'name' => $request->name
+            ]
+        ]);
+    }
+
+    public function updateCourse(Request $request)
+    {
+        $client = new Client();
+        return $client->request('PUT', 'http://webserver/courses/update_course', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'form_params' => [
+                'id' => $request->id,
+                'author_id' => $request->author_id,
+                'description' => $request->description,
+                'name' => $request->name
+            ]
+        ]);
+    }
+
+    public function cloneCourse(Request $request)
+    {
+        $client = new Client();
+        return $client->request('POST', 'http://webserver/courses/clone_course', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ]
+        ]);
+    }
+
+    public function softDeleteCourse(Request $request)
+    {
+        $client = new Client();
+        return $client->request('PUT', 'http://webserver/courses/soft_delete_course', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ]
+        ]);
+    }
+
+    public function deleteCourse(Request $request)
+    {
+        $client = new Client();
+        return $client->request('DELETE', 'http://webserver/courses/delete_course', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
             ]
         ]);
     }

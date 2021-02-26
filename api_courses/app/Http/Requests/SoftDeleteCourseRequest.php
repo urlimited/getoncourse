@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Anik\Form\FormRequest;
 
-class GetCourseDetailsRequest extends FormRequest
+class SoftDeleteCourseRequest extends FormRequest
 {
     public function authorize()
     {
@@ -18,14 +18,6 @@ class GetCourseDetailsRequest extends FormRequest
     {
         return [
             'id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'id.required' => 'You should provide course_id in your request',
-            'id.integer' => 'Your course id should be integer',
         ];
     }
 }
