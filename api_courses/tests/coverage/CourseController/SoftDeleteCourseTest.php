@@ -1,6 +1,7 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
+use App\Models\CourseModel;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
@@ -27,14 +28,14 @@ class SoftDeleteCourseTest extends TestCase
             'Accept' => 'application/json'
         ]);
 
-        $course = new Course(app('db')->table('courses')->find($request_data['id']));
+        $course = new CourseModel(new CourseEntity(app('db')->table('courses')->find($request_data['id'])));
 
         $this->assertResponseStatus(200);
 
         // Response is equal to the deleted one
         $this->assertEquals(
             json_encode(
-                ['course' => $course->toJSON()]
+                ['course' => $course->toAPI()]
             ),
             $this->response->getContent()
         );

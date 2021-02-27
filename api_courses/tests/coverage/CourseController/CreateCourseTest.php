@@ -1,6 +1,7 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
+use App\Models\CourseModel;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
@@ -19,24 +20,24 @@ class CreateCourseTest extends TestCase
         //$this->beginDatabaseTransaction();
         $this->runDatabaseMigrations();
 
-        $course = entity(Course::class)->make();
+        $courseModel = new CourseModel(entity(CourseEntity::class)->make());
 
-        $this->post('/courses/create_course', $course->toDB(), [
+        $this->post('/courses/create_course', $courseModel->toAPI(), [
             'Accept' => 'application/json'
         ]);
 
         $this->assertResponseStatus(200);
 
-        $this->seeInDatabase('courses', $course->toDB());
+        $this->seeInDatabase('courses', collect($courseModel->toAPI())->except('id')->toArray());
     }
 
-    public function testFailToCreateCourseCourseWithoutData(){
+    public function testFailToCreateCourseWithoutData(){
         $this->runDatabaseMigrations();
 
-        $course_details = entity(Course::class)->make()->toDB();
+        $courseDetails = collect((new CourseModel(entity(CourseEntity::class)->make()))->toAPI())->except('id');
 
-        foreach($course_details as $c => $value){
-            $this->post('/courses/create_course', collect($course_details)->except($c)->toArray(), [
+        foreach($courseDetails as $c => $value){
+            $this->post('/courses/create_course', $courseDetails->except($c)->toArray(), [
                 'Accept' => 'application/json'
             ]);
 

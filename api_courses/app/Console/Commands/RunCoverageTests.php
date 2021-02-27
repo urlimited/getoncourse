@@ -36,6 +36,6 @@ class RunCoverageTests extends Command
      */
     public function handle()
     {
-        echo shell_exec('vendor/phpunit/phpunit/phpunit --testdox --color=always');
+        echo shell_exec('vendor/phpunit/phpunit/phpunit --testdox --color=always --verbose');
     }
 }

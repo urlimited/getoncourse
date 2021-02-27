@@ -1,6 +1,7 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
+use App\Models\CourseModel;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
@@ -32,15 +33,15 @@ class CloneCourseTest extends TestCase
         // Response is equal to the last one in database
         $this->assertEquals(
             json_encode(
-                ['course' => (new Course(app('db')->table('courses')->orderByDesc('id')->first()))->toJSON()]
+                ['course' => (new CourseModel(new CourseEntity(app('db')->table('courses')->orderByDesc('id')->first())))->toAPI()]
             ),
             $this->response->getContent()
         );
 
         // In database it is also equals
         $this->assertEquals(
-            (collect((new Course(app('db')->table('courses')->where('id', '=', $request_data['id'])->first()))->toJSON())->except('id'))->toArray(),
-            (collect((new Course(app('db')->table('courses')->orderByDesc('id')->first()))->toJSON())->except('id'))->toArray(),
+            (collect(new CourseEntity(app('db')->table('courses')->where('id', '=', $request_data['id'])->first()))->except('id'))->toArray(),
+            (collect(new CourseEntity(app('db')->table('courses')->orderByDesc('id')->first()))->except('id'))->toArray(),
         );
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
