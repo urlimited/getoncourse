@@ -30,6 +30,7 @@ $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($ro
 
     $router->group(['prefix' => 'courses'], function () use ($router) {
         $router->get('get_courses', 'CoursesController@getCourses');
+        $router->get('get_courses_deleted', 'CoursesController@getCoursesDeleted');
         $router->get('get_course_details', 'CoursesController@getCourseDetails');
         $router->post('create_course', 'CoursesController@createCourse');
         $router->put('update_course', 'CoursesController@updateCourse');

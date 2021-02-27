@@ -23,6 +23,7 @@ $router->get('/', function(){
     return "Hello it is okay";
 });
 $router->get('/courses/get_courses', 'CoursesController@getCourses');
+$router->get('/courses/get_courses_deleted', 'CoursesController@getCoursesDeleted');
 $router->get('/courses/get_course_details', 'CoursesController@getCourseDetails');
 $router->post('/courses/create_course', 'CoursesController@createCourse');
 $router->post('/courses/clone_course', 'CoursesController@cloneCourse');

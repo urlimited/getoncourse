@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Anik\Form\ValidationException;
 use App\Entities\CourseEntity;
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Support\MessageBag;
 
 class CourseModel extends AbstractModel
 {
@@ -11,12 +13,40 @@ class CourseModel extends AbstractModel
     protected EntityManagerInterface $entityManager;
     protected array $publishableFields = ['id', 'name', 'description', 'authorId'];
 
+    public static function allDeleted(){
+        $courses = self::all();
+
+        return collect($courses)->filter(function($c){
+            return $c->entity->deletedAt !== null;
+        })->flatten()->toArray();
+    }
+
     public static function allNotDeleted(){
         $courses = self::all();
 
         return collect($courses)->filter(function($c){
             return $c->entity->deletedAt === null;
-        })->toArray();
+        })->flatten()->toArray();
+    }
+
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
+    public function clone(): self
+    {
+        if($this->entity->deletedAt !== null)
+            throw new ValidationException(new MessageBag(['course' => 'You tried to clone soft deleted course']));
+
+        $courseCloned = clone $this->entity;
+        $courseCloned->id = null;
+
+        $this->entityManager->persist($courseCloned);
+        $this->entityManager->flush();
+
+        $this->entity = $courseCloned;
+
+        return $this;
     }
 
     public static function create(array $data): self
@@ -32,26 +62,30 @@ class CourseModel extends AbstractModel
         return new CourseModel($course);
     }
 
-    public function update(array $data): self
-    {
-        $this->entity->fill($data);
-
-        $this->entityManager->persist($this->entity);
-        $this->entityManager->flush();
-
-        return $this;
-    }
-
+    /**
+     * @return null
+     * @throws ValidationException
+     */
     public function delete()
     {
+        if($this->entity->deletedAt === null)
+            throw new ValidationException(new MessageBag(['course' => 'You can not delete soft undeleted course. Delete it softly, first']));
+
         $this->entityManager->remove($this->entity);
         $this->entityManager->flush();
 
         return null;
     }
 
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
     public function softDelete(): self
     {
+        if($this->entity->deletedAt !== null)
+            throw new ValidationException(new MessageBag(['course' => 'Course is already soft deleted, try to recover it first']));
+
         $this->entity->deletedAt = time();
 
         $this->entityManager->persist($this->entity);
@@ -60,15 +94,20 @@ class CourseModel extends AbstractModel
         return $this;
     }
 
-    public function clone(): self
+    /**
+     * @param array $data
+     * @return $this
+     * @throws ValidationException
+     */
+    public function update(array $data): self
     {
-        $courseCloned = clone $this->entity;
-        $courseCloned->id = null;
+        if($this->entity->deletedAt !== null)
+            throw new ValidationException(new MessageBag(['course' => 'Course is soft deleted']));
 
-        $this->entityManager->persist($courseCloned);
+        $this->entity->fill($data);
+
+        $this->entityManager->persist($this->entity);
         $this->entityManager->flush();
-
-        $this->entity = $courseCloned;
 
         return $this;
     }

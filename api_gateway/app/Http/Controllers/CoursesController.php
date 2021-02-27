@@ -30,6 +30,19 @@ class CoursesController extends Controller
         ]);
     }
 
+    public function getCoursesDeleted(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'GET',
+            'http://webserver/courses/get_courses_deleted', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ]
+        ]);
+    }
+
     public function getCourseDetails(Request $request)
     {
         $client = new Client();

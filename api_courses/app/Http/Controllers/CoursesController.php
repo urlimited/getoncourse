@@ -21,6 +21,14 @@ class CoursesController extends Controller
         })], 200) ;
     }
 
+    public function getCoursesDeleted(Request $request){
+        $courses = CourseModel::allDeleted();
+
+        return response()->json(['courses' => collect($courses)->map(function($course){
+            return $course->toAPI();
+        })], 200) ;
+    }
+
     public function getCourseDetails(GetCourseDetailsRequest $request){
         $course = CourseModel::find($request->id);
 
