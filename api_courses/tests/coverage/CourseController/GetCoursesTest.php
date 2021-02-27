@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
@@ -19,13 +19,16 @@ class GetCoursesTest extends TestCase
         //$this->beginDatabaseTransaction();
         $this->runDatabaseMigrations();
 
-        $this->get('/courses/get_courses');
+        $this->get('/courses/get_courses', [
+            'Accept' => 'application/json'
+        ]);
 
         $this->assertResponseStatus(200);
 
         $this->assertEquals(
             // To test
-            json_encode(['courses' => app('db')->table('courses')->select(['id', 'name', 'description', 'author_id'])->get()]),
+            json_encode(['courses' => app('db')->table('courses')->select(['id', 'name', 'description', 'author_id'])
+                ->where('deleted_at', '=', null)->get()]),
             // Testable
             $this->response->getContent()
         );

@@ -8,6 +8,9 @@
         <testsuite name="Application Test Suite">
             <directory suffix="Test.php">./tests/coverage/CourseController</directory>
         </testsuite>
+        <testsuite name="unit_abstract_model">
+            <directory suffix="Test.php">./tests/unit/AbstractModel</directory>
+        </testsuite>
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>

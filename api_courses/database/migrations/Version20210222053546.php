@@ -12,7 +12,8 @@ class Version20210222053546 extends AbstractMigration
      */
     public function up(Schema $schema): void
     {
-        $connection = getenv('APP_ENV') === 'local' ? 'mysql' : 'testing';
+        $connection = 'mysql';
+        //$connection = getenv('APP_ENV') === 'local' ? 'mysql' : 'testing';
 
         app('db')->connection($connection)->statement('CREATE TABLE categories (id INT AUTO_INCREMENT NOT NULL, parent_id INT NOT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_3AF34668727ACA70 (parent_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
         app('db')->connection($connection)->statement('CREATE TABLE courses (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(350) NOT NULL, author_id INT NOT NULL, deleted_at INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
@@ -27,7 +28,8 @@ class Version20210222053546 extends AbstractMigration
      */
     public function down(Schema $schema): void
     {
-        $connection = getenv('APP_ENV') === 'local' ? 'mysql' : 'testing';
+        //$connection = getenv('APP_ENV') === 'local' ? 'mysql' : 'testing';
+        $connection = 'mysql';
 
         app('db')->connection($connection)->statement('ALTER TABLE categories DROP FOREIGN KEY FK_3AF34668727ACA70');
         app('db')->connection($connection)->statement('ALTER TABLE categories_courses DROP FOREIGN KEY FK_81AF8BEC12469DE2');

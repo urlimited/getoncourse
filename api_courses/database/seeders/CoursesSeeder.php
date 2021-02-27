@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
 use Illuminate\Database\Seeder;
 
 class CoursesSeeder extends Seeder
@@ -14,11 +14,11 @@ class CoursesSeeder extends Seeder
      */
     public function run()
     {
-        $courses = entity(Course::class, 10)->make();
+        $courses = entity(CourseEntity::class, 10)->make();
 
         $connection = getenv('APP_ENV') === 'local' ? 'mysql' : 'testing';
 
-        app('db')->connection($connection)->table('courses')->insert(
+        app('db')->connection('mysql')->table('courses')->insert(
             $courses->map(function ($course) {
                 return $course->toDB();
             })->toArray());

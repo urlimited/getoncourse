@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
 use Faker\Generator;
 
 /**
  * @var $factory;
  */
-$factory->define(Course::class, function(Generator $faker) {
+$factory->define(CourseEntity::class, function(Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

@@ -17,7 +17,7 @@ class CloneCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => ['required', 'integer', 'exists:App\Entities\Course,id'],
+            'id' => ['required', 'integer', 'exists:App\Entities\CourseEntity,id'],
         ];
     }
 }

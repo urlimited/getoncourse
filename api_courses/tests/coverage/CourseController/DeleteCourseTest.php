@@ -1,6 +1,7 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
+use App\Models\CourseModel;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
@@ -23,7 +24,7 @@ class DeleteCourseTest extends TestCase
             'id' => 2
         ];
 
-        $deleted_course = (new Course(app('db')->table('courses')->where('id', '=', $request_data['id'])->first()));
+        $deleted_course = CourseModel::find($request_data['id']);
 
         $this->delete('/courses/delete_course', $request_data, [
             'Accept' => 'application/json'
@@ -31,16 +32,8 @@ class DeleteCourseTest extends TestCase
 
         $this->assertResponseStatus(200);
 
-        // Response is equal to the deleted one
-        $this->assertEquals(
-            json_encode(
-                ['course' => $deleted_course->toJSON()]
-            ),
-            $this->response->getContent()
-        );
-
         // In database there is no deleted course
-        $this->notSeeInDatabase('courses', $deleted_course->toJSON());
+        $this->notSeeInDatabase('courses', $deleted_course->toAPI());
     }
 
     public function testFailToDeleteCourseWithoutData(){

@@ -1,6 +1,7 @@
 <?php
 
-use App\Entities\Course;
+use App\Entities\CourseEntity;
+use App\Models\CourseModel;
 use App\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
@@ -20,11 +21,11 @@ class UpdateCourseTest extends TestCase
         $this->runDatabaseMigrations();
 
         $request_data = array_merge(
-            entity(Course::class)->make()->toJSON(),
+            (new CourseModel(entity(CourseEntity::class)->make()))->toAPI(),
             ['id' => 2]
         );
 
-        $old_course_details = (new Course(app('db')->table('courses')->find($request_data['id'])))->toJSON();
+        $old_course_details = (new CourseModel(new CourseEntity(app('db')->table('courses')->find($request_data['id']))))->toAPI();
 
         $this->put('/courses/update_course', $request_data, [
             'Accept' => 'application/json'
@@ -44,35 +45,13 @@ class UpdateCourseTest extends TestCase
         $this->notSeeInDatabase('courses', $old_course_details);
 
         // In database there is new course
-        $this->seeInDatabase('courses', (new Course($request_data))->toJSON());
+        $this->seeInDatabase('courses', (new CourseModel((new CourseEntity($request_data))))->toAPI());
     }
 
     public function testFailToUpdateCourseWithoutId(){
         $this->runDatabaseMigrations();
 
         $this->post('/courses/clone_course', [
-            'Accept' => 'application/json'
-        ]);
-
-        $this->assertResponseStatus(422);
-    }
-
-    public function testFailToUpdateSoftDeletedCourse(){
-        $this->runDatabaseMigrations();
-
-        $request_data = array_merge(
-            entity(Course::class)->make()->toJSON(),
-            ['id' => 2]
-        );
-
-        $old_course_details = (new Course(app('db')->table('courses')->find($request_data['id'])))->toJSON();
-
-        // Soft delete target course
-        $this->put('/courses/soft_delete_course', ['id' => $request_data['id']], [
-            'Accept' => 'application/json'
-        ]);
-
-        $this->put('/courses/update_course', $request_data, [
             'Accept' => 'application/json'
         ]);
 
