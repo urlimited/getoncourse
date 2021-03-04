@@ -1,28 +1,27 @@
 import React from "react";
+import {useLocation} from 'react-router-dom'
 
-export const TitleBlock = () => {
+export const TitleBlock = ({title}) => {
+    const location = useLocation()
+    const breadcrumbs = location.pathname.split('/')
     return (
-        <div className="page-header-content header-elements-md-inline">
-            <div className="page-title d-flex">
-                <h4><span className="font-weight-semibold">Dashboard</span></h4>
-                <a href="#" className="header-elements-toggle text-default d-md-none">
-                    <i className="icon-more"/>
-                </a>
-            </div>
-
-            {/*<div className="header-elements d-none">
-                <div className="d-flex justify-content-center">
-                    <a href="#" className="btn btn-link btn-float text-default">
-                        <i className="icon-bars-alt text-primary"/><span>Statistics</span>
-                    </a>
-                    <a href="#" className="btn btn-link btn-float text-default">
-                        <i className="icon-calculator text-primary"/> <span>Invoices</span>
-                    </a>
-                    <a href="#" className="btn btn-link btn-float text-default">
-                        <i className="icon-calendar5 text-primary"/> <span>Schedule</span>
-                    </a>
+            <div className="row">
+                <div className="col-12">
+                    <div className="page-title-box d-flex align-items-center justify-content-between"><h4
+                        className="mb-0 font-size-18">{title}</h4>
+                        <div className="page-title-right">
+                            <nav className="" aria-label="breadcrumb">
+                                <ol className="breadcrumb m-0">
+                                    {breadcrumbs.map(breadcrumb=>
+                                        <li className="breadcrumb-item">
+                                            <a href="/dashboard">{breadcrumb.toUpperCase()}</a>
+                                        </li>)
+                                    }
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-            </div>*/}
-        </div>
+            </div>
     )
 }

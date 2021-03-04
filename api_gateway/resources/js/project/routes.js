@@ -7,3 +7,7 @@ export const ROUTE_TO_REPORT_RECOMMENDATIONS = "/recommendations/";
 export const ROUTE_TO_REPORTS = "/reports/";
 export const ROUTE_TO_ARRANGEMENTS = "/arrangements/";
 export const ROUTE_TO_REPORTS_MANAGEMENT = "/manage/reports/";
+
+
+//Routes for courses
+export const ROUTE_TO_COURSES = '/courses'

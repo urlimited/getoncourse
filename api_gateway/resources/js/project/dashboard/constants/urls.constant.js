@@ -1,6 +1,7 @@
 export const API_BASE = "/api"
 
-export const API_GET_REPORTS = API_BASE + "/reports/get_all_reports";
+export const API_COURSES_GET_ALL = API_BASE + "/courses/get_courses";
+/*export const API_GET_REPORTS = API_BASE + "/reports/get_all_reports";
 export const API_GET_REPORT_DETAILS = API_BASE + "/reports/get_report_details";
 export const API_CREATE_REPORT = API_BASE + "/reports/create_report";
 export const API_UPDATE_REPORT = API_BASE + "/reports/update_report_details";
@@ -22,4 +23,4 @@ export const API_GET_ALL_EVENTS = API_BASE + "/events/get_events";
 export const API_GET_EVENTS_BY_TIMEBOUNDS = API_BASE + "/events/get_events_by_timeline";
 export const API_CREATE_ARRANGEMENT = API_BASE + "/events/create_event";
 export const API_UPDATE_ARRANGEMENT = API_BASE + "/events/update_event";
-export const API_DELETE_ARRANGEMENT = API_BASE + "/events/delete_event";
+export const API_DELETE_ARRANGEMENT = API_BASE + "/events/delete_event";*/

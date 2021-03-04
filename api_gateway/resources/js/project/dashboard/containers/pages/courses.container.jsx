@@ -1,23 +1,17 @@
 import {connect} from "react-redux";
-import ArrangementsClientPage from "../../pages/arrangementsClient.page";
-import {apiGetArrangementsAll} from "../../requests/getArrangementsAll.request";
+import {apiGetAllCourses} from "../../requests/getAllCourses.request";
 import setPageSettings from "../../../../core/pageSettings/actions/setPageSettings";
-import {Arrangement} from "../../models/arrangement.model";
-import {apiGetReportDetails} from "../../requests/getReportDetails.request";
-import setCriteria from "../../actions/setCriteria";
-import {apiDeleteArrangement} from "../../requests/arrangementDelete.request";
+import DashboardLayout from "../../pages/dashboard.layout";
+import {CoursesPage} from "../../pages/courses.page";
 
 const mapStateToProps = (state, ownProps) => ({
-    currentArrangement: state.pageData.pageSettings.currentArrangement ?? new Arrangement(),
-    criteria: state.data.criteria
+    modalIsOpen: state.pageData.pageSettings.modalIsOpen,
+    pageSettings: state.pageData.pageSettings
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    getArrangements: () => dispatch(apiGetArrangementsAll()),
-    setCurrentArrangement: (arrangement) => dispatch(setPageSettings({currentArrangement: arrangement})),
-    getReportDetails: (reportId) => dispatch(apiGetReportDetails(reportId)),
-    setCriteria: (data) => dispatch(setCriteria(data)),
-    deleteArrangement: (arrangementId) => dispatch(apiDeleteArrangement({id: arrangementId}))
+    getCourses: () => dispatch(apiGetAllCourses()),
+    setPageModalIsActive: (bool) => dispatch(setPageSettings({modalIsOpen: bool}))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArrangementsClientPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardLayout);
