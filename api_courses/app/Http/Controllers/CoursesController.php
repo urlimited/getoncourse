@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CloneCourseRequest;
-use App\Http\Requests\CreateCourseRequest;
-use App\Http\Requests\DeleteCourseRequest;
-use App\Http\Requests\GetCourseDetailsRequest;
-use App\Http\Requests\SoftDeleteCourseRequest;
-use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Requests\Courses\CloneCourseRequest;
+use App\Http\Requests\Courses\CreateCourseRequest;
+use App\Http\Requests\Courses\DeleteCourseRequest;
+use App\Http\Requests\Courses\GetCourseDetailsRequest;
+use App\Http\Requests\Courses\SoftDeleteCourseRequest;
+use App\Http\Requests\Courses\UpdateCourseRequest;
 use App\Models\CourseModel;
 use Illuminate\Support\Facades\Request;
 

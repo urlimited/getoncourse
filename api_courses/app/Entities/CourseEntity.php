@@ -36,6 +36,11 @@ class CourseEntity extends AbstractEntity
     public $authorId;
 
     /**
+     * @ORM\Column(type="integer", options={"default" : null}, nullable=true, name="deleted_at")
+     */
+    public $deletedAt;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entities\CategoryEntity", inversedBy="courses")
      * @ORM\JoinTable(name="categories_courses",
      *      joinColumns={@ORM\JoinColumn(name="course_id", referencedColumnName="id")},
@@ -45,7 +50,7 @@ class CourseEntity extends AbstractEntity
     public $categories;
 
     /**
-     * @ORM\Column(type="integer", options={"default" : null}, nullable=true, name="deleted_at")
+     * @ORM\OneToMany(targetEntity="App\Entities\LessonEntity", mappedBy="course")
      */
-    public $deletedAt;
+    public $lessons;
 }

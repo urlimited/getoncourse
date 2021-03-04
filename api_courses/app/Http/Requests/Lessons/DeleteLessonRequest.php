@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Lessons;
 
 
 use Anik\Form\FormRequest;
 
-class DeleteCourseRequest extends FormRequest
+class DeleteLessonRequest extends FormRequest
 {
     public function authorize()
     {
@@ -17,7 +17,7 @@ class DeleteCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => ['required', 'integer', 'exists:App\Entities\CourseEntity,id'],
+            'id' => ['required', 'integer', 'exists:App\Entities\LessonEntity,id'],
         ];
     }
 }
