@@ -59,7 +59,7 @@ $router->get('/register', function () use ($router) {
 /*$router->get('/api/{path}', function ($path) {
     return $path;
 });*/
-/*
+
 $router->get('/{path: .*}', function () {
     return view('frontend');
-});*/
+});

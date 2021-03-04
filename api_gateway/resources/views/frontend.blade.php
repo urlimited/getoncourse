@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="/css/app.css">
 
 </head>
-<body>
+<body data-sidebar="dark" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false"
+      data-topbar="light">
     <div id="app"></div>
     <script src="/js/app.js"></script>
 </body>

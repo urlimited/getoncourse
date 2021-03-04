@@ -35,4 +35,3 @@ const _preProcessData = (data) => {
         .map(key => key + "=" + data[key])
         .reduce((accum, next) => accum + "&" + next);
 }
-

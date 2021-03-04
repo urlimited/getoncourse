@@ -9,40 +9,33 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "../containers/components/loader.container";
 
-const DashboardLayout = ({getUser, breadcrumbs, user, Page, Modals}) => {
+const DashboardLayout = ({user, Page, title, breadcrumbs, Modals="null", modalIsOpen, getCourses, setPageModalIsActive}) => {
     const location = useLocation();
-
-    useEffect(() => {
+    /*useEffect(() => {
         getUser();
         //setPageBreadcrumbs();
-    }, []);
-
+    }, []);*/
     return (
         <>
-            <HeaderBlock user={user} />
-
-            <div className="page-content">
-
-                <SidebarBlock user={user} />
-
-                <div className="content-wrapper">
-
-                    <div className="page-header page-header-light">
-
-                        <TitleBlock />
-                        <BreadcrumbsBlock breadcrumbs={breadcrumbs} />
+            <HeaderBlock user={user}/>
+            <SidebarBlock user={user}/>
+            <div className="main-content">
+                <div className="page-content">
+                    <div className="container-fluid">
+                        <TitleBlock title={title}/>
+                            <Page user={user} props={{getCourses, setPageModalIsActive}}/>
                     </div>
 
-                    <div className="content">
-                        <Page user={user} />
-                    </div>
 
-                    <FooterBlock />
+                    {/*<FooterBlock />*/}
                 </div>
             </div>
-            <ToastContainer />
-            <Modals />
-            <Loader />
+
+            <Modals isOpen={modalIsOpen} setOpen={setPageModalIsActive}/>
+
+            {/*<ToastContainer />
+
+            <Loader />*/}
         </>
     )
 };
