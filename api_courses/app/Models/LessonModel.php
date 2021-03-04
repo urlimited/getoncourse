@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\CourseEntity;
+use App\Entities\LessonEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\MessageBag;
 
-class CourseModel extends AbstractModel
+class LessonModel extends AbstractModel
 {
-    protected CourseEntity $entity;
+    protected LessonEntity $entity;
     protected EntityManagerInterface $entityManager;
-    protected array $publishableFields = ['id', 'name', 'description', 'authorId'];
+    protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'eduStuffs'];
 
     public static function allDeleted(){
         $courses = self::all();
@@ -53,13 +53,13 @@ class CourseModel extends AbstractModel
     {
         $entityManager = app(EntityManagerInterface::class);
 
-        $course = new CourseEntity($data);
+        $course = new LessonEntity($data);
 
         $entityManager->persist($course);
 
         $entityManager->flush();
 
-        return new CourseModel($course);
+        return new LessonModel($course);
     }
 
     /**
@@ -112,12 +112,13 @@ class CourseModel extends AbstractModel
         return $this;
     }
 
+
     public function getId(){
         return $this->entity->id;
     }
 
-    public function getAuthorId(){
-        return $this->entity->authorId;
+    public function getCourseId(){
+        return $this->entity->courseId;
     }
 
     public function getName(){
@@ -128,7 +129,11 @@ class CourseModel extends AbstractModel
         return $this->entity->description;
     }
 
-    public function getLessons(){
-        return $this->entity->lessons;
+    public function getCourse(){
+        return $this->entity->course;
+    }
+
+    public function getEduStuffs(){
+        return $this->entity->eduStuffs;
     }
 }
