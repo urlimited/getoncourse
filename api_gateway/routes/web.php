@@ -12,17 +12,6 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-/*Временные роуты*/
-$router->get('/', function () use ($router) {
-    $client = new \GuzzleHttp\Client();
-    return $client->request('GET', 'http://webserver/courses/get_courses', [
-        'headers' => [
-            'Host' => 'courses.oncourse.local'
-        ]
-    ]);
-    //return "awdad";
-});
-
 $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'users'], function () use ($router) {
         $router->get('get_user', "UsersController@getUser");
@@ -59,7 +48,7 @@ $router->get('/register', function () use ($router) {
 /*$router->get('/api/{path}', function ($path) {
     return $path;
 });*/
-/*
+
 $router->get('/{path: .*}', function () {
     return view('frontend');
-});*/
+});
