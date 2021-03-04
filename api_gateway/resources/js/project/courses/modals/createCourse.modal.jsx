@@ -1,17 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
+export const CreateCourseModal = ({selectedCourse}) => {
 
-export const createCourseModal = ({isOpen, setOpen}) => {
+    useEffect(() => {
+        console.log(selectedCourse);
+    }, [selectedCourse]);
 
-    console.log('state', isOpen)
+    //console.log('state', isOpen)
     return (
         <>
-            <div className="modal fade show" role="dialog" tabIndex="-1" style={{display: isOpen ? "block" : "none"}}>
+            <div className="modal fade show" role="dialog" tabIndex="-1" id="createCourse">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header"><h4 className="modal-title">Add a category</h4>
-                            <button type="button" className="close" aria-label="Close"
-                                    onClick={e => setOpen(false)}><span aria-hidden="true">×</span>
+                            <button type="button" className="close" aria-label="Close">
+                                <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div className="modal-body">
@@ -20,11 +23,11 @@ export const createCourseModal = ({isOpen, setOpen}) => {
                                     <div className="col-12 col">
                                         <div className="mb-3">
                                             <div className="form-group">
-                                                <label htmlFor="title_category" className="">Category Name</label>
-                                                <input name="title_category" required="" id="title_category"
+                                                <label htmlFor="title_category">Category Name</label>
+                                                {/*<input name="title_category" required="" id="title_category"
                                                        type="text"
                                                        className="is-untouched is-pristine av-invalid form-control"
-                                                       value=""/>
+                                                       value=""/>*/}
                                             </div>
                                         </div>
                                     </div>
@@ -48,9 +51,7 @@ export const createCourseModal = ({isOpen, setOpen}) => {
                                 <div className="row">
                                     <div className="col">
                                         <div className="text-end">
-                                            <button type="button" className="btn btn-light me-2"
-                                                    onClick={e => setOpen(false)}>Close
-                                            </button>
+                                            <button type="button" className="btn btn-light me-2">Close</button>
                                             <button type="submit" className="btn btn-success save-event">Save</button>
                                         </div>
                                     </div>
@@ -60,8 +61,7 @@ export const createCourseModal = ({isOpen, setOpen}) => {
                     </div>
                 </div>
             </div>
-            {isOpen?<div className="modal-backdrop fade show" />:null}
-
+            <div id="backdrop" className="modal-backdrop fade show" style={{display: 'none'}} />
         </>
     )
 }

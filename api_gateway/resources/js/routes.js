@@ -10,16 +10,16 @@ import history from "./core/services/history";
 import {loadState} from "./core/services/local_storage";
 
 // Pages
+import DashboardPage from "./project/dashboard/pages/dashboard.page";
 import DashboardLayout from "./project/dashboard/containers/layouts/dashboard.container";
-import CoursesLayout from './project/dashboard/containers/pages/courses.container'
+//import CoursesLayout from './project/dashboard/containers/pages/courses.container'
 import LoginPage from "./project/auth/pages/login.page";
 //import SingleReportClientRecommendation from "./project/dashboard/containers/pages/singleReportClientRecommendation.container";
+import CoursesPage from "./project/courses/containers/courses.page_cont";
 
 // Modals
 import {DashboardModal} from "./project/dashboard/modals/dashboard.modal";
-import DashboardPage from "./project/dashboard/pages/dashboard.page";
-import {createCourseModal} from "./project/dashboard/modals/createCourse.modal";
-import {CoursesPage} from "./project/dashboard/pages/courses.page";
+import CreateCourseModal from "./project/courses/containers/createCourses.modal_cont";
 
 const loadStateDefault = loadState() ?? {
     userData: {}
@@ -36,7 +36,7 @@ export default function(){
             <Switch>
                 <Route exact path={routes.ROUTE_TO_LOGIN_PAGE} component={LoginPage}/>
                 <Route exact path={routes.ROUTE_TO_DASHBOARD} component={() => <DashboardLayout Page={DashboardPage} title="Dashboards"/>}/>
-                <Route exact path={routes.ROUTE_TO_COURSES} component={() => <CoursesLayout Page={CoursesPage} title="Courses List" Modals={createCourseModal}/>}/>
+                <Route exact path={routes.ROUTE_TO_COURSES} component={() => <DashboardLayout Page={CoursesPage} title="Courses List" Modals={CreateCourseModal}/>}/>
                 {/*<Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId"} component={() => <DashboardLayout Page={SingleReportClient} Modals={DashboardModal} />}/>
                 <Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId/:urlSectionId"} component={() => <DashboardLayout Page={SingleReportClientSection} Modals={DashboardModal} />}/>
                 <Route exact path={routes.ROUTE_TO_REPORTS} component={() => <DashboardLayout Page={ReportsListClient} Modals={ReportsClientModal} />}/>

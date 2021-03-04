@@ -6,7 +6,6 @@ import {DefaultRequest} from "../../../core/defaults/models/request.model";
 import {Response} from "../../../core/defaults/models/response.model";
 import {Course} from "../models/course.model";
 
-
 export const apiGetAllCourses = () => dispatch => {
     dispatch(core_events.eventInitRequest());
 
