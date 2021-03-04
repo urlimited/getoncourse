@@ -5,8 +5,6 @@ import {UserFactory} from "../../../auth/models/user.model";
 import setPageSettings from "../../../../core/pageSettings/actions/setPageSettings";
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
-
     return ({
         user: UserFactory.createUser(state.userData),
         breadcrumbs: state.pageData.pageSettings.breadcrumbs
@@ -15,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     getUser: () => dispatch(apiGetUserRequest()),
-    setPageBreadcrumbs: (b) => dispatch(setPageSettings({breadcrumbs: b}))
+    setPageBreadcrumbs: (b) => dispatch(setPageSettings({breadcrumbs: b})),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardLayout);

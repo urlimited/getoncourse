@@ -9,3 +9,7 @@
 /.local/
 /.npm/
 /.ssh/
+/composer.phar
+/package.json
+/package-lock.json
+/.node-gyp/

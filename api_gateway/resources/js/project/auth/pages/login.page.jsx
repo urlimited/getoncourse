@@ -3,8 +3,8 @@ import AuthContainer from "../../../core/auth/containers/login";
 import {ERROR_AUTH_FAILED} from "../../../core/auth/constants/errorsList.constant";
 
 const Page = ({apiAuthAttempt, pageErrors}) => {
-    const [email, setEmail] = useState("asd")
-    const [password, setPassword] = useState("asda")
+    const [email, setEmail] = useState("admin@test.com")
+    const [password, setPassword] = useState("localadmin")
     const [remember, setRemember] = useState(false)
 
     const validatePageFields = () => {
