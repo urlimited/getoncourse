@@ -769,6 +769,157 @@ var eventRequestProcessed = function eventRequestProcessed() {
 
 /***/ }),
 
+/***/ "./resources/js/core/mrouter/MRoute.js":
+/*!*********************************************!*\
+  !*** ./resources/js/core/mrouter/MRoute.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MRoute": () => (/* binding */ MRoute)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var MRoute = /*#__PURE__*/function () {
+  /**
+   * @param name {string}
+   * @param path {string}
+   * @param params {Object}
+   */
+  function MRoute(_ref) {
+    var name = _ref.name,
+        path = _ref.path,
+        _ref$params = _ref.params,
+        params = _ref$params === void 0 ? {} : _ref$params;
+
+    _classCallCheck(this, MRoute);
+
+    this.path = path !== null && path !== void 0 ? path : "";
+    this.name = name !== null && name !== void 0 ? name : "";
+    this.params = params !== null && params !== void 0 ? params : {};
+  }
+  /**
+   * Returns path with params inserted instead of masks
+   * @returns {string}
+   */
+
+
+  _createClass(MRoute, [{
+    key: "getRouteWithParams",
+    value: function getRouteWithParams() {
+      var _this = this;
+
+      var pathProcessed = this.path;
+      Object.keys(this.params).forEach(function (pk) {
+        pathProcessed = pathProcessed.replace(":".concat(pk), _this.params[pk]);
+      });
+      return pathProcessed;
+    }
+  }]);
+
+  return MRoute;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/core/mrouter/MRouter.js":
+/*!**********************************************!*\
+  !*** ./resources/js/core/mrouter/MRouter.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MRouter": () => (/* binding */ MRouter)
+/* harmony export */ });
+/* harmony import */ var _MRoute__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MRoute */ "./resources/js/core/mrouter/MRoute.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/**
+ * Singleton router manage class
+ */
+
+var MRouter = /*#__PURE__*/function () {
+  function MRouter(_ref) {
+    var basePath = _ref.basePath;
+
+    _classCallCheck(this, MRouter);
+
+    _defineProperty(this, "_routes", []);
+
+    _defineProperty(this, "_basePath", "");
+
+    this._basePath = basePath !== null && basePath !== void 0 ? basePath : "";
+  }
+
+  _createClass(MRouter, [{
+    key: "addRoute",
+    value:
+    /**
+     * Add routes
+     * @param route {MRoute}
+     * @throws Error
+     * @returns {MRouter}
+     */
+    function addRoute(route) {
+      if (Object.keys(this._routes).find(function (r) {
+        return r.name === route.name;
+      })) throw new Error("Route is already exists with the name ".concat(route.name, ", chose another name, please"));
+      this._routes[route.name] = route;
+      return this;
+    }
+    /**
+     * Get route
+     * @param name {string}
+     * @param getLikeObject {boolean}
+     * @returns {string}
+     */
+
+  }, {
+    key: "getRoute",
+    value: function getRoute(name) {
+      var _this$_routes$name$ge, _this$_routes$name;
+
+      var getLikeObject = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      if (getLikeObject) return this._routes.find(function (r) {
+        return r.name === name;
+      });
+      return (_this$_routes$name$ge = (_this$_routes$name = this._routes[name]) === null || _this$_routes$name === void 0 ? void 0 : _this$_routes$name.getRouteWithParams()) !== null && _this$_routes$name$ge !== void 0 ? _this$_routes$name$ge : function (e) {
+        throw e;
+      }(new Error("Route ".concat(name, " not found ")));
+    }
+  }], [{
+    key: "initRouter",
+    value: function initRouter(_ref2) {
+      var basePath = _ref2.basePath;
+      if (this._instance === null) this._instance = new this({
+        basePath: basePath
+      });
+      return this._instance;
+    }
+  }]);
+
+  return MRouter;
+}();
+
+_defineProperty(MRouter, "_instance", null);
+
+/***/ }),
+
 /***/ "./resources/js/core/pageSettings/actions/clearAllPageErrors.js":
 /*!**********************************************************************!*\
   !*** ./resources/js/core/pageSettings/actions/clearAllPageErrors.js ***!
@@ -2886,27 +3037,73 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ROUTE_TO_LOGIN_PAGE_NAME": () => (/* binding */ ROUTE_TO_LOGIN_PAGE_NAME),
+/* harmony export */   "ROUTE_TO_MAIN_PAGE_NAME": () => (/* binding */ ROUTE_TO_MAIN_PAGE_NAME),
+/* harmony export */   "ROUTE_TO_DASHBOARD_PAGE_NAME": () => (/* binding */ ROUTE_TO_DASHBOARD_PAGE_NAME),
+/* harmony export */   "ROUTE_TO_COURSES_PAGE_NAME": () => (/* binding */ ROUTE_TO_COURSES_PAGE_NAME),
+/* harmony export */   "ROUTE_TO_COURSE_DETAILS_PAGE_NAME": () => (/* binding */ ROUTE_TO_COURSE_DETAILS_PAGE_NAME),
+/* harmony export */   "ROUTE_TO_LESSONS_PAGE_NAME": () => (/* binding */ ROUTE_TO_LESSONS_PAGE_NAME),
+/* harmony export */   "ROUTE_TO_LESSON_DETAILS_PAGE_NAME": () => (/* binding */ ROUTE_TO_LESSON_DETAILS_PAGE_NAME),
 /* harmony export */   "ROUTE_TO_LOGIN_PAGE": () => (/* binding */ ROUTE_TO_LOGIN_PAGE),
 /* harmony export */   "ROUTE_TO_MAIN_PAGE": () => (/* binding */ ROUTE_TO_MAIN_PAGE),
-/* harmony export */   "ROUTE_TO_DASHBOARD": () => (/* binding */ ROUTE_TO_DASHBOARD),
-/* harmony export */   "ROUTE_TO_SINGLE_REPORT": () => (/* binding */ ROUTE_TO_SINGLE_REPORT),
-/* harmony export */   "ROUTE_TO_REPORT_RECOMMENDATIONS": () => (/* binding */ ROUTE_TO_REPORT_RECOMMENDATIONS),
-/* harmony export */   "ROUTE_TO_REPORTS": () => (/* binding */ ROUTE_TO_REPORTS),
-/* harmony export */   "ROUTE_TO_ARRANGEMENTS": () => (/* binding */ ROUTE_TO_ARRANGEMENTS),
-/* harmony export */   "ROUTE_TO_REPORTS_MANAGEMENT": () => (/* binding */ ROUTE_TO_REPORTS_MANAGEMENT),
+/* harmony export */   "ROUTE_TO_DASHBOARD_PAGE": () => (/* binding */ ROUTE_TO_DASHBOARD_PAGE),
+/* harmony export */   "ROUTE_TO_COURSES_PAGE": () => (/* binding */ ROUTE_TO_COURSES_PAGE),
+/* harmony export */   "ROUTE_TO_COURSE_DETAILS_PAGE": () => (/* binding */ ROUTE_TO_COURSE_DETAILS_PAGE),
+/* harmony export */   "ROUTE_TO_LESSONS_PAGE": () => (/* binding */ ROUTE_TO_LESSONS_PAGE),
+/* harmony export */   "ROUTE_TO_LESSON_DETAILS_PAGE": () => (/* binding */ ROUTE_TO_LESSON_DETAILS_PAGE),
 /* harmony export */   "ROUTE_TO_COURSES": () => (/* binding */ ROUTE_TO_COURSES)
 /* harmony export */ });
-var ROUTE_TO_LOGIN_PAGE = "/login"; //export const ROUTE_TO_REGISTER_PAGE = "/register";
+/* harmony import */ var _core_mrouter_MRouter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/mrouter/MRouter */ "./resources/js/core/mrouter/MRouter.js");
+/* harmony import */ var _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/mrouter/MRoute */ "./resources/js/core/mrouter/MRoute.js");
 
+
+var ROUTE_TO_LOGIN_PAGE_NAME = "login";
+var ROUTE_TO_MAIN_PAGE_NAME = "main_page";
+var ROUTE_TO_DASHBOARD_PAGE_NAME = "dashboard";
+var ROUTE_TO_COURSES_PAGE_NAME = "courses";
+var ROUTE_TO_COURSE_DETAILS_PAGE_NAME = "courses_details";
+var ROUTE_TO_LESSONS_PAGE_NAME = "lessons";
+var ROUTE_TO_LESSON_DETAILS_PAGE_NAME = "lessons_details";
+var ROUTE_TO_LOGIN_PAGE = "/login";
 var ROUTE_TO_MAIN_PAGE = "/";
-var ROUTE_TO_DASHBOARD = "/dashboard";
-var ROUTE_TO_SINGLE_REPORT = "/report/";
-var ROUTE_TO_REPORT_RECOMMENDATIONS = "/recommendations/";
-var ROUTE_TO_REPORTS = "/reports/";
-var ROUTE_TO_ARRANGEMENTS = "/arrangements/";
-var ROUTE_TO_REPORTS_MANAGEMENT = "/manage/reports/"; //Routes for courses
+var ROUTE_TO_DASHBOARD_PAGE = "/dashboard";
+var ROUTE_TO_COURSES_PAGE = "/courses";
+var ROUTE_TO_COURSE_DETAILS_PAGE = ROUTE_TO_COURSES_PAGE + "/:courseId";
+var ROUTE_TO_LESSONS_PAGE = ROUTE_TO_COURSE_DETAILS_PAGE + "/lessons";
+var ROUTE_TO_LESSON_DETAILS_PAGE = ROUTE_TO_LESSONS_PAGE + "/:lessonId"; //Routes for courses
 
 var ROUTE_TO_COURSES = '/courses';
+var router = _core_mrouter_MRouter__WEBPACK_IMPORTED_MODULE_0__.MRouter.initRouter({
+  basePath: ''
+});
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_LOGIN_PAGE_NAME,
+  path: ROUTE_TO_LOGIN_PAGE
+}));
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_DASHBOARD_PAGE_NAME,
+  path: ROUTE_TO_DASHBOARD_PAGE
+}));
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_MAIN_PAGE_NAME,
+  path: ROUTE_TO_MAIN_PAGE
+}));
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_COURSES_PAGE_NAME,
+  path: ROUTE_TO_COURSES_PAGE
+}));
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_COURSE_DETAILS_PAGE_NAME,
+  path: ROUTE_TO_COURSE_DETAILS_PAGE
+}));
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_LESSONS_PAGE_NAME,
+  path: ROUTE_TO_LESSONS_PAGE
+}));
+router.addRoute(new _core_mrouter_MRoute__WEBPACK_IMPORTED_MODULE_1__.MRoute({
+  name: ROUTE_TO_LESSON_DETAILS_PAGE_NAME,
+  path: ROUTE_TO_LESSON_DETAILS_PAGE
+}));
 
 /***/ }),
 
@@ -2923,8 +3120,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _project_reducers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project/reducers */ "./resources/js/project/reducers.js");
 /* harmony import */ var _core_auth_middlewares__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/auth/middlewares */ "./resources/js/core/auth/middlewares.jsx");
@@ -2937,6 +3134,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _project_courses_containers_courses_page_cont__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./project/courses/containers/courses.page_cont */ "./resources/js/project/courses/containers/courses.page_cont.jsx");
 /* harmony import */ var _project_dashboard_modals_dashboard_modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./project/dashboard/modals/dashboard.modal */ "./resources/js/project/dashboard/modals/dashboard.modal.jsx");
 /* harmony import */ var _project_courses_containers_createCourses_modal_cont__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./project/courses/containers/createCourses.modal_cont */ "./resources/js/project/courses/containers/createCourses.modal_cont.jsx");
+/* harmony import */ var _core_mrouter_MRouter__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./core/mrouter/MRouter */ "./resources/js/core/mrouter/MRouter.js");
 var _loadState;
 
 
@@ -2951,11 +3149,10 @@ var _loadState;
  // Pages
 
 
- //import CoursesLayout from './project/dashboard/containers/pages/courses.container'
 
- //import SingleReportClientRecommendation from "./project/dashboard/containers/pages/singleReportClientRecommendation.container";
 
  // Modals
+
 
 
 
@@ -2965,28 +3162,61 @@ var loadStateDefault = (_loadState = (0,_core_services_local_storage__WEBPACK_IM
 var localState = {
   userData: loadStateDefault.userData
 };
-var store = (0,redux__WEBPACK_IMPORTED_MODULE_14__.createStore)(_project_reducers__WEBPACK_IMPORTED_MODULE_3__.default, localState, (0,redux__WEBPACK_IMPORTED_MODULE_14__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_2__.default, _core_auth_middlewares__WEBPACK_IMPORTED_MODULE_4__.authMiddleware));
+var router = _core_mrouter_MRouter__WEBPACK_IMPORTED_MODULE_14__.MRouter.initRouter({
+  basePath: ''
+});
+var store = (0,redux__WEBPACK_IMPORTED_MODULE_15__.createStore)(_project_reducers__WEBPACK_IMPORTED_MODULE_3__.default, localState, (0,redux__WEBPACK_IMPORTED_MODULE_15__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_2__.default, _core_auth_middlewares__WEBPACK_IMPORTED_MODULE_4__.authMiddleware));
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Router, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Router, {
     history: _core_services_history__WEBPACK_IMPORTED_MODULE_6__.default
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     exact: true,
-    path: _project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_LOGIN_PAGE,
+    path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_LOGIN_PAGE_NAME),
     component: _project_auth_pages_login_page__WEBPACK_IMPORTED_MODULE_10__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     exact: true,
-    path: _project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_DASHBOARD,
+    path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_DASHBOARD_PAGE_NAME),
     component: function component() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_project_dashboard_containers_layouts_dashboard_container__WEBPACK_IMPORTED_MODULE_9__.default, {
         Page: _project_dashboard_pages_dashboard_page__WEBPACK_IMPORTED_MODULE_8__.default,
         title: "Dashboards"
       });
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
     exact: true,
-    path: _project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_COURSES,
+    path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_COURSES_PAGE_NAME),
+    component: function component() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_project_dashboard_containers_layouts_dashboard_container__WEBPACK_IMPORTED_MODULE_9__.default, {
+        Page: _project_courses_containers_courses_page_cont__WEBPACK_IMPORTED_MODULE_11__.default,
+        title: "Courses List",
+        Modals: _project_courses_containers_createCourses_modal_cont__WEBPACK_IMPORTED_MODULE_13__.default
+      });
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+    exact: true,
+    path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_COURSE_DETAILS_PAGE_NAME),
+    component: function component() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_project_dashboard_containers_layouts_dashboard_container__WEBPACK_IMPORTED_MODULE_9__.default, {
+        Page: _project_courses_containers_courses_page_cont__WEBPACK_IMPORTED_MODULE_11__.default,
+        title: "Courses List",
+        Modals: _project_courses_containers_createCourses_modal_cont__WEBPACK_IMPORTED_MODULE_13__.default
+      });
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+    exact: true,
+    path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_LESSONS_PAGE_NAME),
+    component: function component() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_project_dashboard_containers_layouts_dashboard_container__WEBPACK_IMPORTED_MODULE_9__.default, {
+        Page: _project_courses_containers_courses_page_cont__WEBPACK_IMPORTED_MODULE_11__.default,
+        title: "Courses List",
+        Modals: _project_courses_containers_createCourses_modal_cont__WEBPACK_IMPORTED_MODULE_13__.default
+      });
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+    exact: true,
+    path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_LESSON_DETAILS_PAGE_NAME),
     component: function component() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_project_dashboard_containers_layouts_dashboard_container__WEBPACK_IMPORTED_MODULE_9__.default, {
         Page: _project_courses_containers_courses_page_cont__WEBPACK_IMPORTED_MODULE_11__.default,

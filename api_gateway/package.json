@@ -9,6 +9,8 @@
     "dependencies": {
         "-": "^0.0.1",
         "@babel/plugin-proposal-class-properties": "^7.12.13",
+        "@babel/plugin-proposal-throw-expressions": "^7.12.13",
+        "@babel/plugin-syntax-throw-expressions": "^7.12.13",
         "@babel/preset-react": "^7.12.13",
         "ansi-styles": "^5.1.0",
         "babel": "^6.23.0",

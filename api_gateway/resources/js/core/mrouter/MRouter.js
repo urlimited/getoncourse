@@ -1,20 +1,50 @@
+import {MRoute} from "./MRoute";
+
+/**
+ * Singleton router manage class
+ */
 export class MRouter {
     _routes = [];
     _basePath = "";
+    static _instance = null;
 
-    constructor(data) {
-        this._basePath = data?.basePath ?? ""
+    constructor({basePath}) {
+        this._basePath = basePath ?? ""
     }
 
-    initRoutes(routes) {
-        this._routes = routes;
+    static initRouter({basePath}){
+        if(this._instance === null)
+            this._instance = new this({basePath});
+
+        return this._instance;
     }
 
-    getRouteByName(routeName) {
-        return this._routes.find(r => r.name === routeName);
+    /**
+     * Add routes
+     * @param route {MRoute}
+     * @throws Error
+     * @returns {MRouter}
+     */
+    addRoute(route){
+        if(Object.keys(this._routes).find(r => r.name === route.name))
+            throw new Error(`Route is already exists with the name ${route.name}, chose another name, please`);
+
+        this._routes[route.name] = route;
+
+        return this;
     }
 
-    getRouteByPath(routePath) {
-        return this._routes.find()
+    /**
+     * Get route
+     * @param name {string}
+     * @param getLikeObject {boolean}
+     * @returns {string}
+     */
+    getRoute(name, getLikeObject = false){
+        if(getLikeObject)
+            return this._routes.find(r => r.name === name)
+
+        return this._routes[name]?.getRouteWithParams()
+            ?? throw new Error(`Route ${name} not found `);
     }
 }
