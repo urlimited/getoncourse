@@ -27,6 +27,10 @@ $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($ro
         $router->put('soft_delete_course', 'CoursesController@softDeleteCourse');
         $router->delete('delete_course', 'CoursesController@deleteCourse');
     });
+
+    $router->group(['prefix' => 'lessons'], function () use ($router) {
+        $router->get('get_lesson_details', 'LessonsController@getLessonDetails');
+    });
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {

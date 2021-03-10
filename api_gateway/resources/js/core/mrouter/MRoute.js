@@ -12,13 +12,14 @@ export class MRoute {
 
     /**
      * Returns path with params inserted instead of masks
+     * @param params {Object}
      * @returns {string}
      */
-    getRouteWithParams(){
+    getRouteWithParams(params){
         let pathProcessed = this.path;
-        Object.keys(this.params)
+        Object.keys(params)
             .forEach(pk => {
-                pathProcessed = pathProcessed.replace(`:${pk}`, this.params[pk]);
+                pathProcessed = pathProcessed.replace(`:${pk}`, params[pk]);
             });
 
         return pathProcessed;

@@ -12,9 +12,9 @@ export class MRouter {
         this._basePath = basePath ?? ""
     }
 
-    static initRouter({basePath}){
+    static initRouter(params = {}){
         if(this._instance === null)
-            this._instance = new this({basePath});
+            this._instance = new this(params.basePath);
 
         return this._instance;
     }
@@ -37,14 +37,15 @@ export class MRouter {
     /**
      * Get route
      * @param name {string}
+     * @param params {Object}
      * @param getLikeObject {boolean}
      * @returns {string}
      */
-    getRoute(name, getLikeObject = false){
+    getRoute(name, params= {}, getLikeObject = false){
         if(getLikeObject)
             return this._routes.find(r => r.name === name)
 
-        return this._routes[name]?.getRouteWithParams()
+        return this._routes[name]?.getRouteWithParams(params)
             ?? throw new Error(`Route ${name} not found `);
     }
 }

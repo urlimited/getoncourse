@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import DataTable from 'react-data-table-component';
+import {Link} from "react-router-dom";
+import {ROUTE_TO_COURSE_DETAILS_PAGE_NAME} from "../../routes";
+import {MRouter} from "../../../core/mrouter/MRouter";
 
 export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
     //const [openModal, setOpenModal] = useState(modalIsOpen)
@@ -104,9 +107,9 @@ export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
                         courses.map((c, k) => ({
                             id: c.id,
                             name: c.name,
-                            nameProcessed: <p>{c.name}</p>,
+                            nameProcessed: <Link to={MRouter.initRouter().getRoute(ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.name}</Link>,
                             description: c.description,
-                            descriptionProcessed: <p>{c.description}</p>,
+                            descriptionProcessed: <Link to={MRouter.initRouter().getRoute(ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.description}</Link>,
                             authorId: c.authorId,
                             authorProcessed: <div className="row">
                                 <div className="col-md-3">

@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom'
 
 export const TitleBlock = ({title}) => {
     const location = useLocation()
+    // TODO: хорошо придумал, но нужно вынести это в отдельный модуль, чтобы можно было использовать имена отличные от URL
     const breadcrumbs = location.pathname.split('/')
     return (
             <div className="row">
