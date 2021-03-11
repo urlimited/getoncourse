@@ -4,6 +4,7 @@ import {LessonManager} from "../models/lessonManager.model";
 /**
  * EduStuff textarea component
  * @param eduStuff {EduStuffText}
+ * @param eduStuff.content {string}
  * @param lessonManager {LessonManager}
  * @param setLesson {function}
  * @param setEduStuff {function}
@@ -18,15 +19,25 @@ export const EduStuffTextComponent = ({eduStuff, lessonManager, setLesson, setEd
         setLocalContent(eduStuff.content);
     }, [eduStuff.id]);
 
+    const createNewEduStuff = () => {
+        setLesson(lessonManager.getLesson());
+
+        lessonManager.setLesson(lessonManager.getLesson());
+
+        setLocalContent('');
+    }
+
     return (<>
         <div className="edustuff-text">
             <textarea
                 className="edustuff-text__textarea"
-                onBlur={e => setEduStuff(eduStuff.setContent(e.target.value))}
+                onBlur={e => {
+                    setEduStuff(eduStuff.setContent(e.target.value))
+                }}
                 onChange={e => {
                     setLocalContent(e.target.value);
                     if (lessonManager.isEduStuffAddedToLesson(e.target.value, eduStuff))
-                        setLesson(lessonManager.getLesson());
+                        createNewEduStuff();
                 }}
                 onInput={e => {
                     e.target.style.height = 'auto';

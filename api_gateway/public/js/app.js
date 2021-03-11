@@ -1882,13 +1882,15 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @param getLessonDetails
  * @param lesson {Lesson}
+ * @param setLesson
  * @returns {JSX.Element}
  * @constructor
  */
 
 var LessonContentBlock = function LessonContentBlock(_ref) {
-  var getLessonDetails = _ref.getLessonDetails,
-      lesson = _ref.lesson;
+  var lesson = _ref.lesson,
+      setLesson = _ref.setLesson,
+      getLessonDetails = _ref.getLessonDetails;
   var lessonId = parseInt((0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)().lessonId);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (lessonId !== 0) getLessonDetails(lessonId).then(function (r) {
@@ -1903,18 +1905,25 @@ var LessonContentBlock = function LessonContentBlock(_ref) {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "lesson-content"
-  }, console.log(lesson.getEduStuffs()), lesson.getEduStuffs().map(
+  }, lesson.getEduStuffs().map(
   /**
    *
-   * @param c {AbstractEduStuff}
+   * @param ed {AbstractEduStuff}
    * @param k
    * @returns {JSX.Element}
    */
-  function (c, k) {
+  function (ed, k) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       key: k,
       className: "lesson-content__item"
-    }, c.render());
+    }, ed.render(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "lesson-content__button-trash",
+      onClick: function onClick(e) {
+        return setLesson(lesson.removeEduStuff(ed));
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+      className: "fa fa-trash"
+    })));
   })))));
 };
 
@@ -1950,6 +1959,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /**
  * EduStuff textarea component
  * @param eduStuff {EduStuffText}
+ * @param eduStuff.content {string}
  * @param lessonManager {LessonManager}
  * @param setLesson {function}
  * @param setEduStuff {function}
@@ -1972,16 +1982,23 @@ var EduStuffTextComponent = function EduStuffTextComponent(_ref) {
     //TODO: пересмотреть модель разделения redux и react состояний
     setLocalContent(eduStuff.content);
   }, [eduStuff.id]);
+
+  var createNewEduStuff = function createNewEduStuff() {
+    setLesson(lessonManager.getLesson());
+    lessonManager.setLesson(lessonManager.getLesson());
+    setLocalContent('');
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "edustuff-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     className: "edustuff-text__textarea",
     onBlur: function onBlur(e) {
-      return setEduStuff(eduStuff.setContent(e.target.value));
+      setEduStuff(eduStuff.setContent(e.target.value));
     },
     onChange: function onChange(e) {
       setLocalContent(e.target.value);
-      if (lessonManager.isEduStuffAddedToLesson(e.target.value, eduStuff)) setLesson(lessonManager.getLesson());
+      if (lessonManager.isEduStuffAddedToLesson(e.target.value, eduStuff)) createNewEduStuff();
     },
     onInput: function onInput(e) {
       e.target.style.height = 'auto';
@@ -2266,6 +2283,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _blocks_lessonContent_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../blocks/lessonContent.block */ "./resources/js/project/courses/blocks/lessonContent.block.jsx");
 /* harmony import */ var _requests_getLessonDetails_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../requests/getLessonDetails.request */ "./resources/js/project/courses/requests/getLessonDetails.request.js");
+/* harmony import */ var _actions_setLesson__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/setLesson */ "./resources/js/project/courses/actions/setLesson.js");
+/* harmony import */ var _models_lessonManager_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/lessonManager.model */ "./resources/js/project/courses/models/lessonManager.model.js");
+
+
 
 
 
@@ -2273,8 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     pageSettings: state.pageData.pageSettings,
-    lesson: state.courses.lesson,
-    courses: state.courses
+    lesson: _models_lessonManager_model__WEBPACK_IMPORTED_MODULE_4__.LessonManager.initManager().setLesson(state.courses.lesson).getLesson()
   };
 };
 
@@ -2282,6 +2302,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getLessonDetails: function getLessonDetails(lessonId) {
       return dispatch((0,_requests_getLessonDetails_request__WEBPACK_IMPORTED_MODULE_2__.apiGetLessonDetails)(lessonId));
+    },
+    setLesson: function setLesson(lesson) {
+      return dispatch((0,_actions_setLesson__WEBPACK_IMPORTED_MODULE_3__.default)(lesson));
     }
   };
 };
@@ -2682,9 +2705,18 @@ var Lesson = /*#__PURE__*/function () {
   }, {
     key: "updateEduStuff",
     value: function updateEduStuff(eduStuff) {
-      this.eduStuffs.map(function (e) {
+      this.eduStuffs = this.eduStuffs.map(function (e) {
         return e.id === eduStuff.id ? eduStuff : e;
       });
+      return this;
+    }
+  }, {
+    key: "removeEduStuff",
+    value: function removeEduStuff(eduStuff) {
+      this.eduStuffs = this.eduStuffs.filter(function (e) {
+        return e.id !== eduStuff.id;
+      });
+      console.log(this.eduStuffs);
       return this;
     }
   }]);
@@ -2753,8 +2785,7 @@ var LessonManager = /*#__PURE__*/function () {
           type: eduStuffCommand.substring(1),
           //TODO: еще раз проверить алгоритм распределения порядкового номера
           order: callerEduStuff.order + 1 / this.getLesson().getEduStuffs().length,
-          lessonId: this.getLesson.id,
-          content: callerEduStuff.order + 1 / this.getLesson().getEduStuffs().length
+          lessonId: this.getLesson.id
         }));
         this.getLesson().sortOrdersEduStuffs();
         return true;
@@ -2770,7 +2801,8 @@ var LessonManager = /*#__PURE__*/function () {
   }, {
     key: "setLesson",
     value: function setLesson(lesson) {
-      self._instance = this;
+      this.lesson = lesson;
+      return this;
     }
     /**
      * @param command {string}

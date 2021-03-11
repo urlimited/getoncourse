@@ -5,10 +5,11 @@ import {useParams} from "react-router-dom";
  *
  * @param getLessonDetails
  * @param lesson {Lesson}
+ * @param setLesson
  * @returns {JSX.Element}
  * @constructor
  */
-export const LessonContentBlock = ({getLessonDetails, lesson}) => {
+export const LessonContentBlock = ({lesson, setLesson, getLessonDetails}) => {
     const lessonId = parseInt(useParams().lessonId);
 
     useEffect(() => {
@@ -24,17 +25,22 @@ export const LessonContentBlock = ({getLessonDetails, lesson}) => {
             </div>
             <div className="card-body">
                 <ul className="lesson-content">
-                    {console.log(lesson.getEduStuffs())}
                     {lesson.getEduStuffs().map(
                         /**
                          *
-                         * @param c {AbstractEduStuff}
+                         * @param ed {AbstractEduStuff}
                          * @param k
                          * @returns {JSX.Element}
                          */
-                        (c, k) => (
+                        (ed, k) => (
                         <li key={k} className="lesson-content__item">
-                            {c.render()}
+                            {ed.render()}
+                            <button
+                                className="lesson-content__button-trash"
+                                onClick={e => setLesson(lesson.removeEduStuff(ed))}
+                            >
+                                <i className="fa fa-trash" />
+                            </button>
                         </li>)
                     )}
                 </ul>

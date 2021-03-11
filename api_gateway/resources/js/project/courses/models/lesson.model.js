@@ -69,10 +69,19 @@ export class Lesson {
      * @param eduStuff {AbstractEduStuff}
      */
     updateEduStuff(eduStuff) {
-        this.eduStuffs
+        this.eduStuffs = this.eduStuffs
             .map(e => e.id === eduStuff.id
                 ? eduStuff
                 : e);
+
+        return this;
+    }
+
+    removeEduStuff(eduStuff){
+        this.eduStuffs = this.eduStuffs
+            .filter(e => e.id !== eduStuff.id);
+
+        console.log(this.eduStuffs);
 
         return this;
     }

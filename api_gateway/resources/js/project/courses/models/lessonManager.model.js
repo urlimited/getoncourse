@@ -38,8 +38,7 @@ export class LessonManager {
                 type: eduStuffCommand.substring(1),
                 //TODO: еще раз проверить алгоритм распределения порядкового номера
                 order: callerEduStuff.order + (1 / this.getLesson().getEduStuffs().length),
-                lessonId: this.getLesson.id,
-                content: callerEduStuff.order + (1 / this.getLesson().getEduStuffs().length)
+                lessonId: this.getLesson.id
             }));
 
             this.getLesson().sortOrdersEduStuffs();
@@ -55,7 +54,9 @@ export class LessonManager {
     }
 
     setLesson(lesson){
-        self._instance = this;
+        this.lesson = lesson;
+
+        return this;
     }
 
     /**
