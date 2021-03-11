@@ -1,4 +1,6 @@
 import {EduStuffText} from "./eduStuffText.model";
+import {EduStuffList} from "./eduStuffList.model";
+import {EduStuffImage} from "./eduStuffImage.model";
 import {Lesson} from "./lesson.model";
 import {v4 as uuid} from "uuid";
 
@@ -71,12 +73,16 @@ export class LessonManager {
     /**
      *
      * @param data {Object}
-     * @returns {EduStuffText}
+     * @returns {AbstractEduStuff}
      */
     _build(data){
         switch(data.type){
             case 'text':
                 return new EduStuffText(data);
+            case 'list':
+                return new EduStuffList(data);
+            case 'image':
+                return new EduStuffImage(data);
         }
     }
 
@@ -87,7 +93,8 @@ export class LessonManager {
     _getCommandTypes(){
         return [
             'text',
-            'list'
+            'list',
+            'image'
         ];
     }
 }
