@@ -1,0 +1,18 @@
+.edustuff-text{
+
+}
+
+.edustuff-text__textarea{
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    height: auto;
+    resize: none;
+    transition: background-color linear 50ms;
+    width: 100%;
+}
+
+.edustuff-text__textarea:focus{
+    background-color: #eee;
+    outline: none;
+}

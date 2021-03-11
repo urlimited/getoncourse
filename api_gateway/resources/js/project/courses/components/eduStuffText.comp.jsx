@@ -19,17 +19,22 @@ export const EduStuffTextComponent = ({eduStuff, lessonManager, setLesson, setEd
     }, [eduStuff.id]);
 
     return (<>
-        <div>
+        <div className="edustuff-text">
             <textarea
-                value={localContent}
+                className="edustuff-text__textarea"
+                onBlur={e => setEduStuff(eduStuff.setContent(e.target.value))}
                 onChange={e => {
                     setLocalContent(e.target.value);
                     if (lessonManager.isEduStuffAddedToLesson(e.target.value, eduStuff))
                         setLesson(lessonManager.getLesson());
                 }}
-                onBlur={e => setEduStuff(eduStuff.setContent(e.target.value))}
+                onInput={e => {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = (e.target.scrollHeight + 'px');
+                }}
+                placeholder="Начните вводить текст..."
+                value={localContent}
             />
-            <p>{eduStuff.id}</p>
         </div>
     </>)
 }

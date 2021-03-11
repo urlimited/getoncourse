@@ -1901,7 +1901,9 @@ var LessonContentBlock = function LessonContentBlock(_ref) {
     className: "card-title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "\u0421\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u0435 \u0443\u0440\u043E\u043A\u0430")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, console.log(lesson.getEduStuffs()), lesson.getEduStuffs().map(
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "lesson-content"
+  }, console.log(lesson.getEduStuffs()), lesson.getEduStuffs().map(
   /**
    *
    * @param c {AbstractEduStuff}
@@ -1910,7 +1912,8 @@ var LessonContentBlock = function LessonContentBlock(_ref) {
    */
   function (c, k) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: k
+      key: k,
+      className: "lesson-content__item"
     }, c.render());
   })))));
 };
@@ -1969,16 +1972,24 @@ var EduStuffTextComponent = function EduStuffTextComponent(_ref) {
     //TODO: пересмотреть модель разделения redux и react состояний
     setLocalContent(eduStuff.content);
   }, [eduStuff.id]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
-    value: localContent,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "edustuff-text"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    className: "edustuff-text__textarea",
+    onBlur: function onBlur(e) {
+      return setEduStuff(eduStuff.setContent(e.target.value));
+    },
     onChange: function onChange(e) {
       setLocalContent(e.target.value);
       if (lessonManager.isEduStuffAddedToLesson(e.target.value, eduStuff)) setLesson(lessonManager.getLesson());
     },
-    onBlur: function onBlur(e) {
-      return setEduStuff(eduStuff.setContent(e.target.value));
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, eduStuff.id)));
+    onInput: function onInput(e) {
+      e.target.style.height = 'auto';
+      e.target.style.height = e.target.scrollHeight + 'px';
+    },
+    placeholder: "\u041D\u0430\u0447\u043D\u0438\u0442\u0435 \u0432\u0432\u043E\u0434\u0438\u0442\u044C \u0442\u0435\u043A\u0441\u0442...",
+    value: localContent
+  })));
 };
 
 /***/ }),

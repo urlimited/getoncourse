@@ -23,7 +23,7 @@ export const LessonContentBlock = ({getLessonDetails, lesson}) => {
                 <p>Содержимое урока</p>
             </div>
             <div className="card-body">
-                <ul>
+                <ul className="lesson-content">
                     {console.log(lesson.getEduStuffs())}
                     {lesson.getEduStuffs().map(
                         /**
@@ -33,7 +33,7 @@ export const LessonContentBlock = ({getLessonDetails, lesson}) => {
                          * @returns {JSX.Element}
                          */
                         (c, k) => (
-                        <li key={k}>
+                        <li key={k} className="lesson-content__item">
                             {c.render()}
                         </li>)
                     )}
