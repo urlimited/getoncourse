@@ -45,8 +45,8 @@ class LessonEntity extends AbstractEntity
      */
     public $eduStuffs;
 
-    /**
+   /* /**
      * @ORM\ManyToOne(targetEntity="App\Entities\CourseEntity")
-     */
-    public $course;
+
+    public $course;*/
 }

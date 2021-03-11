@@ -49,8 +49,8 @@ class CourseEntity extends AbstractEntity
      */
     public $categories;
 
-    /**
+    /*/**
      * @ORM\OneToMany(targetEntity="App\Entities\LessonEntity", mappedBy="course")
-     */
-    public $lessons;
+     
+    public $lessons;*/
 }

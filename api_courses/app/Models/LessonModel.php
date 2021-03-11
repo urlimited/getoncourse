@@ -53,13 +53,13 @@ class LessonModel extends AbstractModel
     {
         $entityManager = app(EntityManagerInterface::class);
 
-        $course = new LessonEntity($data);
+        $lesson = new LessonEntity($data);
 
-        $entityManager->persist($course);
+        $entityManager->persist($lesson);
 
         $entityManager->flush();
 
-        return new LessonModel($course);
+        return new LessonModel($lesson);
     }
 
     /**
