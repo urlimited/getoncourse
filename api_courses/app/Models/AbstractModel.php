@@ -91,4 +91,8 @@ abstract class AbstractModel
             return [$this->camelToSnakeCase($f) => $this->$method()];
         })->toArray();
     }
+
+    public function getEntity(){
+        return $this->entity;
+    }
 }

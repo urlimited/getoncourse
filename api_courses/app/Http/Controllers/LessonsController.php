@@ -16,7 +16,7 @@ class LessonsController extends Controller
     public function getLessons(Request $request){
         $courses = LessonModel::allNotDeleted();
 
-        return response()->json(['courses' => collect($courses)->map(function($course){
+        return response()->json(['lessons' => collect($courses)->map(function($course){
             return $course->toAPI();
         })], 200) ;
     }
@@ -24,7 +24,7 @@ class LessonsController extends Controller
     public function getLessonsDeleted(Request $request){
         $courses = LessonModel::allDeleted();
 
-        return response()->json(['courses' => collect($courses)->map(function($course){
+        return response()->json(['lessons' => collect($courses)->map(function($course){
             return $course->toAPI();
         })], 200) ;
     }
@@ -32,31 +32,31 @@ class LessonsController extends Controller
     public function getLessonDetails(GetLessonDetailsRequest $request){
         $course = LessonModel::find($request->id);
 
-        return response()->json(['course' => $course->toAPI()], 200);
+        return response()->json(['lesson' => $course->toAPI()], 200);
     }
 
     public function createLesson(CreateLessonRequest $request){
         $course = LessonModel::create($request->all());
 
-        return response(['course' => $course->toAPI()], 200);
+        return response(['lesson' => $course->toAPI()], 200);
     }
 
     public function cloneLesson(CloneLessonRequest $request){
         $course = LessonModel::find($request->id)->clone();
 
-        return response()->json(['course' => $course->toAPI()], 200);
+        return response()->json(['lesson' => $course->toAPI()], 200);
     }
 
     public function updateLesson(UpdateLessonRequest $request){
         $course = LessonModel::find($request->id)->update($request->all());
 
-        return response()->json(['course' => $course->toAPI()], 200);
+        return response()->json(['lesson' => $course->toAPI()], 200);
     }
 
     public function softDeleteLesson(SoftDeleteLessonRequest $request){
         $course = LessonModel::find($request->id)->softDelete();
 
-        return response()->json(['course' => $course->toAPI()], 200);
+        return response()->json(['lesson' => $course->toAPI()], 200);
     }
 
     public function deleteLesson(DeleteLessonRequest $request){

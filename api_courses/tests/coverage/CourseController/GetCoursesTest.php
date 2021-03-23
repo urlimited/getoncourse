@@ -16,7 +16,6 @@ class GetCoursesTest extends TestCase
      */
     public function testGetCoursesFromDatabase()
     {
-        //$this->beginDatabaseTransaction();
         $this->runDatabaseMigrations();
 
         $this->get('/courses/get_courses', [

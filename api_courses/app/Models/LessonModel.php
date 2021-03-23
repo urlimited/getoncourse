@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Anik\Form\ValidationException;
+use App\Entities\EduStuffEntity;
 use App\Entities\LessonEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\MessageBag;
+use ReflectionException;
 
 class LessonModel extends AbstractModel
 {
@@ -49,11 +52,27 @@ class LessonModel extends AbstractModel
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @return static
+     * @throws ReflectionException
+     */
     public static function create(array $data): self
     {
         $entityManager = app(EntityManagerInterface::class);
 
         $lesson = new LessonEntity($data);
+
+        // Setting course association, since it will not save without it
+        $lesson->course = CourseModel::find($lesson->courseId)->getEntity();
+
+        $eduStuffs = json_decode($lesson->eduStuffs);
+
+        $lesson->eduStuffs = new ArrayCollection();
+
+        foreach ($eduStuffs as $stuff) {
+            $lesson->eduStuffs->add(new EduStuffEntity($stuff));
+        }
 
         $entityManager->persist($lesson);
 
@@ -111,7 +130,6 @@ class LessonModel extends AbstractModel
 
         return $this;
     }
-
 
     public function getId(){
         return $this->entity->id;
