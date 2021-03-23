@@ -4,10 +4,9 @@ import {LessonManager} from "../models/lessonManager.model";
 import setLesson from "../actions/setLesson";
 
 const mapStateToProps = (state, ownProps) => {
-    //console.log(ownProps.eduStuff.id);
     return ({
         pageSettings: state.pageData.pageSettings,
-        lessonManager: LessonManager.initManager(state.courses.lesson)
+        lessonManager: LessonManager.initManager(state.courseModule.lesson)
     });
 }
 

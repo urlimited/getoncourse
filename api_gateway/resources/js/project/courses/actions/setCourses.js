@@ -1,9 +1,8 @@
 import * as actions from "../constants/actions.constant";
-import {Lesson} from "../models/lesson.model";
 
-const setLesson = (lesson) => ({
-    type: actions.ACTION_SET_LESSON,
-    lesson: new Lesson({...lesson})
+const setCourses = (courses) => ({
+    type: actions.ACTION_SET_COURSES,
+    courses: courses
 });
 
-export default setLesson;
+export default setCourses;

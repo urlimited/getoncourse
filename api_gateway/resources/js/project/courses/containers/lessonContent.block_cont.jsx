@@ -7,7 +7,7 @@ import {LessonManager} from "../models/lessonManager.model";
 const mapStateToProps = (state) => ({
     pageSettings: state.pageData.pageSettings,
     lesson: LessonManager.initManager()
-        .setLesson(state.courses.lesson).getLesson(),
+        .setLesson(state.courseModule.lesson).getLesson(),
 });
 
 
