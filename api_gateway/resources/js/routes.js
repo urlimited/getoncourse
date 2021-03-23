@@ -16,7 +16,7 @@ import LoginPage from "./project/auth/pages/login.page";
 import CoursesPage from "./project/courses/containers/courses.page_cont";
 import CourseDetailsPage from "./project/courses/containers/courseDetails.page_cont";
 import LessonDetailsPage from "./project/courses/containers/lessonDetails.page_cont";
-
+import {Homepage} from "./src/application/consumers/homepage";
 // Modals
 import {DashboardModal} from "./project/dashboard/modals/dashboard.modal";
 import CreateCourseModal from "./project/courses/containers/createCourses.modal_cont";

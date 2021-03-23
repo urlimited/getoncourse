@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {Course} from "../models/course.model";
 
-export const CreateCourseModal = ({courses, selectedCourse, editSelectedCourse, setCourses}) => {
+export const CreateCourseModal = ({courses, selectedCourse, editSelectedCourse, setCourses, createCourse}) => {
 
     const [course, setCourse] = useState(new Course())
-
     useEffect(() => {
         setCourse(selectedCourse);
     }, [selectedCourse]);
@@ -17,7 +16,7 @@ export const CreateCourseModal = ({courses, selectedCourse, editSelectedCourse, 
         el.addClass('fade')
 
     }
-
+    console.log('courses are', courses, selectedCourse)
     return (
         <>
             <div className="modal fade show" role="dialog" tabIndex="-1" id="createCourse">
@@ -67,12 +66,17 @@ export const CreateCourseModal = ({courses, selectedCourse, editSelectedCourse, 
                                             <button
                                                 className="btn btn-success save-event"
                                                 onClick={e => {
-                                                    editSelectedCourse(course)
-                                                        .then(r => setCourses(courses
-                                                            .map(c => c.id === selectedCourse.id
-                                                            ? course
-                                                            : c)
-                                                        ));
+                                                            if(selectedCourse!==null){editSelectedCourse(course)
+                                                            .then(r => setCourses(courses
+                                                                .map(c => c.id === selectedCourse.id
+                                                                    ? course
+                                                                    : c)
+                                                            ))}
+                                                            else{
+                                                                createCourse(course).
+                                                                then(r=>setCourses(...courses,r.message ))
+                                                            }
+
                                                     closeModal();
                                                 }}>Save</button>
                                         </div>

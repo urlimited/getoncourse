@@ -14,6 +14,7 @@
         "@babel/preset-react": "^7.12.13",
         "ansi-styles": "^5.1.0",
         "babel": "^6.23.0",
+        "bem-react-constructor": "^1.1.7",
         "camelcase": "^6.2.0",
         "cross-env": "^7.0.3",
         "laravel-mix": "^6.0.0",
@@ -44,7 +45,8 @@
         "watch": "sudo node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch, --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "sudo node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "production": "sudo node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "sudo node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "extract": "sudo node node_modules/bem-react-constructor/src/extractScript.js"
     },
     "author": "",
     "license": "ISC",

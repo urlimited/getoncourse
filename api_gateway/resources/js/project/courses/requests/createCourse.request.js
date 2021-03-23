@@ -7,6 +7,7 @@ import {Response} from "../../../core/defaults/models/response.model";
 import {Course} from "../models/course.model";
 
 export const apiCreateCourse = course => dispatch => {
+    course.author_id = 1
     dispatch(core_events.eventInitRequest());
 
     return fetch(constants.API_COURSES_CREATE_COURSE, (new DefaultRequest()).setParams({

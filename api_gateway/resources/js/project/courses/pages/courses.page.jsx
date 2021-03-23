@@ -90,7 +90,12 @@ export const CoursesPage = ({courses, setSelectedCourse, getCourses, deleteCours
                         </div>
                         <div className="fc-toolbar-chunk"/>
                         <div className="fc-toolbar-chunk">
-                            <button className="fc-today-button btn btn-primary" onClick={a}>
+                            <button className="fc-today-button btn btn-primary" onClick={
+                                e=>{
+                                    setSelectedCourse(null)
+                                    a()
+                                }
+                            } >
                                 <i className="mdi mdi-plus-circle-outline mr-1"/>Create New
                             </button>
                         </div>
@@ -128,8 +133,8 @@ export const CoursesPage = ({courses, setSelectedCourse, getCourses, deleteCours
                                 <button className="btn btn-outline-danger waves-effect waves-light btn-sm"
                                     onClick={()=>{
                                         deleteCourse(c.id).
-                                        then(r=>setCourses(courses.map(
-                                            c_in=>c_in === c.id?c_in:c
+                                        then(r=>setCourses(courses.filter(
+                                            c_in=>c_in.id !== c.id
                                         )))
                                     }
                                     }>
