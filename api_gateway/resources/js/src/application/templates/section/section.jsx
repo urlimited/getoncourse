@@ -15,9 +15,7 @@ export const Section = ({isFullPage, header, background, content, children}) => 
 
     return (<div className="section" style={{background, height}}>
         <div className="section__content">
-            <p className="section__header">{header}</p>
-            {content ?? <></>}
-            {children.map((c, k) => <div key={k}>{c}</div>)}
+           <p>Hello, World</p>
         </div>
     </div>);
 }

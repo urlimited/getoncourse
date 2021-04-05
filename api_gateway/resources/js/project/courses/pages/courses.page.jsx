@@ -4,12 +4,11 @@ import {Link} from "react-router-dom";
 import {ROUTE_TO_COURSE_DETAILS_PAGE_NAME} from "../../routes";
 import {MRouter} from "../../../core/mrouter/MRouter";
 
-export const CoursesPage = ({courses, setSelectedCourse, getCourses, deleteCourse, setCourses}) => {
+export const CoursesPage = ({courses, setSelectedCourse, getCourses, deleteCourse, setCourses, user}) => {
 
     useEffect(() => {
         getCourses();
     }, []);
-
     //TODO: refactor with BS 5
     const a = () => {
         const b = document.getElementById('createCourse');
