@@ -15,7 +15,11 @@ export const Courses = () => {
             type: "pageContent",
             title: "Courses list",
             children: [
-
+                {
+                    type: "dataTable",
+                    title: "courses",
+                    col: 8
+                }
             ]
         }
     ]
