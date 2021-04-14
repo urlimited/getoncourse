@@ -7,7 +7,7 @@ const PageContent__body = ({children}) => {
             <div className={"col" + (c.props.media ? "-" + c.props.media : "") + (c.props.col ? "-" + c.props.col : "-12")}>
                 <div className="card" key={key}>
                     {c.props.title
-                        ? <div className="card-title">
+                        ? <div className="card-title pageContent__body-title">
                             {c.props.title}
                         </div>
                         : <></>}

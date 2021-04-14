@@ -17,7 +17,7 @@ export const Courses = () => {
             children: [
                 {
                     type: "dataTable",
-                    title: "courses",
+                    title: "Список курсов",
                     col: 8
                 }
             ]
