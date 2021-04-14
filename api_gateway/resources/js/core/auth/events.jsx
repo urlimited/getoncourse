@@ -1,13 +1,11 @@
 import history from "../services/history";
-import {
-    ROUTE_TO_LOGIN_PAGE, ROUTE_TO_REPORTS,
-} from "../../project/routes";
+
 import setPageError from "../pageSettings/actions/setPageError";
 import {PageError} from "../pageSettings/models/PageError";
 import * as errors from "./constants/errorsList.constant";
 import clearPageError from "../pageSettings/actions/clearPageError";
 import clearAllPageErrors from "../pageSettings/actions/clearAllPageErrors";
-import {ROUTE_TO_DASHBOARD} from "../../old_project/routes";
+import {ROUTE_TO_DASHBOARD, ROUTE_TO_LOGIN_PAGE} from "../../application/routes";
 
 // TODO: document that all methods started with "event" will be change state general states (api)
 // TODO: make extendable these events for different projects

@@ -16,7 +16,7 @@ export const Courses = () => {
             children: [
                 {
                     type: "title",
-                    title: "Courses List"
+                    title: "Courses Listss"
                 }
             ]
         }

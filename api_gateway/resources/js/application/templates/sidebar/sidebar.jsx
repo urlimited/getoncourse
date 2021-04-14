@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import * as routes from "../../../../project/routes";
+import * as routes from "../../../project/routes";
 
 
 export const Sidebar = ({isFullPage, header, background, content, children}) => {
