@@ -3,9 +3,14 @@ import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 import {Course} from "../models/course.model";
 
 
-export const Courses = ({getCourses}) => {
+export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
     const [courses, setCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(new Course());
+
+    useEffect(() => {
+        console.log(selectedCourse);
+    }, [selectedCourse])
+
 
     useEffect(() => {
         getCourses().then(r => setCourses(r.message));
@@ -43,25 +48,33 @@ export const Courses = ({getCourses}) => {
         },
         {
             type: "pageContent",
-            title: "Courses list",
+            title: "Модуль курсов",
             children: [
                 {
                     type: "dataTable",
+                    createButton: {
+                        type: "button",
+                        title: "Создать курс",
+                        clickHandler: () => {
+                            (new bootstrap.Modal(document.getElementById('edit-course'))).show();
+                            setSelectedCourse(new Course());
+                        }
+                    },
                     data: courses.map(c => ({
                         ...c,
                         nameProcessed: <p>{c.name}</p>,
                         authorProcessed: <p>{c.authorId}</p>,
                         actions: <>
                             <button className="btn btn-outline-success waves-effect waves-light btn-sm mr-2"
-                                    onClick={() => setSelectedCourse(c)}>
+                                    onClick={() => {
+                                        (new bootstrap.Modal(document.getElementById('edit-course'))).show();
+                                        setSelectedCourse(c);
+                                    }}>
                                 <i className="fa fa-fw fa-edit"/>
                             </button>
                             <button className="btn btn-outline-danger waves-effect waves-light btn-sm"
-                                    onClick={()=>{
-                                        /*deleteCourse(c.id).
-                                        then(r=>setCourses(courses.filter(
-                                            c_in=>c_in.id !== c.id
-                                        )))*/
+                                    onClick={() => {
+                                        deleteCourse(c.id).then(r => setCourses(courses.filter(c_in => c_in.id !== c.id)))
                                     }}>
                                 <i className="fa fa-fw fa-trash"/>
                             </button>
@@ -70,8 +83,71 @@ export const Courses = ({getCourses}) => {
                     columns: columns,
                     title: "Список курсов",
                     col: 8
+                },
+                {
+                    type: "button",
+                    title: "Статистика",
+                    col: 4
                 }
             ]
+        },
+        {
+            type: "modal",
+            id: "edit-course",
+            title: "Управление курсом",
+            body: <div className="form-row">
+                <div className="col-12 col">
+                    <div className="mb-3">
+                        <div className="form-group">
+                            <label htmlFor="course_name">Название курса:</label>
+                            <input name="course_name" required="" id="course_name"
+                                   type="text"
+                                   className="is-untouched is-pristine av-invalid form-control"
+                                   value={selectedCourse ? selectedCourse.name : ""}
+                                   onChange={e => setSelectedCourse(new Course({...selectedCourse, name: e.target.value}))}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-12 col">
+                    <div className="mb-3">
+                        <div className="form-group">
+                            <label htmlFor="course_description">Описание курса:</label>
+                            <textarea name="course_description" required="" id="course_description"
+                                      minLength={225}
+                                      rows={4}
+                                      value={selectedCourse ? selectedCourse.description : ""}
+                                      onChange={e => setSelectedCourse(new Course({
+                                          ...selectedCourse,
+                                          description: e.target.value
+                                      }))}
+                                      className="form-control"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>,
+            buttons: [
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>,
+                <button type="button" className="btn btn-primary"
+                        onClick={e => {
+                            selectedCourse.isNewAddedCourse()
+                                ? createCourse(selectedCourse)
+                                    .then(r => setCourses([
+                                        ...courses,
+                                        selectedCourse
+                                    ]))
+                                : updateCourse(selectedCourse)
+                                    .then(r => setCourses(courses.map(c => {
+                                        if (c.id !== selectedCourse.id)
+                                            return c;
+
+                                        return selectedCourse
+                                    })));
+                            bootstrap.Modal.getInstance(document.getElementById('edit-course')).hide();
+                        }}>Сохранить изменения</button>
+            ],
+            size: "lg"
         }
     ]
 

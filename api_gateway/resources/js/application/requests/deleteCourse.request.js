@@ -1,19 +1,19 @@
-import * as constants from "../../dashboard/constants/urls.constant";
-import * as events from "../../../core/auth/events";
-import * as core_events from "../../../core/events";
-import {AuthFailedException} from "../../../core/auth/exceptions";
-import {DefaultRequest} from "../../../core/defaults/models/request.model";
-import {Response} from "../../../core/defaults/models/response.model";
+import * as constants from "../constants/urls.constant";
+import * as events from "../../core/auth/events";
+import * as core_events from "../../core/events";
+import {AuthFailedException} from "../../core/auth/exceptions";
+import {DefaultRequest} from "../../core/defaults/models/request.model";
+import {Response} from "../../core/defaults/models/response.model";
 import {Course} from "../models/course.model";
 
-export const apiDeleteCourse = course => dispatch => {
+export const apiDeleteCourse = courseId => dispatch => {
     dispatch(core_events.eventInitRequest());
 
     return fetch(constants.API_COURSES_DELETE_COURSE, (new DefaultRequest()).setParams({
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: _preProcessData(course),
+        body: _preProcessData(courseId),
         method: "put"
     }).getRequest()).then(response=>{
             if (response.status === 401)
@@ -26,7 +26,6 @@ export const apiDeleteCourse = course => dispatch => {
         },
         e => dispatch(events.eventConnectionError()))
         .then(json => {
-            //console.log(json);
             return new Response({
                 status: 200,
                 message: _postProcessData(json.course)

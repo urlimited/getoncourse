@@ -5,4 +5,8 @@ export class Course {
         this.authorId = data?.author_id ?? data?.authorId ?? 0;
         this.description = data?.description ?? "";
     }
+
+    isNewAddedCourse(){
+        return this.id === 0;
+    }
 }

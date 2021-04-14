@@ -24337,8 +24337,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
 
 
- //import './sass/main.scss';
-//import * as serviceWorker from './serviceWorker';
 
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('app')); // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -24411,6 +24409,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _pages_courses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/courses */ "./resources/js/application/pages/courses.jsx");
 /* harmony import */ var _requests_getAllCourses_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../requests/getAllCourses.request */ "./resources/js/application/requests/getAllCourses.request.js");
+/* harmony import */ var _requests_updateCourse_request__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../requests/updateCourse.request */ "./resources/js/application/requests/updateCourse.request.js");
+/* harmony import */ var _requests_createCourse_request__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../requests/createCourse.request */ "./resources/js/application/requests/createCourse.request.js");
+/* harmony import */ var _requests_deleteCourse_request__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../requests/deleteCourse.request */ "./resources/js/application/requests/deleteCourse.request.js");
+
+
+
 
 
 
@@ -24424,6 +24428,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     getCourses: function getCourses() {
       return dispatch((0,_requests_getAllCourses_request__WEBPACK_IMPORTED_MODULE_2__.apiGetAllCourses)());
+    },
+    updateCourse: function updateCourse(course) {
+      return dispatch((0,_requests_updateCourse_request__WEBPACK_IMPORTED_MODULE_3__.apiUpdateCourse)(course));
+    },
+    createCourse: function createCourse(course) {
+      return dispatch((0,_requests_createCourse_request__WEBPACK_IMPORTED_MODULE_4__.apiCreateCourse)(course));
+    },
+    deleteCourse: function deleteCourse(courseId) {
+      return dispatch((0,_requests_deleteCourse_request__WEBPACK_IMPORTED_MODULE_5__.apiDeleteCourse)(courseId));
     }
   };
 };
@@ -24449,16 +24462,43 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var Course = function Course(data) {
-  var _data$id, _data$name, _ref, _data$author_id, _data$description;
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
 
-  _classCallCheck(this, Course);
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
 
-  this.id = (_data$id = data === null || data === void 0 ? void 0 : data.id) !== null && _data$id !== void 0 ? _data$id : 0;
-  this.name = (_data$name = data === null || data === void 0 ? void 0 : data.name) !== null && _data$name !== void 0 ? _data$name : "";
-  this.authorId = (_ref = (_data$author_id = data === null || data === void 0 ? void 0 : data.author_id) !== null && _data$author_id !== void 0 ? _data$author_id : data === null || data === void 0 ? void 0 : data.authorId) !== null && _ref !== void 0 ? _ref : 0;
-  this.description = (_data$description = data === null || data === void 0 ? void 0 : data.description) !== null && _data$description !== void 0 ? _data$description : "";
-};
+var Course = /*#__PURE__*/function () {
+  function Course(data) {
+    var _data$id, _data$name, _ref, _data$author_id, _data$description;
+
+    _classCallCheck(this, Course);
+
+    this.id = (_data$id = data === null || data === void 0 ? void 0 : data.id) !== null && _data$id !== void 0 ? _data$id : 0;
+    this.name = (_data$name = data === null || data === void 0 ? void 0 : data.name) !== null && _data$name !== void 0 ? _data$name : "";
+    this.authorId = (_ref = (_data$author_id = data === null || data === void 0 ? void 0 : data.author_id) !== null && _data$author_id !== void 0 ? _data$author_id : data === null || data === void 0 ? void 0 : data.authorId) !== null && _ref !== void 0 ? _ref : 0;
+    this.description = (_data$description = data === null || data === void 0 ? void 0 : data.description) !== null && _data$description !== void 0 ? _data$description : "";
+  }
+
+  _createClass(Course, [{
+    key: "isNewAddedCourse",
+    value: function isNewAddedCourse() {
+      return this.id === 0;
+    }
+  }]);
+
+  return Course;
+}();
 
 /***/ }),
 
@@ -24476,6 +24516,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var bem_react_constructor_src_templateBuilder_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bem-react-constructor/src/templateBuilder.js */ "./node_modules/bem-react-constructor/src/templateBuilder.js");
 /* harmony import */ var _models_course_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/course.model */ "./resources/js/application/models/course.model.js");
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
@@ -24587,7 +24643,10 @@ function _arrayWithHoles(arr) {
 
 
 var Courses = function Courses(_ref) {
-  var getCourses = _ref.getCourses;
+  var getCourses = _ref.getCourses,
+      updateCourse = _ref.updateCourse,
+      createCourse = _ref.createCourse,
+      deleteCourse = _ref.deleteCourse;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -24599,6 +24658,9 @@ var Courses = function Courses(_ref) {
       selectedCourse = _useState4[0],
       setSelectedCourse = _useState4[1];
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log(selectedCourse);
+  }, [selectedCourse]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getCourses().then(function (r) {
       return setCourses(r.message);
@@ -24637,9 +24699,17 @@ var Courses = function Courses(_ref) {
     type: "sidebar"
   }, {
     type: "pageContent",
-    title: "Courses list",
+    title: "Модуль курсов",
     children: [{
       type: "dataTable",
+      createButton: {
+        type: "button",
+        title: "Создать курс",
+        clickHandler: function clickHandler() {
+          new bootstrap.Modal(document.getElementById('edit-course')).show();
+          setSelectedCourse(new _models_course_model__WEBPACK_IMPORTED_MODULE_2__.Course());
+        }
+      },
       data: courses.map(function (c) {
         return _objectSpread(_objectSpread({}, c), {}, {
           nameProcessed: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, c.name),
@@ -24647,17 +24717,19 @@ var Courses = function Courses(_ref) {
           actions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             className: "btn btn-outline-success waves-effect waves-light btn-sm mr-2",
             onClick: function onClick() {
-              return setSelectedCourse(c);
+              new bootstrap.Modal(document.getElementById('edit-course')).show();
+              setSelectedCourse(c);
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
             className: "fa fa-fw fa-edit"
           })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             className: "btn btn-outline-danger waves-effect waves-light btn-sm",
             onClick: function onClick() {
-              /*deleteCourse(c.id).
-              then(r=>setCourses(courses.filter(
-                  c_in=>c_in.id !== c.id
-              )))*/
+              deleteCourse(c.id).then(function (r) {
+                return setCourses(courses.filter(function (c_in) {
+                  return c_in.id !== c.id;
+                }));
+              });
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
             className: "fa fa-fw fa-trash"
@@ -24667,7 +24739,79 @@ var Courses = function Courses(_ref) {
       columns: columns,
       title: "Список курсов",
       col: 8
+    }, {
+      type: "button",
+      title: "Статистика",
+      col: 4
     }]
+  }, {
+    type: "modal",
+    id: "edit-course",
+    title: "Управление курсом",
+    body: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "form-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "col-12 col"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "mb-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      htmlFor: "course_name"
+    }, "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043A\u0443\u0440\u0441\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      name: "course_name",
+      required: "",
+      id: "course_name",
+      type: "text",
+      className: "is-untouched is-pristine av-invalid form-control",
+      value: selectedCourse ? selectedCourse.name : "",
+      onChange: function onChange(e) {
+        return setSelectedCourse(new _models_course_model__WEBPACK_IMPORTED_MODULE_2__.Course(_objectSpread(_objectSpread({}, selectedCourse), {}, {
+          name: e.target.value
+        })));
+      }
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "col-12 col"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "mb-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      htmlFor: "course_description"
+    }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043A\u0443\u0440\u0441\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+      name: "course_description",
+      required: "",
+      id: "course_description",
+      minLength: 225,
+      rows: 4,
+      value: selectedCourse ? selectedCourse.description : "",
+      onChange: function onChange(e) {
+        return setSelectedCourse(new _models_course_model__WEBPACK_IMPORTED_MODULE_2__.Course(_objectSpread(_objectSpread({}, selectedCourse), {}, {
+          description: e.target.value
+        })));
+      },
+      className: "form-control"
+    }))))),
+    buttons: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      type: "button",
+      className: "btn btn-secondary",
+      "data-bs-dismiss": "modal"
+    }, "\u041E\u0442\u043C\u0435\u043D\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      type: "button",
+      className: "btn btn-primary",
+      onClick: function onClick(e) {
+        selectedCourse.isNewAddedCourse() ? createCourse(selectedCourse).then(function (r) {
+          return setCourses([].concat(_toConsumableArray(courses), [selectedCourse]));
+        }) : updateCourse(selectedCourse).then(function (r) {
+          return setCourses(courses.map(function (c) {
+            if (c.id !== selectedCourse.id) return c;
+            return selectedCourse;
+          }));
+        });
+        bootstrap.Modal.getInstance(document.getElementById('edit-course')).hide();
+      }
+    }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F")],
+    size: "lg"
   }];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, bem_react_constructor_src_templateBuilder_js__WEBPACK_IMPORTED_MODULE_1__.default.getInstance({
     elementsDeclarationFile: __webpack_require__(/*! ../templates/elementsDeclaration.json */ "./resources/js/application/templates/elementsDeclaration.json"),
@@ -24768,6 +24912,135 @@ var Homepage = function Homepage() {
 
 /***/ }),
 
+/***/ "./resources/js/application/requests/createCourse.request.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/application/requests/createCourse.request.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "apiCreateCourse": () => (/* binding */ apiCreateCourse)
+/* harmony export */ });
+/* harmony import */ var _constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/urls.constant */ "./resources/js/application/constants/urls.constant.js");
+/* harmony import */ var _core_auth_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/auth/events */ "./resources/js/core/auth/events.jsx");
+/* harmony import */ var _core_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/events */ "./resources/js/core/events.jsx");
+/* harmony import */ var _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/auth/exceptions */ "./resources/js/core/auth/exceptions.js");
+/* harmony import */ var _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/defaults/models/request.model */ "./resources/js/core/defaults/models/request.model.js");
+/* harmony import */ var _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/defaults/models/response.model */ "./resources/js/core/defaults/models/response.model.js");
+/* harmony import */ var _models_course_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/course.model */ "./resources/js/application/models/course.model.js");
+
+
+
+
+
+
+
+var apiCreateCourse = function apiCreateCourse(course) {
+  return function (dispatch) {
+    course.author_id = 1;
+    dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventInitRequest());
+    return fetch(_constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__.API_COURSES_CREATE_COURSE, new _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__.DefaultRequest().setParams({
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: _preProcessData(course),
+      method: "post"
+    }).getRequest()).then(function (response) {
+      if (response.status === 401) throw new _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__.AuthFailedException(); //TODO: Обработать 422 статус
+
+      dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventRequestProcessed());
+      return response.json();
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventConnectionError());
+    }).then(function (json) {
+      return new _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__.Response({
+        status: 200,
+        message: _postProcessData(json.course)
+      });
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventAuthFailed());
+    });
+  };
+};
+
+var _preProcessData = function _preProcessData(data) {
+  return Object.keys(data).map(function (key) {
+    return key + "=" + data[key];
+  }).reduce(function (accum, next) {
+    return accum + "&" + next;
+  });
+};
+
+var _postProcessData = function _postProcessData(data) {
+  return new _models_course_model__WEBPACK_IMPORTED_MODULE_6__.Course(data);
+};
+
+/***/ }),
+
+/***/ "./resources/js/application/requests/deleteCourse.request.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/application/requests/deleteCourse.request.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "apiDeleteCourse": () => (/* binding */ apiDeleteCourse)
+/* harmony export */ });
+/* harmony import */ var _constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/urls.constant */ "./resources/js/application/constants/urls.constant.js");
+/* harmony import */ var _core_auth_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/auth/events */ "./resources/js/core/auth/events.jsx");
+/* harmony import */ var _core_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/events */ "./resources/js/core/events.jsx");
+/* harmony import */ var _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/auth/exceptions */ "./resources/js/core/auth/exceptions.js");
+/* harmony import */ var _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/defaults/models/request.model */ "./resources/js/core/defaults/models/request.model.js");
+/* harmony import */ var _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/defaults/models/response.model */ "./resources/js/core/defaults/models/response.model.js");
+/* harmony import */ var _models_course_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/course.model */ "./resources/js/application/models/course.model.js");
+
+
+
+
+
+
+
+var apiDeleteCourse = function apiDeleteCourse(courseId) {
+  return function (dispatch) {
+    dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventInitRequest());
+    return fetch(_constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__.API_COURSES_DELETE_COURSE, new _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__.DefaultRequest().setParams({
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: _preProcessData(courseId),
+      method: "put"
+    }).getRequest()).then(function (response) {
+      if (response.status === 401) throw new _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__.AuthFailedException(); //TODO: Обработать 422 статус
+
+      dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventRequestProcessed());
+      return response.json();
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventConnectionError());
+    }).then(function (json) {
+      return new _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__.Response({
+        status: 200,
+        message: _postProcessData(json.course)
+      });
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventAuthFailed());
+    });
+  };
+};
+
+var _preProcessData = function _preProcessData(data) {
+  return "id=".concat(data);
+};
+
+var _postProcessData = function _postProcessData(data) {
+  return new _models_course_model__WEBPACK_IMPORTED_MODULE_6__.Course(data);
+};
+
+/***/ }),
+
 /***/ "./resources/js/application/requests/getAllCourses.request.js":
 /*!********************************************************************!*\
   !*** ./resources/js/application/requests/getAllCourses.request.js ***!
@@ -24824,6 +25097,72 @@ var _postProcessData = function _postProcessData(data) {
 
 /***/ }),
 
+/***/ "./resources/js/application/requests/updateCourse.request.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/application/requests/updateCourse.request.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "apiUpdateCourse": () => (/* binding */ apiUpdateCourse)
+/* harmony export */ });
+/* harmony import */ var _constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/urls.constant */ "./resources/js/application/constants/urls.constant.js");
+/* harmony import */ var _core_auth_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/auth/events */ "./resources/js/core/auth/events.jsx");
+/* harmony import */ var _core_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/events */ "./resources/js/core/events.jsx");
+/* harmony import */ var _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/auth/exceptions */ "./resources/js/core/auth/exceptions.js");
+/* harmony import */ var _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/defaults/models/request.model */ "./resources/js/core/defaults/models/request.model.js");
+/* harmony import */ var _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/defaults/models/response.model */ "./resources/js/core/defaults/models/response.model.js");
+/* harmony import */ var _models_course_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/course.model */ "./resources/js/application/models/course.model.js");
+
+
+
+
+
+
+
+var apiUpdateCourse = function apiUpdateCourse(course) {
+  return function (dispatch) {
+    dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventInitRequest());
+    return fetch(_constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__.API_COURSES_UPDATE_COURSE, new _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__.DefaultRequest().setParams({
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: _preProcessData(course),
+      method: "put"
+    }).getRequest()).then(function (response) {
+      if (response.status === 401) throw new _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__.AuthFailedException(); //TODO: Обработать 422 статус
+
+      dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventRequestProcessed());
+      return response.json();
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventConnectionError());
+    }).then(function (json) {
+      return new _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__.Response({
+        status: 200,
+        message: _postProcessData(json.course)
+      });
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventAuthFailed());
+    });
+  };
+};
+
+var _preProcessData = function _preProcessData(data) {
+  return Object.keys(data).map(function (key) {
+    return key + "=" + data[key];
+  }).reduce(function (accum, next) {
+    return accum + "&" + next;
+  });
+};
+
+var _postProcessData = function _postProcessData(data) {
+  return new _models_course_model__WEBPACK_IMPORTED_MODULE_6__.Course(data);
+};
+
+/***/ }),
+
 /***/ "./resources/js/application/routes.js":
 /*!********************************************!*\
   !*** ./resources/js/application/routes.js ***!
@@ -24858,9 +25197,28 @@ var ROUTE_TO_REPORTS_MANAGEMENT = "/manage/reports/";
 /*!**************************************************************!*\
   !*** ./resources/js/application/templates/button/button.jsx ***!
   \**************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _require_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./require.css */ "./resources/js/application/templates/button/require.css");
 
 
+
+var Button = function Button(_ref) {
+  var title = _ref.title,
+      clickHandler = _ref.clickHandler;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: clickHandler,
+    className: "button"
+  }, title);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
 
 /***/ }),
 
@@ -24877,19 +25235,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_data_table_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-data-table-component */ "./node_modules/react-data-table-component/dist/index.cjs.js");
+/* harmony import */ var _button_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../button/button */ "./resources/js/application/templates/button/button.jsx");
+
 
 
 
 var DataTable = function DataTable(_ref) {
   var columns = _ref.columns,
       data = _ref.data,
-      pagination = _ref.pagination;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__.default, {
+      pagination = _ref.pagination,
+      createButton = _ref.createButton;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, createButton ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_button_button__WEBPACK_IMPORTED_MODULE_2__.default, createButton)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__.default, {
     columns: columns,
     data: data,
     pagination: !!pagination,
     paginationPerPage: 10
-  });
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DataTable);
@@ -24917,6 +25278,9 @@ module.exports = function (name) {
 
     case 'header':
       return __webpack_require__(/*! ./header/header.jsx */ "./resources/js/application/templates/header/header.jsx");
+
+    case 'modal':
+      return __webpack_require__(/*! ./modal/modal.jsx */ "./resources/js/application/templates/modal/modal.jsx");
 
     case 'pageContent':
       return __webpack_require__(/*! ./pageContent/pageContent.jsx */ "./resources/js/application/templates/pageContent/pageContent.jsx");
@@ -25108,6 +25472,54 @@ var Header = function Header() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/application/templates/modal/modal.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/application/templates/modal/modal.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var Modal = function Modal(_ref) {
+  var title = _ref.title,
+      id = _ref.id,
+      body = _ref.body,
+      size = _ref.size,
+      buttons = _ref.buttons;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal",
+    tabIndex: "-1",
+    id: id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-dialog " + (size ? "modal-" + size : "")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", {
+    className: "modal-title"
+  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "btn-close",
+    "data-bs-dismiss": "modal",
+    "aria-label": "Close"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-body"
+  }, body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-footer"
+  }, buttons))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Modal);
 
 /***/ }),
 
@@ -30974,6 +31386,33 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".Toastify__toast-container {\n  z-inde
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/application/templates/button/require.css":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/application/templates/button/require.css ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_button_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./button.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./resources/js/application/templates/button/button.css");
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_button_css__WEBPACK_IMPORTED_MODULE_1__.default);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/application/templates/pageContent/__body/require.css":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/application/templates/pageContent/__body/require.css ***!
@@ -31049,6 +31488,30 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_pageContent_css__WEBPACK_IMPORTED_MODULE_1__.default);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./resources/js/application/templates/button/button.css":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./resources/js/application/templates/button/button.css ***!
+  \*****************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".button {\n    box-shadow: none;\n    border: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31167,6 +31630,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_ReactToastify_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/application/templates/button/require.css":
+/*!***************************************************************!*\
+  !*** ./resources/js/application/templates/button/require.css ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_require_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./require.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/application/templates/button/require.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_require_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_require_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -31546,7 +32039,7 @@ module.exports = function (list, options) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse("[{\"type\":\"button\",\"path\":\"./button/button.jsx\"},{\"type\":\"dataTable\",\"path\":\"./dataTable/dataTable.jsx\"},{\"type\":\"header\",\"path\":\"./header/header.jsx\"},{\"type\":\"pageContent\",\"path\":\"./pageContent/pageContent.jsx\"},{\"type\":\"sidebar\",\"path\":\"./sidebar/sidebar.jsx\"}]");
+module.exports = JSON.parse("[{\"type\":\"button\",\"path\":\"./button/button.jsx\"},{\"type\":\"dataTable\",\"path\":\"./dataTable/dataTable.jsx\"},{\"type\":\"header\",\"path\":\"./header/header.jsx\"},{\"type\":\"modal\",\"path\":\"./modal/modal.jsx\"},{\"type\":\"pageContent\",\"path\":\"./pageContent/pageContent.jsx\"},{\"type\":\"sidebar\",\"path\":\"./sidebar/sidebar.jsx\"}]");
 
 /***/ })
 

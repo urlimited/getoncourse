@@ -12,6 +12,8 @@ module.exports = (name) => {
 			return require('./dataTable/dataTable.jsx');
 		case 'header':
 			return require('./header/header.jsx');
+		case 'modal':
+			return require('./modal/modal.jsx');
 		case 'pageContent':
 			return require('./pageContent/pageContent.jsx');
 		case 'sidebar':

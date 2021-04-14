@@ -1,9 +1,9 @@
-import * as constants from "../../dashboard/constants/urls.constant";
-import * as events from "../../../core/auth/events";
-import * as core_events from "../../../core/events";
-import {AuthFailedException} from "../../../core/auth/exceptions";
-import {DefaultRequest} from "../../../core/defaults/models/request.model";
-import {Response} from "../../../core/defaults/models/response.model";
+import * as constants from "../constants/urls.constant";
+import * as events from "../../core/auth/events";
+import * as core_events from "../../core/events";
+import {AuthFailedException} from "../../core/auth/exceptions";
+import {DefaultRequest} from "../../core/defaults/models/request.model";
+import {Response} from "../../core/defaults/models/response.model";
 import {Course} from "../models/course.model";
 
 export const apiUpdateCourse = course => dispatch => {
@@ -26,7 +26,7 @@ export const apiUpdateCourse = course => dispatch => {
     },
         e => dispatch(events.eventConnectionError()))
         .then(json => {
-            //console.log(json);
+
             return new Response({
                 status: 200,
                 message: _postProcessData(json.course)
