@@ -3,6 +3,9 @@ import {useLocation} from 'react-router-dom'
 
 export const TitleBlock = ({title}) => {
     const location = useLocation()
+    console.log("location is :",location)
+
+    // TODO: хорошо придумал, но нужно вынести это в отдельный модуль, чтобы можно было использовать имена отличные от URL
     const breadcrumbs = location.pathname.split('/')
     return (
             <div className="row">
@@ -12,9 +15,9 @@ export const TitleBlock = ({title}) => {
                         <div className="page-title-right">
                             <nav className="" aria-label="breadcrumb">
                                 <ol className="breadcrumb m-0">
-                                    {breadcrumbs.map(breadcrumb=>
-                                        <li className="breadcrumb-item">
-                                            <a href="/dashboard">{breadcrumb.toUpperCase()}</a>
+                                    {breadcrumbs.map((b, k)=>
+                                        <li className="breadcrumb-item" key={k}>
+                                            <a href="/dashboard">{b.toUpperCase()}</a>
                                         </li>)
                                     }
                                 </ol>

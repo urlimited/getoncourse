@@ -12,17 +12,6 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-/*Временные роуты*/
-$router->get('/', function () use ($router) {
-    $client = new \GuzzleHttp\Client();
-    return $client->request('GET', 'http://webserver/courses/get_courses', [
-        'headers' => [
-            'Host' => 'courses.oncourse.local'
-        ]
-    ]);
-    //return "awdad";
-});
-
 $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'users'], function () use ($router) {
         $router->get('get_user', "UsersController@getUser");
@@ -37,6 +26,10 @@ $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($ro
         $router->post('clone_course', 'CoursesController@cloneCourse');
         $router->put('soft_delete_course', 'CoursesController@softDeleteCourse');
         $router->delete('delete_course', 'CoursesController@deleteCourse');
+    });
+
+    $router->group(['prefix' => 'lessons'], function () use ($router) {
+        $router->get('get_lesson_details', 'LessonsController@getLessonDetails');
     });
 });
 
