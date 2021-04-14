@@ -16,6 +16,7 @@ import LoginPage from "./project/auth/pages/login.page";
 import CoursesPage from "./project/courses/containers/courses.page_cont";
 import CourseDetailsPage from "./project/courses/containers/courseDetails.page_cont";
 import LessonDetailsPage from "./project/courses/containers/lessonDetails.page_cont";
+import Homepage from "./application/pages/homepage";
 
 // Modals
 import {DashboardModal} from "./project/dashboard/modals/dashboard.modal";
@@ -43,6 +44,7 @@ export default function(){
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME)} component={() => <DashboardLayout Page={CourseDetailsPage} title="Детали курса" Modals={DashboardModal}/>}/>
                 {/*<Route exact path={router.getRoute(routes.ROUTE_TO_LESSONS_PAGE_NAME)} component={() => <DashboardLayout Page={CoursesPage} title="Courses List" Modals={CreateCourseModal}/>}/>*/}
                 <Route exact path={router.getRoute(routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME)} component={() => <DashboardLayout Page={LessonDetailsPage} title="Управление уроком" Modals={CreateCourseModal}/>}/>
+                <Route exact path={"/test"} component={() => <DashboardLayout Page={Homepage} title="Управление уроком" Modals={DashboardModal}/>}/>
                 {/*<Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId"} component={() => <DashboardLayout Page={SingleReportClient} Modals={DashboardModal} />}/>
                 <Route exact path={routes.ROUTE_TO_SINGLE_REPORT + ":urlReportId/:urlSectionId"} component={() => <DashboardLayout Page={SingleReportClientSection} Modals={DashboardModal} />}/>
                 <Route exact path={routes.ROUTE_TO_REPORTS} component={() => <DashboardLayout Page={ReportsListClient} Modals={ReportsClientModal} />}/>
