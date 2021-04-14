@@ -286,19 +286,20 @@ var TemplateBuilder = /*#__PURE__*/function () {
       var props = {
         classes: [],
         id: "",
-        children: []
+        children: [],
+        reduceClasses: true
       };
       Object.keys(elementToBuild).filter(function (k) {
         return !['type', 'children'].includes(k);
       }).forEach(function (k) {
         return props[k] = elementToBuild[k];
       });
+      if (elementToBuild.classes !== undefined) props.classes = elementToBuild.classes;
+      if (elementToBuild.id !== undefined) props.id = elementToBuild.id; // Reduce proposed classes into a string
 
-      if (elementToBuild.classes !== undefined) {
-        props.classes = elementToBuild.classes;
-      }
-
-      if (elementToBuild.id !== undefined) props.id = elementToBuild.id;
+      if (props.reduceClasses) props.classes = props.classes.reduce(function (accum, next) {
+        return accum + " " + next;
+      }, "").trim();
 
       if (elementToBuild.children !== undefined && Array.isArray(elementToBuild.children)) {
         elementToBuild.children.forEach(function (ctb) {
@@ -24346,6 +24347,121 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPOR
 
 /***/ }),
 
+/***/ "./resources/js/application/constants/urls.constant.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/application/constants/urls.constant.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "API_BASE": () => (/* binding */ API_BASE),
+/* harmony export */   "API_COURSES_GET_ALL": () => (/* binding */ API_COURSES_GET_ALL),
+/* harmony export */   "API_COURSES_UPDATE_COURSE": () => (/* binding */ API_COURSES_UPDATE_COURSE),
+/* harmony export */   "API_COURSES_CREATE_COURSE": () => (/* binding */ API_COURSES_CREATE_COURSE),
+/* harmony export */   "API_COURSES_DELETE_COURSE": () => (/* binding */ API_COURSES_DELETE_COURSE),
+/* harmony export */   "API_COURSE_DETAILS": () => (/* binding */ API_COURSE_DETAILS),
+/* harmony export */   "API_LESSON_DETAILS": () => (/* binding */ API_LESSON_DETAILS)
+/* harmony export */ });
+var API_BASE = "/api";
+var API_COURSES_GET_ALL = API_BASE + "/courses/get_courses";
+var API_COURSES_UPDATE_COURSE = API_BASE + "/courses/update_course";
+var API_COURSES_CREATE_COURSE = API_BASE + "/courses/create_course";
+var API_COURSES_DELETE_COURSE = API_BASE + "/courses/soft_delete_course";
+var API_COURSE_DETAILS = API_BASE + "/courses/get_course_details";
+var API_LESSON_DETAILS = API_BASE + "/lessons/get_lesson_details";
+/*export const API_GET_REPORTS = API_BASE + "/reports/get_all_reports";
+export const API_GET_REPORT_DETAILS = API_BASE + "/reports/get_report_details";
+export const API_CREATE_REPORT = API_BASE + "/reports/create_report";
+export const API_UPDATE_REPORT = API_BASE + "/reports/update_report_details";
+export const API_CLOSE_REPORT = API_BASE + "/reports/close_report";
+export const API_OPEN_REPORT = API_BASE + "/reports/open_report";
+export const API_GET_ALL_CRITERIA = API_BASE + "/criterias/get_all_criterias";
+export const API_GET_CRITERIA_BY_SECTION = API_BASE + "/criterias/get_criterias_by_section";
+export const API_CREATE_CRITERIA = API_BASE + "/criterias/create_criteria";
+export const API_UPDATE_CRITERIA = API_BASE + "/criterias/edit_criteria";
+export const API_GET_REPORT_TYPES = API_BASE + "/reports/get_report_types";
+export const API_GET_SECTIONS = API_BASE + "/sections/get_sections_by_report_type";
+export const API_GET_SECTIONS_BY_REPORT_ID = API_BASE + "/sections/get_sections_by_report_id";
+export const API_GET_SECTIONS_ALL = API_BASE + "/sections/get_all_sections";
+export const API_CREATE_SECTION = API_BASE + "/sections/create_section";
+export const API_UPDATE_SECTION = API_BASE + "/sections/update_section";
+
+export const API_GET_EVENTS_BY_REPORT_ID = API_BASE + "/events/get_events_by_report_id";
+export const API_GET_ALL_EVENTS = API_BASE + "/events/get_events";
+export const API_GET_EVENTS_BY_TIMEBOUNDS = API_BASE + "/events/get_events_by_timeline";
+export const API_CREATE_ARRANGEMENT = API_BASE + "/events/create_event";
+export const API_UPDATE_ARRANGEMENT = API_BASE + "/events/update_event";
+export const API_DELETE_ARRANGEMENT = API_BASE + "/events/delete_event";*/
+
+/***/ }),
+
+/***/ "./resources/js/application/containers/courses.container.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/application/containers/courses.container.jsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _pages_courses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/courses */ "./resources/js/application/pages/courses.jsx");
+/* harmony import */ var _requests_getAllCourses_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../requests/getAllCourses.request */ "./resources/js/application/requests/getAllCourses.request.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log(state);
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    getCourses: function getCourses() {
+      return dispatch((0,_requests_getAllCourses_request__WEBPACK_IMPORTED_MODULE_2__.apiGetAllCourses)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_pages_courses__WEBPACK_IMPORTED_MODULE_1__.Courses));
+
+/***/ }),
+
+/***/ "./resources/js/application/models/course.model.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/application/models/course.model.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Course": () => (/* binding */ Course)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+var Course = function Course(data) {
+  var _data$id, _data$name, _ref, _data$author_id, _data$description;
+
+  _classCallCheck(this, Course);
+
+  this.id = (_data$id = data === null || data === void 0 ? void 0 : data.id) !== null && _data$id !== void 0 ? _data$id : 0;
+  this.name = (_data$name = data === null || data === void 0 ? void 0 : data.name) !== null && _data$name !== void 0 ? _data$name : "";
+  this.authorId = (_ref = (_data$author_id = data === null || data === void 0 ? void 0 : data.author_id) !== null && _data$author_id !== void 0 ? _data$author_id : data === null || data === void 0 ? void 0 : data.authorId) !== null && _ref !== void 0 ? _ref : 0;
+  this.description = (_data$description = data === null || data === void 0 ? void 0 : data.description) !== null && _data$description !== void 0 ? _data$description : "";
+};
+
+/***/ }),
+
 /***/ "./resources/js/application/pages/courses.jsx":
 /*!****************************************************!*\
   !*** ./resources/js/application/pages/courses.jsx ***!
@@ -24359,9 +24475,162 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var bem_react_constructor_src_templateBuilder_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bem-react-constructor/src/templateBuilder.js */ "./node_modules/bem-react-constructor/src/templateBuilder.js");
+/* harmony import */ var _models_course_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/course.model */ "./resources/js/application/models/course.model.js");
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
 
 
-var Courses = function Courses() {
+
+
+var Courses = function Courses(_ref) {
+  var getCourses = _ref.getCourses;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      courses = _useState2[0],
+      setCourses = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new _models_course_model__WEBPACK_IMPORTED_MODULE_2__.Course()),
+      _useState4 = _slicedToArray(_useState3, 2),
+      selectedCourse = _useState4[0],
+      setSelectedCourse = _useState4[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getCourses().then(function (r) {
+      return setCourses(r.message);
+    });
+  }, []);
+  var columns = [{
+    name: 'Название курса',
+    selector: function selector(row) {
+      return row.nameProcessed;
+    },
+    sortable: true,
+    sortFunction: function sortFunction(rowA, rowB) {
+      return rowA.name.localeCompare(rowB.name);
+    }
+  }, {
+    name: 'Автор курса',
+    selector: function selector(row) {
+      return row.authorProcessed;
+    },
+    sortable: true,
+    sortFunction: function sortFunction(rowA, rowB) {
+      return rowA.authorId - rowB.authorId;
+    },
+    width: '200px'
+  }, {
+    name: 'Actions',
+    right: true,
+    selector: function selector(row) {
+      return row.actions;
+    },
+    width: '200px'
+  }];
   var data = [{
     type: "header"
   }, {
@@ -24371,6 +24640,31 @@ var Courses = function Courses() {
     title: "Courses list",
     children: [{
       type: "dataTable",
+      data: courses.map(function (c) {
+        return _objectSpread(_objectSpread({}, c), {}, {
+          nameProcessed: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, c.name),
+          authorProcessed: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, c.authorId),
+          actions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            className: "btn btn-outline-success waves-effect waves-light btn-sm mr-2",
+            onClick: function onClick() {
+              return setSelectedCourse(c);
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+            className: "fa fa-fw fa-edit"
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            className: "btn btn-outline-danger waves-effect waves-light btn-sm",
+            onClick: function onClick() {
+              /*deleteCourse(c.id).
+              then(r=>setCourses(courses.filter(
+                  c_in=>c_in.id !== c.id
+              )))*/
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+            className: "fa fa-fw fa-trash"
+          })))
+        });
+      }),
+      columns: columns,
       title: "Список курсов",
       col: 8
     }]
@@ -24474,6 +24768,62 @@ var Homepage = function Homepage() {
 
 /***/ }),
 
+/***/ "./resources/js/application/requests/getAllCourses.request.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/application/requests/getAllCourses.request.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "apiGetAllCourses": () => (/* binding */ apiGetAllCourses)
+/* harmony export */ });
+/* harmony import */ var _constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/urls.constant */ "./resources/js/application/constants/urls.constant.js");
+/* harmony import */ var _core_auth_events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/auth/events */ "./resources/js/core/auth/events.jsx");
+/* harmony import */ var _core_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/events */ "./resources/js/core/events.jsx");
+/* harmony import */ var _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/auth/exceptions */ "./resources/js/core/auth/exceptions.js");
+/* harmony import */ var _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/defaults/models/request.model */ "./resources/js/core/defaults/models/request.model.js");
+/* harmony import */ var _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/defaults/models/response.model */ "./resources/js/core/defaults/models/response.model.js");
+/* harmony import */ var _models_course_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/course.model */ "./resources/js/application/models/course.model.js");
+
+
+
+
+
+
+
+var apiGetAllCourses = function apiGetAllCourses() {
+  return function (dispatch) {
+    dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventInitRequest());
+    return fetch(_constants_urls_constant__WEBPACK_IMPORTED_MODULE_0__.API_COURSES_GET_ALL, new _core_defaults_models_request_model__WEBPACK_IMPORTED_MODULE_4__.DefaultRequest().setParams({
+      method: "get"
+    }).getRequest()).then(function (response) {
+      if (response.status === 401) throw new _core_auth_exceptions__WEBPACK_IMPORTED_MODULE_3__.AuthFailedException(); //TODO: Обработать 422 статус
+
+      dispatch(_core_events__WEBPACK_IMPORTED_MODULE_2__.eventRequestProcessed());
+      return response.json();
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventConnectionError());
+    }).then(function (json) {
+      return new _core_defaults_models_response_model__WEBPACK_IMPORTED_MODULE_5__.Response({
+        status: 200,
+        message: _postProcessData(json.courses)
+      });
+    }, function (e) {
+      return dispatch(_core_auth_events__WEBPACK_IMPORTED_MODULE_1__.eventAuthFailed());
+    });
+  };
+};
+
+var _postProcessData = function _postProcessData(data) {
+  return data.map(function (course) {
+    return new _models_course_model__WEBPACK_IMPORTED_MODULE_6__.Course(course);
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/application/routes.js":
 /*!********************************************!*\
   !*** ./resources/js/application/routes.js ***!
@@ -24526,16 +24876,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _objectDestructuringEmpty(obj) {
-  if (obj == null) throw new TypeError("Cannot destructure undefined");
-}
+/* harmony import */ var react_data_table_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-data-table-component */ "./node_modules/react-data-table-component/dist/index.cjs.js");
 
 
 
 var DataTable = function DataTable(_ref) {
-  _objectDestructuringEmpty(_ref);
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "data table is here");
+  var columns = _ref.columns,
+      data = _ref.data,
+      pagination = _ref.pagination;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__.default, {
+    columns: columns,
+    data: data,
+    pagination: !!pagination,
+    paginationPerPage: 10
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DataTable);
@@ -24557,9 +24911,6 @@ module.exports = function (name) {
   switch (name) {
     case 'button':
       return __webpack_require__(/*! ./button/button.jsx */ "./resources/js/application/templates/button/button.jsx");
-
-    case 'card':
-      return __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './card/card.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
     case 'dataTable':
       return __webpack_require__(/*! ./dataTable/dataTable.jsx */ "./resources/js/application/templates/dataTable/dataTable.jsx");
@@ -24782,10 +25133,10 @@ var PageContent__body = function PageContent__body(_ref) {
     className: "row"
   }, children.map(function (c, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "col" + (c.props.media ? "-" + c.props.media : "") + (c.props.col ? "-" + c.props.col : "-12")
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "card",
+      className: "col" + (c.props.media ? "-" + c.props.media : "") + (c.props.col ? "-" + c.props.col : "-12"),
       key: key
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "card"
     }, c.props.title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "card-title pageContent__body-title"
     }, c.props.title) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -30506,7 +30857,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _project_dashboard_modals_dashboard_modal__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./project/dashboard/modals/dashboard.modal */ "./resources/js/project/dashboard/modals/dashboard.modal.jsx");
 /* harmony import */ var _project_courses_containers_createCourses_modal_cont__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./project/courses/containers/createCourses.modal_cont */ "./resources/js/project/courses/containers/createCourses.modal_cont.jsx");
 /* harmony import */ var _core_mrouter_MRouter__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/mrouter/MRouter */ "./resources/js/core/mrouter/MRouter.js");
-/* harmony import */ var _application_pages_courses__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./application/pages/courses */ "./resources/js/application/pages/courses.jsx");
+/* harmony import */ var _application_containers_courses_container__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./application/containers/courses.container */ "./resources/js/application/containers/courses.container.jsx");
 var _loadState;
 
 
@@ -30563,7 +30914,7 @@ var store = (0,redux__WEBPACK_IMPORTED_MODULE_19__.createStore)(_project_reducer
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     exact: true,
     path: "/courses2",
-    component: _application_pages_courses__WEBPACK_IMPORTED_MODULE_18__.Courses
+    component: _application_containers_courses_container__WEBPACK_IMPORTED_MODULE_18__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_20__.Route, {
     exact: true,
     path: router.getRoute(_project_routes__WEBPACK_IMPORTED_MODULE_5__.ROUTE_TO_COURSES_PAGE_NAME),
@@ -31195,7 +31546,7 @@ module.exports = function (list, options) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse("[{\"type\":\"button\",\"path\":\"./button/button.jsx\"},{\"type\":\"card\",\"path\":\"./card/card.jsx\"},{\"type\":\"dataTable\",\"path\":\"./dataTable/dataTable.jsx\"},{\"type\":\"header\",\"path\":\"./header/header.jsx\"},{\"type\":\"pageContent\",\"path\":\"./pageContent/pageContent.jsx\"},{\"type\":\"sidebar\",\"path\":\"./sidebar/sidebar.jsx\"}]");
+module.exports = JSON.parse("[{\"type\":\"button\",\"path\":\"./button/button.jsx\"},{\"type\":\"dataTable\",\"path\":\"./dataTable/dataTable.jsx\"},{\"type\":\"header\",\"path\":\"./header/header.jsx\"},{\"type\":\"pageContent\",\"path\":\"./pageContent/pageContent.jsx\"},{\"type\":\"sidebar\",\"path\":\"./sidebar/sidebar.jsx\"}]");
 
 /***/ })
 

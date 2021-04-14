@@ -1,1 +1,1 @@
-[{"type":"button","path":"./button/button.jsx"},{"type":"card","path":"./card/card.jsx"},{"type":"dataTable","path":"./dataTable/dataTable.jsx"},{"type":"header","path":"./header/header.jsx"},{"type":"pageContent","path":"./pageContent/pageContent.jsx"},{"type":"sidebar","path":"./sidebar/sidebar.jsx"}]
+[{"type":"button","path":"./button/button.jsx"},{"type":"dataTable","path":"./dataTable/dataTable.jsx"},{"type":"header","path":"./header/header.jsx"},{"type":"pageContent","path":"./pageContent/pageContent.jsx"},{"type":"sidebar","path":"./sidebar/sidebar.jsx"}]

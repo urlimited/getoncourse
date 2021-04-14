@@ -22,7 +22,7 @@ import {Dashboard} from "./application/pages/dashboard";
 import {DashboardModal} from "./project/dashboard/modals/dashboard.modal";
 import CreateCourseModal from "./project/courses/containers/createCourses.modal_cont";
 import {MRouter} from "./core/mrouter/MRouter";
-import {Courses} from "./application/pages/courses";
+import CoursesContainer from "./application/containers/courses.container";
 
 const loadStateDefault = loadState() ?? {
     userData: {}
@@ -42,7 +42,7 @@ export default function(){
                 <Route exact path={router.getRoute(routes.ROUTE_TO_LOGIN_PAGE_NAME)} component={LoginPage}/>
                 <Route exact path={"/dashboard"} component={Dashboard}/>
                 <Route exact path={"/homepage"} component={Homepage}/>
-                <Route exact path={"/courses2"} component={Courses}/>
+                <Route exact path={"/courses2"} component={CoursesContainer}/>
 {/*
                 <Route exact path={router.getRoute(routes.ROUTE_TO_DASHBOARD_PAGE_NAME)} component={() => <DashboardLayout Page={DashboardPage} title="Dashboards"/>}/>
 */}

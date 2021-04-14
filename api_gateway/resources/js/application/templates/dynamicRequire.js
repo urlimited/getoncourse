@@ -8,8 +8,6 @@ module.exports = (name) => {
 	switch(name){
 		case 'button':
 			return require('./button/button.jsx');
-		case 'card':
-			return require('./card/card.jsx');
 		case 'dataTable':
 			return require('./dataTable/dataTable.jsx');
 		case 'header':
