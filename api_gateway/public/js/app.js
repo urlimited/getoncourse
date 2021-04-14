@@ -24367,11 +24367,9 @@ var Courses = function Courses() {
   }, {
     type: "sidebar"
   }, {
-    type: "container",
-    children: [{
-      type: "title",
-      title: "Courses Listss"
-    }]
+    type: "pageContent",
+    title: "Courses list",
+    children: []
   }];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, bem_react_constructor_src_templateBuilder_js__WEBPACK_IMPORTED_MODULE_1__.default.getInstance({
     elementsDeclarationFile: __webpack_require__(/*! ../templates/elementsDeclaration.json */ "./resources/js/application/templates/elementsDeclaration.json"),
@@ -24598,35 +24596,6 @@ var Card = function Card(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/application/templates/container/container.jsx":
-/*!********************************************************************!*\
-  !*** ./resources/js/application/templates/container/container.jsx ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-var Container = function Container(_ref) {
-  var children = _ref.children;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "main-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "page-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "container-fluid"
-  }, children)));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Container);
-
-/***/ }),
-
 /***/ "./resources/js/application/templates/dynamicRequire.js":
 /*!**************************************************************!*\
   !*** ./resources/js/application/templates/dynamicRequire.js ***!
@@ -24646,11 +24615,11 @@ module.exports = function (name) {
     case 'card':
       return __webpack_require__(/*! ./card/card.jsx */ "./resources/js/application/templates/card/card.jsx");
 
-    case 'container':
-      return __webpack_require__(/*! ./container/container.jsx */ "./resources/js/application/templates/container/container.jsx");
-
     case 'header':
       return __webpack_require__(/*! ./header/header.jsx */ "./resources/js/application/templates/header/header.jsx");
+
+    case 'pageContent':
+      return __webpack_require__(/*! ./pageContent/pageContent.jsx */ "./resources/js/application/templates/pageContent/pageContent.jsx");
 
     case 'section':
       return __webpack_require__(/*! ./section/section.jsx */ "./resources/js/application/templates/section/section.jsx");
@@ -24659,7 +24628,7 @@ module.exports = function (name) {
       return __webpack_require__(/*! ./sidebar/sidebar.jsx */ "./resources/js/application/templates/sidebar/sidebar.jsx");
 
     case 'title':
-      return __webpack_require__(/*! ./title/title.jsx */ "./resources/js/application/templates/title/title.jsx");
+      return __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './title/title.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
   }
 };
 
@@ -24845,6 +24814,61 @@ var Header = function Header() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/application/templates/pageContent/pageContent.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/application/templates/pageContent/pageContent.jsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var PageContent = function PageContent(_ref) {
+  var children = _ref.children,
+      title = _ref.title;
+  var breadcrumbs = location.pathname.split('/');
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "main-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "page-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "container-fluid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "page-title-box d-flex align-items-center justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "mb-0 font-size-18"
+  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "page-title-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
+    className: "",
+    "aria-label": "breadcrumb"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ol", {
+    className: "breadcrumb m-0"
+  }, breadcrumbs.map(function (b, k) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      className: "breadcrumb-item",
+      key: k
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      href: "/dashboard"
+    }, b.toUpperCase()));
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "row"
+  }, children))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageContent);
 
 /***/ }),
 
@@ -25065,56 +25089,6 @@ var Sidebar = function Sidebar(_ref) {
   }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "File Manager"))))))))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sidebar);
-
-/***/ }),
-
-/***/ "./resources/js/application/templates/title/title.jsx":
-/*!************************************************************!*\
-  !*** ./resources/js/application/templates/title/title.jsx ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-
-
-
-var Title = function Title(_ref) {
-  var title = _ref.title;
-  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useLocation)();
-  console.log("location is :", location);
-  var breadcrumbs = location.pathname.split('/');
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "page-title-box d-flex align-items-center justify-content-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
-    className: "mb-0 font-size-18"
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "page-title-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
-    className: "",
-    "aria-label": "breadcrumb"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ol", {
-    className: "breadcrumb m-0"
-  }, breadcrumbs.map(function (b, k) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      className: "breadcrumb-item",
-      key: k
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-      href: "/dashboard"
-    }, b.toUpperCase()));
-  })))))));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Title);
 
 /***/ }),
 
@@ -31126,7 +31100,7 @@ module.exports = function (list, options) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse("[{\"type\":\"button\",\"path\":\"./button/button.jsx\"},{\"type\":\"card\",\"path\":\"./card/card.jsx\"},{\"type\":\"container\",\"path\":\"./container/container.jsx\"},{\"type\":\"header\",\"path\":\"./header/header.jsx\"},{\"type\":\"section\",\"path\":\"./section/section.jsx\"},{\"type\":\"sidebar\",\"path\":\"./sidebar/sidebar.jsx\"},{\"type\":\"title\",\"path\":\"./title/title.jsx\"}]");
+module.exports = JSON.parse("[{\"type\":\"button\",\"path\":\"./button/button.jsx\"},{\"type\":\"card\",\"path\":\"./card/card.jsx\"},{\"type\":\"header\",\"path\":\"./header/header.jsx\"},{\"type\":\"pageContent\",\"path\":\"./pageContent/pageContent.jsx\"},{\"type\":\"section\",\"path\":\"./section/section.jsx\"},{\"type\":\"sidebar\",\"path\":\"./sidebar/sidebar.jsx\"},{\"type\":\"title\",\"path\":\"./title/title.jsx\"}]");
 
 /***/ })
 

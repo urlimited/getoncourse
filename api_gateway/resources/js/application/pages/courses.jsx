@@ -12,12 +12,10 @@ export const Courses = () => {
             type: "sidebar"
         },
         {
-            type: "container",
+            type: "pageContent",
+            title: "Courses list",
             children: [
-                {
-                    type: "title",
-                    title: "Courses Listss"
-                }
+
             ]
         }
     ]

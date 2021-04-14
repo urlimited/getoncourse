@@ -10,10 +10,10 @@ module.exports = (name) => {
 			return require('./button/button.jsx');
 		case 'card':
 			return require('./card/card.jsx');
-		case 'container':
-			return require('./container/container.jsx');
 		case 'header':
 			return require('./header/header.jsx');
+		case 'pageContent':
+			return require('./pageContent/pageContent.jsx');
 		case 'section':
 			return require('./section/section.jsx');
 		case 'sidebar':
