@@ -11,7 +11,7 @@ class EduStuffModel extends AbstractModel
 {
     protected EduStuffEntity $entity;
     protected EntityManagerInterface $entityManager;
-    protected array $publishableFields = ['id', 'name', 'content', 'authorId'];
+    protected array $publishableFields = ['id', 'lesson', 'content', 'type'];
 
     public static function create(array $data): self
     {
@@ -90,7 +90,7 @@ class EduStuffModel extends AbstractModel
     }
 
     public function getLesson(){
-        return $this->entity->type;
+        return $this->entity->lesson;
     }
 
     public function getParent(){
