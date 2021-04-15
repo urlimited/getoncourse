@@ -9,7 +9,7 @@ import {apiCreateLesson} from "../requests/createLesson.request";
 const mapStateToProps = (state) => ({
     pageSettings: state.pageData.pageSettings,
     lesson: LessonManager.initManager()
-        .setLesson(state.courses.lesson).getLesson(),
+        .setLesson(state.courseModule.lesson).getLesson(),
 });
 
 

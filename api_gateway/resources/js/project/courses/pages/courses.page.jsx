@@ -1,19 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import DataTable from 'react-data-table-component';
 import {Link} from "react-router-dom";
 import {ROUTE_TO_COURSE_DETAILS_PAGE_NAME} from "../../routes";
 import {MRouter} from "../../../core/mrouter/MRouter";
 
-export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
-    //const [openModal, setOpenModal] = useState(modalIsOpen)
-    const [courses, setCourses] = useState([]);
+export const CoursesPage = ({courses, setSelectedCourse, getCourses, deleteCourse, setCourses, user}) => {
+
     useEffect(() => {
-        getCourses().then(response => {
-            setCourses(response.message)
-        })
-
+        getCourses();
     }, []);
-
     //TODO: refactor with BS 5
     const a = () => {
         const b = document.getElementById('createCourse');
@@ -21,7 +16,6 @@ export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
         document.getElementById("backdrop").style.display = "block";
         b.style.display = "block";
         b.addClass('show');
-
     }
 
     const customStyles = {
@@ -95,7 +89,12 @@ export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
                         </div>
                         <div className="fc-toolbar-chunk"/>
                         <div className="fc-toolbar-chunk">
-                            <button className="fc-today-button btn btn-primary" onClick={a}>
+                            <button className="fc-today-button btn btn-primary" onClick={
+                                e=>{
+                                    setSelectedCourse(null)
+                                    a()
+                                }
+                            } >
                                 <i className="mdi mdi-plus-circle-outline mr-1"/>Create New
                             </button>
                         </div>
@@ -104,7 +103,7 @@ export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
                 <DataTable
                     columns={columns}
                     data={
-                        courses.map((c, k) => ({
+                        courses.map((c) => ({
                             id: c.id,
                             name: c.name,
                             nameProcessed: <Link to={MRouter.initRouter().getRoute(ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.name}</Link>,
@@ -121,10 +120,23 @@ export const CoursesPage = ({setSelectedCourse, getCourses, modalIsOpen}) => {
                             </div>,
                             actions: <>
                                 <button className="btn btn-outline-success waves-effect waves-light btn-sm mr-2"
-                                    onClick={e => setSelectedCourse(c)}>
+                                    onClick={
+                                        () => {
+                                            setSelectedCourse(c);
+                                            a();
+                                        }
+
+                                    }>
                                     <i className="fa fa-fw fa-edit"/>
                                 </button>
-                                <button className="btn btn-outline-danger waves-effect waves-light btn-sm">
+                                <button className="btn btn-outline-danger waves-effect waves-light btn-sm"
+                                    onClick={()=>{
+                                        deleteCourse(c.id).
+                                        then(r=>setCourses(courses.filter(
+                                            c_in=>c_in.id !== c.id
+                                        )))
+                                    }
+                                    }>
                                     <i className="fa fa-fw fa-trash"/>
                                 </button>
                             </>
