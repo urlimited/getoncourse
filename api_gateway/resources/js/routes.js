@@ -19,11 +19,11 @@ import LessonDetailsPage from "./project/courses/containers/lessonDetails.page_c
 import {Homepage} from "./application/pages/homepage";
 import {Dashboard} from "./application/pages/dashboard";
 
-// Modals
 import {DashboardModal} from "./project/dashboard/modals/dashboard.modal";
 import CreateCourseModal from "./project/courses/containers/createCourses.modal_cont";
 import {MRouter} from "./core/mrouter/MRouter";
 import CoursesContainer from "./application/containers/courses.container";
+import CourseDetailsContainer from "./application/containers/courseDetails.container";
 import {PanelLayout} from "./application/pages/panel.layout";
 
 const loadStateDefault = loadState() ?? {
@@ -45,6 +45,7 @@ export default function(){
                 {/*<Route exact path={"/dashboard"} component={Dashboard}/>
                     <Route exact path={"/homepage"} component={Homepage}/>*/}
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSES_PAGE_NAME)} component={() => <PanelLayout Page={CoursesContainer} />}/>
+                <Route exact path={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME)} component={() => <PanelLayout Page={CourseDetailsContainer} />}/>
 
                 {/*<Route exact path={"/courses2"} component={CoursesContainer}/>*/}
 {/*
@@ -53,7 +54,6 @@ export default function(){
 
                 {/*<Route exact path={router.getRoute(routes.ROUTE_TO_COURSES_PAGE_NAME)} component={() => <DashboardLayout Page={CoursesPage} title="Courses List" Modals={CreateCourseModal}/>}/>*/}
 
-                {/*<Route exact path={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME)} component={() => <DashboardLayout Page={CourseDetailsPage} title="Детали курса" Modals={DashboardModal}/>}/>*/}
                 {/*<Route exact path={router.getRoute(routes.ROUTE_TO_LESSONS_PAGE_NAME)} component={() => <DashboardLayout Page={CoursesPage} title="Courses List" Modals={CreateCourseModal}/>}/>*/}
                 {/*<Route exact path={router.getRoute(routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME)} component={() => <DashboardLayout Page={LessonDetailsPage} title="Управление уроком" Modals={CreateCourseModal}/>}/>*/}
             </Switch>

@@ -1,15 +1,20 @@
 import React, {useEffect, useState} from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 import {Course} from "../models/course.model";
+import {Link} from "react-router-dom";
+import {MRouter} from "../../core/mrouter/MRouter";
+import * as routes from "../routes";
 
 
-export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
+export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
     const [courses, setCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(new Course());
 
     useEffect(() => {
         getCourses().then(r => setCourses(r.message));
     }, []);
+
+    const router = MRouter.initRouter({basePath: ''});
 
     const columns = [
         {
@@ -51,8 +56,8 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
                     },
                     data: courses.map(c => ({
                         ...c,
-                        nameProcessed: <p>{c.name}</p>,
-                        authorProcessed: <p>{c.authorId}</p>,
+                        nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.name}</Link>,
+                        authorProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.authorId}</Link>,
                         actions: <>
                             <button className="btn btn-outline-success waves-effect waves-light btn-sm mr-2"
                                     onClick={() => {

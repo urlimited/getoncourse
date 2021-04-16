@@ -1,15 +1,15 @@
-import * as constants from "../../dashboard/constants/urls.constant";
-import * as events from "../../../core/auth/events";
-import * as core_events from "../../../core/events";
-import {AuthFailedException} from "../../../core/auth/exceptions";
-import {DefaultRequest} from "../../../core/defaults/models/request.model";
-import {Response} from "../../../core/defaults/models/response.model";
+import * as constants from "../../application/constants/urls.constant";
+import * as events from "../../core/auth/events";
+import * as core_events from "../../core/events";
+import {AuthFailedException} from "../../core/auth/exceptions";
+import {DefaultRequest} from "../../core/defaults/models/request.model";
+import {Response} from "../../core/defaults/models/response.model";
 import {Course} from "../models/course.model";
 
 export const apiGetCourseDetails = (courseId) => dispatch => {
     dispatch(core_events.eventInitRequest());
 
-    return fetch(constants.API_COURSE_DETAILS + new URLSearchParams({
+    return fetch(constants.API_COURSE_DETAILS + "?" + new URLSearchParams({
         id: courseId,
     }), (new DefaultRequest()).setParams({
         method: "get"
@@ -28,12 +28,6 @@ export const apiGetCourseDetails = (courseId) => dispatch => {
                 message: _postProcessData(json.course)
             })
         }, e => dispatch(events.eventAuthFailed()));
-}
-
-const _preProcessData = (data) => {
-    return Object.keys(data)
-        .map(key => key + "=" + data[key])
-        .reduce((accum, next) => accum + "&" + next);
 }
 
 const _postProcessData = (data) => new Course(data);

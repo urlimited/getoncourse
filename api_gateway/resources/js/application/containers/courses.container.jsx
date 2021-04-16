@@ -1,16 +1,13 @@
 import {connect} from "react-redux";
-import {Courses} from "../pages/courses";
+import {CoursesPage} from "../pages/courses.page";
 import {apiGetAllCourses} from "../requests/getAllCourses.request";
 import {apiUpdateCourse} from "../requests/updateCourse.request";
 import {apiCreateCourse} from "../requests/createCourse.request";
 import {apiDeleteCourse} from "../requests/deleteCourse.request";
 
-const mapStateToProps = (state, ownProps) => {
-    console.log(state);
-    return ({
+const mapStateToProps = (state, ownProps) => ({
 
-    });
-}
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     getCourses: () => dispatch(apiGetAllCourses()),
@@ -19,4 +16,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     deleteCourse: (courseId) => dispatch(apiDeleteCourse(courseId)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Courses);
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
