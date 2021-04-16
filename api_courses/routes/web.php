@@ -30,3 +30,6 @@ $router->post('/courses/clone_course', 'CoursesController@cloneCourse');
 $router->put('/courses/update_course', 'CoursesController@updateCourse');
 $router->put('/courses/soft_delete_course', 'CoursesController@softDeleteCourse');
 $router->delete('/courses/delete_course', 'CoursesController@deleteCourse');
+
+
+$router->get('/lessons/get_lesson_details', 'LessonsController@getLessonDetails');
