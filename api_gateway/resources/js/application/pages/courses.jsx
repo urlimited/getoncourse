@@ -44,7 +44,34 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
             type: "header",
         },
         {
-            type: "sidebar"
+            type: "sidebar",
+            menuContent: [
+                {
+                    title: "Основное",
+                    items: [
+                        {
+                            itemTitle:"Рабочий стол",
+                            itemRoute: "/dashboards"
+                        },
+                        {
+                            itemTitle:"Другое",
+                            itemRoute: "/other"
+                        }
+                    ]
+
+                },
+                {
+                    title: "Курсы",
+                    items:
+                        [
+                            {
+                                itemTitle:"Курсы",
+                                itemRoute: "/courses2"
+                            },
+                        ]
+
+                }
+            ]
         },
         {
             type: "pageContent",
@@ -104,7 +131,10 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
                                    type="text"
                                    className="is-untouched is-pristine av-invalid form-control"
                                    value={selectedCourse ? selectedCourse.name : ""}
-                                   onChange={e => setSelectedCourse(new Course({...selectedCourse, name: e.target.value}))}
+                                   onChange={e => setSelectedCourse(new Course({
+                                       ...selectedCourse,
+                                       name: e.target.value
+                                   }))}
                             />
                         </div>
                     </div>
