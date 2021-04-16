@@ -2,6 +2,8 @@ import React from 'react'
 import "./require.css";
 
 const PageContent__body = ({children}) => {
+    console.log(children);
+
     return (<div className="row">
         {children.map((c, key) => (
             <div className={"col" + (c.props.media ? "-" + c.props.media : "") + (c.props.col ? "-" + c.props.col : "-12")} key={key}>

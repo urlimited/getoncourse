@@ -1,9 +1,32 @@
+import {MRouter} from "../core/mrouter/MRouter";
+import {MRoute} from "../core/mrouter/MRoute";
+
+export const ROUTE_TO_LOGIN_PAGE_NAME = "login";
+export const ROUTE_TO_MAIN_PAGE_NAME = "main_page";
+export const ROUTE_TO_DASHBOARD_PAGE_NAME = "dashboard";
+export const ROUTE_TO_COURSES_PAGE_NAME = "courses";
+export const ROUTE_TO_COURSE_DETAILS_PAGE_NAME = "courses_details";
+export const ROUTE_TO_LESSONS_PAGE_NAME = "lessons";
+export const ROUTE_TO_LESSON_DETAILS_PAGE_NAME = "lessons_details";
+
+
 export const ROUTE_TO_LOGIN_PAGE = "/login";
-//export const ROUTE_TO_REGISTER_PAGE = "/register";
 export const ROUTE_TO_MAIN_PAGE = "/";
-export const ROUTE_TO_DASHBOARD = "/dashboard";
-export const ROUTE_TO_SINGLE_REPORT = "/report/";
-export const ROUTE_TO_REPORT_RECOMMENDATIONS = "/recommendations/";
-export const ROUTE_TO_REPORTS = "/reports/";
-export const ROUTE_TO_ARRANGEMENTS = "/arrangements/";
-export const ROUTE_TO_REPORTS_MANAGEMENT = "/manage/reports/";
+export const ROUTE_TO_DASHBOARD_PAGE = "/dashboard";
+export const ROUTE_TO_COURSES_PAGE = "/courses";
+export const ROUTE_TO_COURSE_DETAILS_PAGE = ROUTE_TO_COURSES_PAGE + "/:courseId";
+export const ROUTE_TO_LESSONS_PAGE = ROUTE_TO_COURSE_DETAILS_PAGE + "/lessons";
+export const ROUTE_TO_LESSON_DETAILS_PAGE = ROUTE_TO_LESSONS_PAGE + "/:lessonId";
+
+
+//Routes for courses
+export const ROUTE_TO_COURSES = '/courses'
+
+const router = MRouter.initRouter({basePath: ''});
+router.addRoute(new MRoute({name: ROUTE_TO_LOGIN_PAGE_NAME, path: ROUTE_TO_LOGIN_PAGE}));
+router.addRoute(new MRoute({name: ROUTE_TO_DASHBOARD_PAGE_NAME, path: ROUTE_TO_DASHBOARD_PAGE}));
+router.addRoute(new MRoute({name: ROUTE_TO_MAIN_PAGE_NAME, path: ROUTE_TO_MAIN_PAGE}));
+router.addRoute(new MRoute({name: ROUTE_TO_COURSES_PAGE_NAME, path: ROUTE_TO_COURSES_PAGE}));
+router.addRoute(new MRoute({name: ROUTE_TO_COURSE_DETAILS_PAGE_NAME, path: ROUTE_TO_COURSE_DETAILS_PAGE}));
+router.addRoute(new MRoute({name: ROUTE_TO_LESSONS_PAGE_NAME, path: ROUTE_TO_LESSONS_PAGE}));
+router.addRoute(new MRoute({name: ROUTE_TO_LESSON_DETAILS_PAGE_NAME, path: ROUTE_TO_LESSON_DETAILS_PAGE}));

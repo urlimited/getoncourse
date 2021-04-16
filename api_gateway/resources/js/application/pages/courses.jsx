@@ -8,11 +8,6 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
     const [selectedCourse, setSelectedCourse] = useState(new Course());
 
     useEffect(() => {
-        console.log(selectedCourse);
-    }, [selectedCourse])
-
-
-    useEffect(() => {
         getCourses().then(r => setCourses(r.message));
     }, []);
 
@@ -40,12 +35,6 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
 
 
     const data = [
-        {
-            type: "header",
-        },
-        {
-            type: "sidebar"
-        },
         {
             type: "pageContent",
             title: "Модуль курсов",
@@ -128,8 +117,8 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
                 </div>
             </div>,
             buttons: [
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>,
-                <button type="button" className="btn btn-primary"
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" key={"key-1"}>Отмена</button>,
+                <button type="button" className="btn btn-primary" key={"key-2"}
                         onClick={e => {
                             selectedCourse.isNewAddedCourse()
                                 ? createCourse(selectedCourse)

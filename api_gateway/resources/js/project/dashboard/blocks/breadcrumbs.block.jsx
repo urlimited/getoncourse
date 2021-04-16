@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {ROUTE_TO_REPORTS} from "../../routes";
+import {ROUTE_TO_REPORTS} from "../../../application/routes";
 
 export const BreadcrumbsBlock = ({breadcrumbs}) => {
     return (

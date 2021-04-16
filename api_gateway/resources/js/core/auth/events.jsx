@@ -5,13 +5,13 @@ import {PageError} from "../pageSettings/models/PageError";
 import * as errors from "./constants/errorsList.constant";
 import clearPageError from "../pageSettings/actions/clearPageError";
 import clearAllPageErrors from "../pageSettings/actions/clearAllPageErrors";
-import {ROUTE_TO_DASHBOARD, ROUTE_TO_LOGIN_PAGE} from "../../application/routes";
+import {ROUTE_TO_DASHBOARD_PAGE, ROUTE_TO_LOGIN_PAGE} from "../../application/routes";
 
 // TODO: document that all methods started with "event" will be change state general states (api)
 // TODO: make extendable these events for different projects
 export const eventAuthSuccess = (userData) => dispatch => {
     //if (userData.role_id === 1)
-        history.push(ROUTE_TO_DASHBOARD);
+        history.push(ROUTE_TO_DASHBOARD_PAGE);
     dispatch(clearAllPageErrors());
 };
 
