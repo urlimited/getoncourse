@@ -25682,7 +25682,7 @@ var sidebar__linkItem = function sidebar__linkItem(_ref) {
   var breadcrumbs = location.pathname;
   return (
     /*#__PURE__*/
-    //ToDo must to think about realize activeroute style
+    //TODO must to think about realize activeroute style
     react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       className: breadcrumbs.search(route) === -1 ? "" : "mm-active"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
