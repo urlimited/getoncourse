@@ -158,7 +158,7 @@ class CourseModel extends AbstractModel
 
     public function getLessons()
     {
-        return $this->entity->lessons;
+        return $this->entity->lessons->getSnapshot();
     }
 
     public function setWith(array $with){
