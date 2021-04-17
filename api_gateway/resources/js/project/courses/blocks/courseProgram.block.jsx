@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom";
 import {MRouter} from "../../../core/mrouter/MRouter";
-import {ROUTE_TO_LESSON_DETAILS_PAGE_NAME} from "../../routes";
+import {ROUTE_TO_LESSON_DETAILS_PAGE_NAME} from "../../../application/routes";
 
 export const CourseProgramBlock = () => {
     const {courseId} = useParams();

@@ -1,12 +1,12 @@
 import React from 'react';
 import "./require.css";
 
-const pageContent__header = ({title}) => {
+const PageContent__header = ({title}) => {
     const breadcrumbs = location.pathname.split('/')
 
     return (
-        <div className="page-title-box d-flex align-items-center justify-content-between"><h4
-            className="mb-0 font-size-18">{title}</h4>
+        <div className="page-title-box d-flex align-items-center justify-content-between">
+            <h4 className="mb-0 font-size-18">{title}</h4>
             <div className="page-title-right">
                 <nav className="" aria-label="breadcrumb">
                     <ol className="breadcrumb m-0">
@@ -21,4 +21,4 @@ const pageContent__header = ({title}) => {
     )
 }
 
-export default pageContent__header
+export default PageContent__header

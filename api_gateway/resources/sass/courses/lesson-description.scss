@@ -1,0 +1,23 @@
+.lesson-description {
+    padding: 10px 20px 0;
+    width: 100%;
+}
+
+.lesson-description__textarea {
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    resize: none;
+    transition: background-color linear 50ms;
+    width: 100%;
+
+}
+
+.lesson-description__textarea::placeholder{
+    //color: #777;
+}
+
+.lesson-description__textarea:focus {
+    background-color: #eee;
+    outline: none;
+}

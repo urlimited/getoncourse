@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import * as constants from "../checkboxes.constant";
 import InputMask from "react-input-mask";
 import RegisterContainer from "../../../core/auth/containers/register";
-import {ROUTE_TO_LOGIN_PAGE, ROUTE_TO_MAIN_PAGE} from "../../routes";
+import {ROUTE_TO_LOGIN_PAGE, ROUTE_TO_MAIN_PAGE} from "../../../application/routes";
 import {Link} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';

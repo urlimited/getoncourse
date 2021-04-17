@@ -30,4 +30,32 @@ class LessonsController extends Controller
             'query' => $request->all()
         ]);
     }
+
+    public function createLesson(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'POST',
+            'http://webserver/lessons/create_lesson', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'query' => $request->all()
+        ]);
+    }
+
+    public function updateLesson(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'PUT',
+            'http://webserver/lessons/update_lesson', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'query' => $request->all()
+        ]);
+    }
 }

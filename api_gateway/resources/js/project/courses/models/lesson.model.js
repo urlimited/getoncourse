@@ -9,9 +9,9 @@ export class Lesson {
     constructor(data) {
         this.id = data?.id ?? 0;
         this.name = data?.name ?? "";
-        this.courseId = data?.course_id ?? 0;
+        this.courseId = data?.course_id ?? data?.courseId ?? 0;
         this.description = data?.description ?? "";
-        this.eduStuffs = data?.eduStuffs ?? [];
+        this.eduStuffs = data?.edu_stuffs ?? data?.eduStuffs ?? [];
 
         if (this.eduStuffs.length === 0)
             this.addEduStuff(new EduStuffText({
@@ -27,6 +27,14 @@ export class Lesson {
         return this.id === 0;
     }
 
+    getCourseId(){
+        return this.courseId;
+    }
+
+    getDescription(){
+        return this.description;
+    }
+
     getEduStuffs() {
         return this.eduStuffs
             .sort(
@@ -35,6 +43,28 @@ export class Lesson {
                  * @param b {AbstractEduStuff}
                  */
                 (a, b) => a.order - b.order);
+    }
+
+    getName(){
+        return this.name;
+    }
+
+    setCourseId(courseId){
+        this.courseId = courseId;
+
+        return this;
+    }
+
+    setDescription(description){
+        this.description = description;
+
+        return this;
+    }
+
+    setName(name){
+        this.name = name;
+
+        return this;
     }
 
     /**

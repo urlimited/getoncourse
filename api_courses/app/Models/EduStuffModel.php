@@ -76,6 +76,10 @@ class EduStuffModel extends AbstractModel
         return $this;
     }
 
+    public static function validateFields(array $data){
+
+    }
+
 
     public function getId(){
         return $this->entity->id;

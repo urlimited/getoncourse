@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import {ROUTE_TO_MAIN_PAGE} from "../../routes";
-import {Link} from "react-router-dom";
 
 export const HeaderBlock = ({user, logout}) => {
     const [dropdownOpened, setDropdownOpened] = useState("");

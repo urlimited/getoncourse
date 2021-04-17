@@ -30,6 +30,8 @@ $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($ro
 
     $router->group(['prefix' => 'lessons'], function () use ($router) {
         $router->get('get_lesson_details', 'LessonsController@getLessonDetails');
+        $router->post('create_lesson', 'LessonsController@createLesson');
+        $router->put('update_lesson', 'LessonsController@updateLesson');
     });
 });
 

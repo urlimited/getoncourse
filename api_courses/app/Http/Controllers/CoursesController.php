@@ -30,7 +30,7 @@ class CoursesController extends Controller
     }
 
     public function getCourseDetails(GetCourseDetailsRequest $request){
-        $course = CourseModel::find($request->id);
+        $course = CourseModel::findWith($request->id, ["lessons"]);
 
         return response()->json(['course' => $course->toAPI()], 200);
     }

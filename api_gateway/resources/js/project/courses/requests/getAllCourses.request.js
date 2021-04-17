@@ -1,4 +1,4 @@
-import * as constants from "../../dashboard/constants/urls.constant";
+import * as constants from "../constants/urls.constant";
 import * as events from "../../../core/auth/events";
 import * as core_events from "../../../core/events";
 import {AuthFailedException} from "../../../core/auth/exceptions";

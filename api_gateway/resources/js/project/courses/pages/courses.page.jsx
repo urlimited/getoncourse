@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import DataTable from 'react-data-table-component';
 import {Link} from "react-router-dom";
-import {ROUTE_TO_COURSE_DETAILS_PAGE_NAME} from "../../routes";
+import {ROUTE_TO_COURSE_DETAILS_PAGE_NAME} from "../../../application/routes";
 import {MRouter} from "../../../core/mrouter/MRouter";
 
 export const CoursesPage = ({courses, setSelectedCourse, getCourses, deleteCourse, setCourses, user}) => {

@@ -14,6 +14,8 @@ abstract class AbstractModel
 
     protected array $publishableFields = [];
 
+    protected array $with = [];
+
     protected EntityManagerInterface $entityManager;
 
     public function __construct($entity)
@@ -82,7 +84,7 @@ abstract class AbstractModel
 
     public function toAPI()
     {
-        return collect($this->publishableFields)->flatMap(function ($f) {
+        return collect(array_merge($this->publishableFields, $this->with))->flatMap(function ($f) {
             $method = "get" . ucfirst($f);
 
             if (!method_exists($this, $method))
@@ -90,5 +92,9 @@ abstract class AbstractModel
 
             return [$this->camelToSnakeCase($f) => $this->$method()];
         })->toArray();
+    }
+
+    public function getEntity(){
+        return $this->entity;
     }
 }

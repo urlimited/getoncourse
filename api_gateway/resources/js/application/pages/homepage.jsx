@@ -1,4 +1,5 @@
 import React from "react";
+
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 
 
@@ -35,3 +36,5 @@ export const Homepage = () => {
         dynamicRequireFile: require('../templates/dynamicRequire.js')
     }).build(data)}</>);
 }
+
+export default Homepage;

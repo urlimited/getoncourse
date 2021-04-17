@@ -14,3 +14,4 @@
 /package-lock.json
 /.node-gyp/
 /api_gateway/public/js/
+/api_gateway/public/css/

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import * as routes from "../../routes";
+import * as routes from "../../../application/routes";
 import {Link} from "react-router-dom";
 import {NotLoadedUser} from "../../auth/models/user.model";
 
