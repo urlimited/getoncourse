@@ -17,13 +17,15 @@ class CourseRepository extends EntityRepository
      * @throws NonUniqueResultException
      */
     public function getCourseWith(int $id, array $with = []){
-        $sql = "SELECT c FROM App\Entities\CourseEntity c WHERE c.id = $id";
+        $sql = "SELECT c, l FROM App\Entities\CourseEntity c
+                LEFT JOIN c.lessons l
+                WHERE c.id = $id";
 
         $query = $this->getEntityManager()->createQuery($sql);
 
-        foreach($with as $w){
+        /*foreach($with as $w){
             $query->setFetchMode("App\Entities\CourseEntity", $w, ClassMetadata::FETCH_EAGER);
-        }
+        }*/
 
         return $query->getSingleResult();
     }
