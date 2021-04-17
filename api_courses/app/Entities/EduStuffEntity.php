@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class EduStuffEntity extends AbstractEntity
 {
     protected array $dbFields = ['id', 'content', 'parentId', 'type', 'lessonId', 'deletedAt'];
+    protected array $obligatoryFields = ['id', 'content', 'parentId', 'type', 'lessonId'];
 
     /**
      * @ORM\Id
@@ -25,7 +26,7 @@ class EduStuffEntity extends AbstractEntity
     public $content;
 
     /**
-     * @ORM\Column(type="integer", name="parent_id")
+     * @ORM\Column(type="integer", name="parent_id", options={"default" : null}, nullable=true)
      */
     public $parentId;
 

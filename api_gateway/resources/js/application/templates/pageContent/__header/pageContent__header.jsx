@@ -1,7 +1,7 @@
 import React from 'react';
 import "./require.css";
 
-const pageContent__header = ({title}) => {
+const PageContent__header = ({title}) => {
     const breadcrumbs = location.pathname.split('/')
 
     return (
@@ -21,4 +21,4 @@ const pageContent__header = ({title}) => {
     )
 }
 
-export default pageContent__header
+export default PageContent__header

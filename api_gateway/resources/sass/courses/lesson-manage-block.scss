@@ -1,0 +1,20 @@
+.lesson-manage-block {
+    width: 100%;
+}
+
+.lesson-manage-block__create-button, .lesson-manage-block__save-button {
+    background-color: #0a66b7;
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    padding: 3px 20px;
+    transition: background-color linear 80ms;
+    width: auto;
+
+    &:hover{
+        background-color: #0955a6;
+    }
+}

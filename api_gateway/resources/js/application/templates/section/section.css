@@ -1,0 +1,12 @@
+.section__content {
+    margin: auto;
+    min-height: 200px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1200px;
+}
+
+.section__header{
+
+}

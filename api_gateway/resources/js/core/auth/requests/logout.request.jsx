@@ -6,7 +6,7 @@ import * as core_events from "../../events";
 import {AuthFailedException} from "../exceptions";
 import {DefaultRequest} from "../../defaults/models/request.model";
 import history from "../../services/history";
-import {ROUTE_TO_LOGIN_PAGE} from "../../../project/routes";
+import {ROUTE_TO_LOGIN_PAGE} from "../../../application/routes";
 
 
 export const apiLogoutRequest = () => dispatch => {

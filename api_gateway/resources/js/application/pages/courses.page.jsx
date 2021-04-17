@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 import {Course} from "../models/course.model";
+import {Link} from "react-router-dom";
+import {MRouter} from "../../core/mrouter/MRouter";
+import * as routes from "../routes";
 
 
-export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
+export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
     const [courses, setCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(new Course());
 
     useEffect(() => {
-        console.log(selectedCourse);
-    }, [selectedCourse])
-
-
-    useEffect(() => {
         getCourses().then(r => setCourses(r.message));
     }, []);
+
+    const router = MRouter.initRouter({basePath: ''});
 
     const columns = [
         {
@@ -41,39 +41,6 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
 
     const data = [
         {
-            type: "header",
-        },
-        {
-            type: "sidebar",
-            menuContent: [
-                {
-                    title: "Основное",
-                    items: [
-                        {
-                            itemTitle:"Рабочий стол",
-                            itemRoute: "/dashboards"
-                        },
-                        {
-                            itemTitle:"Другое",
-                            itemRoute: "/other"
-                        }
-                    ]
-
-                },
-                {
-                    title: "Курсы",
-                    items:
-                        [
-                            {
-                                itemTitle:"Курсы",
-                                itemRoute: "/courses2"
-                            },
-                        ]
-
-                }
-            ]
-        },
-        {
             type: "pageContent",
             title: "Модуль курсов",
             children: [
@@ -89,8 +56,8 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
                     },
                     data: courses.map(c => ({
                         ...c,
-                        nameProcessed: <p>{c.name}</p>,
-                        authorProcessed: <p>{c.authorId}</p>,
+                        nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.name}</Link>,
+                        authorProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.authorId}</Link>,
                         actions: <>
                             <button className="btn btn-outline-success waves-effect waves-light btn-sm mr-2"
                                     onClick={() => {
@@ -158,8 +125,8 @@ export const Courses = ({getCourses, updateCourse, createCourse, deleteCourse}) 
                 </div>
             </div>,
             buttons: [
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>,
-                <button type="button" className="btn btn-primary"
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" key={"key-1"}>Отмена</button>,
+                <button type="button" className="btn btn-primary" key={"key-2"}
                         onClick={e => {
                             selectedCourse.isNewAddedCourse()
                                 ? createCourse(selectedCourse)

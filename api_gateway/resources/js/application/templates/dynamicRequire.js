@@ -16,6 +16,10 @@ module.exports = (name) => {
 			return require('./modal/modal.jsx');
 		case 'pageContent':
 			return require('./pageContent/pageContent.jsx');
+		case 'reactWrapper':
+			return require('./reactWrapper/reactWrapper.jsx');
+		case 'section':
+			return require('./section/section.jsx');
 		case 'sidebar':
 			return require('./sidebar/sidebar.jsx');
 	}

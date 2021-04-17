@@ -5,10 +5,10 @@ import {AuthFailedException} from "../../../core/auth/exceptions";
 import {DefaultRequest} from "../../../core/defaults/models/request.model";
 import {Response} from "../../../core/defaults/models/response.model";
 
-export const apiCreateArrangement = (data) => dispatch => {
+export const apiCreateLesson = (data) => dispatch => {
     dispatch(core_events.eventInitRequest());
 
-    return fetch(constants.API_CREATE_ARRANGEMENT, (new DefaultRequest()).setParams({
+    return fetch(constants.API_LESSON_CREATE, (new DefaultRequest()).setParams({
         method: "post",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -32,6 +32,10 @@ export const apiCreateArrangement = (data) => dispatch => {
 
 const _preProcessData = (data) => {
     return Object.keys(data)
-        .map(key => key + "=" + data[key])
+        .map(key => toSnakeCase(key) + "=" + (typeof data[key] === 'object' ? JSON.stringify(data[key]) : data[key]))
         .reduce((accum, next) => accum + "&" + next);
+}
+
+const toSnakeCase = (str) => {
+    return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
 }
