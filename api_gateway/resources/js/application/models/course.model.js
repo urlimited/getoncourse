@@ -4,6 +4,7 @@ export class Course {
         this.name = data?.name ?? "";
         this.authorId = data?.author_id ?? data?.authorId ?? 0;
         this.description = data?.description ?? "";
+        this.lessons = data?.lessons ?? [];
     }
 
     isNewAddedCourse(){

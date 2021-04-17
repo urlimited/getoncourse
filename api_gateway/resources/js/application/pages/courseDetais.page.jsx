@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 import {MRouter} from "../../core/mrouter/MRouter";
 import {Link, useParams} from "react-router-dom";
+import * as routes from "../routes";
 
 
 export const CourseDetailsPage = ({getLessons}) => {
@@ -13,24 +14,16 @@ export const CourseDetailsPage = ({getLessons}) => {
 
     useEffect(() => {
         getLessons(courseId).then(r => {
-            console.log(r);
-            setLessons(r.message)
+            setLessons(r.message.lessons)
         })
     }, []);
 
     const columns = [
         {
-            name: 'Название курса',
+            name: 'Название урока',
             selector: row => row.nameProcessed,
             sortable: true,
             sortFunction: (rowA, rowB) => rowA.name.localeCompare(rowB.name)
-        },
-        {
-            name: 'Автор курса',
-            selector: row => row.authorProcessed,
-            sortable: true,
-            sortFunction: (rowA, rowB) => (rowA.authorId - rowB.authorId),
-            width: '200px'
         },
         {
             name: 'Actions',
@@ -50,7 +43,10 @@ export const CourseDetailsPage = ({getLessons}) => {
                     title: "Программа курса",
                     col: 8,
                     columns: columns,
-                    data: lessons
+                    data: lessons.map(l => ({
+                        ...l,
+                        nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME, {courseId, lessonId: l.id})}>{l.name}</Link>
+                    }))
                 }
             ]
         }
