@@ -10,7 +10,9 @@ use Illuminate\Support\MessageBag;
 class CourseModel extends AbstractModel
 {
     protected CourseEntity $entity;
+
     protected EntityManagerInterface $entityManager;
+
     protected array $publishableFields = ['id', 'name', 'description', 'authorId'];
 
     public static function allDeleted()
@@ -92,7 +94,11 @@ class CourseModel extends AbstractModel
 
         $entityManager = app(EntityManagerInterface::class);
 
-        return $entityManager->getRepository('Course')->getCourseWith($id, $relations);
+        $course = new CourseModel($entityManager->getRepository(CourseEntity::class)->getCourseWith($id, $relations));
+
+        $course->setWith($relations);
+
+        return $course;
     }
 
     /**
@@ -153,5 +159,11 @@ class CourseModel extends AbstractModel
     public function getLessons()
     {
         return $this->entity->lessons;
+    }
+
+    public function setWith(array $with){
+        $this->with = array_merge($this->with, $with);
+
+        return true;
     }
 }

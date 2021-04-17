@@ -4,12 +4,17 @@ namespace App\Entities\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 
 class CourseRepository extends EntityRepository
 {
     /**
      * @param int $id
      * @param array $with
+     * @return int|mixed|string
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function getCourseWith(int $id, array $with = []){
         $sql = "SELECT c FROM App\Entities\CourseEntity c WHERE c.id = $id";
@@ -20,6 +25,6 @@ class CourseRepository extends EntityRepository
             $query->setFetchMode("App\Entities\CourseEntity", $w, ClassMetadata::FETCH_EAGER);
         }
 
-        $query->execute();
+        return $query->getSingleResult();
     }
 }
