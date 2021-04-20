@@ -27,7 +27,7 @@ export const apiGetCourseDetails = (courseId) => dispatch => {
                 status: 200,
                 message: _postProcessData(json.course)
             })
-        }, e => dispatch(events.eventAuthFailed()));
+        }, e => dispatch(events.eventAuthFailed(true)));
 }
 
 const _postProcessData = (data) => new Course(data);
