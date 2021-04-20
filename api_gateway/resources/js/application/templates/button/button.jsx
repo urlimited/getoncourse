@@ -5,7 +5,12 @@ import "./button.css";
 export const Button = ({title, clickHandler, classes = []}) => {
     /*const classesProcessed = classes.reduce((accum, next) => accum + " " + next, "").trim();*/
 
-    return (<button className={"button"} onClick={clickHandler}>{title}</button>);
+    const defaultClasses = ['btn']
+
+    //classes?defaultClasses=defaultClasses.concat(classes):null
+    return (
+        <button className={classes?defaultClasses.concat(classes).join(" "):defaultClasses.join(" ")}
+                onClick={clickHandler}>{title}</button>);
 }
 
 export default Button;

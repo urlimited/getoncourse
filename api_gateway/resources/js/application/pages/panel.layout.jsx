@@ -31,7 +31,7 @@ export const PanelLayout = ({Page}) => {
                         [
                             {
                                 itemTitle:"Курсы",
-                                itemRoute: "/courses2"
+                                itemRoute: "/courses"
                             },
                         ]
 

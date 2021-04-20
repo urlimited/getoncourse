@@ -4,7 +4,7 @@ import Sidebar__linkItem from "./__link-item/sidebar__link-item"
 
 export const Sidebar = ({menuContent}) => {
     return (
-        <div className="vertical-menu">
+        <div className="vertical-menu" id="vertical-menu">
             <div data-simplebar="true" className="h-100">
                 <div data-simplebar="init" style={{maxHeight: "100%"}}>
                     <div className="simplebar-wrapper" style={{margin: "0"}}>
