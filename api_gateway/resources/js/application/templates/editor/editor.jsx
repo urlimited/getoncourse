@@ -9,11 +9,15 @@ const Editor = ({}) => {
     });
 
     const [deleteElementEventId, setDeleteElementEventId] = useState(0);
+    const [showDropdownEvent, setShowDropdownEvent] = useState(false);
 
     const [blocks, setBlocks] = useState([
-        <Editor__textBlock key={'block-1'} id={'block-1'} deleteHandler={id => setDeleteElementEventId(id)} />,
-        <Editor__textBlock key={'block-2'} id={'block-2'} deleteHandler={id => setDeleteElementEventId(id)} />,
-        <Editor__textBlock key={'block-3'} id={'block-3'} deleteHandler={id => setDeleteElementEventId(id)} />
+        <Editor__textBlock key={'block-1'} id={'block-1'} deleteHandler={id => setDeleteElementEventId(id)}
+                           showDropdownHandler={val => setShowDropdownEvent(val)}/>,
+        <Editor__textBlock key={'block-2'} id={'block-2'} deleteHandler={id => setDeleteElementEventId(id)}
+                           showDropdownHandler={val => setShowDropdownEvent(val)}/>,
+        <Editor__textBlock key={'block-3'} id={'block-3'} deleteHandler={id => setDeleteElementEventId(id)}
+                           showDropdownHandler={val => setShowDropdownEvent(val)}/>
     ]);
 
     useEffect(() => {
@@ -29,13 +33,20 @@ const Editor = ({}) => {
         }));
     }, [deleteElementEventId]);
 
+    useEffect(() => {
+        setDropdownCommandsConfigs({
+            commands: ['text', 'header', 'image'],
+            isVisible: showDropdownEvent
+        });
+    }, [showDropdownEvent]);
+
 
     return (<>
         <h3>editor</h3>
         {
             blocks
         }
-        <Editor__dropdownCommands configs={dropdownCommandsConfigs} />
+        <Editor__dropdownCommands configs={dropdownCommandsConfigs}/>
     </>)
 }
 
