@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 
-const Editor__textBlock = ({id, deleteHandler, showDropdownHandler}) => {
+const getCaretCoordinates = require('textarea-caret');
+
+const Editor__textBlock = ({id, deleteHandler, setDropdownCommandsConfigsHandler}) => {
 
     const [content, setContent] = useState('');
 
@@ -13,10 +15,22 @@ const Editor__textBlock = ({id, deleteHandler, showDropdownHandler}) => {
                       setContent(e.target.value)
                   }}
                   onKeyPress={e => {
-                      if (e.code === "Slash")
-                          showDropdownHandler(true);
+                      if (e.code === "Slash"){
+                          const caret = getCaretCoordinates(e.target, e.target.selectionEnd);
+
+                          setDropdownCommandsConfigsHandler({
+                              position: {
+                                  x: e.target.offsetLeft + caret.left,
+                                  y: e.target.offsetTop + caret.top
+                              },
+                              isVisible: true
+                          });
+                      }
+
                   }}
-                  onBlur={e => showDropdownHandler(false)}
+                  onBlur={e => setDropdownCommandsConfigsHandler({
+                      isVisible: false
+                  })}
                   value={content}/>
     </div>)
 }

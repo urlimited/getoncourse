@@ -3,29 +3,19 @@ import Editor__dropdownCommands from "./__dropdownCommands/editor__dropdownComma
 import Editor__textBlock from "./__textBlock/editor__textBlock";
 
 const Editor = ({}) => {
-    const [dropdownCommandsConfigs, setDropdownCommandsConfigs] = useState({
-        commands: [],
-        isVisible: false
-    });
+    const [dropdownCommandsConfigs, setDropdownCommandsConfigs] = useState({});
 
     const [deleteElementEventId, setDeleteElementEventId] = useState(0);
     const [showDropdownEvent, setShowDropdownEvent] = useState(false);
 
     const [blocks, setBlocks] = useState([
         <Editor__textBlock key={'block-1'} id={'block-1'} deleteHandler={id => setDeleteElementEventId(id)}
-                           showDropdownHandler={val => setShowDropdownEvent(val)}/>,
+                           setDropdownCommandsConfigsHandler={configs => setDropdownCommandsConfigs(configs)}/>,
         <Editor__textBlock key={'block-2'} id={'block-2'} deleteHandler={id => setDeleteElementEventId(id)}
-                           showDropdownHandler={val => setShowDropdownEvent(val)}/>,
+                           setDropdownCommandsConfigsHandler={configs => setDropdownCommandsConfigs(configs)}/>,
         <Editor__textBlock key={'block-3'} id={'block-3'} deleteHandler={id => setDeleteElementEventId(id)}
-                           showDropdownHandler={val => setShowDropdownEvent(val)}/>
+                           setDropdownCommandsConfigsHandler={configs => setDropdownCommandsConfigs(configs)}/>
     ]);
-
-    useEffect(() => {
-        setDropdownCommandsConfigs({
-            commands: ['text', 'header', 'image'],
-            //isVisible:
-        });
-    }, []);
 
     useEffect(() => {
         setBlocks(blocks.filter(b => {
@@ -33,16 +23,9 @@ const Editor = ({}) => {
         }));
     }, [deleteElementEventId]);
 
-    useEffect(() => {
-        setDropdownCommandsConfigs({
-            commands: ['text', 'header', 'image'],
-            isVisible: showDropdownEvent
-        });
-    }, [showDropdownEvent]);
-
 
     return (<>
-        <h3>editor</h3>
+        <h3>Editor</h3>
         {
             blocks
         }
