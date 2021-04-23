@@ -6,7 +6,7 @@ const Editor__dropdownCommands = ({configs}) => {
         {configs.isVisible
             ? <>
                 <div>Blocks</div>
-                {configs.commands.map(c => (<div>
+                {configs.commands.map((c, k) => (<div key={'command-' + k}>
                     {c}
                 </div>))}
             </>

@@ -1,8 +1,11 @@
 import React, {useEffect} from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
+import {MRouter} from "../../core/mrouter/MRouter";
+import {ROUTE_TO_COURSES_PAGE_NAME} from "../routes";
 
 
 export const PanelLayout = ({Page}) => {
+    const router = MRouter.initRouter();
 
     const data = [
         {
@@ -31,7 +34,7 @@ export const PanelLayout = ({Page}) => {
                         [
                             {
                                 itemTitle:"Курсы",
-                                itemRoute: "/courses2"
+                                itemRoute: router.getRoute(ROUTE_TO_COURSES_PAGE_NAME)
                             },
                         ]
 
