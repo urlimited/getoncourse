@@ -1,29 +1,19 @@
-import React from 'react'
+import React, {useEffect} from 'react';
+import "./require.css";
 
-const Editor__dropdownCommands = ({configs}) => {
-    const initialConfigs = {
-        commands: ['text', 'header', 'image'],
-        isVisible: false,
-        position: {
-            x: 0,
-            y: 0
-        }
-    }
-
-    const mergedConfigs = {
-        ...initialConfigs,
-        ...configs
-    }
+const Editor__dropdownCommands = ({commands, position}) => {
 
     return (<>
-        {mergedConfigs.isVisible
-            ? <div style={{position: 'absolute', top: mergedConfigs.position.y, left: mergedConfigs.position.x}}>
-                <div>Blocks</div>
-                {mergedConfigs.commands.map((c, k) => (<div key={'command-' + k}>
+        <div className="editor__dropdown-commands-block"
+             style={{position: 'absolute', top: position.y, left: position.x}}>
+            <div className="editor__dropdown-commands-block-header">Blocks</div>
+            {commands.map((c, k) => (
+                <div className="editor__dropdown-commands-block-item"
+                     key={'command-' + k}>
                     {c}
-                </div>))}
-            </div>
-            : <></>}
+                </div>
+            ))}
+        </div>
 
     </>)
 }

@@ -1,35 +1,48 @@
 import React, {useState, useEffect} from 'react'
 import Editor__dropdownCommands from "./__dropdownCommands/editor__dropdownCommands";
-import Editor__textBlock from "./__textBlock/editor__textBlock";
+import {EditorModel} from "./models/editor.model.tsx";
+import {EditorTextBlockModel} from "./models/editorTextBlock.model.tsx";
 
-const Editor = ({}) => {
+const Editor = ({blocksLoaded}) => {
     const [dropdownCommandsConfigs, setDropdownCommandsConfigs] = useState({});
 
-    const [deleteElementEventId, setDeleteElementEventId] = useState(0);
-    const [showDropdownEvent, setShowDropdownEvent] = useState(false);
+    const [editor, setEditor] = useState(new EditorModel({
+        blocks: [
+            new EditorTextBlockModel()
+        ],
+        render: (value) => setEditor(value)
+    }));
 
-    const [blocks, setBlocks] = useState([
+    useEffect(() => {
+        console.log(editor);
+    }, [editor]);
+
+    /*const [deleteBlockEventId, setDeleteElementEventId] = useState(0);
+    const [createBlockEventName, setCreateElementEventBlock] = useState(0);*/
+
+    /*const [blocks, setBlocks] = useState([
         <Editor__textBlock key={'block-1'} id={'block-1'} deleteHandler={id => setDeleteElementEventId(id)}
                            setDropdownCommandsConfigsHandler={configs => setDropdownCommandsConfigs(configs)}/>,
         <Editor__textBlock key={'block-2'} id={'block-2'} deleteHandler={id => setDeleteElementEventId(id)}
                            setDropdownCommandsConfigsHandler={configs => setDropdownCommandsConfigs(configs)}/>,
         <Editor__textBlock key={'block-3'} id={'block-3'} deleteHandler={id => setDeleteElementEventId(id)}
                            setDropdownCommandsConfigsHandler={configs => setDropdownCommandsConfigs(configs)}/>
-    ]);
+    ]);*/
 
-    useEffect(() => {
+   /* useEffect(() => {
         setBlocks(blocks.filter(b => {
-            return b.props.id !== deleteElementEventId
+            return b.props.id !== deleteBlockEventId
         }));
-    }, [deleteElementEventId]);
+    }, [deleteBlockEventId]);*/
 
+    /*useEffect(() => {
+        setBlocks([...blocks, createBlockEventName]);
+    }, [createBlockEventName]);*/
 
     return (<>
         <h3>Editor</h3>
-        {
-            blocks
-        }
-        <Editor__dropdownCommands configs={dropdownCommandsConfigs}/>
+        <div className="editorArea">{editor.renderBlocks()}</div>
+        {editor.renderCommandsDropdown()}
     </>)
 }
 

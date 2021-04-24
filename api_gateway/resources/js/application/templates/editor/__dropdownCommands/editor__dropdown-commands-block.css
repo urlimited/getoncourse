@@ -1,0 +1,20 @@
+.editor__dropdown-commands-block {
+    background: #fff;
+    padding: 5px 15px;
+    width: 400px;
+}
+
+.editor__dropdown-commands-block-header{
+    border-bottom: 1px #cecece solid;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.editor__dropdown-commands-block-item {
+    margin-top: 5px;
+}
+
+.editor__dropdown-commands-block-item:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}

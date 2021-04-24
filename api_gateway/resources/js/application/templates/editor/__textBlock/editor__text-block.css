@@ -1,0 +1,15 @@
+.editor__text-block {
+
+}
+
+.editor__text-block-textarea {
+    background-color: #efefef;
+    border: none;
+    border-radius: 2px;
+    resize: none;
+    width: 100%;
+}
+
+.editor__text-block-textarea:focus {
+    outline: none;
+}
