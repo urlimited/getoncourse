@@ -8,7 +8,10 @@ import CommandsBlock from "../__dropdownCommands/editor__dropdownCommands.jsx";
 interface EditorCommandsBlockModelConfigs extends EditorBlockModelConfigs {
     commands?: Array<string>,
     isVisible?: boolean,
-    position: any
+    position: {
+        x: number,
+        y: number
+    }
 }
 
 /**
@@ -40,7 +43,5 @@ export class EditorCommandsBlockModel extends EditorBlockModel {
 
         this._positionX = configs?.position?.x ?? 0;
         this._positionY = configs?.position?.y ?? 0;
-
-        console.log(this);
     }
 }

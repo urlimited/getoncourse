@@ -18,7 +18,10 @@ export class EditorModel {
 
     protected _commandsDropdown: EditorCommandsBlockModel;
 
-    protected _render: Function;
+    protected _render: {
+        currentValue?: number,
+        handler?: Function
+    };
 
     public constructor(configs?: EditorModelConfigs) {
         this._commandsDropdown = configs?.commandsDropdown ?? new EditorCommandsBlockModel();
@@ -28,7 +31,10 @@ export class EditorModel {
                 setDropdownCommandsConfigsHandler: (configs: EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(configs)
             })) ?? [];
 
-        this._render = configs?.render ?? (() => {});
+        this._render = {
+            handler: configs?.render ?? (() => {}),
+            currentValue: 0
+        };
 
     }
 
@@ -43,14 +49,16 @@ export class EditorModel {
     public setDropdownCommandsConfigs(configs: EditorCommandsBlockModelConfigs): void {
         this._commandsDropdown.setConfigs(configs);
 
-        this._render(new EditorModel(this.getConfigs()));
+        this.render();
     }
 
-    public getConfigs(): EditorModelConfigs {
-        return {
-            blocks: this._blocks,
-            commandsDropdown: this._commandsDropdown,
-            render: this._render
-        }
+    public createNewBlock(block: EditorBlockModel): void {
+        this._blocks.push(block);
+
+        this.render();
+    }
+
+    public render(){
+        this._render.handler(++this._render.currentValue);
     }
 }
