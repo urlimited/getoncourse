@@ -4,10 +4,8 @@ import {EditorBlockModel, EditorBlockModelConfigs} from "./editorBlock.model.tsx
 import * as React from "react";
 // @ts-ignore
 import CommandsBlock from "../__dropdownCommands/editor__dropdownCommands.jsx";
-// @ts-ignore
-import {EditorBlockModelHandlers} from "./editorBlock.model.tsx";
 
-export interface EditorCommandsBlockModelConfigs extends EditorBlockModelConfigs {
+interface EditorCommandsBlockModelConfigs extends EditorBlockModelConfigs {
     commands?: Array<string>,
     isVisible?: boolean,
     position: {
@@ -20,8 +18,6 @@ export interface EditorCommandsBlockModelConfigs extends EditorBlockModelConfigs
  * Class EditorTextBlockModel
  */
 export class EditorCommandsBlockModel extends EditorBlockModel {
-    protected _handlers: EditorBlockModelHandlers;
-
     protected _commands: Array<string>;
     protected _isVisible: boolean;
     protected _positionX: number;
@@ -43,6 +39,7 @@ export class EditorCommandsBlockModel extends EditorBlockModel {
     public setConfigs(configs: EditorCommandsBlockModelConfigs): void {
         this._commands = configs?.commands ?? ['text', 'header', 'image'];
         this._isVisible = configs?.isVisible ?? false;
+
 
         this._positionX = configs?.position?.x ?? 0;
         this._positionY = configs?.position?.y ?? 0;

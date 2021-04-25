@@ -1,12 +1,16 @@
 // @ts-ignore
-import {EditorBlockModel, EditorBlockModelConfigs, EditorBlockModelHandlers} from "./editorBlock.model.tsx";
+import {EditorBlockModel, EditorBlockModelConfigs} from "./editorBlock.model.tsx";
 // @ts-ignore
 import * as React from "react";
-import TextBlock from "../__textBlock/editor__textBlock.jsx";
+import TextBlock from "../__textBlock/editor__textBlock";
 
-export interface EditorTextBlockModelConfigs extends EditorBlockModelConfigs {
+interface EditorTextBlockModelConfigs extends EditorBlockModelConfigs {
     content: string,
     placeholder: string,
+}
+
+interface EditorTextBlockModelHandlers {
+    setDropdownCommandsConfigsHandler: Function
 }
 
 /**
@@ -17,8 +21,10 @@ export class EditorTextBlockModel extends EditorBlockModel {
 
     protected _placeholder: string = "Type '/' to start";
 
+    protected _handlers: EditorTextBlockModelHandlers;
+
     public constructor(configs?: EditorTextBlockModelConfigs) {
-        super(configs ?? {});
+        super(configs);
 
         this._content = configs?.content ?? "";
 
@@ -28,11 +34,14 @@ export class EditorTextBlockModel extends EditorBlockModel {
     public render(): React.ReactElement {
         return <TextBlock
             placeholder={this._placeholder}
-            //@ts-ignore
             setDropdownCommandsConfigsHandler={this._handlers.setDropdownCommandsConfigsHandler}
-            //@ts-ignore
-            /*createNewBlockHandler={this._handlers.createNewBlockHandler}*/
             initialContent={this._content} />
+    }
+
+    public setHandlers(handlers: EditorTextBlockModelHandlers): EditorTextBlockModel {
+        this._handlers = handlers;
+
+        return this;
     }
 
     get content(): string {
