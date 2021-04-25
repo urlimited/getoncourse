@@ -150,7 +150,6 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" key={"key-1"}>Отмена</button>,
                 <button type="button" className="btn btn-primary" key={"key-2"}
                         onClick={e => {
-                            console.log("is new ", selectedCourse)
                             selectedCourse.isNewAddedCourse()
                                 ? createCourse(selectedCourse)
                                     .then(r => setCourses([

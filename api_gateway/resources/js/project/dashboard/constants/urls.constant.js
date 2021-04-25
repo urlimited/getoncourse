@@ -6,6 +6,8 @@ export const API_COURSES_CREATE_COURSE = API_BASE + "/courses/create_course";
 export const API_COURSES_DELETE_COURSE = API_BASE + "/courses/soft_delete_course";
 export const API_COURSE_DETAILS = API_BASE + "/courses/get_course_details";
 export const API_LESSON_DETAILS = API_BASE + "/lessons/get_lesson_details";
+export const API_LESSON_CREATE_LESSON = API_BASE + "/lessons/create_lesson";
+export const API_LESSON_UPDATE_LESSON = API_BASE + "/lessons/update_lesson";
 
 /*export const API_GET_REPORTS = API_BASE + "/reports/get_all_reports";
 export const API_GET_REPORT_DETAILS = API_BASE + "/reports/get_report_details";

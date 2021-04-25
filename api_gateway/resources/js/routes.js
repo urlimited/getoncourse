@@ -25,6 +25,7 @@ import {MRouter} from "./core/mrouter/MRouter";
 import CoursesContainer from "./application/containers/courses.container";
 import CourseDetailsContainer from "./application/containers/courseDetails.container";
 import {PanelLayout} from "./application/pages/panel.layout";
+import LessonCreatePage from "./application/pages/lessonCreate.page";
 
 const loadStateDefault = loadState() ?? {
     userData: {}
@@ -35,7 +36,6 @@ const localState = {
 };
 
 const router = MRouter.initRouter({basePath: ''});
-
 const store = createStore(reducers, localState, applyMiddleware(thunkMiddleware, authMiddleware));
 export default function(){
     return <Provider store={store}>
@@ -46,6 +46,7 @@ export default function(){
                     <Route exact path={"/homepage"} component={Homepage}/>*/}
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSES_PAGE_NAME)} component={() => <PanelLayout Page={CoursesContainer} />}/>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME)} component={() => <PanelLayout Page={CourseDetailsContainer} />}/>
+                <Route exact path={router.getRoute(routes.ROUTE_TO_LESSON_CREATE_PAGE_NAME)} component={()=><PanelLayout Page={LessonCreatePage}/>}/>
 
                 {/*<Route exact path={"/courses2"} component={CoursesContainer}/>*/}
 {/*
