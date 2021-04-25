@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "./require.css";
+
 const getCaretCoordinates = require('textarea-caret');
 
-const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConfigsHandler}/*{deleteHandler}*/) => {
+const Editor__textBlock = ({initialContent, /*createNewBlockHandler,*/ placeholder, setDropdownCommandsConfigsHandler}/*{deleteHandler}*/) => {
 
     const [content, setContent] = useState(initialContent);
     const [caretPosition, setCaretPosition] = useState({});
@@ -54,6 +55,9 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
 
                       if (e.code === 'Space')
                           setIsCommandStarted(false);
+
+                      /*if (e.code === 'Enter' && isCommandStarted)
+                          createNewBlockHandler(command);*/
 
                   }}
                   /*onBlur={e => setDropdownCommandsConfigsHandler({

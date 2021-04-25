@@ -3,14 +3,12 @@ import {EditorModel} from "./models/editor.model.tsx";
 import {EditorTextBlockModel} from "./models/editorTextBlock.model.tsx";
 
 const Editor = ({blocksLoaded}) => {
-    const [editorRender, setEditorRender] = useState(0);
-
-    const editor = new EditorModel({
+    const [editor, setEditor] = useState(new EditorModel({
         blocks: [
             new EditorTextBlockModel()
         ],
-        render: (value) => setEditorRender(value)
-    })
+        render: (value) => setEditor(value)
+    }));
 
     return (<>
         <h3>Editor</h3>
