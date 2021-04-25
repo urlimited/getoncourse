@@ -72,6 +72,11 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
                       }
                   }}
 
+                  onInput={e => {
+                      e.target.style.height = 'auto';
+                      e.target.style.height = (e.target.scrollHeight + 'px');
+                  }}
+
                   onFocus={e => {
                       e.target.placeholder = placeholder;
                   }}

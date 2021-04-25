@@ -3,13 +3,16 @@
 }
 
 .editor__text-block-textarea {
-    background-color: #efefef;
+    background-color: transparent;
     border: none;
-    border-radius: 2px;
+    height: 1.7em;
     resize: none;
     width: 100%;
 }
 
 .editor__text-block-textarea:focus {
+    background-color: #efefef;
+    border: none;
+    border-radius: 2px;
     outline: none;
 }

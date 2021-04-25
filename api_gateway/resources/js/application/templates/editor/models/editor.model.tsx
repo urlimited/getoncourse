@@ -5,6 +5,8 @@ import * as React from "react";
 import {EditorCommandsBlockModel, EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model.tsx";
 // @ts-ignore
 import {EditorTextBlockModel} from "./editorTextBlock.model.tsx";
+// @ts-ignore
+import {EditorImageBlockModel} from "./editorImageBlock.model.tsx";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
@@ -55,6 +57,10 @@ export class EditorModel {
         switch(command){
             case 'text':
                 block = new EditorTextBlockModel({key: "text-" + (+new Date())});
+                break;
+            case 'image':
+                block = new EditorImageBlockModel({key: "image-" + (+new Date())});
+                break;
         }
 
         if(block !== undefined){
