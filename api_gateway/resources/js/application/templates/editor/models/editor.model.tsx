@@ -28,7 +28,7 @@ export class EditorModel {
         this._blocks = configs?.blocks
             .map(bc => bc.setHandlers({
                 setDropdownCommandsConfigsHandler: (dropdownConfigs: EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
-                createNewBlockHandler: (command: string) => this.createNewBlock(command),
+                createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement),
             })) ?? [];
 
         this._render = configs?.render ?? (() => {});
@@ -36,7 +36,7 @@ export class EditorModel {
     }
 
     public renderBlocks(): Array<React.ReactElement> {
-        return this._blocks.map(b => b.render());
+        return this._blocks.map((b, k) => b.render(k));
     }
 
     public renderCommandsDropdown(): React.ReactElement {
@@ -49,16 +49,16 @@ export class EditorModel {
         this._render(new EditorModel(this.getConfigs()));
     }
 
-    public createNewBlock(command: string): void {
+    public createNewBlock(command: string, selfElement: EditorBlockModel): void {
         let block: EditorBlockModel;
 
         switch(command){
             case 'text':
-                block = new EditorTextBlockModel();
+                block = new EditorTextBlockModel({key: "text-" + (+new Date())});
         }
 
         if(block !== undefined){
-            this._blocks.push(block);
+            this._blocks.splice(this._blocks.indexOf(selfElement) + 1, 0, block);
 
             this._render(new EditorModel(this.getConfigs()));
         }

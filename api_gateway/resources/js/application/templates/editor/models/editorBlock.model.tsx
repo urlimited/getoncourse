@@ -15,7 +15,7 @@ export abstract class EditorBlockModel {
         this._id = configs?.id ?? 0;
     }
 
-    public abstract render(): React.ReactElement;
+    public abstract render(key: number): React.ReactElement;
 
     get id(): number {
         return this._id;

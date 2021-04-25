@@ -27,8 +27,8 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
     }, [isCommandStarted]);
 
 
-    return (<div className="editor__text-block">
-        <textarea placeholder={placeholder} className="editor__text-block-textarea"
+    return (<div className="editor__text-block" >
+        <textarea className="editor__text-block-textarea"
                   autoFocus={true}
                   onChange={e => {
                       /*if (e.target.value === '')
@@ -38,8 +38,6 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
 
                       if (isCommandStarted) {
                           const regex = `.{${caretPosition.charStarted}}\\/(.*).{${(e.target.value.length - e.target.selectionStart)}}`;
-
-                          console.log(regex);
 
                           if ((new RegExp(regex, "gm")).exec(e.target.value))
                               setCommand((new RegExp(regex, "gm")).exec(e.target.value)[1]);
@@ -72,6 +70,14 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
                           e.preventDefault();
                           createNewBlockHandler('text');
                       }
+                  }}
+
+                  onFocus={e => {
+                      e.target.placeholder = placeholder;
+                  }}
+
+                  onBlur={e => {
+                      e.target.placeholder = "";
                   }}
             /*onBlur={e => setDropdownCommandsConfigsHandler({
                 isVisible: false

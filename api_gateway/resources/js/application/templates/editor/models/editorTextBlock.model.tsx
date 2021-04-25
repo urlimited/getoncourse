@@ -7,6 +7,7 @@ import TextBlock from "../__textBlock/editor__textBlock";
 interface EditorTextBlockModelConfigs extends EditorBlockModelConfigs {
     content: string,
     placeholder: string,
+    key: string
 }
 
 interface EditorTextBlockModelHandlers {
@@ -20,7 +21,9 @@ interface EditorTextBlockModelHandlers {
 export class EditorTextBlockModel extends EditorBlockModel {
     protected _content: string;
 
-    protected _placeholder: string = "Type '/' to start";
+    protected _key: string;
+
+    protected _placeholder: string;
 
     protected _handlers: EditorTextBlockModelHandlers;
 
@@ -29,34 +32,24 @@ export class EditorTextBlockModel extends EditorBlockModel {
 
         this._content = configs?.content ?? "";
 
-        this._placeholder = configs?.placeholder ?? "";
+        this._key = configs?.key ?? "text-" + (+new Date());
+
+        this._placeholder = configs?.placeholder ?? "Type '/' to start";
     }
 
-    public render(): React.ReactElement {
+    public render(key: number): React.ReactElement {
         return <TextBlock
+            key={this._key}
             placeholder={this._placeholder}
             setDropdownCommandsConfigsHandler={this._handlers.setDropdownCommandsConfigsHandler}
-            createNewBlockHandler={this._handlers.createNewBlockHandler}
+            createNewBlockHandler={(command: string) => this._handlers.createNewBlockHandler(command, this)}
             initialContent={this._content} />
     }
 
     public setHandlers(handlers: EditorTextBlockModelHandlers): EditorTextBlockModel {
         this._handlers = handlers;
 
-        /*this._handlers.createNewBlockHandler = (command: string): void => {
-            this._handlers.createNewBlockHandler(this.selectBlockByCommand(command));
-        }*/
-
         return this;
-    }
-
-    protected selectBlockByCommand(command: string): EditorBlockModel{
-        switch(command){
-            case 'text':
-                return new EditorTextBlockModel()
-        }
-
-        return false;
     }
 
     get content(): string {
