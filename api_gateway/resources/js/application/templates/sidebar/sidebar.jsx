@@ -17,13 +17,14 @@ export const Sidebar = ({menuContent}) => {
                                 <div className="simplebar-content" style={{padding: "0"}}>
                                     <div id="sidebar-menu" className="mm-show">
                                         <ul className="metismenu list-unstyled mm-show mm-active" id="side-menu">
-                                            {menuContent.map(m => (
-                                                <>
+                                            {menuContent.map((m, k) => (
+                                                <div key={'Sidebar__linkTitle-' + k}>
                                                     <Sidebar__linkTitle title={m.title}/>
-                                                    {m.items.map(item => (
-                                                        <Sidebar__linkItem title={item.itemTitle} route={item.itemRoute}/>
+                                                    {m.items.map((item, j) => (
+                                                        <Sidebar__linkItem title={item.itemTitle} route={item.itemRoute}
+                                                                           key={'Sidebar__linkItem-' + k + '-' + j}/>
                                                     ))}
-                                                </>
+                                                </div>
                                             ))}
                                         </ul>
                                     </div>

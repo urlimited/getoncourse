@@ -1,0 +1,18 @@
+.editor__text-block {
+
+}
+
+.editor__text-block-textarea {
+    background-color: transparent;
+    border: none;
+    height: 1.7em;
+    resize: none;
+    width: 100%;
+}
+
+.editor__text-block-textarea:focus {
+    background-color: #efefef;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+}

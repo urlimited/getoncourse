@@ -1,0 +1,26 @@
+.editor__image-block-preview {
+    position: relative;
+}
+
+.editor__image-block-preview-image {
+    width: 100%;
+}
+
+.editor__image-block-preview:hover:after {
+    background: rgba(100,100,100,0.5);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.editor__image-block-preview-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
