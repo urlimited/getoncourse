@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "./require.css";
+
 const getCaretCoordinates = require('textarea-caret');
 
-const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConfigsHandler}/*{deleteHandler}*/) => {
+const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConfigsHandler, createNewBlockHandler}/*{deleteHandler}*/) => {
 
     const [content, setContent] = useState(initialContent);
     const [caretPosition, setCaretPosition] = useState({});
@@ -11,36 +12,42 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
     const [isCommandStarted, setIsCommandStarted] = useState(false);
 
     useEffect(() => {
-        if(isCommandStarted)
+        if (isCommandStarted)
             setDropdownCommandsConfigsHandler({
                 position: caretPosition,
                 isVisible: true
-            })
-        else
+            });
+        else {
             setDropdownCommandsConfigsHandler({
                 isVisible: false
-            })
+            });
+
+            setCommand('');
+        }
     }, [isCommandStarted]);
 
 
     return (<div className="editor__text-block">
         <textarea placeholder={placeholder} className="editor__text-block-textarea"
+                  autoFocus={true}
                   onChange={e => {
                       /*if (e.target.value === '')
                           deleteHandler(id);*/
 
                       setContent(e.target.value)
 
-                      if(isCommandStarted){
+                      if (isCommandStarted) {
                           const regex = `.{${caretPosition.charStarted}}\\/(.*).{${(e.target.value.length - e.target.selectionStart)}}`;
 
-                          if((new RegExp(regex, "gm")).exec(e.target.value))
+                          console.log(regex);
+
+                          if ((new RegExp(regex, "gm")).exec(e.target.value))
                               setCommand((new RegExp(regex, "gm")).exec(e.target.value)[1]);
                       }
                   }}
 
                   onKeyPress={e => {
-                      if (e.code === "Slash"){
+                      if (e.code === "Slash") {
                           const caret = getCaretCoordinates(e.target, e.target.selectionEnd);
 
                           setCaretPosition({
@@ -55,10 +62,20 @@ const Editor__textBlock = ({initialContent, placeholder, setDropdownCommandsConf
                       if (e.code === 'Space')
                           setIsCommandStarted(false);
 
+                      if (e.code === 'Enter' && isCommandStarted) {
+                          e.preventDefault();
+                          createNewBlockHandler(command);
+                          setIsCommandStarted(false);
+                      }
+
+                      if (e.code === 'Enter' && !isCommandStarted) {
+                          e.preventDefault();
+                          createNewBlockHandler('text');
+                      }
                   }}
-                  /*onBlur={e => setDropdownCommandsConfigsHandler({
-                      isVisible: false
-                  })}*/
+            /*onBlur={e => setDropdownCommandsConfigsHandler({
+                isVisible: false
+            })}*/
                   value={content}/>
     </div>)
 }

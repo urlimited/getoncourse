@@ -10,7 +10,8 @@ interface EditorTextBlockModelConfigs extends EditorBlockModelConfigs {
 }
 
 interface EditorTextBlockModelHandlers {
-    setDropdownCommandsConfigsHandler: Function
+    setDropdownCommandsConfigsHandler: Function,
+    createNewBlockHandler: Function
 }
 
 /**
@@ -35,13 +36,27 @@ export class EditorTextBlockModel extends EditorBlockModel {
         return <TextBlock
             placeholder={this._placeholder}
             setDropdownCommandsConfigsHandler={this._handlers.setDropdownCommandsConfigsHandler}
+            createNewBlockHandler={this._handlers.createNewBlockHandler}
             initialContent={this._content} />
     }
 
     public setHandlers(handlers: EditorTextBlockModelHandlers): EditorTextBlockModel {
         this._handlers = handlers;
 
+        /*this._handlers.createNewBlockHandler = (command: string): void => {
+            this._handlers.createNewBlockHandler(this.selectBlockByCommand(command));
+        }*/
+
         return this;
+    }
+
+    protected selectBlockByCommand(command: string): EditorBlockModel{
+        switch(command){
+            case 'text':
+                return new EditorTextBlockModel()
+        }
+
+        return false;
     }
 
     get content(): string {

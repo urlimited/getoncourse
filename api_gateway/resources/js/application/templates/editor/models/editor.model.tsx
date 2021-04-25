@@ -3,6 +3,8 @@ import {EditorBlockModel} from "./editorBlock.model.tsx";
 import * as React from "react";
 // @ts-ignore
 import {EditorCommandsBlockModel, EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model.tsx";
+// @ts-ignore
+import {EditorTextBlockModel} from "./editorTextBlock.model.tsx";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
@@ -25,8 +27,8 @@ export class EditorModel {
 
         this._blocks = configs?.blocks
             .map(bc => bc.setHandlers({
-                setDropdownCommandsConfigsHandler: (dropdownConfigs: EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs)
-                //createNewBlockHandler: (block: EditorBlockModel) => this.createNewBlock(block),
+                setDropdownCommandsConfigsHandler: (dropdownConfigs: EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
+                createNewBlockHandler: (command: string) => this.createNewBlock(command),
             })) ?? [];
 
         this._render = configs?.render ?? (() => {});
@@ -47,10 +49,19 @@ export class EditorModel {
         this._render(new EditorModel(this.getConfigs()));
     }
 
-    public createNewBlock(block: EditorBlockModel): void {
-        this._blocks.push(block);
+    public createNewBlock(command: string): void {
+        let block: EditorBlockModel;
 
-        this._render(new EditorModel(this.getConfigs()));
+        switch(command){
+            case 'text':
+                block = new EditorTextBlockModel();
+        }
+
+        if(block !== undefined){
+            this._blocks.push(block);
+
+            this._render(new EditorModel(this.getConfigs()));
+        }
     }
 
     public getConfigs(): EditorModelConfigs {
