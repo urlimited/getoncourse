@@ -17,6 +17,8 @@ export interface EditorInsertableBlockModelHandlers extends editorBlock.EditorBl
 export abstract class EditorInsertableBlockModel extends editorBlock.EditorBlockModel {
     protected _content: string;
 
+    protected _handlers: EditorInsertableBlockModelHandlers;
+
     protected _placeholder: string;
 
     protected constructor(configs?: EditorInsertableBlockModelConfigs) {

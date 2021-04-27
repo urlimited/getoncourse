@@ -6,7 +6,9 @@ export interface EditorBlockModelConfigs {
 }
 
 export interface EditorBlockModelHandlers {
-    deleteBlockHandler?: Function
+    deleteBlockHandler?: Function,
+    setDropdownCommandsConfigsHandler: Function,
+    createNewBlockHandler: Function
 }
 
 /**
