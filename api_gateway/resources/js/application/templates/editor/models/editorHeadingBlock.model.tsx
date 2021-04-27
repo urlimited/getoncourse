@@ -22,7 +22,7 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
 
         this._key = configs?.key ?? "text-" + (+new Date());
 
-        this._placeholder = configs?.placeholder ?? "Type '/' to start";
+        this._placeholder = configs?.placeholder ?? "Heading...";
     }
 
     public render(key: number): React.ReactElement {
