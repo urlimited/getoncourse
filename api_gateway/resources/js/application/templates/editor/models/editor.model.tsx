@@ -1,16 +1,12 @@
-// @ts-ignore
-import {EditorBlockModel} from "./editorBlock.model.tsx";
+import {EditorBlockModel} from "./editorBlock.model";
 import * as React from "react";
-// @ts-ignore
-import {EditorCommandsBlockModel, EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model.tsx";
-// @ts-ignore
-import {EditorTextBlockModel} from "./editorTextBlock.model.tsx";
-// @ts-ignore
-import {EditorImageBlockModel} from "./editorImageBlock.model.tsx";
+import * as EditorCommandsBlockModelFile from "./editorCommandsBlock.model";
+import * as EditorTextBlockModelFile from "./editorTextBlock.model";
+import * as EditorImageBlockModelFile from "./editorImageBlock.model";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
-    commandsDropdown?: EditorCommandsBlockModel,
+    commandsDropdown?: EditorCommandsBlockModelFile.EditorCommandsBlockModel,
     render: Function
 }
 
@@ -20,16 +16,16 @@ interface EditorModelConfigs {
 export class EditorModel {
     protected _blocks: Array<EditorBlockModel> = [];
 
-    protected _commandsDropdown: EditorCommandsBlockModel;
+    protected _commandsDropdown: EditorCommandsBlockModelFile.EditorCommandsBlockModel;
 
     protected _render: Function;
 
     public constructor(configs?: EditorModelConfigs) {
-        this._commandsDropdown = configs?.commandsDropdown ?? new EditorCommandsBlockModel();
+        this._commandsDropdown = configs?.commandsDropdown ?? new EditorCommandsBlockModelFile.EditorCommandsBlockModel();
 
         this._blocks = configs?.blocks
             .map(bc => bc.setHandlers({
-                setDropdownCommandsConfigsHandler: (dropdownConfigs: EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
+                setDropdownCommandsConfigsHandler: (dropdownConfigs: EditorCommandsBlockModelFile.EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
                 createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement),
             })) ?? [];
 
@@ -45,7 +41,7 @@ export class EditorModel {
         return this._commandsDropdown.render();
     }
 
-    public setDropdownCommandsConfigs(configs: EditorCommandsBlockModelConfigs): void {
+    public setDropdownCommandsConfigs(configs: EditorCommandsBlockModelFile.EditorCommandsBlockModelConfigs): void {
         this._commandsDropdown.setConfigs(configs);
 
         this._render(new EditorModel(this.getConfigs()));
@@ -56,10 +52,10 @@ export class EditorModel {
 
         switch(command){
             case 'text':
-                block = new EditorTextBlockModel({key: "text-" + (+new Date())});
+                block = new EditorTextBlockModelFile.EditorTextBlockModel({key: "text-" + (+new Date())});
                 break;
             case 'image':
-                block = new EditorImageBlockModel({key: "image-" + (+new Date())});
+                block = new EditorImageBlockModelFile.EditorImageBlockModel({key: "image-" + (+new Date())});
                 break;
         }
 

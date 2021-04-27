@@ -1,11 +1,11 @@
 // @ts-ignore
-import {EditorBlockModel, EditorBlockModelConfigs} from "./editorBlock.model.tsx";
+import * as EditorBlockModelFile from "./editorBlock.model.tsx";
 // @ts-ignore
 import * as React from "react";
 // @ts-ignore
 import CommandsBlock from "../__dropdownCommands/editor__dropdownCommands.jsx";
 
-interface EditorCommandsBlockModelConfigs extends EditorBlockModelConfigs {
+export interface EditorCommandsBlockModelConfigs extends EditorBlockModelFile.EditorBlockModelConfigs {
     commands?: Array<string>,
     isVisible?: boolean,
     position: {
@@ -17,7 +17,7 @@ interface EditorCommandsBlockModelConfigs extends EditorBlockModelConfigs {
 /**
  * Class EditorTextBlockModel
  */
-export class EditorCommandsBlockModel extends EditorBlockModel {
+export class EditorCommandsBlockModel extends EditorBlockModelFile.EditorBlockModel {
     protected _commands: Array<string>;
     protected _isVisible: boolean;
     protected _positionX: number;
