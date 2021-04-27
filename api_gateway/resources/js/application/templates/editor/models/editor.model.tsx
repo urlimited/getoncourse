@@ -4,6 +4,7 @@ import * as f1 from "./editorCommandsBlock.model";
 import * as f2 from "./editorTextBlock.model";
 import * as f3 from "./editorImageBlock.model";
 import * as f4 from "./editorHeadingBlock.model";
+import * as f5 from "./editorListingBlock.model";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
@@ -60,6 +61,9 @@ export class EditorModel {
                 break;
             case 'heading':
                 block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date())});
+                break;
+            case 'list':
+                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date())});
                 break;
         }
 
