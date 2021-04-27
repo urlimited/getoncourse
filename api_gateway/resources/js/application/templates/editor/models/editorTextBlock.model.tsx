@@ -1,8 +1,8 @@
-import * as EditorBlockModelFile from "./editorBlock.model";
+import * as EditorInsertableBlockModelFile from "./editorInsertableBlock.model";
 import * as React from "react";
 import TextBlock from "../__textBlock/editor__textBlock";
 
-export interface EditorTextBlockModelConfigs extends EditorBlockModelFile.EditorBlockModelConfigs {
+export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
     placeholder?: string,
 }
@@ -10,7 +10,7 @@ export interface EditorTextBlockModelConfigs extends EditorBlockModelFile.Editor
 /**
  * Class EditorTextBlockModel
  */
-export class EditorTextBlockModel extends EditorBlockModelFile.EditorBlockModel {
+export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorInsertableBlockModel {
     protected _content: string;
 
     protected _placeholder: string;
