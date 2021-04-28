@@ -8,7 +8,7 @@ export const ROUTE_TO_COURSES_PAGE_NAME = "courses";
 export const ROUTE_TO_COURSE_DETAILS_PAGE_NAME = "courses_details";
 export const ROUTE_TO_LESSONS_PAGE_NAME = "lessons";
 export const ROUTE_TO_LESSON_DETAILS_PAGE_NAME = "lessons_details";
-export const ROUTE_TO_LESSON_CREATE_PAGE_NAME = "lesson_create"
+export const ROUTE_TO_USERS_LIST_PAGE_NAME = "users"
 
 export const ROUTE_TO_LOGIN_PAGE = "/login";
 export const ROUTE_TO_MAIN_PAGE = "/";
@@ -17,8 +17,7 @@ export const ROUTE_TO_COURSES_PAGE = "/courses";
 export const ROUTE_TO_COURSE_DETAILS_PAGE = ROUTE_TO_COURSES_PAGE + "/:courseId";
 export const ROUTE_TO_LESSONS_PAGE = ROUTE_TO_COURSE_DETAILS_PAGE + "/lessons";
 export const ROUTE_TO_LESSON_DETAILS_PAGE = ROUTE_TO_LESSONS_PAGE + "/:lessonId";
-export const ROUTE_TO_LESSON_CREATE_PAGE = ROUTE_TO_LESSONS_PAGE + "/asd/:lessonId";
-
+export const ROUTE_TO_USERS_LIST_PAGE = "/users"
 
 //Routes for courses
 export const ROUTE_TO_COURSES = '/courses'
@@ -31,4 +30,4 @@ router.addRoute(new MRoute({name: ROUTE_TO_COURSES_PAGE_NAME, path: ROUTE_TO_COU
 router.addRoute(new MRoute({name: ROUTE_TO_COURSE_DETAILS_PAGE_NAME, path: ROUTE_TO_COURSE_DETAILS_PAGE}));
 router.addRoute(new MRoute({name: ROUTE_TO_LESSONS_PAGE_NAME, path: ROUTE_TO_LESSONS_PAGE}));
 router.addRoute(new MRoute({name: ROUTE_TO_LESSON_DETAILS_PAGE_NAME, path: ROUTE_TO_LESSON_DETAILS_PAGE}));
-router.addRoute(new MRoute({name: ROUTE_TO_LESSON_CREATE_PAGE_NAME, path:ROUTE_TO_LESSON_CREATE_PAGE}))
+router.addRoute(new MRoute({name: ROUTE_TO_USERS_LIST_PAGE_NAME, path: ROUTE_TO_USERS_LIST_PAGE}));

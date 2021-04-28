@@ -89,8 +89,8 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                         title: "Добавить урок",
                         classes: ["btn-sm", "btn-primary"],
                         routeLink: {
-                            routeValue: routes.ROUTE_TO_LESSON_CREATE_PAGE_NAME,
-                            routeParams: courseId
+                            routeValue: routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME,
+                            routeParams: {courseId, lessonId: 0}
                         }
                     }
                 },
