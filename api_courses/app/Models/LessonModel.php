@@ -88,7 +88,7 @@ class LessonModel extends AbstractModel
     public function delete()
     {
         if($this->entity->deletedAt === null)
-            throw new ValidationException(new MessageBag(['course' => 'You can not delete soft undeleted course. Delete it softly, first']));
+            throw new ValidationException(new MessageBag(['course' => 'You can not delete soft undeleted lesson. Delete it softly, first']));
 
         $this->entityManager->remove($this->entity);
         $this->entityManager->flush();

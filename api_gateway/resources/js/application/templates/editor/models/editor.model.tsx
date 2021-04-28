@@ -1,16 +1,14 @@
-// @ts-ignore
-import {EditorBlockModel} from "./editorBlock.model.tsx";
+import {EditorBlockModel} from "./editorBlock.model";
 import * as React from "react";
-// @ts-ignore
-import {EditorCommandsBlockModel, EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model.tsx";
-// @ts-ignore
-import {EditorTextBlockModel} from "./editorTextBlock.model.tsx";
-// @ts-ignore
-import {EditorImageBlockModel} from "./editorImageBlock.model.tsx";
+import * as f1 from "./editorCommandsBlock.model";
+import * as f2 from "./editorTextBlock.model";
+import * as f3 from "./editorImageBlock.model";
+import * as f4 from "./editorHeadingBlock.model";
+import * as f5 from "./editorListingBlock.model";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
-    commandsDropdown?: EditorCommandsBlockModel,
+    commandsDropdown?: f1.EditorCommandsBlockModel,
     render: Function
 }
 
@@ -20,18 +18,22 @@ interface EditorModelConfigs {
 export class EditorModel {
     protected _blocks: Array<EditorBlockModel> = [];
 
-    protected _commandsDropdown: EditorCommandsBlockModel;
+    protected _commandsDropdown: f1.EditorCommandsBlockModel;
 
     protected _render: Function;
 
     public constructor(configs?: EditorModelConfigs) {
-        this._commandsDropdown = configs?.commandsDropdown ?? new EditorCommandsBlockModel();
+        this._commandsDropdown = configs?.commandsDropdown ?? new f1.EditorCommandsBlockModel();
 
         this._blocks = configs?.blocks
             .map(bc => bc.setHandlers({
-                setDropdownCommandsConfigsHandler: (dropdownConfigs: EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
+                setDropdownCommandsConfigsHandler: (dropdownConfigs: f1.EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
                 createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement),
             })) ?? [];
+
+        this._commandsDropdown.setHandlers({
+            createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement)
+        });
 
         this._render = configs?.render ?? (() => {});
 
@@ -45,7 +47,7 @@ export class EditorModel {
         return this._commandsDropdown.render();
     }
 
-    public setDropdownCommandsConfigs(configs: EditorCommandsBlockModelConfigs): void {
+    public setDropdownCommandsConfigs(configs: f1.EditorCommandsBlockModelConfigs): void {
         this._commandsDropdown.setConfigs(configs);
 
         this._render(new EditorModel(this.getConfigs()));
@@ -56,10 +58,16 @@ export class EditorModel {
 
         switch(command){
             case 'text':
-                block = new EditorTextBlockModel({key: "text-" + (+new Date())});
+                block = new f2.EditorTextBlockModel({key: "text-" + (+new Date())});
                 break;
             case 'image':
-                block = new EditorImageBlockModel({key: "image-" + (+new Date())});
+                block = new f3.EditorImageBlockModel({key: "image-" + (+new Date())});
+                break;
+            case 'heading':
+                block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date())});
+                break;
+            case 'list':
+                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date())});
                 break;
         }
 

@@ -35,3 +35,5 @@ $router->delete('/courses/delete_course', 'CoursesController@deleteCourse');
 $router->get('/lessons/get_lesson_details', 'LessonsController@getLessonDetails');
 $router->post('/lessons/create_lesson', 'LessonsController@createLesson');
 $router->put('/lessons/update_lesson', 'LessonsController@updateLesson');
+$router->put('/lessons/soft_delete_lesson', 'LessonsController@softDeleteLesson');
+$router->delete('/lessons/delete_lesson', 'LessonsController@deleteLesson');

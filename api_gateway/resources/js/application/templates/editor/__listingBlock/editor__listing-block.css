@@ -1,0 +1,22 @@
+.editor__heading-block {
+
+}
+
+.editor__heading-block-textarea {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    height: 1.7em;
+    resize: none;
+    width: 100%;
+}
+
+.editor__heading-block-textarea:focus {
+    background-color: #efefef;
+    border: none;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+}

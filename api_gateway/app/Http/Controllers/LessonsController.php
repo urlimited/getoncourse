@@ -58,4 +58,32 @@ class LessonsController extends Controller
             'query' => $request->all()
         ]);
     }
+
+    public function deleteLesson(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'DELETE',
+            'http://webserver/lessons/delete_lesson', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'query' => $request->all()
+        ]);
+    }
+
+    public function softDeleteLesson(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'PUT',
+            'http://webserver/lessons/soft_delete_lesson', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'query' => $request->all()
+        ]);
+    }
 }

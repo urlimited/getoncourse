@@ -1,7 +1,6 @@
 import * as EditorInsertableBlockModelFile from "./editorInsertableBlock.model";
 import * as React from "react";
-import TextBlock from "../__textBlock/editor__textBlock";
-import {EditorBlockModelHandlers} from "./editorBlock.model";
+import ListingBlock from "../__listingBlock/editor__listingBlock";
 import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
@@ -12,7 +11,7 @@ export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelF
 /**
  * Class EditorTextBlockModel
  */
-export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorInsertableBlockModel {
+export class EditorListingBlockModel extends EditorInsertableBlockModelFile.EditorInsertableBlockModel {
     protected _content: string;
 
     protected _placeholder: string;
@@ -24,11 +23,11 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
 
         this._key = configs?.key ?? "text-" + (+new Date());
 
-        this._placeholder = configs?.placeholder ?? "Type '/' to start";
+        this._placeholder = configs?.placeholder ?? "List...";
     }
 
     public render(key: number): React.ReactElement {
-        return <TextBlock
+        return <ListingBlock
             key={this._key}
             placeholder={this._placeholder}
             setDropdownCommandsConfigsHandler={(configs: EditorCommandsBlockModelConfigs) =>
@@ -37,7 +36,7 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
                     callerBlock: this
                 })}
             createNewBlockHandler={(command: string) => this._handlers.createNewBlockHandler(command, this)}
-            initialContent={this._content}/>
+            initialContent={this._content} />
     }
 
     get content(): string {

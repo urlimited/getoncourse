@@ -21,7 +21,10 @@ mix.webpackConfig({
                     }
                 }]
             }
-        ],
+        ]
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     }
 }).js('./resources/js/app.js', './public/js')
     .sass('./resources/sass/app.scss', './public/css');
