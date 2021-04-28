@@ -31,6 +31,10 @@ export class EditorModel {
                 createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement),
             })) ?? [];
 
+        this._commandsDropdown.setHandlers({
+            createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement)
+        });
+
         this._render = configs?.render ?? (() => {});
 
     }

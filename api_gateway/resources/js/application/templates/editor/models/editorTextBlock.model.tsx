@@ -1,6 +1,8 @@
 import * as EditorInsertableBlockModelFile from "./editorInsertableBlock.model";
 import * as React from "react";
 import TextBlock from "../__textBlock/editor__textBlock";
+import {EditorBlockModelHandlers} from "./editorBlock.model";
+import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
@@ -29,9 +31,13 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
         return <TextBlock
             key={this._key}
             placeholder={this._placeholder}
-            setDropdownCommandsConfigsHandler={this._handlers.setDropdownCommandsConfigsHandler}
+            setDropdownCommandsConfigsHandler={(configs: EditorCommandsBlockModelConfigs) =>
+                this._handlers.setDropdownCommandsConfigsHandler({
+                    ...configs,
+                    callerBlock: this
+                })}
             createNewBlockHandler={(command: string) => this._handlers.createNewBlockHandler(command, this)}
-            initialContent={this._content} />
+            initialContent={this._content}/>
     }
 
     get content(): string {

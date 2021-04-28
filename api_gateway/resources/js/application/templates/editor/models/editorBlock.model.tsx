@@ -1,4 +1,5 @@
 import * as React from "react";
+import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 
 export interface EditorBlockModelConfigs {
     id?: number,
@@ -7,8 +8,8 @@ export interface EditorBlockModelConfigs {
 
 export interface EditorBlockModelHandlers {
     deleteBlockHandler?: Function,
-    setDropdownCommandsConfigsHandler: Function,
-    createNewBlockHandler: Function
+    setDropdownCommandsConfigsHandler?: Function,
+    createNewBlockHandler?: Function
 }
 
 /**
@@ -26,9 +27,13 @@ export abstract class EditorBlockModel {
     }
 
     public setHandlers(handlers: EditorBlockModelHandlers): EditorBlockModel {
-        this._handlers = handlers;
+        this._handlers = this.processHandlers(handlers);
 
         return this;
+    }
+
+    public processHandlers(handlers: EditorBlockModelHandlers): EditorBlockModelHandlers{
+        return handlers;
     }
 
     public abstract render(key: number): React.ReactElement;
