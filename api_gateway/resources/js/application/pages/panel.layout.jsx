@@ -34,7 +34,7 @@ export const PanelLayout = ({Page}) => {
                         [
                             {
                                 itemTitle:"Курсы",
-                                itemRoute: router.getRoute(ROUTE_TO_COURSES_PAGE_NAME)
+                               itemRoute: router.getRoute(ROUTE_TO_COURSES_PAGE_NAME)
                             },
                         ]
 

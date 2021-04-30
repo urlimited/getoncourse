@@ -1,5 +1,5 @@
-import {EduStuffText} from "./eduStuffText.model";
-import {v4 as uuid} from 'uuid';
+//import {EduStuffText} from "./eduStuffText.model";
+//import {v4 as uuid} from 'uuid';
 
 /**
  * Class Lesson
@@ -13,14 +13,14 @@ export class Lesson {
         this.description = data?.description ?? "";
         this.eduStuffs = data?.eduStuffs ?? [];
 
-        if (this.eduStuffs.length === 0)
+        /*if (this.eduStuffs.length === 0)
             this.addEduStuff(new EduStuffText({
                 id: uuid(),
                 type: 'text',
                 content: '',
                 lessonId: this.id,
                 order: 0
-            }));
+            }));*/
     }
 
     isNewLesson() {

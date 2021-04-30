@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body data-sidebar="dark" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false"
-      data-topbar="light">
+      data-topbar="light" id="project-body">
     <div id="app"></div>
     <script src="/js/app.js"></script>
 </body>

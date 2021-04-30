@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDataTable from 'react-data-table-component';
 import Button from "../button/button";
 
-const DataTable = ({columns, data, pagination, createButton}) => {
+const DataTable = ({columns, data, pagination, createButton, customStyles}) => {
     return (
         <>
             {createButton ? <div>
@@ -14,6 +14,7 @@ const DataTable = ({columns, data, pagination, createButton}) => {
                 data={data}
                 pagination={!!pagination}
                 paginationPerPage={10}
+                customStyles = {customStyles}
             />
         </>
     )
