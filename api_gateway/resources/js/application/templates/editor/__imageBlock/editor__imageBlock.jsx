@@ -1,15 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import "./require.css";
 
-const Editor__imageBlock = ({}) => {
+const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler}) => {
     const [imageSrc, setImageSrc] = useState('');
     const [file, setFile] = useState();
 
     const [isImageHovered, setIsImageHovered] = useState(false);
 
+    const selfHtmlElement = useRef(null);
+
+    useEffect(() => {
+        setHtmlElementHandler(selfHtmlElement.current);
+    }, []);
+
     return (<div className="editor__image-block">
         <div className="editor__image-block-input">
             <input type="file"
+                   ref={selfHtmlElement}
                    onChange={e => {
                        const reader = new FileReader();
 
@@ -27,7 +34,7 @@ const Editor__imageBlock = ({}) => {
             {isImageHovered
                 ? <div className="editor__image-block-preview-actions">
                     <button
-                        onClick={e => console.log('deleted')}>Delete
+                        onClick={e => deleteBlockHandler()}>Delete
                     </button>
                     <button
                         onClick={e => console.log('changed')}>Change

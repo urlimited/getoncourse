@@ -24,6 +24,8 @@ export class EditorImageBlockModel extends EditorBlockModelFile.EditorBlockModel
     public render(key: number): React.ReactElement {
         return <ImageBlock
             key={this._key}
+            setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
+            deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
         />
     }
 }

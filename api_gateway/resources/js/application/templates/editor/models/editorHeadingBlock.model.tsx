@@ -2,6 +2,7 @@ import * as EditorInsertableBlockModelFile from "./editorInsertableBlock.model";
 import * as React from "react";
 import HeadingBlock from "../__headingBlock/editor__headingBlock";
 import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
+import {ReactElement} from "react";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
@@ -26,7 +27,7 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
         this._placeholder = configs?.placeholder ?? "Heading...";
     }
 
-    public render(key: number): React.ReactElement {
+    public render(key: number): ReactElement {
         return <HeadingBlock
             key={this._key}
             placeholder={this._placeholder}
@@ -36,6 +37,9 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
                     callerBlock: this
                 })}
             createNewBlockHandler={(command: string) => this._handlers.createNewBlockHandler(command, this)}
+            deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
+            setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
+            afterRenderingCallback={this._afterRenderingCallback}
             initialContent={this._content} />
     }
 

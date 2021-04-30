@@ -1,7 +1,5 @@
 import * as editorBlock from "./editorBlock.model";
 import * as React from "react";
-import {EditorBlockModel, EditorBlockModelHandlers} from "./editorBlock.model";
-import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 
 export interface EditorInsertableBlockModelConfigs extends editorBlock.EditorBlockModelConfigs {
     content?: string,

@@ -1,8 +1,8 @@
 import * as EditorInsertableBlockModelFile from "./editorInsertableBlock.model";
 import * as React from "react";
 import TextBlock from "../__textBlock/editor__textBlock";
-import {EditorBlockModelHandlers} from "./editorBlock.model";
 import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
+import {ReactElement} from "react";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
@@ -27,7 +27,7 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
         this._placeholder = configs?.placeholder ?? "Type '/' to start";
     }
 
-    public render(key: number): React.ReactElement {
+    public render(key: number): ReactElement {
         return <TextBlock
             key={this._key}
             placeholder={this._placeholder}
@@ -37,7 +37,11 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
                     callerBlock: this
                 })}
             createNewBlockHandler={(command: string) => this._handlers.createNewBlockHandler(command, this)}
-            initialContent={this._content}/>
+            deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
+            setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
+            initialContent={this._content}
+            afterRenderingCallback={this._afterRenderingCallback}
+        />
     }
 
     get content(): string {

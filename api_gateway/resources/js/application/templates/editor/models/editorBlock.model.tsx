@@ -21,6 +21,10 @@ export abstract class EditorBlockModel {
 
     protected _key: string;
 
+    protected _htmlElement: HTMLElement;
+
+    protected _afterRenderingCallback: Function;
+
     protected constructor(configs?: EditorBlockModelConfigs) {
 
 
@@ -36,5 +40,17 @@ export abstract class EditorBlockModel {
         return handlers;
     }
 
-    public abstract render(key: number): React.ReactElement;
+    public setHtmlElement(htmlElement: HTMLElement){
+        this._htmlElement = htmlElement;
+    }
+
+    public getHtmlElement(){
+        return this._htmlElement;
+    }
+
+    public setAfterRenderingCallback(callback: Function){
+        this._afterRenderingCallback = callback;
+    }
+
+    public abstract render(key: number, callback?: Function): React.ReactElement;
 }

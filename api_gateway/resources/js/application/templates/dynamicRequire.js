@@ -1,7 +1,7 @@
 ////////////////////////////////////////
-// ATTENTION ! 
-// THIS FILE IS GENERATED DYNAMICALLY 
-// DO NOT TOUCH IT 
+// ATTENTION !
+// THIS FILE IS GENERATED DYNAMICALLY
+// DO NOT TOUCH IT
 ////////////////////////////////////////
 
 module.exports = (name) => {
@@ -12,8 +12,6 @@ module.exports = (name) => {
 			return require('./dataTable/dataTable.jsx');
 		case 'editor':
 			return require('./editor/editor.jsx');
-		case 'models':
-			return require('./models/models.jsx');
 		case 'header':
 			return require('./header/header.jsx');
 		case 'modal':

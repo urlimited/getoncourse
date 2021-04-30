@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import "./require.css";
 
 const getCaretCoordinates = require('textarea-caret');
 
 export const Editor__textInsertableBlock = (
     {
-        initialContent, placeholder, textareaClass,
-        setDropdownCommandsConfigsHandler, createNewBlockHandler
-    }/*{deleteHandler}*/) => {
+        initialContent, placeholder, textareaClass, afterRenderingCallback = () => {},
+        setDropdownCommandsConfigsHandler, createNewBlockHandler, deleteBlockHandler, setHtmlElementHandler
+    }) => {
+    const selfHtmlElement = useRef(null);
 
     const [content, setContent] = useState(initialContent);
     const [caretPosition, setCaretPosition] = useState({});
@@ -36,6 +37,12 @@ export const Editor__textInsertableBlock = (
     }, [isCommandStarted]);
 
     useEffect(() => {
+        setHtmlElementHandler(selfHtmlElement.current);
+
+        afterRenderingCallback();
+    }, []);
+
+    useEffect(() => {
         if(eventCommandSelected === true){
             setContent(commandRegexResult[1] + commandRegexResult[3]);
 
@@ -44,11 +51,12 @@ export const Editor__textInsertableBlock = (
     }, [eventCommandSelected]);
 
     return (<textarea
+        ref={selfHtmlElement}
         className={"editor__text-insertable-block-textarea " + (textareaClass ?? "")}
-        autoFocus={true}
         onChange={e => {
-            /*if (e.target.value === '')
-                deleteHandler(id);*/
+            if (e.target.value === ''){
+                deleteBlockHandler();
+            }
 
             setContent(e.target.value)
 
@@ -64,7 +72,12 @@ export const Editor__textInsertableBlock = (
             }
         }}
 
-        onKeyPress={e => {
+        onKeyDown={e => {
+            if (e.code === "Backspace" && e.target.value === ''){
+                e.preventDefault();
+                deleteBlockHandler();
+            }
+
             if (e.code === "Slash") {
                 const caret = getCaretCoordinates(e.target, e.target.selectionEnd);
 
