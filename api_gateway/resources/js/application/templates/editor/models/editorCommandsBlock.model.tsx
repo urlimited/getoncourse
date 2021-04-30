@@ -13,7 +13,8 @@ export interface EditorCommandsBlockModelConfigs extends f1.EditorBlockModelConf
         x: number,
         y: number
     },
-    callerBlock: EditorBlockModel | null
+    callerBlock: EditorBlockModel | null,
+    clearCommandHandler: Function
 }
 
 /**
@@ -28,6 +29,8 @@ export class EditorCommandsBlockModel extends f1.EditorBlockModel {
     protected _positionX: number;
     protected _positionY: number;
 
+    protected _clearCommandHandler: Function;
+
     protected _callerBlock: EditorBlockModel;
 
     public constructor(configs?: EditorCommandsBlockModelConfigs) {
@@ -37,11 +40,13 @@ export class EditorCommandsBlockModel extends f1.EditorBlockModel {
     }
 
     public render(): React.ReactElement {
-        return this._isVisible ? <CommandsBlock
-            position={{x: this._positionX, y: this._positionY}}
-            commands={this._commands}
+        return <CommandsBlock
+            initIsVisible={this._isVisible}
+            initPosition={{x: this._positionX, y: this._positionY}}
+            initCommands={this._commands}
             createNewBlockHandler={(command: string) => this._handlers.createNewBlockHandler(command, this._callerBlock)}
-        /> : <></>
+            clearCommandHandler={() => this._clearCommandHandler()}
+        />
     }
 
     public setConfigs(configs?: EditorCommandsBlockModelConfigs): void {
@@ -53,7 +58,8 @@ export class EditorCommandsBlockModel extends f1.EditorBlockModel {
             {
                 label: 'header',
                 command: 'heading'
-            }, {
+            },
+            {
                 label: 'image',
                 command: 'image'
             }];
@@ -64,5 +70,7 @@ export class EditorCommandsBlockModel extends f1.EditorBlockModel {
 
         this._positionX = configs?.position?.x ?? 0;
         this._positionY = configs?.position?.y ?? 0;
+
+        this._clearCommandHandler = configs?.clearCommandHandler ?? (() => {});
     }
 }

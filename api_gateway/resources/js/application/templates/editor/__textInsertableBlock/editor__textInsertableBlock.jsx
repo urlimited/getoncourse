@@ -12,14 +12,19 @@ export const Editor__textInsertableBlock = (
     const [content, setContent] = useState(initialContent);
     const [caretPosition, setCaretPosition] = useState({});
 
+    const [commandRegexResult, setCommandRegexResult] = useState('');
+
     const [command, setCommand] = useState('');
     const [isCommandStarted, setIsCommandStarted] = useState(false);
+
+    const [eventCommandSelected, setEventCommandSelected] = useState(false);
 
     useEffect(() => {
         if (isCommandStarted)
             setDropdownCommandsConfigsHandler({
                 position: caretPosition,
-                isVisible: true
+                isVisible: true,
+                clearCommandHandler: () => setEventCommandSelected(true)
             });
         else {
             setDropdownCommandsConfigsHandler({
@@ -30,6 +35,13 @@ export const Editor__textInsertableBlock = (
         }
     }, [isCommandStarted]);
 
+    useEffect(() => {
+        if(eventCommandSelected === true){
+            setContent(commandRegexResult[1] + commandRegexResult[3]);
+
+            setEventCommandSelected(false);
+        }
+    }, [eventCommandSelected]);
 
     return (<textarea
         className={"editor__text-insertable-block-textarea " + (textareaClass ?? "")}
@@ -41,10 +53,14 @@ export const Editor__textInsertableBlock = (
             setContent(e.target.value)
 
             if (isCommandStarted) {
-                const regex = `.{${caretPosition.charStarted}}\\/(.*).{${(e.target.value.length - e.target.selectionStart)}}`;
+                const commandRegex = `(.{${caretPosition.charStarted}})\\/(.*)(.{${(e.target.value.length - e.target.selectionStart)}})`;
 
-                if ((new RegExp(regex, "gm")).exec(e.target.value))
-                    setCommand((new RegExp(regex, "gm")).exec(e.target.value)[1]);
+                const regexResult = (new RegExp(commandRegex, "gm")).exec(e.target.value);
+
+                setCommandRegexResult(regexResult)
+
+                if (regexResult)
+                    setCommand(regexResult[2]);
             }
         }}
 
@@ -68,6 +84,8 @@ export const Editor__textInsertableBlock = (
                 e.preventDefault();
                 createNewBlockHandler(command);
                 setIsCommandStarted(false);
+
+                setContent(commandRegexResult[1] + commandRegexResult[3]);
             }
 
             if (e.code === 'Enter' && !isCommandStarted) {

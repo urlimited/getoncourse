@@ -1,38 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import "./require.css";
 
-const Editor__dropdownCommands = ({commands, position, createNewBlockHandler}) => {
+const Editor__dropdownCommands = ({initCommands, initPosition, initIsVisible, createNewBlockHandler, clearCommandHandler}) => {
 
-    const [dropdownBlock, setDropdownBlock] = useState(<div />);
-
-    useEffect(() => {
-        console.log(position);
-    }, [position]);
-
-    useEffect(() => {
-        console.log(dropdownBlock);
-    }, [dropdownBlock]);
+    const [dropdownBlock, setDropdownBlock] = useState();
+    const [isVisible, setIsVisible] = useState(initIsVisible);
 
     const marginX = 5;
-    const marginY = 200;
+    const marginY = 20;
+
+    useEffect(() => {
+        setIsVisible(initIsVisible)
+    }, [initIsVisible]);
 
     return (<>
-        <div className="editor__dropdown-commands-block" ref={ref => setDropdownBlock(ref)}
-             style={{position: 'absolute', top: (position.y -/* dropdownBlock.height -*/ marginY), left: (position.x + marginX)}}>
-            <div className="editor__dropdown-commands-block-header">Blocks</div>
-            {commands.map((c, k) => (
-                <div className="editor__dropdown-commands-block-item"
-                     key={'command-' + k}>
-                    <button
-                        className="editor__dropdown-commands-block-command-button"
-                        onClick={e => {
-                            createNewBlockHandler(c.command);
-                        }}
-                    >{c.label}</button>
-                </div>
-            ))}
-        </div>
-
+        {isVisible
+            ? <div className="editor__dropdown-commands-block" ref={ref => setDropdownBlock(ref)}
+                   style={{position: 'absolute', top: (initPosition.y - (dropdownBlock?.offsetHeight ?? 0) - marginY), left: (initPosition.x + marginX)}}>
+                <div className="editor__dropdown-commands-block-header">Blocks</div>
+                {initCommands.map((c, k) => (
+                    <div className="editor__dropdown-commands-block-item"
+                         key={'command-' + k}>
+                        <button
+                            className="editor__dropdown-commands-block-command-button"
+                            onClick={e => {
+                                createNewBlockHandler(c.command);
+                                clearCommandHandler();
+                                setIsVisible(false);
+                            }}
+                        >{c.label}</button>
+                    </div>
+                ))}
+            </div>
+            : <></>}
     </>)
 }
 
