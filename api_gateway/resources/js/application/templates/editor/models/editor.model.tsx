@@ -5,6 +5,9 @@ import * as f2 from "./editorTextBlock.model";
 import * as f3 from "./editorImageBlock.model";
 import * as f4 from "./editorHeadingBlock.model";
 import * as f5 from "./editorListingBlock.model";
+import {EditorInsertableBlockModel} from "./editorInsertableBlock.model";
+import {EditorTextBlockModel} from "./editorTextBlock.model";
+import {EditorCommandsBlockModel} from "./editorCommandsBlock.model";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
@@ -26,10 +29,7 @@ export class EditorModel {
         this._commandsDropdown = configs?.commandsDropdown ?? new f1.EditorCommandsBlockModel();
 
         this._blocks = configs?.blocks
-            .map(bc => bc.setHandlers({
-                setDropdownCommandsConfigsHandler: (dropdownConfigs: f1.EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
-                createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement),
-            })) ?? [];
+            .map(bc => this.setHandlersToBlock(bc)) ?? [];
 
         this._commandsDropdown.setHandlers({
             createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement)
@@ -40,6 +40,9 @@ export class EditorModel {
     }
 
     public renderBlocks(): Array<React.ReactElement> {
+        if(! (this._blocks[(this._blocks.length - 1)] instanceof EditorInsertableBlockModel))
+            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel()));
+
         return this._blocks.map((b, k) => b.render(k));
     }
 
@@ -84,5 +87,17 @@ export class EditorModel {
             commandsDropdown: this._commandsDropdown,
             render: this._render
         }
+    }
+
+    protected setHandlersToBlock(block: EditorBlockModel){
+        if(block instanceof EditorCommandsBlockModel)
+            return block.setHandlers({
+                createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement)
+            })
+
+        return block.setHandlers({
+            setDropdownCommandsConfigsHandler: (dropdownConfigs: f1.EditorCommandsBlockModelConfigs) => this.setDropdownCommandsConfigs(dropdownConfigs),
+            createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement),
+        })
     }
 }
