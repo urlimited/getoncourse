@@ -123,6 +123,11 @@ class LessonModel extends AbstractModel
         if($this->entity->deletedAt !== null)
             throw new ValidationException(new MessageBag(['course' => 'Course is soft deleted']));
 
+        $data['lesson_blocks'] = collect(json_decode($data['lesson_blocks'], true))
+            ->map(function($block){
+
+            })->toArray();
+
         $this->entity->fill($data);
 
         $this->entityManager->persist($this->entity);

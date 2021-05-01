@@ -5,10 +5,10 @@ namespace App\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entities\Repositories\EduStuffRepository")
- * @ORM\Table(name="edu_stuffs")
+ * @ORM\Entity(repositoryClass="App\Entities\Repositories\LessonBlockRepository")
+ * @ORM\Table(name="lesson_blocks")
  */
-class EduStuffEntity extends AbstractEntity
+class LessonBlockEntity extends AbstractEntity
 {
     protected array $dbFields = ['id', 'content', 'parentId', 'type', 'lessonId', 'deletedAt'];
     protected array $obligatoryFields = ['id', 'content', 'parentId', 'type', 'lessonId'];
@@ -51,12 +51,12 @@ class EduStuffEntity extends AbstractEntity
     public $lesson;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\EduStuffEntity", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="App\Entities\LessonBlockEntity", mappedBy="parent")
      */
     public $children;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entities\EduStuffEntity", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="App\Entities\LessonBlockEntity", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     public $parent;
