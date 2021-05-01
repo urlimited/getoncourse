@@ -19,9 +19,12 @@ export class EditorListingBlockModel extends EditorInsertableBlockModelFile.Edit
     public constructor(configs?: EditorTextBlockModelConfigs) {
         super(configs);
 
+        if(configs?.type === undefined)
+            this._type = 'list';
+
         this._content = configs?.content ?? "";
 
-        this._key = configs?.key ?? "text-" + (+new Date());
+        this._key = configs?.key ?? "list-" + (+new Date());
 
         this._placeholder = configs?.placeholder ?? "List...";
     }

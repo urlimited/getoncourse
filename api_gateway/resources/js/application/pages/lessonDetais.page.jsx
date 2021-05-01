@@ -2,7 +2,7 @@ import React from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 
 
-export const LessonDetailsPage = ({}) => {
+export const LessonDetailsPage = ({updateLesson}) => {
     const data = [
         {
             type: "pageContent",
@@ -11,7 +11,10 @@ export const LessonDetailsPage = ({}) => {
                 {
                     type: "editor",
                     title: "Редактор урока",
-                    col: 9
+                    apiSaveOnServer: (content) => {
+                        updateLesson(content);
+                    },
+                    col: 12
                 }
             ]
         }

@@ -1,9 +1,9 @@
 import * as React from "react";
-import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 
 export interface EditorBlockModelConfigs {
     id?: number,
-    key?: string
+    key?: string,
+    type?: string
 }
 
 export interface EditorBlockModelHandlers {
@@ -19,15 +19,21 @@ export interface EditorBlockModelHandlers {
 export abstract class EditorBlockModel {
     protected _handlers: EditorBlockModelHandlers;
 
+    protected _id: string;
+
     protected _key: string;
+
+    protected _type: string;
+
+    protected _content: string;
 
     protected _htmlElement: HTMLElement;
 
     protected _afterRenderingCallback: Function;
 
     protected constructor(configs?: EditorBlockModelConfigs) {
-
-
+        this._id = configs?.key ?? null;
+        this._type = configs?.type ?? null;
     }
 
     public setHandlers(handlers: EditorBlockModelHandlers): EditorBlockModel {
@@ -36,20 +42,32 @@ export abstract class EditorBlockModel {
         return this;
     }
 
-    public processHandlers(handlers: EditorBlockModelHandlers): EditorBlockModelHandlers{
+    public processHandlers(handlers: EditorBlockModelHandlers): EditorBlockModelHandlers {
         return handlers;
     }
 
-    public setHtmlElement(htmlElement: HTMLElement){
+    public setHtmlElement(htmlElement: HTMLElement) {
         this._htmlElement = htmlElement;
     }
 
-    public getHtmlElement(){
+    public getHtmlElement() {
         return this._htmlElement;
     }
 
-    public setAfterRenderingCallback(callback: Function){
+    public setAfterRenderingCallback(callback: Function) {
         this._afterRenderingCallback = callback;
+    }
+
+    public setContent(content: string): void {
+        this._content = content;
+    }
+
+    public getData(): {} {
+        return {
+            id: this._id,
+            content: this._content,
+            type: this._type
+        }
     }
 
     public abstract render(key: number, callback?: Function): React.ReactElement;

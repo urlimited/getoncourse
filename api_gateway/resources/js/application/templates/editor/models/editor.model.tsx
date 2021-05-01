@@ -14,6 +14,10 @@ interface EditorModelConfigs {
     render: Function
 }
 
+interface apiSaveOnServer {
+    (data: {}): void;
+}
+
 /**
  * Class EditorModel
  */
@@ -41,10 +45,11 @@ export class EditorModel {
 
     public renderBlocks(): Array<React.ReactElement> {
         if (!(this._blocks[(this._blocks.length - 1)] instanceof EditorInsertableBlockModel))
-            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel()));
+            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: 'text'})));
 
         if (!(this._blocks[0] instanceof EditorInsertableBlockModel))
-            this._blocks.splice(0, 0, this.setHandlersToBlock(new EditorTextBlockModel()))
+            this._blocks.splice(0, 0,
+                this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: 'text'})))
 
         return this._blocks.map((b, k) => b.render(k));
     }
@@ -64,16 +69,16 @@ export class EditorModel {
 
         switch (command) {
             case 'text':
-                block = new f2.EditorTextBlockModel({key: "text-" + (+new Date())});
+                block = new f2.EditorTextBlockModel({key: "text-" + (+new Date()), type: 'text'});
                 break;
             case 'image':
-                block = new f3.EditorImageBlockModel({key: "image-" + (+new Date())});
+                block = new f3.EditorImageBlockModel({key: "image-" + (+new Date()), type: 'image'});
                 break;
             case 'heading':
-                block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date())});
+                block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date()), type: 'heading'});
                 break;
             case 'list':
-                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date())});
+                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date()), type: 'list'});
                 break;
         }
 
@@ -119,6 +124,22 @@ export class EditorModel {
             commandsDropdown: this._commandsDropdown,
             render: this._render
         }
+    }
+
+    public apiSaveOnServer(apiMethod: apiSaveOnServer){
+        apiMethod(this.getData());
+
+        console.log('saveClicked');
+    }
+
+    public apiGetFromServer(){
+
+    }
+
+    protected getData(): {blocks: Array<any>}{
+        return {
+            blocks: this._blocks.map(bc => bc.getData())
+        };
     }
 
     protected setHandlersToBlock(block: EditorBlockModel) {

@@ -20,6 +20,9 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
     public constructor(configs?: EditorTextBlockModelConfigs) {
         super(configs);
 
+        if(configs?.type === undefined)
+            this._type = 'text';
+
         this._content = configs?.content ?? "";
 
         this._key = configs?.key ?? "text-" + (+new Date());
@@ -40,6 +43,7 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
             deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
             setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
             initialContent={this._content}
+            setContentToBlock={(content: string) => this.setContent(content)}
             afterRenderingCallback={this._afterRenderingCallback}
         />
     }

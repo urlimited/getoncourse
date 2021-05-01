@@ -18,6 +18,9 @@ export class EditorImageBlockModel extends EditorBlockModelFile.EditorBlockModel
     public constructor(configs?: EditorImageBlockModelConfigs) {
         super(configs);
 
+        if(configs?.type === undefined)
+            this._type = 'image';
+
         this._key = configs?.key ?? "image-" + (+new Date());
     }
 
@@ -27,6 +30,7 @@ export class EditorImageBlockModel extends EditorBlockModelFile.EditorBlockModel
             id={this._key}
             setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
             deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
+            setContentToBlock={(content: string) => this.setContent(content)}
         />
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import "./require.css";
 import Editor__textInsertableBlock from "../__textInsertableBlock/editor__textInsertableBlock";
 
-const Editor__headingBlock = ({initialContent, placeholder, afterRenderingCallback,
+const Editor__headingBlock = ({initialContent, placeholder, afterRenderingCallback, setContentToBlock,
                                   setHtmlElementHandler, setDropdownCommandsConfigsHandler, createNewBlockHandler,
                                   deleteBlockHandler}) => {
 
@@ -16,6 +16,7 @@ const Editor__headingBlock = ({initialContent, placeholder, afterRenderingCallba
             setHtmlElementHandler={setHtmlElementHandler}
             textareaClass={"editor__heading-block-textarea"}
             afterRenderingCallback={afterRenderingCallback}
+            setContentToBlock={setContentToBlock}
         />
     </div>)
 }

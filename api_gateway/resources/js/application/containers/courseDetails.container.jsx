@@ -1,10 +1,9 @@
 import {connect} from "react-redux";
 import {CourseDetailsPage} from "../pages/courseDetais.page";
 import {apiGetCourseDetails} from "../requests/getCourseDetails.request";
-import {apiUpdateLesson} from "../requests/updateLesson";
+import {apiUpdateLesson} from "../requests/updateLesson.request";
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("state from lessons",state);
     return ({
 
     });

@@ -2,7 +2,7 @@ import React from 'react';
 import "./require.css";
 import Editor__textInsertableBlock from "../__textInsertableBlock/editor__textInsertableBlock";
 
-const Editor__textBlock = ({initialContent, placeholder, setHtmlElementHandler, afterRenderingCallback,
+const Editor__textBlock = ({initialContent, placeholder, setHtmlElementHandler, afterRenderingCallback, setContentToBlock,
                                setDropdownCommandsConfigsHandler, createNewBlockHandler, deleteBlockHandler}) => {
 
     return (<div className="editor__text-block" >
@@ -14,6 +14,7 @@ const Editor__textBlock = ({initialContent, placeholder, setHtmlElementHandler, 
             deleteBlockHandler={deleteBlockHandler}
             setHtmlElementHandler={setHtmlElementHandler}
             afterRenderingCallback={afterRenderingCallback}
+            setContentToBlock={setContentToBlock}
         />
     </div>)
 }

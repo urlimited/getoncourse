@@ -22,7 +22,10 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
 
         this._content = configs?.content ?? "";
 
-        this._key = configs?.key ?? "text-" + (+new Date());
+        this._key = configs?.key ?? "heading-" + (+new Date());
+
+        if(configs?.type === undefined)
+            this._type = 'heading';
 
         this._placeholder = configs?.placeholder ?? "Heading...";
     }
@@ -40,6 +43,7 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
             deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
             setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
             afterRenderingCallback={this._afterRenderingCallback}
+            setContentToBlock={(content: string) => this.setContent(content)}
             initialContent={this._content} />
     }
 

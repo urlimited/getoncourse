@@ -5,7 +5,7 @@ const getCaretCoordinates = require('textarea-caret');
 
 export const Editor__textInsertableBlock = (
     {
-        initialContent, placeholder, textareaClass, afterRenderingCallback = () => {},
+        initialContent, placeholder, textareaClass, afterRenderingCallback = () => {}, setContentToBlock,
         setDropdownCommandsConfigsHandler, createNewBlockHandler, deleteBlockHandler, setHtmlElementHandler
     }) => {
     const selfHtmlElement = useRef(null);
@@ -49,6 +49,10 @@ export const Editor__textInsertableBlock = (
             setEventCommandSelected(false);
         }
     }, [eventCommandSelected]);
+
+    useEffect(() => {
+        setContentToBlock(content);
+    }, [content]);
 
     return (<textarea
         ref={selfHtmlElement}

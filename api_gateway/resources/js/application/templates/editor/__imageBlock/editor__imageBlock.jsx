@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import "./require.css";
 
-const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler, id}) => {
+const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler, setContentToBlock, id}) => {
     const [imageSrc, setImageSrc] = useState('');
     const [file, setFile] = useState();
 
@@ -12,6 +12,10 @@ const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler, id}) => 
     useEffect(() => {
         setHtmlElementHandler(selfHtmlElement.current);
     }, []);
+
+    useEffect(() => {
+        setContentToBlock(imageSrc);
+    }, [imageSrc]);
 
     return (<div className="editor__image-block">
         <div className="editor__image-block-input">
