@@ -11,7 +11,7 @@ class LessonBlockModel extends AbstractModel
 {
     protected LessonBlockEntity $entity;
     protected EntityManagerInterface $entityManager;
-    protected array $publishableFields = ['id', 'lesson', 'content', 'type'];
+    protected array $publishableFields = ['id', 'content', 'type', 'keyId', 'parentId'];
 
     public static function create(array $data): self
     {
@@ -91,6 +91,14 @@ class LessonBlockModel extends AbstractModel
 
     public function getType(){
         return $this->entity->type;
+    }
+
+    public function getParentId(){
+        return $this->entity->parentId;
+    }
+
+    public function getKeyId(){
+        return $this->entity->keyId;
     }
 
     public function getLesson(){

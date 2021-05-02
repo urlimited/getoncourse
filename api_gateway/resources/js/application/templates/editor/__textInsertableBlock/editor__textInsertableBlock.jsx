@@ -21,6 +21,10 @@ export const Editor__textInsertableBlock = (
     const [eventCommandSelected, setEventCommandSelected] = useState(false);
 
     useEffect(() => {
+        console.log(initialContent);
+    }, [initialContent]);
+
+    useEffect(() => {
         if (isCommandStarted)
             setDropdownCommandsConfigsHandler({
                 position: caretPosition,

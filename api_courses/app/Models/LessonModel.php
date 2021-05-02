@@ -14,7 +14,9 @@ use ReflectionException;
 class LessonModel extends AbstractModel
 {
     protected LessonEntity $entity;
+
     protected EntityManagerInterface $entityManager;
+
     protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'lessonBlocks'];
 
     public static function allDeleted(){
@@ -115,6 +117,27 @@ class LessonModel extends AbstractModel
     }
 
     /**
+     * @param int $id
+     * @param array $relations
+     * @return $this
+     * @throws \Exception
+     */
+    public static function findWith(int $id, array $relations): self
+    {
+        if(empty($relations))
+            throw new \Exception('Relations array must not be empty');
+
+        $entityManager = app(EntityManagerInterface::class);
+
+        $lesson = new LessonModel($entityManager->getRepository(LessonEntity::class)
+            ->getLessonWith($id, $relations));
+
+        $lesson->setWith($relations);
+
+        return $lesson;
+    }
+
+    /**
      * @param array $data
      * @return $this
      * @throws ValidationException
@@ -125,9 +148,14 @@ class LessonModel extends AbstractModel
         if($this->entity->deletedAt !== null)
             throw new ValidationException(new MessageBag(['course' => 'Course is soft deleted']));
 
+        $entityManager = app(EntityManagerInterface::class);
+
         $data['lessonBlocks'] = collect(json_decode($data['lesson_blocks'], true))
-            ->map(function($block) use ($data){
+            ->map(function($block) use ($data, $entityManager){
                 $block['lesson'] = $this->entity;
+
+                $entityManager->getRepository(LessonEntity::class)
+                    ->deleteAllLessonBlocks($this->getId());
 
                 return new LessonBlockEntity($block);
             })->toArray();
@@ -161,6 +189,16 @@ class LessonModel extends AbstractModel
     }
 
     public function getLessonBlocks(){
-        return $this->entity->lessonBlocks;
+        return collect($this->entity->lessonBlocks->getSnapshot())
+            ->map(function($block){
+                return (new LessonBlockModel($block))->toAPI();
+            })
+            ->toArray();
+    }
+
+    public function setWith(array $with){
+        $this->with = array_merge($this->with, $with);
+
+        return true;
     }
 }

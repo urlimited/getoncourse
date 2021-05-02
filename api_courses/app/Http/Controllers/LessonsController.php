@@ -30,7 +30,7 @@ class LessonsController extends Controller
     }
 
     public function getLessonDetails(GetLessonDetailsRequest $request){
-        $lesson = LessonModel::find($request->id);
+        $lesson = LessonModel::findWith($request->id, ['lessonBlocks']);
 
         return response()->json(['lesson' => $lesson->toAPI()], 200);
     }

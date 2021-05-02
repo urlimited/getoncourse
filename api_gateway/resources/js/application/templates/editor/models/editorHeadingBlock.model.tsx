@@ -23,7 +23,7 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
 
         this._content = configs?.content ?? "";
 
-        this._key = configs?.key ?? "heading-" + (+new Date());
+        this._key = configs?.key_id ?? configs?.key ?? "heading-" + (+new Date());
 
         if(configs?.type === undefined)
             this._type = EditorModel.BLOCK_IMAGE_TYPE;

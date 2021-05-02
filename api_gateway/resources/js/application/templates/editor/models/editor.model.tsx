@@ -7,6 +7,8 @@ import * as f5 from "./editorListingBlock.model";
 import {EditorInsertableBlockModel} from "./editorInsertableBlock.model";
 import {EditorTextBlockModel} from "./editorTextBlock.model";
 import {EditorCommandsBlockModel} from "./editorCommandsBlock.model";
+import {EditorImageBlockModel} from "./editorImageBlock.model";
+import {EditorHeadingBlockModel} from "./editorHeadingBlock.model";
 
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
@@ -31,10 +33,10 @@ export class EditorModel {
 
     protected _render: Function;
 
-    public static readonly BLOCK_TEXT_TYPE: string = "1";
-    public static readonly BLOCK_IMAGE_TYPE: string = "2";
-    public static readonly BLOCK_HEADING_TYPE: string = "3";
-    public static readonly BLOCK_LIST_TYPE: string = "4";
+    public static readonly BLOCK_TEXT_TYPE: number = 1;
+    public static readonly BLOCK_IMAGE_TYPE: number = 2;
+    public static readonly BLOCK_HEADING_TYPE: number = 3;
+    public static readonly BLOCK_LIST_TYPE: number = 4;
 
     public constructor(configs: EditorModelConfigs) {
         EditorModel.editorSalt = configs.salt
@@ -42,7 +44,7 @@ export class EditorModel {
         this._commandsDropdown = configs.commandsDropdown ?? new f1.EditorCommandsBlockModel();
 
         this._blocks = configs.blocks
-            .map(bc => this.setHandlersToBlock(bc)) ?? [];
+            ?.map(bc => this.setHandlersToBlock(bc)) ?? [];
 
         this._commandsDropdown.setHandlers({
             createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement)
@@ -55,11 +57,17 @@ export class EditorModel {
 
     public renderBlocks(): Array<React.ReactElement> {
         if (!(this._blocks[(this._blocks.length - 1)] instanceof EditorInsertableBlockModel))
-            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: EditorModel.BLOCK_TEXT_TYPE})));
+            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel({
+                key: "text-" + (+new Date()),
+                type: EditorModel.BLOCK_TEXT_TYPE
+            })));
 
         if (!(this._blocks[0] instanceof EditorInsertableBlockModel))
             this._blocks.splice(0, 0,
-                this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: EditorModel.BLOCK_TEXT_TYPE})))
+                this.setHandlersToBlock(new EditorTextBlockModel({
+                    key: "text-" + (+new Date()),
+                    type: EditorModel.BLOCK_TEXT_TYPE
+                })))
 
         return this._blocks.map((b, k) => b.render(k));
     }
@@ -82,20 +90,29 @@ export class EditorModel {
                 block = new f2.EditorTextBlockModel({key: "text-" + (+new Date()), type: EditorModel.BLOCK_TEXT_TYPE});
                 break;
             case 'image':
-                block = new f3.EditorImageBlockModel({key: "image-" + (+new Date()), type: EditorModel.BLOCK_IMAGE_TYPE});
+                block = new f3.EditorImageBlockModel({
+                    key: "image-" + (+new Date()),
+                    type: EditorModel.BLOCK_IMAGE_TYPE
+                });
                 break;
             case 'heading':
-                block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date()), type: EditorModel.BLOCK_HEADING_TYPE});
+                block = new f4.EditorHeadingBlockModel({
+                    key: "heading-" + (+new Date()),
+                    type: EditorModel.BLOCK_HEADING_TYPE
+                });
                 break;
             case 'list':
-                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date()), type: EditorModel.BLOCK_LIST_TYPE});
+                block = new f5.EditorListingBlockModel({
+                    key: "listing-" + (+new Date()),
+                    type: EditorModel.BLOCK_LIST_TYPE
+                });
                 break;
         }
 
         if (block !== undefined) {
             this._blocks.splice(this._blocks.indexOf(selfElement) + 1, 0, block);
 
-            if(block instanceof EditorInsertableBlockModel)
+            if (block instanceof EditorInsertableBlockModel)
                 block.setAfterRenderingCallback(() => {
                     block.getHtmlElement().focus();
                 });
@@ -115,14 +132,14 @@ export class EditorModel {
 
         let currentBlock = this._blocks[--blockIndex];
 
-        while(!(currentBlock instanceof EditorInsertableBlockModel)){
-            if(blockIndex <= 0)
+        while (!(currentBlock instanceof EditorInsertableBlockModel)) {
+            if (blockIndex <= 0)
                 break;
 
             currentBlock = this._blocks[--blockIndex];
         }
 
-        if(currentBlock instanceof EditorInsertableBlockModel)
+        if (currentBlock instanceof EditorInsertableBlockModel)
             currentBlock.getHtmlElement().focus();
 
         this._render(new EditorModel(this.getConfigs()));
@@ -137,15 +154,36 @@ export class EditorModel {
         }
     }
 
-    public apiSaveOnServer(apiMethod: apiSaveOnServer){
+    public apiSaveOnServer(apiMethod: apiSaveOnServer): void {
         apiMethod(this.getData());
     }
 
-    public apiGetFromServer(){
+    public setBlocks(blocks: Array<{
+        content: string,
+        type: number
+    }>): void {
+        this._blocks = blocks.map(b => this.buildBlock(b));
 
+        this._render(new EditorModel(this.getConfigs()));
     }
 
-    protected getData(): {blocks: Array<any>}{
+    protected buildBlock(configs: {
+        content: string,
+        type: number
+    }): EditorBlockModel {
+        switch (configs.type) {
+            case EditorModel.BLOCK_TEXT_TYPE:
+                return new EditorTextBlockModel(configs);
+            case EditorModel.BLOCK_IMAGE_TYPE:
+                return new EditorImageBlockModel(configs);
+            case EditorModel.BLOCK_HEADING_TYPE:
+                return new EditorHeadingBlockModel(configs);
+            default:
+                return new EditorTextBlockModel(configs);
+        }
+    }
+
+    protected getData(): { blocks: Array<any> } {
         return {
             blocks: this._blocks.map(bc => bc.getData())
         };

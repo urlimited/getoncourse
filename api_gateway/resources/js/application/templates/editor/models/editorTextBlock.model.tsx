@@ -26,7 +26,7 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
 
         this._content = configs?.content ?? "";
 
-        this._key = configs?.key ?? "text-" + (+new Date());
+        this._key = configs?.key_id ?? configs?.key ?? "text-" + (+new Date());
 
         this._placeholder = configs?.placeholder ?? "Type '/' to start";
     }

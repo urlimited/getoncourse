@@ -9,6 +9,8 @@ use App\Http\Requests\Courses\GetCourseDetailsRequest;
 use App\Http\Requests\Courses\SoftDeleteCourseRequest;
 use App\Http\Requests\Courses\UpdateCourseRequest;
 use App\Models\CourseModel;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Request;
 
 class CoursesController extends Controller
@@ -29,6 +31,11 @@ class CoursesController extends Controller
         })], 200) ;
     }
 
+    /**
+     * @param GetCourseDetailsRequest $request
+     * @return JsonResponse
+     * @throws Exception
+     */
     public function getCourseDetails(GetCourseDetailsRequest $request){
         $course = CourseModel::findWith($request->id, ["lessons"]);
 

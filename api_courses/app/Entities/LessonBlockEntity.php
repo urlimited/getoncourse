@@ -51,7 +51,7 @@ class LessonBlockEntity extends AbstractEntity
     public $deletedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entities\LessonEntity")
+     * @ORM\ManyToOne(targetEntity="App\Entities\LessonEntity", fetch="EXTRA_LAZY")
      */
     public $lesson;
 

@@ -5,7 +5,8 @@ import {fromString} from "uuidv4";
 export interface EditorBlockModelConfigs {
     id?: number,
     key?: string,
-    type?: string
+    type?: number,
+    key_id?: string
 }
 
 export interface EditorBlockModelHandlers {
@@ -25,7 +26,7 @@ export abstract class EditorBlockModel {
 
     protected _key: string;
 
-    protected _type: string;
+    protected _type: number;
 
     protected _content: string;
 
@@ -34,7 +35,8 @@ export abstract class EditorBlockModel {
     protected _afterRenderingCallback: Function;
 
     protected constructor(configs?: EditorBlockModelConfigs) {
-        this._id = configs?.key ?? null;
+        this._id = configs?.key ?? configs?.key_id ?? null;
+        this._key = configs?.key_id ?? configs?.key ?? null;
         this._type = configs?.type ?? null;
     }
 
