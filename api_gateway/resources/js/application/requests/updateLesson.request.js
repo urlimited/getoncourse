@@ -9,8 +9,6 @@ import {Lesson} from "../models/lesson.model";
 export const apiUpdateLesson = (lesson) => dispatch => {
     dispatch(core_events.eventInitRequest());
 
-    console.log(_preProcessData(lesson));
-
     return fetch(constants.API_LESSON_UPDATE_LESSON, (new DefaultRequest()).setParams({
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -40,6 +38,7 @@ const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLow
 
 const _preProcessData = (data) => {
     return Object.keys(data)
+        .filter(key => (data[key] !== undefined && data[key] !== null && data[key] !== ''))
         .map(key => camelToSnakeCase(key) + "=" + data[key])
         .reduce((accum, next) => accum + "&" + next);
 }

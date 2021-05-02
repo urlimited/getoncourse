@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entities\Repositories\LessonBlockRepository")
- * @ORM\Table(name="lesson_blocks")
+ * @ORM\Table(name="lesson_blocks", indexes={@ORM\Index(name="keyid", columns={"key_id"})})
  */
 class LessonBlockEntity extends AbstractEntity
 {
     protected array $dbFields = ['id', 'content', 'parentId', 'type', 'lessonId', 'deletedAt'];
-    protected array $obligatoryFields = ['id', 'content', 'parentId', 'type', 'lessonId'];
+    protected array $obligatoryFields = ['content', 'type', 'lesson', 'keyId'];
 
     /**
      * @ORM\Id
@@ -34,6 +34,11 @@ class LessonBlockEntity extends AbstractEntity
      * @ORM\Column(type="integer")
      */
     public $type;
+
+    /**
+     * @ORM\Column(type="string", length=36, unique=true, name="key_id", options={"default" : null}, nullable=true)
+     */
+    public $keyId;
 
     /**
      * @ORM\Column(type="integer", name="lesson_id")

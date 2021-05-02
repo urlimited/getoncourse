@@ -3,6 +3,7 @@ import * as React from "react";
 import TextBlock from "../__textBlock/editor__textBlock";
 import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 import {ReactElement} from "react";
+import {EditorModel} from "./editor.model";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
@@ -21,7 +22,7 @@ export class EditorTextBlockModel extends EditorInsertableBlockModelFile.EditorI
         super(configs);
 
         if(configs?.type === undefined)
-            this._type = 'text';
+            this._type = EditorModel.BLOCK_TEXT_TYPE;
 
         this._content = configs?.content ?? "";
 

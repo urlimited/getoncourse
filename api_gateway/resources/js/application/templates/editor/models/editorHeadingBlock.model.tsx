@@ -3,6 +3,7 @@ import * as React from "react";
 import HeadingBlock from "../__headingBlock/editor__headingBlock";
 import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
 import {ReactElement} from "react";
+import {EditorModel} from "./editor.model";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
@@ -25,7 +26,7 @@ export class EditorHeadingBlockModel extends EditorInsertableBlockModelFile.Edit
         this._key = configs?.key ?? "heading-" + (+new Date());
 
         if(configs?.type === undefined)
-            this._type = 'heading';
+            this._type = EditorModel.BLOCK_IMAGE_TYPE;
 
         this._placeholder = configs?.placeholder ?? "Heading...";
     }

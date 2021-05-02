@@ -27,7 +27,7 @@ abstract class AbstractEntity
 
         foreach ($data as $f => $value) {
             if (!property_exists($this, $this->snakeToCamelCase($f)))
-                throw new Exception("Property $f does not exist in the class " . get_class($this));
+                throw new Exception("Property $f does not exist in the class of " . get_class($this));
 
             $propertyName = $this->snakeToCamelCase($f);
 
@@ -36,7 +36,7 @@ abstract class AbstractEntity
             $this->$propertyName = $value;
         }
 
-        if(sizeof($obligatoryFieldsCheck) !== 0)
+        if (sizeof($obligatoryFieldsCheck) !== 0)
             throw new \Exception('Data does not provide enough data, please provide ' . json_encode($obligatoryFieldsCheck));
     }
 

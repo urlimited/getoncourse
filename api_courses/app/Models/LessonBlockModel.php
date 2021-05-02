@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\EduStuffEntity;
+use App\Entities\LessonBlockEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\MessageBag;
 
-class EduStuffModel extends AbstractModel
+class LessonBlockModel extends AbstractModel
 {
-    protected EduStuffEntity $entity;
+    protected LessonBlockEntity $entity;
     protected EntityManagerInterface $entityManager;
     protected array $publishableFields = ['id', 'lesson', 'content', 'type'];
 
@@ -17,13 +17,13 @@ class EduStuffModel extends AbstractModel
     {
         $entityManager = app(EntityManagerInterface::class);
 
-        $eduStuffEntity = new EduStuffEntity($data);
+        $eduStuffEntity = new LessonBlockEntity($data);
 
         $entityManager->persist($eduStuffEntity);
 
         $entityManager->flush();
 
-        return new EduStuffModel($eduStuffEntity);
+        return new LessonBlockModel($eduStuffEntity);
     }
 
     /**

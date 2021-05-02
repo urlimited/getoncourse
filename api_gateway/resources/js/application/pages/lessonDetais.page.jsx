@@ -2,7 +2,7 @@ import React from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 import {Lesson} from "../models/lesson.model";
 import {useParams} from "react-router-dom";
-
+import {uuid} from "uuidv4";
 
 export const LessonDetailsPage = ({updateLesson}) => {
     const lessonId = parseInt(useParams().lessonId);
@@ -21,6 +21,7 @@ export const LessonDetailsPage = ({updateLesson}) => {
                             lessonBlocks: JSON.stringify(content.blocks)
                         }));
                     },
+                    editorSalt: uuid(),
                     col: 12
                 }
             ]

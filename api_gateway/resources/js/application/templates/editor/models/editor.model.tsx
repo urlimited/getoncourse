@@ -11,7 +11,8 @@ import {EditorCommandsBlockModel} from "./editorCommandsBlock.model";
 interface EditorModelConfigs {
     blocks?: Array<EditorBlockModel>,
     commandsDropdown?: f1.EditorCommandsBlockModel,
-    render: Function
+    render: Function,
+    salt: string
 }
 
 interface apiSaveOnServer {
@@ -22,34 +23,43 @@ interface apiSaveOnServer {
  * Class EditorModel
  */
 export class EditorModel {
+    public static editorSalt: string;
+
     protected _blocks: Array<EditorBlockModel> = [];
 
     protected _commandsDropdown: f1.EditorCommandsBlockModel;
 
     protected _render: Function;
 
-    public constructor(configs?: EditorModelConfigs) {
-        this._commandsDropdown = configs?.commandsDropdown ?? new f1.EditorCommandsBlockModel();
+    public static readonly BLOCK_TEXT_TYPE: string = "1";
+    public static readonly BLOCK_IMAGE_TYPE: string = "2";
+    public static readonly BLOCK_HEADING_TYPE: string = "3";
+    public static readonly BLOCK_LIST_TYPE: string = "4";
 
-        this._blocks = configs?.blocks
+    public constructor(configs: EditorModelConfigs) {
+        EditorModel.editorSalt = configs.salt
+
+        this._commandsDropdown = configs.commandsDropdown ?? new f1.EditorCommandsBlockModel();
+
+        this._blocks = configs.blocks
             .map(bc => this.setHandlersToBlock(bc)) ?? [];
 
         this._commandsDropdown.setHandlers({
             createNewBlockHandler: (command: string, selfElement: EditorBlockModel) => this.createNewBlock(command, selfElement)
         });
 
-        this._render = configs?.render ?? (() => {
+        this._render = configs.render ?? (() => {
         });
 
     }
 
     public renderBlocks(): Array<React.ReactElement> {
         if (!(this._blocks[(this._blocks.length - 1)] instanceof EditorInsertableBlockModel))
-            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: 'text'})));
+            this._blocks.push(this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: EditorModel.BLOCK_TEXT_TYPE})));
 
         if (!(this._blocks[0] instanceof EditorInsertableBlockModel))
             this._blocks.splice(0, 0,
-                this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: 'text'})))
+                this.setHandlersToBlock(new EditorTextBlockModel({key: "text-" + (+new Date()), type: EditorModel.BLOCK_TEXT_TYPE})))
 
         return this._blocks.map((b, k) => b.render(k));
     }
@@ -69,16 +79,16 @@ export class EditorModel {
 
         switch (command) {
             case 'text':
-                block = new f2.EditorTextBlockModel({key: "text-" + (+new Date()), type: 'text'});
+                block = new f2.EditorTextBlockModel({key: "text-" + (+new Date()), type: EditorModel.BLOCK_TEXT_TYPE});
                 break;
             case 'image':
-                block = new f3.EditorImageBlockModel({key: "image-" + (+new Date()), type: 'image'});
+                block = new f3.EditorImageBlockModel({key: "image-" + (+new Date()), type: EditorModel.BLOCK_IMAGE_TYPE});
                 break;
             case 'heading':
-                block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date()), type: 'heading'});
+                block = new f4.EditorHeadingBlockModel({key: "heading-" + (+new Date()), type: EditorModel.BLOCK_HEADING_TYPE});
                 break;
             case 'list':
-                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date()), type: 'list'});
+                block = new f5.EditorListingBlockModel({key: "listing-" + (+new Date()), type: EditorModel.BLOCK_LIST_TYPE});
                 break;
         }
 
@@ -122,14 +132,13 @@ export class EditorModel {
         return {
             blocks: this._blocks,
             commandsDropdown: this._commandsDropdown,
-            render: this._render
+            render: this._render,
+            salt: EditorModel.editorSalt
         }
     }
 
     public apiSaveOnServer(apiMethod: apiSaveOnServer){
         apiMethod(this.getData());
-
-        console.log('saveClicked');
     }
 
     public apiGetFromServer(){

@@ -1,6 +1,7 @@
 import * as EditorBlockModelFile from "./editorBlock.model";
 import * as React from "react";
 import ImageBlock from "../__imageBlock/editor__imageBlock";
+import {EditorModel} from "./editor.model";
 
 export interface EditorImageBlockModelConfigs extends EditorBlockModelFile.EditorBlockModelConfigs {
     content?: string,
@@ -19,7 +20,7 @@ export class EditorImageBlockModel extends EditorBlockModelFile.EditorBlockModel
         super(configs);
 
         if(configs?.type === undefined)
-            this._type = 'image';
+            this._type = EditorModel.BLOCK_IMAGE_TYPE;
 
         this._key = configs?.key ?? "image-" + (+new Date());
     }

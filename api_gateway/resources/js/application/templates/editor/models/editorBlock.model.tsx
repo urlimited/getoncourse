@@ -1,4 +1,6 @@
 import * as React from "react";
+import {EditorModel} from "./editor.model";
+import {fromString} from "uuidv4";
 
 export interface EditorBlockModelConfigs {
     id?: number,
@@ -64,7 +66,7 @@ export abstract class EditorBlockModel {
 
     public getData(): {} {
         return {
-            id: this._id,
+            key_id: fromString(this._id + EditorModel.editorSalt),
             content: this._content,
             type: this._type
         }

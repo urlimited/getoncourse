@@ -21,7 +21,7 @@ class UpdateLessonRequest extends FormRequest
             'course_id' => ['integer'],
             'description' => ['string', 'max: 350'],
             'name' => ['string', 'max: 25', 'min: 10'],
-            'lesson_blocks' => ['array']
+            'lesson_blocks' => ['string']
         ];
     }
 }

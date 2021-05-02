@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\EduStuffEntity;
+use App\Entities\LessonBlockEntity;
 use App\Entities\LessonEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Illuminate\Support\MessageBag;
 use ReflectionException;
 
@@ -14,7 +15,7 @@ class LessonModel extends AbstractModel
 {
     protected LessonEntity $entity;
     protected EntityManagerInterface $entityManager;
-    protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'eduStuffs'];
+    protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'lessonBlocks'];
 
     public static function allDeleted(){
         $courses = self::all();
@@ -66,12 +67,12 @@ class LessonModel extends AbstractModel
         // Setting course association, since it will not save without it
         $lesson->course = CourseModel::find($lesson->courseId)->getEntity();
 
-        $eduStuffs = json_decode($lesson->eduStuffs);
+        $lessonBlocks = json_decode($lesson->lessonBlocks);
 
-        $lesson->eduStuffs = new ArrayCollection();
+        $lesson->lessonBlocks = new ArrayCollection();
 
-        foreach ($eduStuffs as $stuff) {
-            $lesson->eduStuffs->add(new EduStuffEntity($stuff));
+        foreach ($lessonBlocks as $block) {
+            $lesson->lessonBlocks->add(new LessonBlockEntity($block));
         }
 
         $entityManager->persist($lesson);
@@ -117,15 +118,18 @@ class LessonModel extends AbstractModel
      * @param array $data
      * @return $this
      * @throws ValidationException
+     * @throws Exception
      */
     public function update(array $data): self
     {
         if($this->entity->deletedAt !== null)
             throw new ValidationException(new MessageBag(['course' => 'Course is soft deleted']));
 
-        $data['lesson_blocks'] = collect(json_decode($data['lesson_blocks'], true))
-            ->map(function($block){
+        $data['lessonBlocks'] = collect(json_decode($data['lesson_blocks'], true))
+            ->map(function($block) use ($data){
+                $block['lesson'] = $this->entity;
 
+                return new LessonBlockEntity($block);
             })->toArray();
 
         $this->entity->fill($data);
@@ -156,7 +160,7 @@ class LessonModel extends AbstractModel
         return $this->entity->course;
     }
 
-    public function getEduStuffs(){
-        return $this->entity->eduStuffs;
+    public function getLessonBlocks(){
+        return $this->entity->lessonBlocks;
     }
 }

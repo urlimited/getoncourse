@@ -2,6 +2,7 @@ import * as EditorInsertableBlockModelFile from "./editorInsertableBlock.model";
 import * as React from "react";
 import ListingBlock from "../__listingBlock/editor__listingBlock";
 import {EditorCommandsBlockModelConfigs} from "./editorCommandsBlock.model";
+import {EditorModel} from "./editor.model";
 
 export interface EditorTextBlockModelConfigs extends EditorInsertableBlockModelFile.EditorInsertableBlockModelConfigs {
     content?: string,
@@ -20,7 +21,7 @@ export class EditorListingBlockModel extends EditorInsertableBlockModelFile.Edit
         super(configs);
 
         if(configs?.type === undefined)
-            this._type = 'list';
+            this._type = EditorModel.BLOCK_LIST_TYPE;
 
         this._content = configs?.content ?? "";
 
