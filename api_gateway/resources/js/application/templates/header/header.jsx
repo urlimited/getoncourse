@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 
 const Header = () => {
-
+    const [collapsedMenu, setCollapsedMenu] = useState(false)
     return (
         <>
             <header id="page-topbar">
                 <div className="navbar-header">
                     <div className="d-flex">
-                        <div className="navbar-brand-box">
+                        <div className="navbar-brand-box" id="navbar-brand">
                             <a className="logo logo-dark" href="/">
                             <span className="logo-sm">
                                 <img src="/static/media/logo.a0143fa8.svg" alt="" height="22"/>
@@ -28,78 +28,21 @@ const Header = () => {
                             </a>
                         </div>
                         <button type="button" className="btn btn-sm px-3 font-size-16 header-item waves-effect"
-                                id="vertical-menu-btn">
+                                id="vertical-menu-btn"
+                                onClick={()=>{
+                                    const collapseStyles = ["vertical-collpsed", "sidebar-enable"]
+                                    const body = document.body
+                                    collapsedMenu?collapseStyles.map(c=>body.classList.remove(c)):collapseStyles.map(c=>body.classList.add(c))
+                                    setCollapsedMenu(!collapsedMenu)
+                                }}>
                             <i className="fa fa-fw fa-bars"/>
                         </button>
                         <form className="app-search d-none d-lg-block">
                             <div className="position-relative">
-                                <input type="text" className="form-control" placeholder="Search..."/>
+                                <input type="text" className="form-control" placeholder="Поиск..."/>
                                 <span className="bx bx-search-alt"/>
                             </div>
                         </form>
-                        <div className="dropdown-mega d-none d-lg-block ml-2 dropdown">
-                            <button aria-haspopup="true" className="btn header-item waves-effect dropdown-toggle"
-                                    aria-expanded="false"> Mega Menu <i className="mdi mdi-chevron-down"/></button>
-                            <div tabIndex="-1" role="menu" aria-hidden="true" className="dropdown-megamenu dropdown-menu">
-                                <div className="row">
-                                    <div className="col-sm-8">
-                                        <div className="row">
-                                            <div className="col-md-4"><h5 className="font-size-14 mt-0">UI Components</h5>
-                                                <ul className="list-unstyled megamenu-list">
-                                                    <li><a href="/dashboard">Lightbox</a></li>
-                                                    <li><a href="/dashboard">Range Slider</a></li>
-                                                    <li><a href="/dashboard">Sweet Alert</a></li>
-                                                    <li><a href="/dashboard">Rating</a></li>
-                                                    <li><a href="/dashboard">Forms</a></li>
-                                                    <li><a href="/dashboard">Tables</a></li>
-                                                    <li><a href="/dashboard">Charts</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-4"><h5 className="font-size-14 mt-0">Applications</h5>
-                                                <ul className="list-unstyled megamenu-list">
-                                                    <li><a href="/dashboard">Ecommerce</a></li>
-                                                    <li><a href="/dashboard">Calendar</a></li>
-                                                    <li><a href="/dashboard">Email</a></li>
-                                                    <li><a href="/dashboard">Projects</a></li>
-                                                    <li><a href="/dashboard">Tasks</a></li>
-                                                    <li><a href="/dashboard">Contacts</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-4"><h5 className="font-size-14 mt-0">Extra Pages</h5>
-                                                <ul className="list-unstyled megamenu-list">
-                                                    <li><a href="/dashboard">Light Sidebar</a></li>
-                                                    <li><a href="/dashboard">Compact Sidebar</a></li>
-                                                    <li><a href="/dashboard">Horizontal layout</a></li>
-                                                    <li><a href="/dashboard"> Maintenance</a></li>
-                                                    <li><a href="/dashboard">Coming Soon</a></li>
-                                                    <li><a href="/dashboard">Timeline</a></li>
-                                                    <li><a href="/dashboard">FAQs</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-4">
-                                        <div className="row">
-                                            <div className="col-sm-6"><h5 className="font-size-14 mt-0">UI Components</h5>
-                                                <ul className="list-unstyled megamenu-list">
-                                                    <li><a href="/dashboard">Lightbox</a></li>
-                                                    <li><a href="/dashboard">Range Slider</a></li>
-                                                    <li><a href="/dashboard">Sweet Alert</a></li>
-                                                    <li><a href="/dashboard">Rating</a></li>
-                                                    <li><a href="/dashboard">Forms</a></li>
-                                                    <li><a href="/dashboard">Tables</a></li>
-                                                    <li><a href="/dashboard">Charts</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-sm-5">
-                                                <div><img src="/static/media/megamenu-img.8b069df4.png" alt=""
-                                                          className="img-fluid mx-auto d-block"/></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </header>

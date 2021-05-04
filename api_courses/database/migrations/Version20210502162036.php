@@ -5,7 +5,7 @@ namespace Database\Migrations;
 use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema as Schema;
 
-class Version20210311182605 extends AbstractMigration
+class Version20210502162036 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -14,8 +14,9 @@ class Version20210311182605 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE lessons DROP FOREIGN KEY FK_3F4218D9591CC992');
-        $this->addSql('DROP INDEX IDX_3F4218D9591CC992 ON lessons');
+        $this->addSql('ALTER TABLE lesson_blocks ADD key_id VARCHAR(36) DEFAULT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_BD7B652FD145533 ON lesson_blocks (key_id)');
+        $this->addSql('CREATE INDEX keyid ON lesson_blocks (key_id)');
     }
 
     /**
@@ -25,7 +26,8 @@ class Version20210311182605 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE lessons ADD CONSTRAINT FK_3F4218D9591CC992 FOREIGN KEY (course_id) REFERENCES courses (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
-        $this->addSql('CREATE INDEX IDX_3F4218D9591CC992 ON lessons (course_id)');
+        $this->addSql('DROP INDEX UNIQ_BD7B652FD145533 ON lesson_blocks');
+        $this->addSql('DROP INDEX keyid ON lesson_blocks');
+        $this->addSql('ALTER TABLE lesson_blocks DROP key_id');
     }
 }

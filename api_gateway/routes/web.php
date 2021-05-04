@@ -32,6 +32,8 @@ $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($ro
         $router->get('get_lesson_details', 'LessonsController@getLessonDetails');
         $router->post('create_lesson', 'LessonsController@createLesson');
         $router->put('update_lesson', 'LessonsController@updateLesson');
+        $router->delete('delete_lesson', 'LessonsController@deleteLesson');
+        $router->put('soft_delete_lesson', 'LessonsController@softDeleteLesson');
     });
 });
 

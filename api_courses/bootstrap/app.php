@@ -39,6 +39,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+
 $app->withFacades();
 
 // $app->withEloquent();
@@ -64,6 +65,15 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton('filesystem', function ($app) {
+    return $app->loadComponent('filesystems', 'Illuminate\Filesystem\FilesystemServiceProvider', 'filesystem');
+});
+
+$app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config');
+$app->instance('path.storage', app()->basePath() . DIRECTORY_SEPARATOR . 'storage');
+$app->instance('path.public', app()->basePath() . DIRECTORY_SEPARATOR . 'public');
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -76,6 +86,8 @@ $app->singleton(
 */
 
 $app->configure('app');
+
+$app->configure('filesystems');
 
 /*
 |--------------------------------------------------------------------------
@@ -119,7 +131,8 @@ $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(BenSampo\Enum\EnumServiceProvider::class);
 
-
+// Register Filesystem
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

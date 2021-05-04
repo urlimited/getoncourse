@@ -3,27 +3,27 @@
 namespace App\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\EduStuffEntity;
+use App\Entities\LessonBlockEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\MessageBag;
 
-class EduStuffModel extends AbstractModel
+class LessonBlockModel extends AbstractModel
 {
-    protected EduStuffEntity $entity;
+    protected LessonBlockEntity $entity;
     protected EntityManagerInterface $entityManager;
-    protected array $publishableFields = ['id', 'lesson', 'content', 'type'];
+    protected array $publishableFields = ['id', 'content', 'type', 'keyId', 'parentId'];
 
     public static function create(array $data): self
     {
         $entityManager = app(EntityManagerInterface::class);
 
-        $eduStuffEntity = new EduStuffEntity($data);
+        $eduStuffEntity = new LessonBlockEntity($data);
 
         $entityManager->persist($eduStuffEntity);
 
         $entityManager->flush();
 
-        return new EduStuffModel($eduStuffEntity);
+        return new LessonBlockModel($eduStuffEntity);
     }
 
     /**
@@ -91,6 +91,14 @@ class EduStuffModel extends AbstractModel
 
     public function getType(){
         return $this->entity->type;
+    }
+
+    public function getParentId(){
+        return $this->entity->parentId;
+    }
+
+    public function getKeyId(){
+        return $this->entity->keyId;
     }
 
     public function getLesson(){

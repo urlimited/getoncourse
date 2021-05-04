@@ -3,18 +3,35 @@
 namespace App\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\EduStuffEntity;
+use App\Entities\LessonBlockEntity;
 use App\Entities\LessonEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\MessageBag;
 use ReflectionException;
+
 
 class LessonModel extends AbstractModel
 {
     protected LessonEntity $entity;
+
     protected EntityManagerInterface $entityManager;
-    protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'eduStuffs'];
+
+    protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'lessonBlocks'];
+
+    protected string $lessonDir;
+
+    public function __construct($entity)
+    {
+        parent::__construct($entity);
+
+        $this->lessonDir = sha1($this->getCourseId() . 'lesson' . env('APP_SALT'))
+            . '/'
+            . sha1($this->getId() . 'course' . env('APP_SALT'));
+    }
 
     public static function allDeleted(){
         $courses = self::all();
@@ -66,12 +83,12 @@ class LessonModel extends AbstractModel
         // Setting course association, since it will not save without it
         $lesson->course = CourseModel::find($lesson->courseId)->getEntity();
 
-        $eduStuffs = json_decode($lesson->eduStuffs);
+        $lessonBlocks = json_decode($lesson->lessonBlocks);
 
-        $lesson->eduStuffs = new ArrayCollection();
+        $lesson->lessonBlocks = new ArrayCollection();
 
-        foreach ($eduStuffs as $stuff) {
-            $lesson->eduStuffs->add(new EduStuffEntity($stuff));
+        foreach ($lessonBlocks as $block) {
+            $lesson->lessonBlocks->add(new LessonBlockEntity($block));
         }
 
         $entityManager->persist($lesson);
@@ -88,7 +105,7 @@ class LessonModel extends AbstractModel
     public function delete()
     {
         if($this->entity->deletedAt === null)
-            throw new ValidationException(new MessageBag(['course' => 'You can not delete soft undeleted course. Delete it softly, first']));
+            throw new ValidationException(new MessageBag(['course' => 'You can not delete soft undeleted lesson. Delete it softly, first']));
 
         $this->entityManager->remove($this->entity);
         $this->entityManager->flush();
@@ -114,16 +131,76 @@ class LessonModel extends AbstractModel
     }
 
     /**
+     * @param int $id
+     * @param array $relations
+     * @return $this
+     * @throws \Exception
+     */
+    public static function findWith(int $id, array $relations): self
+    {
+        if(empty($relations))
+            throw new \Exception('Relations array must not be empty');
+
+        $entityManager = app(EntityManagerInterface::class);
+
+        $lesson = new LessonModel($entityManager->getRepository(LessonEntity::class)
+            ->getLessonWith($id, $relations));
+
+        $lesson->setWith($relations);
+
+        return $lesson;
+    }
+
+    /**
      * @param array $data
      * @return $this
      * @throws ValidationException
+     * @throws Exception
      */
     public function update(array $data): self
     {
         if($this->entity->deletedAt !== null)
             throw new ValidationException(new MessageBag(['course' => 'Course is soft deleted']));
 
-        $this->entity->fill($data);
+        //TODO: Refactor allocation of images by blocks
+        $images = [];
+
+        foreach($data['image_files'] as $image_file){
+            $pathToTheImage = $this->lessonDir . '/' . $image_file->hashName();
+
+            $images[] = [
+                'path' => $pathToTheImage,
+                'name' => $image_file->getClientOriginalName()
+            ];
+
+            Storage::disk('lessons')
+                ->put($pathToTheImage, $image_file->get());
+        }
+
+        $entityManager = app(EntityManagerInterface::class);
+
+        $data['lessonBlocks'] = collect(json_decode($data['lesson_blocks'], true))
+            ->map(function($block) use ($data, $entityManager, $images){
+                $block['lesson'] = $this->entity;
+
+                // If type of block is image
+                if($block['type'] === 2)
+                    $block['content'] = 'storage/' . collect($images)
+                        ->first(function($img) use ($block){
+                            return $img['name'] === $block['content'];
+                        })['path'];
+
+                $entityManager->getRepository(LessonEntity::class)
+                    ->deleteAllLessonBlocks($this->getId());
+
+                return new LessonBlockEntity($block);
+            })->toArray();
+
+        $this->entity->fill(collect($data)
+            ->filter(function($d, $k){
+                return $k !== 'image_files';
+            })
+            ->toArray());
 
         $this->entityManager->persist($this->entity);
         $this->entityManager->flush();
@@ -151,7 +228,17 @@ class LessonModel extends AbstractModel
         return $this->entity->course;
     }
 
-    public function getEduStuffs(){
-        return $this->entity->eduStuffs;
+    public function getLessonBlocks(){
+        return collect($this->entity->lessonBlocks->getSnapshot())
+            ->map(function($block){
+                return (new LessonBlockModel($block))->toAPI();
+            })
+            ->toArray();
+    }
+
+    public function setWith(array $with){
+        $this->with = array_merge($this->with, $with);
+
+        return true;
     }
 }

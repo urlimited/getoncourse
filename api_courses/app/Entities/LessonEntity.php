@@ -41,9 +41,9 @@ class LessonEntity extends AbstractEntity
     public $deletedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\EduStuffEntity", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entities\LessonBlockEntity", mappedBy="lesson", cascade={"persist"})
      */
-    public $eduStuffs;
+    public $lessonBlocks;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entities\CourseEntity")

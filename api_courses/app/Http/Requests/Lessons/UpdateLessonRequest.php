@@ -21,6 +21,8 @@ class UpdateLessonRequest extends FormRequest
             'course_id' => ['integer'],
             'description' => ['string', 'max: 350'],
             'name' => ['string', 'max: 25', 'min: 10'],
+            'lesson_blocks' => ['string'],
+            'image_files.*' => ['required', 'mimes:jpg,jpeg,png,bmp', 'max:20000']
         ];
     }
 }

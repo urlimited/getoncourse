@@ -48,9 +48,47 @@ class LessonsController extends Controller
     public function updateLesson(Request $request)
     {
         $client = new Client();
+
+        return $client->request(
+            'POST',
+            'http://webserver/lessons/update_lesson', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json',
+            ],
+            'query' => $request->all(),
+            'multipart' => collect($request->file('image_files'))
+                ->map(function ($uploadedFileObject) {
+                    return [
+                        'name' => 'image_files[]',
+                        'contents' => file_get_contents($uploadedFileObject->path(), $uploadedFileObject->getClientOriginalName()),
+                        'filename' => $uploadedFileObject->getClientOriginalName()
+                    ];
+                })
+                ->toArray()
+        ]);
+    }
+
+    public function deleteLesson(Request $request)
+    {
+        $client = new Client();
+        return $client->request(
+            'DELETE',
+            'http://webserver/lessons/delete_lesson', [
+            'headers' => [
+                'Host' => 'courses.oncourse.local',
+                'Accept' => 'application/json'
+            ],
+            'query' => $request->all()
+        ]);
+    }
+
+    public function softDeleteLesson(Request $request)
+    {
+        $client = new Client();
         return $client->request(
             'PUT',
-            'http://webserver/lessons/update_lesson', [
+            'http://webserver/lessons/soft_delete_lesson', [
             'headers' => [
                 'Host' => 'courses.oncourse.local',
                 'Accept' => 'application/json'
