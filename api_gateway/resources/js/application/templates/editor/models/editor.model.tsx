@@ -183,9 +183,20 @@ export class EditorModel {
         }
     }
 
-    protected getData(): { blocks: Array<any> } {
+    protected getData(): {
+        blocks: Array<any>,
+        files: Array<any>
+    } {
         return {
-            blocks: this._blocks.map(bc => bc.getData())
+            blocks: this._blocks.map(bc => bc.getData()),
+            files: this._blocks
+                .filter(bc => bc.getType() === EditorModel.BLOCK_IMAGE_TYPE)
+                .map(bc => {
+                    if(! (bc instanceof EditorImageBlockModel))
+                        throw new Error('');
+
+                    return (bc.getFile());
+                })
         };
     }
 

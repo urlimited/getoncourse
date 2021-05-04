@@ -10,12 +10,12 @@ export const apiUpdateLesson = (lesson) => dispatch => {
     dispatch(core_events.eventInitRequest());
 
     return fetch(constants.API_LESSON_UPDATE_LESSON, (new DefaultRequest()).setParams({
-        headers: {
+        /*headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-        },
+        },*/
         body: _preProcessData(lesson),
-        method: "put"
-    }).getRequest()).then(response=>{
+        method: "post"
+    }).getRequest()).then(response => {
             if (response.status === 401)
                 throw new AuthFailedException();
 
@@ -37,10 +37,27 @@ export const apiUpdateLesson = (lesson) => dispatch => {
 const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
 
 const _preProcessData = (data) => {
+    const formData = new FormData();
+
+    // hack for PUT with formdata
+    formData.append('_method', 'put');
+
     return Object.keys(data)
         .filter(key => (data[key] !== undefined && data[key] !== null && data[key] !== ''))
-        .map(key => camelToSnakeCase(key) + "=" + data[key])
-        .reduce((accum, next) => accum + "&" + next);
+        .reduce((accum, nextKey) => {
+            if(nextKey === 'files'){
+                console.log(data[nextKey]);
+
+                for(let file of data[nextKey]){
+                    formData.append('image_files[]', file);
+                }
+
+                return formData;
+            }
+
+            formData.append(camelToSnakeCase(nextKey), data[nextKey])
+            return formData;
+        }, formData);
 }
 
 const _postProcessData = (data) => new Lesson(data);

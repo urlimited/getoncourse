@@ -16,13 +16,15 @@ export class EditorImageBlockModel extends EditorBlockModelFile.EditorBlockModel
 
     protected _placeholder: string;
 
+    protected _file: string;
+
     public constructor(configs?: EditorImageBlockModelConfigs) {
         super(configs);
 
         if(configs?.type === undefined)
             this._type = EditorModel.BLOCK_IMAGE_TYPE;
 
-        this._key = configs?.key ?? "image-" + (+new Date());
+        this._key = configs?.key_id ?? configs?.key ?? "image-" + (+new Date());
     }
 
     public render(key: number): React.ReactElement {
@@ -32,6 +34,15 @@ export class EditorImageBlockModel extends EditorBlockModelFile.EditorBlockModel
             setHtmlElementHandler={(htmlElement: HTMLElement) => this.setHtmlElement(htmlElement)}
             deleteBlockHandler={() => this._handlers.deleteBlockHandler(this)}
             setContentToBlock={(content: string) => this.setContent(content)}
+            setFileToBlock={(fileContent: string) => this.setFile(fileContent)}
         />
+    }
+
+    public getFile(){
+        return this._file;
+    }
+
+    protected setFile(fileContent: string): void{
+        this._file = fileContent
     }
 }

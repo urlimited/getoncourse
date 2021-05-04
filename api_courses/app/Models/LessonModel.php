@@ -8,8 +8,11 @@ use App\Entities\LessonEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\MessageBag;
 use ReflectionException;
+
 
 class LessonModel extends AbstractModel
 {
@@ -18,6 +21,17 @@ class LessonModel extends AbstractModel
     protected EntityManagerInterface $entityManager;
 
     protected array $publishableFields = ['id', 'name', 'description', 'courseId', 'lessonBlocks'];
+
+    protected string $lessonDir;
+
+    public function __construct($entity)
+    {
+        parent::__construct($entity);
+
+        $this->lessonDir = sha1($this->getCourseId() . 'lesson' . env('APP_SALT'))
+            . '/'
+            . sha1($this->getId() . 'course' . env('APP_SALT'));
+    }
 
     public static function allDeleted(){
         $courses = self::all();
@@ -148,11 +162,33 @@ class LessonModel extends AbstractModel
         if($this->entity->deletedAt !== null)
             throw new ValidationException(new MessageBag(['course' => 'Course is soft deleted']));
 
+        //TODO: Refactor allocation of images by blocks
+        $images = [];
+
+        foreach($data['image_files'] as $image_file){
+            $pathToTheImage = $this->lessonDir . '/' . $image_file->hashName();
+
+            $images[] = [
+                'path' => $pathToTheImage,
+                'name' => $image_file->getClientOriginalName()
+            ];
+
+            Storage::disk('lessons')
+                ->put($pathToTheImage, $image_file->get());
+        }
+
         $entityManager = app(EntityManagerInterface::class);
 
         $data['lessonBlocks'] = collect(json_decode($data['lesson_blocks'], true))
-            ->map(function($block) use ($data, $entityManager){
+            ->map(function($block) use ($data, $entityManager, $images){
                 $block['lesson'] = $this->entity;
+
+                // If type of block is image
+                if($block['type'] === 2)
+                    $block['content'] = 'storage/' . collect($images)
+                        ->first(function($img) use ($block){
+                            return $img['name'] === $block['content'];
+                        })['path'];
 
                 $entityManager->getRepository(LessonEntity::class)
                     ->deleteAllLessonBlocks($this->getId());
@@ -160,7 +196,11 @@ class LessonModel extends AbstractModel
                 return new LessonBlockEntity($block);
             })->toArray();
 
-        $this->entity->fill($data);
+        $this->entity->fill(collect($data)
+            ->filter(function($d, $k){
+                return $k !== 'image_files';
+            })
+            ->toArray());
 
         $this->entityManager->persist($this->entity);
         $this->entityManager->flush();

@@ -48,14 +48,24 @@ class LessonsController extends Controller
     public function updateLesson(Request $request)
     {
         $client = new Client();
+
         return $client->request(
-            'PUT',
+            'POST',
             'http://webserver/lessons/update_lesson', [
             'headers' => [
                 'Host' => 'courses.oncourse.local',
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
             ],
-            'query' => $request->all()
+            'query' => $request->all(),
+            'multipart' => collect($request->file('image_files'))
+                ->map(function ($uploadedFileObject) {
+                    return [
+                        'name' => 'image_files[]',
+                        'contents' => file_get_contents($uploadedFileObject->path(), $uploadedFileObject->getClientOriginalName()),
+                        'filename' => $uploadedFileObject->getClientOriginalName()
+                    ];
+                })
+                ->toArray()
         ]);
     }
 

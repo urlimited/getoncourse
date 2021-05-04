@@ -9,7 +9,7 @@ use App\Http\Requests\Lessons\GetLessonDetailsRequest;
 use App\Http\Requests\Lessons\SoftDeleteLessonRequest;
 use App\Http\Requests\Lessons\UpdateLessonRequest;
 use App\Models\LessonModel;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class LessonsController extends Controller
 {
@@ -47,8 +47,11 @@ class LessonsController extends Controller
         return response()->json(['lesson' => $lesson->toAPI()], 200);
     }
 
-    public function updateLesson(UpdateLessonRequest $request){
-        $lesson = LessonModel::find($request->id)->update($request->all());
+    public function updateLesson(Request $request){
+        $lesson = LessonModel::find($request->id)->update(collect($request->all())
+            ->filter(function($val, $key){
+                return $key !== '_method';
+            })->toArray());
 
         return response()->json(['lesson' => $lesson->toAPI()], 200);
     }

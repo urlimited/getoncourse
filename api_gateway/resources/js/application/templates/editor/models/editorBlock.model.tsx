@@ -66,12 +66,20 @@ export abstract class EditorBlockModel {
         this._content = content;
     }
 
-    public getData(): {} {
+    public getData(): {
+        key_id: string,
+        content: string,
+        type: number
+    } {
         return {
             key_id: fromString(this._id + EditorModel.editorSalt),
             content: this._content,
             type: this._type
         }
+    }
+
+    public getType(): number {
+        return this._type;
     }
 
     public abstract render(key: number, callback?: Function): React.ReactElement;

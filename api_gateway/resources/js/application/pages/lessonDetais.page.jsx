@@ -25,7 +25,8 @@ export const LessonDetailsPage = ({updateLesson, getLessonDetails}) => {
                     apiSaveOnServer: (content) => {
                         updateLesson(new Lesson({
                             id: lessonId,
-                            lessonBlocks: JSON.stringify(content.blocks)
+                            lessonBlocks: JSON.stringify(content.blocks),
+                            files: content.files
                         }));
                     },
                     editorSalt: uuid(),

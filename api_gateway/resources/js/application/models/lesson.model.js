@@ -8,6 +8,7 @@ export class Lesson {
         this.courseId = data?.course_id ?? null;
         this.description = data?.description ?? null;
         this.lessonBlocks = data?.lesson_blocks ?? data?.lessonBlocks ??[];
+        this.files = data?.files ?? [];
     }
 
     isNewLesson() {
