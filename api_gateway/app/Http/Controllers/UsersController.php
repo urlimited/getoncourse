@@ -20,6 +20,6 @@ class UsersController extends Controller
 
     public function getUser(Request $request, EntityManagerInterface $entityManager){
         return response()
-        ->json(['user' => $entityManager->getRepository(User::class)->find(auth()->id())->toJSON()], 200);
+            ->json(['user' => $entityManager->getRepository(User::class)->find(auth()->id())->toJSON()], 200);
     }
 }

@@ -19,7 +19,7 @@ class User extends AbstractEntity implements JWTSubject, AuthenticatableContract
 {
     use Authenticatable, Authorizable, HasFactory;
 
-    protected $publishable_fields = ['id', 'name', 'email'];
+    protected $publishable_fields = ['id', 'name', 'email', 'role'];
 
     /**
      * @ORM\Id
@@ -71,6 +71,11 @@ class User extends AbstractEntity implements JWTSubject, AuthenticatableContract
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
     }
 
     /**

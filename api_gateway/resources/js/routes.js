@@ -11,18 +11,14 @@ import {loadState} from "./core/services/local_storage";
 
 // Pages
 //import DashboardPage from "./project/dashboard/pages/dashboard.page";
-import DashboardLayout from "./project/dashboard/containers/layouts/dashboard.container";
 import LoginPage from "./project/auth/pages/login.page";
-import {Dashboard} from "./application/pages/dashboard";
 
-import {DashboardModal} from "./project/dashboard/modals/dashboard.modal";
-import CreateCourseModal from "./project/courses/containers/createCourses.modal_cont";
 import {MRouter} from "./core/mrouter/MRouter";
 import CoursesContainer from "./application/containers/courses.container";
 import CourseDetailsContainer from "./application/containers/courseDetails.container";
 import LessonDetailsContainer from "./application/containers/lessonDetails.container";
 import UsersPageContainer from "./application/containers/users.container"
-import {PanelLayout} from "./application/pages/panel.layout";
+import PanelLayout from "./application/containers/panelLayout.container";
 
 const loadStateDefault = loadState() ?? {
     userData: {}
