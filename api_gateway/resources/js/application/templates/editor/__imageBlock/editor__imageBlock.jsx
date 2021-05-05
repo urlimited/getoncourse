@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import "./require.css";
 
-const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler, setContentToBlock, setFileToBlock, id}) => {
-    const [imageSrc, setImageSrc] = useState('');
+const Editor__imageBlock = ({content, setMetaToBlock, deleteBlockHandler, setHtmlElementHandler, setContentToBlock, setFileToBlock, id}) => {
+    const [imageSrc, setImageSrc] = useState(content);
     const [file, setFile] = useState();
 
     const [isImageHovered, setIsImageHovered] = useState(false);
@@ -14,7 +14,8 @@ const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler, setConte
     }, []);
 
     useEffect(() => {
-        setContentToBlock(file?.name ?? "");
+        setContentToBlock(content);
+        setMetaToBlock(file?.name);
         setFileToBlock(file);
     }, [imageSrc]);
 
@@ -38,7 +39,7 @@ const Editor__imageBlock = ({deleteBlockHandler, setHtmlElementHandler, setConte
              onMouseEnter={() => setIsImageHovered(true)}
              onMouseLeave={() => setIsImageHovered(false)}>
             {
-                file
+                (content || file)
                     ? <img src={imageSrc} alt="The image" className="editor__image-block-preview-image"/>
                     : <div className="editor__image-placeholder">
                         {isImageHovered
