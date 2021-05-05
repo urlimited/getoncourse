@@ -1,12 +1,14 @@
 import * as React from "react";
 import {EditorModel} from "./editor.model";
 import {fromString} from "uuidv4";
+import {EditorImageBlockModel} from "./editorImageBlock.model";
 
 export interface EditorBlockModelConfigs {
     id?: number,
     key?: string,
     type?: number,
-    key_id?: string
+    key_id?: string,
+    content?: string
 }
 
 export interface EditorBlockModelHandlers {
@@ -38,6 +40,7 @@ export abstract class EditorBlockModel {
         this._id = configs?.key ?? configs?.key_id ?? null;
         this._key = configs?.key_id ?? configs?.key ?? null;
         this._type = configs?.type ?? null;
+        this._content = configs?.content ?? '';
     }
 
     public setHandlers(handlers: EditorBlockModelHandlers): EditorBlockModel {
@@ -69,13 +72,26 @@ export abstract class EditorBlockModel {
     public getData(): {
         key_id: string,
         content: string,
-        type: number
+        type: number,
+        meta?: string
     } {
-        return {
+        let result: {
+            key_id: string,
+            content: string,
+            type: number,
+            meta?: string
+        } = {
             key_id: fromString(this._id + EditorModel.editorSalt),
             content: this._content,
             type: this._type
-        }
+        };
+
+        if(this._type === EditorModel.BLOCK_IMAGE_TYPE)
+            { // @ts-ignore
+                result.meta = this.getMeta();
+            }
+
+        return result;
     }
 
     public getType(): number {
