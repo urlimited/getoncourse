@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace ApiCourses\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\LessonBlockEntity;
-use App\Entities\LessonEntity;
+use ApiCourses\Entities\LessonBlockEntity;
+use ApiCourses\Entities\LessonEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;

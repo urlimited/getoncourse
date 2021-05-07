@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace ApiCourses\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
  * Class deletePostsCommand
  *
  * @category Console_Command
- * @package  App\Console\Commands
+ * @package  ApiCourses\Console\Commands
  */
 class RunCoverageTests extends Command
 {

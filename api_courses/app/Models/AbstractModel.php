@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace ApiCourses\Models;
 
-use App\Traits\CaseSensitiveManageable;
+use ApiCourses\Traits\CaseSensitiveManageable;
 use Doctrine\ORM\EntityManagerInterface;
 use Mockery\Exception;
 use ReflectionClass;

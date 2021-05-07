@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace ApiGateway\Providers;
 
-use App\Models\User;
+use ApiGateway\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entities;
+namespace ApiCourses\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entities\Repositories\CourseRepository")
+ * @ORM\Entity(repositoryClass="ApiCourses\Entities\Repositories\CourseRepository")
  * @ORM\Table(name="courses")
  */
 class CourseEntity extends AbstractEntity
@@ -41,7 +41,7 @@ class CourseEntity extends AbstractEntity
     public $deletedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entities\CategoryEntity", inversedBy="courses")
+     * @ORM\ManyToMany(targetEntity="ApiCourses\Entities\CategoryEntity", inversedBy="courses")
      * @ORM\JoinTable(name="categories_courses",
      *      joinColumns={@ORM\JoinColumn(name="course_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
@@ -50,7 +50,7 @@ class CourseEntity extends AbstractEntity
     public $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\LessonEntity", mappedBy="course")
+     * @ORM\OneToMany(targetEntity="ApiCourses\Entities\LessonEntity", mappedBy="course")
      */
     public $lessons;
 }

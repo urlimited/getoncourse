@@ -40,12 +40,12 @@ $app->withFacades();
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    ApiGateway\Exceptions\Handler::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    ApiGateway\Console\Kernel::class
 );
 
 /*
@@ -75,11 +75,11 @@ $app->configure('jwt');
 */
 
 // $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
+//     ApiGateway\Http\Middleware\ExampleMiddleware::class
 // ]);
 
 $app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
+    'auth' => ApiGateway\Http\Middleware\Authenticate::class,
 ]);
 
 /*
@@ -93,9 +93,9 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-$app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+// $app->register(ApiGateway\Providers\AppServiceProvider::class);
+$app->register(ApiGateway\Providers\AuthServiceProvider::class);
+// $app->register(ApiGateway\Providers\EventServiceProvider::class);
 $app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
@@ -114,7 +114,7 @@ $app->register(BenSampo\Enum\EnumServiceProvider::class);
 */
 
 $app->router->group([
-    'namespace' => 'App\Http\Controllers',
+    'namespace' => 'ApiGateway\Http\Controllers',
 ], function ($router) {
     require __DIR__ . '/../routes/web.php';
 });

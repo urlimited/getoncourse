@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace ApiCourses\Traits;
 
 trait DatabaseMigrations
 {

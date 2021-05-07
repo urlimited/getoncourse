@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace ApiGateway\Http\Middleware;
 
 use Closure;
 

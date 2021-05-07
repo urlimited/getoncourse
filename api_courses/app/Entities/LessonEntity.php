@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entities;
+namespace ApiCourses\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entities\Repositories\LessonRepository")
+ * @ORM\Entity(repositoryClass="ApiCourses\Entities\Repositories\LessonRepository")
  * @ORM\Table(name="lessons")
  */
 class LessonEntity extends AbstractEntity
@@ -41,12 +41,12 @@ class LessonEntity extends AbstractEntity
     public $deletedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\LessonBlockEntity", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ApiCourses\Entities\LessonBlockEntity", mappedBy="lesson", cascade={"persist"})
      */
     public $lessonBlocks;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entities\CourseEntity")
+     * @ORM\ManyToOne(targetEntity="ApiCourses\Entities\CourseEntity")
      */
     public $course;
 }

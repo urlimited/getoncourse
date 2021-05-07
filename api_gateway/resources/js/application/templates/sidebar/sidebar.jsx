@@ -18,13 +18,20 @@ export const Sidebar = ({menuContent}) => {
                                     <div id="sidebar-menu" className="mm-show">
                                         <ul className="metismenu list-unstyled mm-show mm-active" id="side-menu">
                                             {menuContent.map((m, k) => (
-                                                <div key={'Sidebar__linkTitle-' + k}>
-                                                    <Sidebar__linkTitle title={m.title}/>
-                                                    {m.items.map((item, j) => (
-                                                        <Sidebar__linkItem title={item.itemTitle} route={item.itemRoute}
-                                                                           key={'Sidebar__linkItem-' + k + '-' + j}/>
-                                                    ))}
-                                                </div>
+                                                // Undefined here is okay
+                                                m.isAccessible !== false
+                                                    ? <div key={'Sidebar__linkTitle-' + k}>
+                                                        <Sidebar__linkTitle title={m.title}/>
+                                                        {m.items.map((item, j) => (
+                                                            item.isAccessible !== false
+                                                                ?
+                                                                <Sidebar__linkItem title={item.itemTitle}
+                                                                                   route={item.itemRoute}
+                                                                                   key={'Sidebar__linkItem-' + k + '-' + j} />
+                                                                : ''
+                                                        ))}
+                                                    </div>
+                                                    : ''
                                             ))}
                                         </ul>
                                     </div>

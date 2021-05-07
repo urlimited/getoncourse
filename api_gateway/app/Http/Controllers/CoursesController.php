@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ApiGateway\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;

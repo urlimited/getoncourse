@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace ApiGateway\Events;
 
 class ExampleEvent extends Event
 {

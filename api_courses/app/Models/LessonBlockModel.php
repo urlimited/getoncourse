@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace ApiCourses\Models;
 
 use Anik\Form\ValidationException;
-use App\Entities\LessonBlockEntity;
+use ApiCourses\Entities\LessonBlockEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\MessageBag;
 

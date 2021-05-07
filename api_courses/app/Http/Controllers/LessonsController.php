@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ApiCourses\Http\Controllers;
 
-use App\Http\Requests\Lessons\CloneLessonRequest;
-use App\Http\Requests\Lessons\CreateLessonRequest;
-use App\Http\Requests\Lessons\DeleteLessonRequest;
-use App\Http\Requests\Lessons\GetLessonDetailsRequest;
-use App\Http\Requests\Lessons\SoftDeleteLessonRequest;
-use App\Http\Requests\Lessons\UpdateLessonRequest;
-use App\Models\LessonModel;
+use ApiCourses\Http\Requests\Lessons\CloneLessonRequest;
+use ApiCourses\Http\Requests\Lessons\CreateLessonRequest;
+use ApiCourses\Http\Requests\Lessons\DeleteLessonRequest;
+use ApiCourses\Http\Requests\Lessons\GetLessonDetailsRequest;
+use ApiCourses\Http\Requests\Lessons\SoftDeleteLessonRequest;
+use ApiCourses\Http\Requests\Lessons\UpdateLessonRequest;
+use ApiCourses\Models\LessonModel;
 use Illuminate\Http\Request;
 
 class LessonsController extends Controller

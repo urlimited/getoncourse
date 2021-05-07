@@ -1,8 +1,8 @@
 <?php
 
-use App\Entities\CourseEntity;
-use App\Models\CourseModel;
-use App\Traits\DatabaseMigrations;
+use ApiCourses\Entities\CourseEntity;
+use ApiCourses\Models\CourseModel;
+use ApiCourses\Traits\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use LaravelDoctrine\ORM\Testing\Factory;
 
