@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Entities\CourseEntity;
+use ApiCourses\Entities\CourseEntity;
 use Illuminate\Database\Seeder;
 
 class CoursesSeeder extends Seeder

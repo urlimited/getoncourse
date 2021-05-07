@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Requests\Courses;
+namespace ApiCourses\Http\Requests\Courses;
 
 
 use Anik\Form\FormRequest;
@@ -17,7 +17,7 @@ class DeleteCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => ['required', 'integer', 'exists:App\Entities\CourseEntity,id'],
+            'id' => ['required', 'integer', 'exists:ApiCourses\Entities\CourseEntity,id'],
         ];
     }
 }

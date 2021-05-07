@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Requests;
+namespace ApiGateway\Http\Requests;
 
 
 use Anik\Form\FormRequest;

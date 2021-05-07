@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ApiCourses\Http\Controllers;
 
-use App\Http\Requests\Courses\CloneCourseRequest;
-use App\Http\Requests\Courses\CreateCourseRequest;
-use App\Http\Requests\Courses\DeleteCourseRequest;
-use App\Http\Requests\Courses\GetCourseDetailsRequest;
-use App\Http\Requests\Courses\SoftDeleteCourseRequest;
-use App\Http\Requests\Courses\UpdateCourseRequest;
-use App\Models\CourseModel;
+use ApiCourses\Http\Requests\Courses\CloneCourseRequest;
+use ApiCourses\Http\Requests\Courses\CreateCourseRequest;
+use ApiCourses\Http\Requests\Courses\DeleteCourseRequest;
+use ApiCourses\Http\Requests\Courses\GetCourseDetailsRequest;
+use ApiCourses\Http\Requests\Courses\SoftDeleteCourseRequest;
+use ApiCourses\Http\Requests\Courses\UpdateCourseRequest;
+use ApiCourses\Models\CourseModel;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Request;

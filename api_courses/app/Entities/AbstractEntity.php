@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entities;
+namespace ApiCourses\Entities;
 
-use App\Traits\CaseSensitiveManageable;
+use ApiCourses\Traits\CaseSensitiveManageable;
 use Mockery\Exception;
 
 abstract class AbstractEntity

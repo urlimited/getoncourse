@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Requests\Courses;
+namespace ApiCourses\Http\Requests\Courses;
 
 
 use Anik\Form\FormRequest;

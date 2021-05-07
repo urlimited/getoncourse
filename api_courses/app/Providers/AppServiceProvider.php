@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace ApiCourses\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

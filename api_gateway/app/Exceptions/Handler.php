@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace ApiGateway\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use \GuzzleHttp\Exception\ClientException;

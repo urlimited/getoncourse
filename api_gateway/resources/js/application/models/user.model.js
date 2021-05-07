@@ -16,9 +16,9 @@ export class User{
 export class UserFactory {
     static createUser = (data) => {
         const processedUserType = {
-            "1": "client",
+            "1": "admin",
             "2": "staff",
-            "3": "admin",
+            "3": "client",
             "4": "not_loaded",
         }[data?.role ?? 4]
 

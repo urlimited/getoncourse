@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities\Repositories;
+namespace ApiCourses\Entities\Repositories;
 
 class CategoryRepository
 {

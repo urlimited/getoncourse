@@ -6,7 +6,7 @@ import {ROUTE_TO_COURSES_PAGE_NAME, ROUTE_TO_USERS_LIST_PAGE_NAME} from "../rout
 
 export const PanelLayout = ({Page, getUser, user}) => {
     useEffect(() => {
-        getUser().then(e => console.log(e))
+        getUser();
     }, []);
 
     const router = MRouter.initRouter();
@@ -19,14 +19,15 @@ export const PanelLayout = ({Page, getUser, user}) => {
             type: "sidebar",
             menuContent: [
                 {
-                    title: "Основное",
+                    title: "Управление системой",
                     items: [
                         {
                             itemTitle: "Пользователи",
                             itemRoute: router.getRoute(ROUTE_TO_USERS_LIST_PAGE_NAME),
-                            isAccessible: /*user.isClient() || user.isStaff()*/false
+                            isAccessible: user.isAdmin()
                         }
-                    ]
+                    ],
+                    isAccessible: user.isAdmin()
 
                 },
                 {

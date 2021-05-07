@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entities;
+namespace ApiCourses\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entities\Repositories\LessonBlockRepository")
+ * @ORM\Entity(repositoryClass="ApiCourses\Entities\Repositories\LessonBlockRepository")
  * @ORM\Table(name="lesson_blocks", indexes={@ORM\Index(name="keyid", columns={"key_id"})})
  */
 class LessonBlockEntity extends AbstractEntity
@@ -51,17 +51,17 @@ class LessonBlockEntity extends AbstractEntity
     public $deletedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entities\LessonEntity", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="ApiCourses\Entities\LessonEntity", fetch="EXTRA_LAZY")
      */
     public $lesson;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\LessonBlockEntity", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="ApiCourses\Entities\LessonBlockEntity", mappedBy="parent")
      */
     public $children;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entities\LessonBlockEntity", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="ApiCourses\Entities\LessonBlockEntity", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     public $parent;

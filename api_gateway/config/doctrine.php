@@ -24,7 +24,7 @@ return [
             'meta'       => env('DOCTRINE_METADATA', 'annotations'),
             'connection' => env('DB_CONNECTION', 'mysql'),
             'namespaces' => [
-                'App\Entities'
+                'ApiGateway\Entities'
             ],
             'paths'      => [
                 base_path('app/entities')

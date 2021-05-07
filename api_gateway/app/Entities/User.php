@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities;
+namespace ApiGateway\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;

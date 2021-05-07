@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities\Repositories;
+namespace ApiCourses\Entities\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -16,21 +16,21 @@ class LessonRepository extends EntityRepository
      * @throws NonUniqueResultException
      */
     public function getLessonWith(int $id, array $with = []){
-        $sql = "SELECT l, b FROM App\Entities\LessonEntity l
+        $sql = "SELECT l, b FROM ApiCourses\Entities\LessonEntity l
                 LEFT JOIN l.lessonBlocks b
                 WHERE l.id = $id";
 
         $query = $this->getEntityManager()->createQuery($sql);
 
         /*foreach($with as $w){
-            $query->setFetchMode("App\Entities\CourseEntity", $w, ClassMetadata::FETCH_EAGER);
+            $query->setFetchMode("ApiCourses\Entities\CourseEntity", $w, ClassMetadata::FETCH_EAGER);
         }*/
 
         return $query->getSingleResult();
     }
 
     public function deleteAllLessonBlocks(int $id){
-        $sql = "DELETE App\Entities\LessonBlockEntity b WHERE b.lessonId = $id";
+        $sql = "DELETE ApiCourses\Entities\LessonBlockEntity b WHERE b.lessonId = $id";
 
         $query = $this->getEntityManager()->createQuery($sql);
 

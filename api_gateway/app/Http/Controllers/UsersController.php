@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ApiGateway\Http\Controllers;
 
-use App\Entities\User;
+use ApiGateway\Entities\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Support\Facades\Request;
 
@@ -21,5 +21,9 @@ class UsersController extends Controller
     public function getUser(Request $request, EntityManagerInterface $entityManager){
         return response()
             ->json(['user' => $entityManager->getRepository(User::class)->find(auth()->id())->toJSON()], 200);
+    }
+
+    public function getUsers(Request $request){
+
     }
 }

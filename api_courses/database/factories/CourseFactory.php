@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Entities\CourseEntity;
+use ApiCourses\Entities\CourseEntity;
 use Faker\Generator;
 
 /**

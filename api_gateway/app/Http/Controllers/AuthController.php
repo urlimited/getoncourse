@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ApiGateway\Http\Controllers;
 
-use App\Entities\User;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+use ApiGateway\Entities\User;
+use ApiGateway\Http\Requests\LoginRequest;
+use ApiGateway\Http\Requests\RegisterRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

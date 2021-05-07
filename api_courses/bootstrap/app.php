@@ -57,12 +57,12 @@ $app->withFacades();
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    ApiCourses\Exceptions\Handler::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    ApiCourses\Console\Kernel::class
 );
 
 $app->singleton('filesystem', function ($app) {
@@ -101,11 +101,11 @@ $app->configure('filesystems');
 */
 
 // $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
+//     ApiCourses\Http\Middleware\ExampleMiddleware::class
 // ]);
 
 // $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
+//     'auth' => ApiCourses\Http\Middleware\Authenticate::class,
 // ]);
 
 /*
@@ -119,9 +119,9 @@ $app->configure('filesystems');
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+// $app->register(ApiCourses\Providers\AppServiceProvider::class);
+// $app->register(ApiCourses\Providers\AuthServiceProvider::class);
+// $app->register(ApiCourses\Providers\EventServiceProvider::class);
 if (class_exists('Laravel\Tinker\TinkerServiceProvider')) {
     $app->configure('tinker');
     $app->register(Laravel\Tinker\TinkerServiceProvider::class);
@@ -146,7 +146,7 @@ $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 */
 
 $app->router->group([
-    'namespace' => 'App\Http\Controllers',
+    'namespace' => 'ApiCourses\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });

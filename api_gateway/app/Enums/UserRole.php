@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums;
+namespace ApiGateway\Enums;
 
 use BenSampo\Enum\Enum;
 

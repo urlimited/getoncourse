@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\UserRole;
+use ApiGateway\Enums\UserRole;
 use Illuminate\Database\Seeder;
 
 class Users extends Seeder

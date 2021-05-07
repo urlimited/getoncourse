@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entities;
+namespace ApiCourses\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entities\Repositories\CategoryRepository")
+ * @ORM\Entity(repositoryClass="ApiCourses\Entities\Repositories\CategoryRepository")
  * @ORM\Table(name="categories")
  */
 class CategoryEntity extends AbstractEntity
@@ -29,18 +29,18 @@ class CategoryEntity extends AbstractEntity
     private $parent_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entities\CategoryEntity", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="ApiCourses\Entities\CategoryEntity", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\CategoryEntity", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="ApiCourses\Entities\CategoryEntity", mappedBy="parent")
      */
     private $children;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entities\CourseEntity", mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity="ApiCourses\Entities\CourseEntity", mappedBy="categories")
      */
     private $courses;
 

@@ -12,31 +12,26 @@ export const UsersPage = ()=>{
     ]
     const columns = [
         {
-            name: '#',
+            name: 'id',
             selector: row => row.avatar,
             sortable: true,
-            sortFunction: (rowA, rowB) => rowA.avatar.localeCompare(rowB.avatar)
+            sortFunction: (rowA, rowB) => rowA.avatar.localeCompare(rowB.avatar),
+            width: '100px'
         },
         {
-            name: 'Email',
+            name: 'Пользователь',
             selector: row => row.email,
             sortable: true,
             sortFunction: (rowA, rowB) => rowA.email.localeCompare(rowB.email)
         },
         {
-            name: 'Permissions',
+            name: 'Контакты',
             selector: row => row.permissions,
             sortable: true,
             sortFunction: (rowA, rowB) => rowA.permissions.localeCompare(rowB.permissions)
         },
         {
-            name: 'Projects',
-            selector: row => row.projects,
-            sortable: true,
-            sortFunction: (rowA, rowB) => rowA.projects.localeCompare(rowB.projects)
-        },
-        {
-            name: 'Actions',
+            name: '',
             right: true,
             selector: row => row.actions,
             width: '200px'
@@ -50,9 +45,15 @@ export const UsersPage = ()=>{
             children: [
                 {
                     type: "dataTable",
-                    col: 10,
+                    title: 'Пользователи',
+                    col: 9,
                     columns: columns,
                     data: dataUsers
+                },
+                {
+                    type: 'button',
+                    title: 'Stats',
+                    col: 3,
                 }
             ]
         }

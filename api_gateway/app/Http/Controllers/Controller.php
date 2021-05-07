@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ApiGateway\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Routing\Controller as BaseController;

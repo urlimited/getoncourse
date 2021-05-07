@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\User;
+use ApiGateway\Entities\User;
 
 return [
     'defaults' => [

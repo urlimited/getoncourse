@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Http\Requests\Lessons;
+namespace ApiCourses\Http\Requests\Lessons;
 
 
 use Anik\Form\FormRequest;
-use App\Entities\EduStuffEntity;
+use ApiCourses\Entities\EduStuffEntity;
 
 class CreateLessonRequest extends FormRequest
 {
@@ -18,7 +18,7 @@ class CreateLessonRequest extends FormRequest
     public function rules()
     {
         return [
-            'course_id' => ['required', 'integer', 'exists:App\Entities\CourseEntity,id'],
+            'course_id' => ['required', 'integer', 'exists:ApiCourses\Entities\CourseEntity,id'],
             'description' => ['required', 'string', 'max: 350'],
             'name' => ['required', 'string', 'max: 25', 'min: 10'],
             'edu_stuffs' => ['required', 'string',

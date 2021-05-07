@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities;
+namespace ApiGateway\Entities;
 
 use Mockery\Exception;
 
