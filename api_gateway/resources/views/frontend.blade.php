@@ -5,23 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Frontend</title>
-    <link rel="stylesheet" href="/template/css/apexcharts.css">
-    <link rel="stylesheet" href="/template/css/boxicons/boxicons.min.css">
-    <link rel="stylesheet" href="/template/css/materialdesign/materialdesignicons.min.css">
-    <link rel="stylesheet" href="/template/css/breadcrump.css">
-    <link rel="stylesheet" href="/template/css/btn_styles.css">
-    <link rel="stylesheet" href="/template/css/carousel.css">
-    <link rel="stylesheet" href="/template/css/chunk.css">
-    <link rel="stylesheet" href="/template/css/main.chunk.css">
-    <link rel="stylesheet" href="/template/css/datatable.css">
-    <link rel="stylesheet" href="/template/css/dropdown_menu.css">
-    <link rel="stylesheet" href="/template/css/hamburger.css">
-    <link rel="stylesheet" href="/template/css/main_styles.css">
-    <link rel="stylesheet" href="/template/css/riple.css">
-    <link rel="stylesheet" href="/css/app.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Oncourse</title>
+    <link rel="stylesheet" href="/template/css/bs.css" />
+    {{--<link rel="stylesheet" href="/template/css/main_style.css" />--}}
+    <link rel="stylesheet" href="/template/css/app.css" />
+    {{--<link rel="stylesheet" href="/template/css/apexcharts.css">--}}
+    {{--<link rel="stylesheet" href="/template/css/boxicons/boxicons.min.css">--}}
+    {{--<link rel="stylesheet" href="/template/css/breadcrump.css">--}}
+    {{--<link rel="stylesheet" href="/template/css/btn_styles.css">--}}
+    {{--<link rel="stylesheet" href="/template/css/carousel.css">--}}
+    {{--<link rel="stylesheet" href="/template/css/chunk.css">--}}
+    <link rel="stylesheet" href="/template/css/materialdesign/fonts/icons.css" />
+    {{--<link rel="stylesheet" href="/template/css/datatable.css" />--}}
+    <link rel="stylesheet" href="/template/css/dropdown_menu.css" />
+    {{--<link rel="stylesheet" href="/template/css/hamburger.css" />--}}
+    <link rel="stylesheet" href="/template/css/main_styles.css" />
+    {{--<link rel="stylesheet" href="/template/css/riple.css" />--}}
+    {{--<link rel="stylesheet" href="/css/app.css" />--}}
+    <script src="/template/js/bs.js"></script>
 </head>
 <body data-sidebar="dark" data-sidebar-size="" data-layout-size="fluid" data-layout-scrollable="false"
       data-topbar="light" id="project-body">
