@@ -9,6 +9,13 @@ const Form = ({sections}) => {
 
     return (<>
         {sections.map(s => new FormSectionModel(s).render())}
+        <div className="row">
+            <div className="offset-9 col-md-3">
+                <button
+                    className="form-control btn-primary"
+                    onClick={e => console.log('saved')}>Сохранить</button>
+            </div>
+        </div>
     </>);
 }
 

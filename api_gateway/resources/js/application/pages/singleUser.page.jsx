@@ -21,12 +21,58 @@ export const SingleUserPage = () => {
                                     placeholder: 'Владимир Владимирович',
                                     initialValue: 'Value some'
                                 },
-                                /*{
+                                {
                                     inputType: 'radio',
+                                    cases: [
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/001-man.png',
+                                            value: '1'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/002-man.png',
+                                            value: '2'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/003-man.png',
+                                            value: '3'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/004-man.png',
+                                            value: '4'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/005-man.png',
+                                            value: '5'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/006-man.png',
+                                            value: '6'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/007-man.png',
+                                            value: '7'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/008-man.png',
+                                            value: '8'
+                                        },
+                                        {
+                                            caseType: 'image',
+                                            content: '/images/avatars/009-man.png',
+                                            value: '9'
+                                        }
+
+                                    ],
                                     label: 'Ваш аватар',
-                                    placeholder: 'Владимир Владимирович',
-                                    initialValue: 'Value some'
-                                }*/
+                                }
                             ]
                         },
                         {

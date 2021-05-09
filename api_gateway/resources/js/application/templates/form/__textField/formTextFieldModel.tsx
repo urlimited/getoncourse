@@ -1,13 +1,14 @@
 import * as React from "react";
 import {FormElementModel, formElementModelConfigs} from '../formElementModel';
 import TextField from "./form__textField";
+import {FormModel} from "../formModel";
 
 export interface formTextFieldModelConfigs extends formElementModelConfigs {
     placeholder: string
 }
 
 export function isFormTextFieldModelConfigs(test: any): test is formTextFieldModelConfigs{
-    return test.inputType === 'text' ;
+    return test.inputType === FormModel.FORM_TEXT_TYPE ;
 }
 
 export class FormTextFieldModel extends FormElementModel{

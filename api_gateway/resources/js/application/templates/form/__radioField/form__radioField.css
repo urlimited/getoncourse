@@ -1,0 +1,27 @@
+.form__radio-field {
+
+}
+
+.form__radio-field-case{
+    display: inline-block;
+    margin: 0 15px 0 0;
+}
+
+.form__radio-field-case:last-of-type{
+    margin: 0;
+}
+
+.form__radio-field-case *{
+    cursor: pointer;
+}
+
+.form__radio-field-image {
+    border: solid #eee 3px;
+    border-radius: 25px;
+
+    height: 50px;
+}
+
+.form__radio-field-image-selected {
+    border: solid #0a66b7 3px;
+}
