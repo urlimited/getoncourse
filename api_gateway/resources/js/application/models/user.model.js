@@ -11,6 +11,9 @@ export class User{
     isStaff = () => this instanceof Staff;
     isAdmin = () => this instanceof Admin;
     isNotLoadedUser = () => this instanceof NotLoadedUser;
+
+    getName = () => this.name;
+
 }
 
 export class UserFactory {

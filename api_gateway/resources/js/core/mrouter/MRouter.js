@@ -45,7 +45,9 @@ export class MRouter {
         if(getLikeObject)
             return this._routes.find(r => r.name === name)
 
-        return this._routes[name]?.getRouteWithParams(params)
-            ?? throw new Error(`Route ${name} not found `);
+        if(!this._routes[name]?.getRouteWithParams(params))
+            throw new Error(`Route ${name} not found `);
+
+        return this._routes[name]?.getRouteWithParams(params);
     }
 }

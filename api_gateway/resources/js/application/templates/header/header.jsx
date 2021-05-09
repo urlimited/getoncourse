@@ -1,7 +1,12 @@
 import React, {useState} from "react";
+import {MRouter} from "../../../core/mrouter/MRouter";
+import {ROUTE_TO_PROFILE_PAGE_NAME} from "../../routes";
 
-const Header = () => {
+const Header = ({user}) => {
     const [collapsedMenu, setCollapsedMenu] = useState(false)
+
+    const mRouter = MRouter.initRouter();
+
     return (
         <>
             <header id="page-topbar">
@@ -192,7 +197,7 @@ const Header = () => {
                                 </div>
                                 <div className="p-2 border-top d-grid">
                                     <a className="btn btn-sm btn-link font-size-14 text-center"
-                                       href="javascript:void(0)">
+                                       href="">
                                         <i className="mdi mdi-arrow-right-circle me-1"/>
                                         <span key="t-view-more">View More..</span>
                                     </a>
@@ -206,27 +211,14 @@ const Header = () => {
                                     aria-expanded="true">
                                 <img className="rounded-circle header-profile-user"
                                      src="/template/images/avatar-1.jpg" alt="Header Avatar" />
-                                    <span className="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
+                                    <span className="d-none d-xl-inline-block ms-1" key="t-henry">{user.getName()}</span>
                                     <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
                             </button>
                             <div className="dropdown-menu dropdown-menu-end"
                                  data-popper-placement="bottom-end">
-                                <a className="dropdown-item" href="#">
+                                <a className="dropdown-item" href={mRouter.getRoute(ROUTE_TO_PROFILE_PAGE_NAME)}>
                                     <i className="bx bx-user font-size-16 align-middle me-1"/>
                                     <span key="t-profile">Profile</span>
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    <i className="bx bx-wallet font-size-16 align-middle me-1" />
-                                    <span key="t-my-wallet">My Wallet</span>
-                                </a>
-                                <a className="dropdown-item d-block" href="#">
-                                    <span className="badge bg-success float-end">11</span>
-                                    <i className="bx bx-wrench font-size-16 align-middle me-1"/>
-                                    <span key="t-settings">Settings</span>
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    <i className="bx bx-lock-open font-size-16 align-middle me-1" />
-                                    <span key="t-lock-screen">Lock screen</span>
                                 </a>
                                 <div className="dropdown-divider" />
                                 <a className="dropdown-item text-danger" href="#">

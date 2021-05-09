@@ -12,6 +12,8 @@ module.exports = (name) => {
 			return require('./dataTable/dataTable.jsx');
 		case 'editor':
 			return require('./editor/editor.jsx');
+		case 'form':
+			return require('./form/form.jsx');
 		case 'header':
 			return require('./header/header.jsx');
 		case 'modal':

@@ -10,7 +10,6 @@ import history from "./core/services/history";
 import {loadState} from "./core/services/local_storage";
 
 // Pages
-//import DashboardPage from "./project/dashboard/pages/dashboard.page";
 import LoginPage from "./project/auth/pages/login.page";
 
 import {MRouter} from "./core/mrouter/MRouter";
@@ -19,6 +18,7 @@ import CourseDetailsContainer from "./application/containers/courseDetails.conta
 import LessonDetailsContainer from "./application/containers/lessonDetails.container";
 import UsersPageContainer from "./application/containers/users.container"
 import PanelLayout from "./application/containers/panelLayout.container";
+import SingleUserPage from "./application/containers/singleUser.container";
 
 const loadStateDefault = loadState() ?? {
     userData: {}
@@ -36,24 +36,13 @@ export default function(){
         <Router history={history}>
             <Switch>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_LOGIN_PAGE_NAME)} component={LoginPage}/>
-                {/*<Route exact path={"/dashboard"} component={Dashboard}/>
-                    <Route exact path={"/homepage"} component={Homepage}/>*/}
+
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSES_PAGE_NAME)} component={() => <PanelLayout Page={CoursesContainer} />}/>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME)} component={() => <PanelLayout Page={CourseDetailsContainer} />}/>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_USERS_LIST_PAGE_NAME)} component={()=> <PanelLayout Page={UsersPageContainer}/>}/>
 
                 <Route exact path={router.getRoute(routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME)} component={() => <PanelLayout Page={LessonDetailsContainer} />}/>
-
-
-
-                {/*<Route exact path={"/courses2"} component={CoursesContainer}/>*/}
-{/*
-                <Route exact path={router.getRoute(routes.ROUTE_TO_DASHBOARD_PAGE_NAME)} component={() => <DashboardLayout Page={DashboardPage} title="Dashboards"/>}/>
-*/}
-
-                {/*<Route exact path={router.getRoute(routes.ROUTE_TO_COURSES_PAGE_NAME)} component={() => <DashboardLayout Page={CoursesPage} title="Courses List" Modals={CreateCourseModal}/>}/>*/}
-
-
+                <Route exact path={router.getRoute(routes.ROUTE_TO_PROFILE_PAGE_NAME)} component={() => <PanelLayout Page={SingleUserPage} />}/>
             </Switch>
         </Router>
     </Provider>

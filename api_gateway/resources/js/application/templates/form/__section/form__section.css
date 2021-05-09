@@ -1,0 +1,20 @@
+.form__section-label-wrapper{
+    align-items: center;
+    display: flex;
+}
+
+.form__section-label {
+    flex: 0;
+    font-size: 18px;
+    margin: 10px 20px;
+    white-space: nowrap;
+}
+
+.form__section-label-wrapper::before, .form__section-label-wrapper::after{
+    background: #cecece;
+    content: "";
+    height: 1px;
+
+    flex: 1;
+    white-space: nowrap;
+}

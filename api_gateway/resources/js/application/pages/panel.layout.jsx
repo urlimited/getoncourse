@@ -13,7 +13,8 @@ export const PanelLayout = ({Page, getUser, user}) => {
 
     const data = [
         {
-            type: "header"
+            type: "header",
+            user: user
         },
         {
             type: "sidebar",
