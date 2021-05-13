@@ -22,6 +22,7 @@ export class FormTextFieldModel extends FormElementModel{
 
     render(): React.ReactElement {
         return <TextField
+            setValue={(data: string) => this.setValue(data)}
             key={this._key}
             label={this._label}
             placeholder={this._placeholder}

@@ -19,7 +19,8 @@ export const SingleUserPage = () => {
                                     inputType: 'text',
                                     label: 'Ваше имя',
                                     placeholder: 'Владимир Владимирович',
-                                    initialValue: 'Value some'
+                                    initialValue: 'Value some',
+                                    name: 'name'
                                 },
                                 {
                                     inputType: 'radio',
@@ -71,7 +72,9 @@ export const SingleUserPage = () => {
                                         }
 
                                     ],
+                                    name: 'avatar',
                                     label: 'Ваш аватар',
+                                    initialValue: '1',
                                 }
                             ]
                         },
@@ -82,17 +85,22 @@ export const SingleUserPage = () => {
                                     inputType: 'text',
                                     label: 'Ваша почта',
                                     placeholder: 'master.adverse@gmail.com',
-                                    initialValue: 'Value some'
+                                    initialValue: 'Value some',
+                                    name: 'email'
                                 },
                                 {
                                     inputType: 'text',
                                     label: 'Ваш телефон',
                                     placeholder: '+7 777 155 70 27',
-                                    initialValue: 'Value some'
+                                    initialValue: 'Value some',
+                                    name: 'phone'
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    saveHandler: (data) => {
+                        console.log(data);
+                    }
                 },
                 {
                     type: 'button',

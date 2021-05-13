@@ -4,7 +4,7 @@ import {FormModel} from "../formModel";
 import {v4 as uuid4} from "uuid";
 import FormSection from "./form__section";
 
-interface sectionConfigs {
+export interface sectionConfigs {
     sectionLabel: string,
     sectionItems: Array<formElementModelConfigs>,
 }
@@ -14,7 +14,7 @@ export class FormSectionModel {
 
     protected _label: string;
 
-    protected  _key: string;
+    protected _key: string;
 
     public constructor(configs: sectionConfigs) {
         this._label = configs.sectionLabel;
@@ -33,19 +33,7 @@ export class FormSectionModel {
         />
     }
 
-    /*public build(elementConfigs: {
-        inputType: string,
-        label: string,
-        initialValue?: string,
-        placeholder: string
-    }): React.ReactElement {
-        switch(elementConfigs.inputType){
-            case 'text':
-                return <TextField
-                    key={'text'}
-                    label={elementConfigs.label}
-                    placeholder={elementConfigs.placeholder}
-                />;
-        }
-    }*/
+    public getInputs(){
+        return this._inputs;
+    }
 }

@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
 
-const TextField = ({label, placeholder}) => {
+const TextField = ({label, placeholder, setValue}) => {
     const [content, setContent] = useState('');
+
+    useEffect(() => {
+        setValue(content)
+    },[content]);
 
     return (<div className="row form__input-element">
         <label htmlFor=""
