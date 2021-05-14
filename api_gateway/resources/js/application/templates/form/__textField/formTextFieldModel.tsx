@@ -26,6 +26,7 @@ export class FormTextFieldModel extends FormElementModel{
             key={this._key}
             label={this._label}
             placeholder={this._placeholder}
+            initialValue={this._value}
         />;
     }
 }

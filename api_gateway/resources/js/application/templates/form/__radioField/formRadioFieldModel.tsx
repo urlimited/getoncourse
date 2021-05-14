@@ -35,6 +35,7 @@ export class FormRadioFieldModel extends FormElementModel{
             setValue={(data: string) => this.setValue(data)}
             label={this._label}
             cases={this._cases}
+            initialValue={this._value}
         />;
     }
 }

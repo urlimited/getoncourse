@@ -5,6 +5,7 @@ export class User{
         this.address = data.address ?? "";
         this.email = data.email ?? "";
         this.phone = data.phone ?? "";
+        this.avatar = data.avatar ?? 1;
     }
 
     isClient = () => this instanceof Client;

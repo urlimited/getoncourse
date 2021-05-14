@@ -9,7 +9,7 @@ class UserModel extends AbstractModel
 {
     protected UserEntity $entity;
 
-    protected array $publishableFields = ['id', 'name', 'email', 'role'];
+    protected array $publishableFields = ['id', 'name', 'email', 'role', 'avatar', 'phone'];
 
     /**
      * @param array $data
@@ -44,6 +44,16 @@ class UserModel extends AbstractModel
     public function getRole()
     {
         return $this->entity->role;
+    }
+
+    public function getAvatar()
+    {
+        return $this->entity->avatar;
+    }
+
+    public function getPhone()
+    {
+        return $this->entity->phone;
     }
 
     /**

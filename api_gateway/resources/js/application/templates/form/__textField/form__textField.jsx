@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
-const TextField = ({label, placeholder, setValue}) => {
-    const [content, setContent] = useState('');
+const TextField = ({label, placeholder, setValue, initialValue}) => {
+    const [content, setContent] = useState(initialValue);
 
     useEffect(() => {
         setValue(content)

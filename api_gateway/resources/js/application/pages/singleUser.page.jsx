@@ -21,7 +21,7 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         inputType: 'text',
                                         label: 'Ваше имя',
                                         placeholder: 'Владимир Владимирович',
-                                        initialValue: 'Value some',
+                                        initialValue: user.name,
                                         name: 'name'
                                     },
                                     {
@@ -76,7 +76,7 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         ],
                                         name: 'avatar',
                                         label: 'Ваш аватар',
-                                        initialValue: '1',
+                                        initialValue: user.avatar,
                                     },
                                     {
                                         name: 'id',
@@ -92,14 +92,14 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         inputType: 'text',
                                         label: 'Ваша почта',
                                         placeholder: 'master.adverse@gmail.com',
-                                        initialValue: 'Value some',
+                                        initialValue: user.email,
                                         name: 'email'
                                     },
                                     {
                                         inputType: 'text',
                                         label: 'Ваш телефон',
                                         placeholder: '+7 777 155 70 27',
-                                        initialValue: 'Value some',
+                                        initialValue: user.phone,
                                         name: 'phone'
                                     }
                                 ]
