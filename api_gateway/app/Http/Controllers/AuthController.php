@@ -2,12 +2,11 @@
 
 namespace ApiGateway\Http\Controllers;
 
-use ApiGateway\Entities\User;
+use ApiGateway\Entities\UserEntity;
 use ApiGateway\Http\Requests\LoginRequest;
 use ApiGateway\Http\Requests\RegisterRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -33,7 +32,7 @@ class AuthController extends Controller
 
         try {
 
-            $user = new User;
+            $user = new UserEntity;
             $user->setName($request->input('name'));
             $user->setEmail($request->input('email'));
             $user->setPassword(app('hash')->make($request->input('password')));

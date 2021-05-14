@@ -32,6 +32,7 @@ export class FormRadioFieldModel extends FormElementModel{
     render(): React.ReactElement {
         return <RadioField
             key={this._key}
+            setValue={(data: string) => this.setValue(data)}
             label={this._label}
             cases={this._cases}
         />;

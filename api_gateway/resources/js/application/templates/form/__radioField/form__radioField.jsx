@@ -4,8 +4,12 @@ import {FormRadioFieldModel} from "./formRadioFieldModel";
 
 import "./require.css";
 
-const RadioField = ({label, cases}) => {
+const RadioField = ({label, cases, setValue}) => {
     const [selectedCaseVal, setSelectedCaseVal] = useState('');
+
+    useEffect(() => {
+        setValue(selectedCaseVal);
+    }, [selectedCaseVal]);
 
     return (<div className="row form__input-element form__radio-field">
         <label htmlFor=""

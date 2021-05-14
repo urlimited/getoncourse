@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {MRouter} from "../../../core/mrouter/MRouter";
 import {ROUTE_TO_PROFILE_PAGE_NAME} from "../../routes";
+import {Link} from "react-router-dom";
 
 const Header = ({user}) => {
     const [collapsedMenu, setCollapsedMenu] = useState(false)
@@ -216,10 +217,10 @@ const Header = ({user}) => {
                             </button>
                             <div className="dropdown-menu dropdown-menu-end"
                                  data-popper-placement="bottom-end">
-                                <a className="dropdown-item" href={mRouter.getRoute(ROUTE_TO_PROFILE_PAGE_NAME)}>
+                                <Link className="dropdown-item" to={mRouter.getRoute(ROUTE_TO_PROFILE_PAGE_NAME)}>
                                     <i className="bx bx-user font-size-16 align-middle me-1"/>
                                     <span key="t-profile">Profile</span>
-                                </a>
+                                </Link>
                                 <div className="dropdown-divider" />
                                 <a className="dropdown-item text-danger" href="#">
                                     <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
