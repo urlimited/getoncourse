@@ -4,9 +4,13 @@ import {Course} from "../models/course.model";
 import {Link} from "react-router-dom";
 import {MRouter} from "../../core/mrouter/MRouter";
 import * as routes from "../routes";
+import Loader from "../templates/loader/loader";
 
 export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
-    const [courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState({
+        data:[],
+        loading: false
+    });
     const [selectedCourse, setSelectedCourse] = useState(new Course());
     const dataTableCustomStyles = {
         headRow: {
@@ -28,10 +32,11 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
             }
         }
     }
-    useEffect(() => {
-        getCourses().then(r => setCourses(r.message));
-    }, []);
 
+    useEffect(() => {
+        setCourses({data:[], loading: true});
+        getCourses().then(r => setCourses({data:r.message, loading: false}))
+    }, []);
     const router = MRouter.initRouter({basePath: ''});
 
     const columns = [
@@ -73,7 +78,7 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
                         },
                         classes: ['btn-primary', 'btn-sm']
                     },
-                    data: courses.map(c => ({
+                    data: courses.data.map(c => ({
                         ...c,
                         nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.name}</Link>,
                         authorProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.authorId}</Link>,
@@ -97,7 +102,8 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
                     columns: columns,
                     customStyles: dataTableCustomStyles,
                     title: "Список курсов",
-                    col: 8
+                    col: 8,
+                    pageLoader: courses.loading
                 },
                 {
                     type: "button",

@@ -10,11 +10,15 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
 
     const courseId = parseInt(useParams().courseId);
 
-    const [lessons, setLessons] = useState([]);
+    const [lessons, setLessons] = useState({
+        data:[],
+        loading: false
+    });
     const [lessonSelected, setLessonSelected] = useState([])
     useEffect(() => {
+        setLessons({data: [], loading:true})
         getLessons(courseId).then(r => {
-            setLessons(r.message.lessons)
+            setLessons({data: r.message.lessons, loading:false})
         })
     }, []);
     const dataTableCustomStyles = {
@@ -63,7 +67,7 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                     title: "Программа курса",
                     col: 8,
                     columns: columns,
-                    data: lessons.map(l => ({
+                    data: lessons.data.map(l => ({
                         ...l,
                         nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME, {courseId, lessonId: l.id})}>{l.name}</Link>,
                         actions: <>
@@ -92,7 +96,8 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                             routeValue: routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME,
                             routeParams: {courseId, lessonId: 0}
                         }
-                    }
+                    },
+                    pageLoader: lessons.loading
                 },
                 {
                     type: "button",
