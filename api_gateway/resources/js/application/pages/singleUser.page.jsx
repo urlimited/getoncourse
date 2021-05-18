@@ -93,14 +93,24 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         label: 'Ваша почта',
                                         placeholder: 'master.adverse@gmail.com',
                                         initialValue: user.email,
-                                        name: 'email'
+                                        name: 'email',
+                                        rules: [
+                                            {
+                                                rule: 'email'
+                                            }
+                                        ]
                                     },
                                     {
                                         inputType: 'text',
                                         label: 'Ваш телефон',
                                         placeholder: '+7 777 155 70 27',
                                         initialValue: user.phone,
-                                        name: 'phone'
+                                        name: 'phone',
+                                        rules: [
+                                            {
+                                                rule: 'phone'
+                                            }
+                                        ]
                                     }
                                 ]
                             }
