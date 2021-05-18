@@ -9,18 +9,18 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
     const router = MRouter.initRouter({basePath: ''});
 
     const courseId = parseInt(useParams().courseId);
-
-    const [lessons, setLessons] = useState({
-        data:[],
-        loading: false
-    });
+    const [lessons, setLessons] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [lessonSelected, setLessonSelected] = useState([])
+
     useEffect(() => {
-        setLessons({data: [], loading:true})
+        setLoading(true)
         getLessons(courseId).then(r => {
-            setLessons({data: r.message.lessons, loading:false})
+            setLessons(r.message.lessons)
+            setLoading(false)
         })
     }, []);
+
     const dataTableCustomStyles = {
         headRow: {
             style: {
@@ -67,7 +67,7 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                     title: "Программа курса",
                     col: 8,
                     columns: columns,
-                    data: lessons.data.map(l => ({
+                    data: lessons.map(l => ({
                         ...l,
                         nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME, {courseId, lessonId: l.id})}>{l.name}</Link>,
                         actions: <>
@@ -97,7 +97,7 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                             routeParams: {courseId, lessonId: 0}
                         }
                     },
-                    pageLoader: lessons.loading
+                    pageLoader: loading
                 },
                 {
                     type: "button",

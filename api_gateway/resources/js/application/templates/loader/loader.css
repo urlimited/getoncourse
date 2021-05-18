@@ -17,6 +17,7 @@
     animation: bounce 0.4s infinite alternate;
 }
 
+
 .loader > span:nth-child(2){
     background-color: palevioletred;
     animation-delay: 0.2s;

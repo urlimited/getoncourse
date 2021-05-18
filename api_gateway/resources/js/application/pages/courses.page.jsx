@@ -7,10 +7,8 @@ import * as routes from "../routes";
 import Loader from "../templates/loader/loader";
 
 export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
-    const [courses, setCourses] = useState({
-        data:[],
-        loading: false
-    });
+    const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState(new Course());
     const dataTableCustomStyles = {
         headRow: {
@@ -34,9 +32,14 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
     }
 
     useEffect(() => {
-        setCourses({data:[], loading: true});
-        getCourses().then(r => setCourses({data:r.message, loading: false}))
+        setLoading(true)
+        getCourses().then(r => {
+            setCourses(r.message)
+            setLoading(false)
+        })
     }, []);
+
+
     const router = MRouter.initRouter({basePath: ''});
 
     const columns = [
@@ -78,7 +81,7 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
                         },
                         classes: ['btn-primary', 'btn-sm']
                     },
-                    data: courses.data.map(c => ({
+                    data: courses.map(c => ({
                         ...c,
                         nameProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.name}</Link>,
                         authorProcessed: <Link to={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME, {courseId: c.id})}>{c.authorId}</Link>,
@@ -103,7 +106,7 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
                     customStyles: dataTableCustomStyles,
                     title: "Список курсов",
                     col: 8,
-                    pageLoader: courses.loading
+                    pageLoader: loading
                 },
                 {
                     type: "button",
