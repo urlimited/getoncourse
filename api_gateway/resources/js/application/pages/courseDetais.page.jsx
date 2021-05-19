@@ -9,14 +9,18 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
     const router = MRouter.initRouter({basePath: ''});
 
     const courseId = parseInt(useParams().courseId);
-
     const [lessons, setLessons] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [lessonSelected, setLessonSelected] = useState([])
+
     useEffect(() => {
+        setLoading(true)
         getLessons(courseId).then(r => {
             setLessons(r.message.lessons)
+            setLoading(false)
         })
     }, []);
+
     const dataTableCustomStyles = {
         headRow: {
             style: {
@@ -92,7 +96,8 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                             routeValue: routes.ROUTE_TO_LESSON_DETAILS_PAGE_NAME,
                             routeParams: {courseId, lessonId: 0}
                         }
-                    }
+                    },
+                    pageLoader: loading
                 },
                 {
                     type: "button",

@@ -4,9 +4,11 @@ import {Course} from "../models/course.model";
 import {Link} from "react-router-dom";
 import {MRouter} from "../../core/mrouter/MRouter";
 import * as routes from "../routes";
+import Loader from "../templates/loader/loader";
 
 export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
     const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState(new Course());
     const dataTableCustomStyles = {
         headRow: {
@@ -28,9 +30,15 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
             }
         }
     }
+
     useEffect(() => {
-        getCourses().then(r => setCourses(r.message));
+        setLoading(true)
+        getCourses().then(r => {
+            setCourses(r.message)
+            setLoading(false)
+        })
     }, []);
+
 
     const router = MRouter.initRouter({basePath: ''});
 
@@ -97,7 +105,8 @@ export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCours
                     columns: columns,
                     customStyles: dataTableCustomStyles,
                     title: "Список курсов",
-                    col: 8
+                    col: 8,
+                    pageLoader: loading
                 },
                 {
                     type: "button",

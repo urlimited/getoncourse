@@ -6,20 +6,13 @@ export const Dashboard = () => {
 
     const data = [
         {
-            type: "header",
-        },
-        {
-            type: "sidebar"
-        },
-        {
-            type: "container",
+            type: "pageContent",
+            title: "Dashboard",
             children: [
                 {
-                    type: "title",
-                    title: "Dashboard"
-                },
-                {
-                    type: "card"
+                    type:"button",
+                    title: "Dashboard",
+                    classes: ["btn", "btn-primary"]
                 }
             ]
         }

@@ -1,9 +1,9 @@
 import {connect} from "react-redux";
 import {CoursesPage} from "../pages/courses.page";
-import {apiGetAllCourses} from "../requests/getAllCourses.request";
-import {apiUpdateCourse} from "../requests/updateCourse.request";
-import {apiCreateCourse} from "../requests/createCourse.request";
-import {apiDeleteCourse} from "../requests/deleteCourse.request";
+import {apiGetAllCourses} from "../requests/courses/getAllCourses.request";
+import {apiUpdateCourse} from "../requests/courses/updateCourse.request";
+import {apiCreateCourse} from "../requests/courses/createCourse.request";
+import {apiDeleteCourse} from "../requests/courses/deleteCourse.request";
 
 const mapStateToProps = (state, ownProps) => ({
 

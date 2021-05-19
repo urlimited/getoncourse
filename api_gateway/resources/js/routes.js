@@ -11,7 +11,7 @@ import {loadState} from "./core/services/local_storage";
 
 // Pages
 import LoginPage from "./project/auth/pages/login.page";
-
+import DashboardContainer from "./project/dashboard/containers/layouts/dashboard.container";
 import {MRouter} from "./core/mrouter/MRouter";
 import CoursesContainer from "./application/containers/courses.container";
 import CourseDetailsContainer from "./application/containers/courseDetails.container";
@@ -36,7 +36,7 @@ export default function(){
         <Router history={history}>
             <Switch>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_LOGIN_PAGE_NAME)} component={LoginPage}/>
-
+                <Route exact path={router.getRoute(routes.ROUTE_TO_DASHBOARD_PAGE_NAME)} component={()=><PanelLayout Page={DashboardContainer}/>}/>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSES_PAGE_NAME)} component={() => <PanelLayout Page={CoursesContainer} />}/>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_COURSE_DETAILS_PAGE_NAME)} component={() => <PanelLayout Page={CourseDetailsContainer} />}/>
                 <Route exact path={router.getRoute(routes.ROUTE_TO_USERS_LIST_PAGE_NAME)} component={()=> <PanelLayout Page={UsersPageContainer}/>}/>
