@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
-import {Dashboard} from "../pages/dashboard";
+import {DashboardPage} from "../pages/dashboard.page.jsx";
 
-const mapStateToProps = (state, ownProps) => {
-}
+const mapStateToProps = (state, ownProps) => ({
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

@@ -24,4 +24,20 @@ export class MRoute {
 
         return pathProcessed;
     }
+
+    /**
+     * Compares routes despite of params
+     * @param stringUrl {string}
+     */
+    isRouteEqualTo(stringUrl){
+        let regex = this.path;
+
+        regex = regex.replace(new RegExp("(:[^/]*)(\/)","gm"), "[^\\/]*\/");
+
+        regex = regex.replaceAll("/", "\\/");
+
+        const processedStringUrl = stringUrl + "/";
+
+        return processedStringUrl.match(regex) !== null;
+    }
 }

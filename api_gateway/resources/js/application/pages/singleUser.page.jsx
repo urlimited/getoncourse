@@ -1,14 +1,48 @@
 import React, {useEffect, useState} from 'react'
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder";
+import {
+    ROUTE_TO_PROFILE_PAGE_NAME,
+    ROUTE_TO_USERS_CREATE_NEW_PAGE_NAME,
+    ROUTE_TO_USERS_EDIT_USER_PAGE_NAME
+} from "../routes";
+import {USER_TYPE_NOT_LOADED, UserFactory} from "../models/user.model";
+import {useParams} from "react-router-dom";
+import {MRouter} from "../../core/mrouter/MRouter";
 
-export const SingleUserPage = ({updateUser, user}) => {
+export const SingleUserPage = ({updateUser, createUser, editorUser, getUser, currentRoute}) => {
+    const router = MRouter.initRouter();
+
     const [data, setData] = useState([]);
 
+    const [editableUser, setEditableUser] = useState(editorUser);
+
+    const {userId} = useParams();
+
     useEffect(() => {
-        setData([
+        console.log(currentRoute);
+
+        if (currentRoute === ROUTE_TO_USERS_CREATE_NEW_PAGE_NAME)
+            setEditableUser(UserFactory.createUser(USER_TYPE_NOT_LOADED, {}));
+
+        if (currentRoute === ROUTE_TO_USERS_EDIT_USER_PAGE_NAME)
+            getUser(userId).then(r => {
+                console.log(r.message);
+                setEditableUser(UserFactory.createUser(USER_TYPE_NOT_LOADED, {}));
+            });
+
+        if (currentRoute === ROUTE_TO_PROFILE_PAGE_NAME)
+            setEditableUser(editorUser);
+    }, [editorUser]);
+
+    useEffect(() => {
+        const preProcessData = [
             {
-                type:"pageContent",
-                title: "Профайл",
+                type: "pageContent",
+                title: {
+                    [ROUTE_TO_USERS_CREATE_NEW_PAGE_NAME]: 'Создание нового пользователя',
+                    [ROUTE_TO_USERS_EDIT_USER_PAGE_NAME]: 'Редактирование пользователя',
+                    [ROUTE_TO_PROFILE_PAGE_NAME]: 'Редактирование профиля'
+                }[currentRoute],
                 children: [
                     {
                         type: "form",
@@ -21,7 +55,7 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         inputType: 'text',
                                         label: 'Ваше имя',
                                         placeholder: 'Владимир Владимирович',
-                                        initialValue: user.name,
+                                        initialValue: editableUser.name,
                                         name: 'name'
                                     },
                                     {
@@ -76,11 +110,11 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         ],
                                         name: 'avatar',
                                         label: 'Ваш аватар',
-                                        initialValue: user.avatar,
+                                        initialValue: editableUser.avatar,
                                     },
                                     {
                                         name: 'id',
-                                        initialValue: user.id,
+                                        initialValue: editableUser.id,
                                         inputType: 'hidden'
                                     }
                                 ]
@@ -92,7 +126,7 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         inputType: 'text',
                                         label: 'Ваша почта',
                                         placeholder: 'master.adverse@gmail.com',
-                                        initialValue: user.email,
+                                        initialValue: editableUser.email,
                                         name: 'email',
                                         rules: [
                                             {
@@ -104,7 +138,7 @@ export const SingleUserPage = ({updateUser, user}) => {
                                         inputType: 'text',
                                         label: 'Ваш телефон',
                                         placeholder: '+7 777 155 70 27',
-                                        initialValue: user.phone,
+                                        initialValue: editableUser.phone,
                                         name: 'phone',
                                         rules: [
                                             {
@@ -116,7 +150,14 @@ export const SingleUserPage = ({updateUser, user}) => {
                             }
                         ],
                         saveHandler: (data) => {
-                            updateUser(data);
+                            if (currentRoute === ROUTE_TO_PROFILE_PAGE_NAME)
+                                updateUser(data);
+
+                            if (currentRoute === ROUTE_TO_USERS_CREATE_NEW_PAGE_NAME)
+                                createUser(data);
+
+                            if (currentRoute === ROUTE_TO_USERS_EDIT_USER_PAGE_NAME)
+                                updateUser(data);
                         }
                     },
                     {
@@ -126,11 +167,47 @@ export const SingleUserPage = ({updateUser, user}) => {
                     }
                 ]
             }
-        ]);
+        ];
 
-        console.log(user);
+        if (editorUser?.isAdmin() ?? false)
+            preProcessData[0].children[0].sections.unshift({
+                sectionLabel: 'Системная информация',
+                sectionItems: [
+                    {
+                        inputType: 'radio',
+                        cases: [
+                            {
+                                caseType: 'image',
+                                content: '/images/avatars/018-man.png',
+                                value: '1'
+                            },
+                            {
+                                caseType: 'image',
+                                content: '/images/avatars/019-man.png',
+                                value: '2'
+                            },
+                            {
+                                caseType: 'image',
+                                content: '/images/avatars/020-man.png',
+                                value: '3'
+                            }
 
-    }, [user]);
+                        ],
+                        name: 'role',
+                        label: 'Системная роль',
+                        initialValue: editableUser.avatar,
+                    },
+                    {
+                        inputType: 'text',
+                        label: 'Ваш пароль',
+                        placeholder: 'MySecretPassword123',
+                        name: 'password'
+                    },
+                ]
+            });
+
+        setData(preProcessData);
+    }, [editableUser]);
 
     return (<>{TemplateBuilder.getInstance({
         elementsDeclarationFile: require('../templates/elementsDeclaration.json'),

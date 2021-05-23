@@ -7,9 +7,9 @@ import {DefaultRequest} from "../../../core/defaults/models/request.model";
 import {UserFactory} from "../../models/user.model";
 import {Response} from "../../../core/defaults/models/response.model";
 
-export const apiGetUserRequest = (isRedirectRequired = true) => dispatch => {
+export const apiGetProfileRequest = (isRedirectRequired = true) => dispatch => {
     dispatch(core_events.eventInitRequest());
-    return fetch(constants.API_GET_USER, (new DefaultRequest()).setParams({
+    return fetch(constants.API_GET_PROFILE, (new DefaultRequest()).setParams({
         method: "get",
     }).getRequest()).then(response => {
         if (response.status === 401)

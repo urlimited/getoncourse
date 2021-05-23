@@ -1,7 +1,9 @@
 import {MRoute} from "./MRoute";
+import history from "../services/history";
 
 /**
  * Singleton router manage class
+ * @property _routes {Array<MRoute>}
  */
 export class MRouter {
     _routes = [];
@@ -14,7 +16,7 @@ export class MRouter {
 
     static initRouter(params = {}){
         if(this._instance === null)
-            this._instance = new this(params.basePath);
+            this._instance = new MRouter(params.basePath);
 
         return this._instance;
     }
@@ -43,11 +45,34 @@ export class MRouter {
      */
     getRoute(name, params= {}, getLikeObject = false){
         if(getLikeObject)
-            return this._routes.find(r => r.name === name)
+            return this._routes[name];
 
         if(!this._routes[name]?.getRouteWithParams(params))
             throw new Error(`Route ${name} not found `);
 
         return this._routes[name]?.getRouteWithParams(params);
+    }
+
+    getCurrentRoute(){
+        const path = history.location.pathname;
+
+        let maxLength = 0;
+
+        let longestRoute = "";
+
+        Object.keys(this._routes)
+            .filter(routeName => {
+                if(maxLength < routeName.length && this._routes[routeName].isRouteEqualTo(path)){
+                    maxLength = routeName.length;
+
+                    longestRoute = routeName;
+
+                    return true;
+                }
+
+                return false;
+            });
+
+        return longestRoute;
     }
 }

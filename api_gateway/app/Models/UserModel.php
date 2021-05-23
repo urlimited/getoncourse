@@ -3,6 +3,7 @@
 namespace ApiGateway\Models;
 
 use ApiGateway\Entities\UserEntity;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 
 class UserModel extends AbstractModel
@@ -24,6 +25,25 @@ class UserModel extends AbstractModel
         $this->entityManager->flush();
 
         return $this;
+    }
+
+    /**
+     * @param array $data
+     * @return static
+     */
+    public static function create(array $data): self
+    {
+        $entityManager = app(EntityManagerInterface::class);
+
+        $user = new UserEntity($data);
+
+        $user->setPassword(app('hash')->make($data['password']));
+
+        $entityManager->persist($user);
+
+        $entityManager->flush();
+
+        return new UserModel($user);
     }
 
     public function getId()

@@ -14,8 +14,11 @@
 */
 $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'users'], function () use ($router) {
+        $router->get('get_profile', 'UsersController@getProfile');
         $router->get('get_user', 'UsersController@getUser');
+        $router->get('get_users', 'UsersController@getUsers');
         $router->put('update_user', 'UsersController@updateUser');
+        $router->post('create_user', 'UsersController@createUser');
     });
 
     $router->group(['prefix' => 'courses'], function () use ($router) {

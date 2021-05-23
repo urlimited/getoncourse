@@ -4,7 +4,7 @@ import {MRouter} from "../../core/mrouter/MRouter";
 import {ROUTE_TO_COURSES_PAGE_NAME, ROUTE_TO_USERS_LIST_PAGE_NAME} from "../routes";
 
 
-export const PanelLayout = ({Page, getUser, user}) => {
+export const PanelLayout = ({Page, getUser, user, currentRoute}) => {
     useEffect(() => {
         getUser();
     }, []);
@@ -46,7 +46,7 @@ export const PanelLayout = ({Page, getUser, user}) => {
         },
         {
             type: "reactWrapper",
-            content: <Page/>
+            content: <Page currentRoute={currentRoute} />
         }
     ]
 

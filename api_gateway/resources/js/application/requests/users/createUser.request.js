@@ -5,17 +5,16 @@ import {AuthFailedException} from "../../../core/auth/exceptions";
 import {DefaultRequest} from "../../../core/defaults/models/request.model";
 import {Response} from "../../../core/defaults/models/response.model";
 import {UserFactory} from "../../models/user.model";
-import * as actions from "../../../core/auth/actions";
 
-export const apiUpdateUser = userData => dispatch => {
+export const apiCreateUser = userData => dispatch => {
     dispatch(core_events.eventInitRequest());
 
-    return fetch(constants.API_USER_UPDATE, (new DefaultRequest()).setParams({
+    return fetch(constants.API_USER_CREATE, (new DefaultRequest()).setParams({
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
         body: _preProcessData(userData),
-        method: "put"
+        method: "post"
     }).getRequest()).then(response=>{
         if (response.status === 401)
             throw new AuthFailedException();
@@ -27,8 +26,6 @@ export const apiUpdateUser = userData => dispatch => {
     },
         e => dispatch(events.eventConnectionError()))
         .then(json => {
-            dispatch(actions.setUser(json.user));
-
             return new Response({
                 status: 200,
                 message: _postProcessData(json.user)
@@ -38,7 +35,7 @@ export const apiUpdateUser = userData => dispatch => {
 
 const _preProcessData = (data) => {
     return Object.keys(data)
-        .map(key => key + "=" + data[key])
+        .map(key => key + "=" + encodeURIComponent(data[key]))
         .reduce((accum, next) => accum + "&" + next);
 }
 

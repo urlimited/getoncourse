@@ -1,0 +1,52 @@
+.users-list__avatar-wrapper {
+    background-color: #f6f6f6;
+    border: #cecece 2px solid;
+    border-radius: 25px;
+}
+
+.users-list__avatar-image {
+    width: 35px;
+}
+
+.users-list__row {
+    font-size: 0;
+
+    & * {
+        font-size: initial;
+    }
+}
+
+.users-list__avatar-col {
+    box-sizing: content-box;
+    display: inline-block;
+    font-size: initial;
+    margin-right: 10px;
+    vertical-align: top;
+    width: 39px;
+}
+
+.users-list__naming-col {
+    display: inline-block;
+    font-size: initial;
+    vertical-align: top;
+}
+
+.users-list__name-text {
+    font-size: 13px;
+    margin: 0;
+}
+
+.users-list__role-text {
+    color: #aaa;
+    font-size: 12px;
+    margin: 0;
+}
+
+.users-list__email-text {
+    margin: 0;
+}
+
+.users-list__email-phone {
+    font-size: 12px;
+    margin: 0;
+}

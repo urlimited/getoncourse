@@ -1,18 +1,19 @@
 import {connect} from "react-redux";
 import {PanelLayout} from "../pages/panel.layout";
-import {apiGetUserRequest} from "../requests/auth/getUser.request.js";
+import {apiGetProfileRequest} from "../requests/auth/getProfile.request";
 import {UserFactory} from "../models/user.model";
+import {MRouter} from "../../core/mrouter/MRouter";
 
 const mapStateToProps = (state, ownProps) => {
-    //console.log(UserFactory.createUser(state.userData));
     return ({
-        user: UserFactory.createUser(state.userData)
+        user: UserFactory.createUser(state.userData),
+        currentRoute: MRouter.initRouter().getCurrentRoute()
     });
 }
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    getUser: () => dispatch(apiGetUserRequest())
+    getUser: () => dispatch(apiGetProfileRequest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanelLayout);

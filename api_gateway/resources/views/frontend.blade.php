@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/template/css/dropdown_menu.css" />
     {{--<link rel="stylesheet" href="/template/css/hamburger.css" />--}}
     <link rel="stylesheet" href="/template/css/main_styles.css" />
+    <link rel="stylesheet" href="/css/app.css">
     {{--<link rel="stylesheet" href="/template/css/riple.css" />--}}
     {{--<link rel="stylesheet" href="/css/app.css" />--}}
     <script src="/template/js/bs.js"></script>

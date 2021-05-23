@@ -2,7 +2,7 @@ import React from "react";
 import TemplateBuilder from "bem-react-constructor/src/templateBuilder.js";
 
 
-export const Dashboard = () => {
+export const DashboardPage = ({}) => {
 
     const data = [
         {
@@ -16,7 +16,7 @@ export const Dashboard = () => {
                 }
             ]
         }
-    ]
+    ];
 
     return (<>{TemplateBuilder.getInstance({
         elementsDeclarationFile: require('../templates/elementsDeclaration.json'),

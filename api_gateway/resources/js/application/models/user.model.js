@@ -4,8 +4,9 @@ export class User{
         this.name = data.name ?? "";
         this.address = data.address ?? "";
         this.email = data.email ?? "";
-        this.phone = data.phone ?? "";
+        this.phone = data.phone ?? EMPTY_TEXT_PHONE;
         this.avatar = data.avatar ?? 1;
+        this.role = data.role ?? USER_TYPE_NOT_LOADED;
     }
 
     isClient = () => this instanceof Client;
@@ -14,6 +15,14 @@ export class User{
     isNotLoadedUser = () => this instanceof NotLoadedUser;
 
     getName = () => this.name;
+    getEmail = () => this.email;
+    getPhone = () => this.phone;
+    getRole = () => ({
+        [USER_TYPE_ADMIN]: "администратор",
+        [USER_TYPE_STAFF]: "преподаватель",
+        [USER_TYPE_CLIENT]: "обучающийся",
+        [USER_TYPE_NOT_LOADED]: "загружается"
+    }[this.role]);
 
 }
 
@@ -38,8 +47,6 @@ export class UserFactory {
         return new NotLoadedUser(data);
     }
 }
-
-
 
 export class Client extends User{
     _permissions = [""];
@@ -72,7 +79,9 @@ export class NotLoadedUser extends User {
     }
 }
 
-export const USER_TYPE_CLIENT = 1;
+export const USER_TYPE_ADMIN = 1;
 export const USER_TYPE_STAFF = 2;
-export const USER_TYPE_ADMIN = 3;
+export const USER_TYPE_CLIENT = 3;
 export const USER_TYPE_NOT_LOADED = 4;
+
+export const EMPTY_TEXT_PHONE = "не указан";
