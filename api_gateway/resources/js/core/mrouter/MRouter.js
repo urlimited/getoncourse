@@ -62,8 +62,8 @@ export class MRouter {
 
         Object.keys(this._routes)
             .filter(routeName => {
-                if(maxLength < routeName.length && this._routes[routeName].isRouteEqualTo(path)){
-                    maxLength = routeName.length;
+                if(maxLength < this._routes[routeName].path.length && this._routes[routeName].isRouteEqualTo(path)){
+                    maxLength = this._routes[routeName].path.length;
 
                     longestRoute = routeName;
 

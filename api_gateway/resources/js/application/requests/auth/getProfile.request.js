@@ -27,4 +27,4 @@ export const apiGetProfileRequest = (isRedirectRequired = true) => dispatch => {
         }, e => dispatch(events.eventAuthFailed(isRedirectRequired, false)));
 }
 
-export const _processRequest = (data) => UserFactory.createUser(data.role, data);
+export const _processRequest = (data) => UserFactory.createUser(data);

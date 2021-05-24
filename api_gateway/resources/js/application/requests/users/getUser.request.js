@@ -23,4 +23,4 @@ export const apiGetUserRequest = (userId) => dispatch => {
         }, e => dispatch(events.eventAuthFailed(true, false)));
 }
 
-export const _processRequest = (data) => UserFactory.createUser(data.role, data);
+export const _processRequest = (data) => UserFactory.createUser(data);

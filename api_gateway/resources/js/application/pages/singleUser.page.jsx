@@ -19,15 +19,13 @@ export const SingleUserPage = ({updateUser, createUser, editorUser, getUser, cur
     const {userId} = useParams();
 
     useEffect(() => {
-        console.log(currentRoute);
-
         if (currentRoute === ROUTE_TO_USERS_CREATE_NEW_PAGE_NAME)
-            setEditableUser(UserFactory.createUser(USER_TYPE_NOT_LOADED, {}));
+            setEditableUser(UserFactory.createUser({type: USER_TYPE_NOT_LOADED}));
 
         if (currentRoute === ROUTE_TO_USERS_EDIT_USER_PAGE_NAME)
             getUser(userId).then(r => {
                 console.log(r.message);
-                setEditableUser(UserFactory.createUser(USER_TYPE_NOT_LOADED, {}));
+                setEditableUser(UserFactory.createUser(r.message));
             });
 
         if (currentRoute === ROUTE_TO_PROFILE_PAGE_NAME)
@@ -150,14 +148,19 @@ export const SingleUserPage = ({updateUser, createUser, editorUser, getUser, cur
                             }
                         ],
                         saveHandler: (data) => {
+                            const processedData = data;
+
+                            if(processedData.password !== undefined && processedData.password === '')
+                                delete processedData.password;
+
                             if (currentRoute === ROUTE_TO_PROFILE_PAGE_NAME)
-                                updateUser(data);
+                                updateUser(processedData);
 
                             if (currentRoute === ROUTE_TO_USERS_CREATE_NEW_PAGE_NAME)
-                                createUser(data);
+                                createUser(processedData);
 
                             if (currentRoute === ROUTE_TO_USERS_EDIT_USER_PAGE_NAME)
-                                updateUser(data);
+                                updateUser(processedData);
                         }
                     },
                     {
@@ -195,7 +198,7 @@ export const SingleUserPage = ({updateUser, createUser, editorUser, getUser, cur
                         ],
                         name: 'role',
                         label: 'Системная роль',
-                        initialValue: editableUser.avatar,
+                        initialValue: editableUser.role,
                     },
                     {
                         inputType: 'text',
