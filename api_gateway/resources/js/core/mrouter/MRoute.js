@@ -30,7 +30,7 @@ export class MRoute {
      * @param stringUrl {string}
      */
     isRouteEqualTo(stringUrl){
-        let regex = this.path;
+        let regex = this.path + "/";
 
         regex = regex.replace(new RegExp("(:[^/]*)(\/)","gm"), "[^\\/]*\/");
 
@@ -38,6 +38,6 @@ export class MRoute {
 
         const processedStringUrl = stringUrl + "/";
 
-        return processedStringUrl.match(regex) !== null;
+        return processedStringUrl.match("^" + regex + "$") !== null;
     }
 }
