@@ -4,8 +4,12 @@ import {FormRadioFieldModel} from "./formRadioFieldModel";
 
 import "./require.css";
 
-const RadioField = ({label, cases}) => {
-    const [selectedCaseVal, setSelectedCaseVal] = useState('');
+const RadioField = ({label, cases, setValue, initialValue}) => {
+    const [selectedCaseVal, setSelectedCaseVal] = useState(initialValue);
+
+    useEffect(() => {
+        setValue(selectedCaseVal);
+    }, [selectedCaseVal]);
 
     return (<div className="row form__input-element form__radio-field">
         <label htmlFor=""
@@ -16,7 +20,7 @@ const RadioField = ({label, cases}) => {
                     <label htmlFor={c.value + "-" + label + "-" + k}>
                         {c.caseType === FormRadioFieldModel.RADIO_IMAGE_CASE_TYPE
                             ? <img src={c.content} alt={label + "-" + c.value}
-                                    className={"form__radio-field-image " + (c.value === selectedCaseVal
+                                    className={"form__radio-field-image " + (parseInt(c.value) === parseInt(selectedCaseVal)
                                         ? "form__radio-field-image-selected"
                                         : ""
                                     )}

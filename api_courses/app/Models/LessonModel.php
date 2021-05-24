@@ -8,7 +8,6 @@ use ApiCourses\Entities\LessonEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\MessageBag;
 use ReflectionException;

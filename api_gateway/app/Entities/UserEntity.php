@@ -15,34 +15,42 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User extends AbstractEntity implements JWTSubject, AuthenticatableContract, AuthorizableContract
+class UserEntity extends AbstractEntity implements JWTSubject, AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
-
-    protected $publishable_fields = ['id', 'name', 'email', 'role'];
 
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
 
     /**
      * @ORM\Column(type="string", length=30)
      */
-    private $name;
+    public $name;
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
      */
-    private $email;
+    public $email;
 
     /**
      * @ORM\Column(type="integer", options={"default" : 2}, nullable=false)
      */
-    private $role;
+    public $role;
+
+    /**
+     * @ORM\Column(type="integer", options={"default" : 1}, nullable=false)
+     */
+    public $avatar;
+
+    /**
+     * @ORM\Column(type="string", length=14, unique=true, nullable=true)
+     */
+    public $phone;
 
 
 

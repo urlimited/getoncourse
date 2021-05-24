@@ -161,7 +161,6 @@ export const CourseDetailsPage = ({getLessons, updateLesson}) => {
                         }}>Сохранить</button>
             ]
         },
-        ,
         {
             type: 'modal',
             id: 'lesson-delete-confirmation',

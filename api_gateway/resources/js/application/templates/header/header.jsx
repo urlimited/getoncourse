@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {MRouter} from "../../../core/mrouter/MRouter";
 import {ROUTE_TO_PROFILE_PAGE_NAME} from "../../routes";
+import {Link} from "react-router-dom";
 
 const Header = ({user}) => {
     const [collapsedMenu, setCollapsedMenu] = useState(false)
@@ -165,7 +166,7 @@ const Header = ({user}) => {
 
                                                         <a href="" className="text-reset notification-item">
                                                             <div className="media">
-                                                                <img src="/template/images/avatar-4.jpg" className="me-3 rounded-circle avatar-xs" alt="user-pic" />
+                                                                <img src={"/images/avatars/00" + user.avatar + "-man.png"} className="me-3 rounded-circle avatar-xs" alt="user-pic" />
                                                                     <div className="media-body">
                                                                         <h6 className="mt-0 mb-1">Salena Layfield</h6>
                                                                         <div className="font-size-12 text-muted">
@@ -210,16 +211,16 @@ const Header = ({user}) => {
                                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="true">
                                 <img className="rounded-circle header-profile-user"
-                                     src="/template/images/avatar-1.jpg" alt="Header Avatar" />
+                                     src={"/images/avatars/00" + user.avatar + "-man.png"} alt="Header Avatar" />
                                     <span className="d-none d-xl-inline-block ms-1" key="t-henry">{user.getName()}</span>
                                     <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
                             </button>
                             <div className="dropdown-menu dropdown-menu-end"
                                  data-popper-placement="bottom-end">
-                                <a className="dropdown-item" href={mRouter.getRoute(ROUTE_TO_PROFILE_PAGE_NAME)}>
+                                <Link className="dropdown-item" to={mRouter.getRoute(ROUTE_TO_PROFILE_PAGE_NAME)}>
                                     <i className="bx bx-user font-size-16 align-middle me-1"/>
                                     <span key="t-profile">Profile</span>
-                                </a>
+                                </Link>
                                 <div className="dropdown-divider" />
                                 <a className="dropdown-item text-danger" href="#">
                                     <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />

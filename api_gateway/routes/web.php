@@ -14,7 +14,11 @@
 */
 $router->group(['middleware' => 'auth', 'prefix' => 'api'], function () use ($router) {
     $router->group(['prefix' => 'users'], function () use ($router) {
-        $router->get('get_user', "UsersController@getUser");
+        $router->get('get_profile', 'UsersController@getProfile');
+        $router->get('get_user', 'UsersController@getUser');
+        $router->get('get_users', 'UsersController@getUsers');
+        $router->put('update_user', 'UsersController@updateUser');
+        $router->post('create_user', 'UsersController@createUser');
     });
 
     $router->group(['prefix' => 'courses'], function () use ($router) {
@@ -43,19 +47,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('login', 'AuthController@login');
     });
 });
-
-/*$router->get('/login', function () use ($router) {
->>>>>>> de9ec735ed3bfab9e421a431552f429709484c5e
-    return view('auth.login');
-});
-
-$router->get('/register', function () use ($router) {
-    return view('auth.register');
-});
-
-/*$router->get('/api/{path}', function ($path) {
-    return $path;
-});*/
 
 $router->get('/{path: .*}', function () {
     return view('frontend');

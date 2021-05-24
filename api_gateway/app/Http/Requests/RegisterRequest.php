@@ -17,7 +17,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'string', 'min:5', 'max:50', 'unique:ApiGateway\Entities\User,email'],
+            'email' => ['required', 'email', 'string', 'min:5', 'max:50', 'unique:ApiGateway\Entities\UserEntity,email'],
             'password' => ['required', 'string', 'min:8', 'max:30'],
             'name' => ['required', 'string', 'min:4', 'max:30'],
         ];

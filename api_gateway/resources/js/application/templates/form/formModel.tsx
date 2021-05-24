@@ -3,6 +3,7 @@ import {FormSectionModel, sectionConfigs} from "./__section/formSectionModel";
 import {FormElementModel, formElementModelConfigs} from "./formElementModel";
 import {FormTextFieldModel, isFormTextFieldModelConfigs} from "./__textField/formTextFieldModel";
 import {FormRadioFieldModel, isFormRadioFieldModelConfigs} from "./__radioField/formRadioFieldModel";
+import {FormHiddenFieldModel, isFormHiddenFieldModelConfigs} from "./__hiddenField/formHiddenFieldModel";
 
 interface FormModelConfigs {
     sections: Array<FormSectionModel>,
@@ -20,6 +21,7 @@ export class FormModel {
 
     public static FORM_TEXT_TYPE = 'text';
     public static FORM_RADIO_TYPE = 'radio';
+    public static FORM_HIDDEN_TYPE = 'hidden';
 
     public constructor(configs: FormModelConfigs) {
         this._sections = configs.sections;
@@ -38,6 +40,13 @@ export class FormModel {
             case FormModel.FORM_RADIO_TYPE:
                 if (isFormRadioFieldModelConfigs(elementConfigs)) {
                     return new FormRadioFieldModel(elementConfigs);
+                }
+
+                throw new Error('Element configs does not provide necessary data for RadioField');
+
+            case FormModel.FORM_HIDDEN_TYPE:
+                if (isFormHiddenFieldModelConfigs(elementConfigs)) {
+                    return new FormHiddenFieldModel(elementConfigs);
                 }
 
                 throw new Error('Element configs does not provide necessary data for RadioField');
@@ -64,6 +73,10 @@ export class FormModel {
             });
 
         return resultData;
+    }
+
+    public getSections(){
+        return this._sections;
     }
 
     public getConfigs(): FormModelConfigs {

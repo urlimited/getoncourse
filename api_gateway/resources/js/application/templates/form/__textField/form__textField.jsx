@@ -1,10 +1,21 @@
 import React, {useState, useEffect} from 'react'
+import './require.css';
 
-const TextField = ({label, placeholder, setValue}) => {
-    const [content, setContent] = useState('');
+const TextField = ({label, placeholder, setValue, initialValue, rules}) => {
+    const [content, setContent] = useState(initialValue ?? '');
+    const [isErrorBoxShown, setIsErrorBoxShown] = useState(false);
 
     useEffect(() => {
-        setValue(content)
+        const contentIsValid = rules
+            .map(r => r.validate(content))
+            .reduce((accum, next) => (accum === true && next === true), true);
+
+        if(contentIsValid){
+            setValue(content);
+            setIsErrorBoxShown(false);
+        }
+        else
+            setIsErrorBoxShown(true);
     },[content]);
 
     return (<div className="row form__input-element">
@@ -17,6 +28,9 @@ const TextField = ({label, placeholder, setValue}) => {
                 onChange={e => setContent(e.target.value)}
                 placeholder={placeholder}
             />
+            {isErrorBoxShown
+                ? <p className="form__input-element-error-message">Пожалуйста, проверьте это поле еще раз</p>
+                : <></>}
         </div>
     </div>);
 }

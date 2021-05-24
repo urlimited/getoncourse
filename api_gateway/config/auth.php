@@ -1,6 +1,6 @@
 <?php
 
-use ApiGateway\Entities\User;
+use ApiGateway\Entities\UserEntity;
 
 return [
     'defaults' => [
@@ -18,7 +18,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'doctrine',
-            'model' => User::class
+            'model' => UserEntity::class
         ]
     ],
 
