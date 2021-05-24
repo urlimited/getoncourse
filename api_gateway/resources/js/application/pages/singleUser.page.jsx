@@ -7,11 +7,8 @@ import {
 } from "../routes";
 import {USER_TYPE_NOT_LOADED, UserFactory} from "../models/user.model";
 import {useParams} from "react-router-dom";
-import {MRouter} from "../../core/mrouter/MRouter";
 
 export const SingleUserPage = ({updateUser, createUser, editorUser, getUser, currentRoute}) => {
-    const router = MRouter.initRouter();
-
     const [data, setData] = useState([]);
 
     const [editableUser, setEditableUser] = useState(editorUser);

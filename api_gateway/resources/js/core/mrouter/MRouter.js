@@ -21,6 +21,15 @@ export class MRouter {
         return this._instance;
     }
 
+    static isEligibleRoute(urlString){
+        /**
+         * @type {MRouter}
+         */
+        const router = this._instance;
+
+        return !!router.getRouteNameFromUrl(urlString);
+    }
+
     /**
      * Add routes
      * @param route {MRoute}
@@ -56,13 +65,17 @@ export class MRouter {
     getCurrentRoute(){
         const path = history.location.pathname;
 
+        return this.getRouteNameFromUrl(path);
+    }
+
+    getRouteNameFromUrl(urlString){
         let maxLength = 0;
 
         let longestRoute = "";
 
         Object.keys(this._routes)
             .filter(routeName => {
-                if(maxLength < this._routes[routeName].path.length && this._routes[routeName].isRouteEqualTo(path)){
+                if(maxLength < this._routes[routeName].path.length && this._routes[routeName].isRouteEqualTo(urlString)){
                     maxLength = this._routes[routeName].path.length;
 
                     longestRoute = routeName;
@@ -73,6 +86,6 @@ export class MRouter {
                 return false;
             });
 
-        return longestRoute;
+        return longestRoute === "" ? null : longestRoute;
     }
 }
