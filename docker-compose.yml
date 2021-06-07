@@ -108,6 +108,19 @@ services:
     networks:
       - app-network
 
+  #RabbitMQ Service AMPQ service
+  service_rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: service_rabbitmq
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - app-network
+
 
 #Docker Networks
 networks:

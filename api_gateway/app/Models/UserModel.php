@@ -19,6 +19,8 @@ class UserModel extends AbstractModel
      */
     public function update(array $data): self
     {
+        $data['password'] = app('hash')->make($data['password']);
+
         $this->entity->fill($data);
 
         $this->entityManager->persist($this->entity);
