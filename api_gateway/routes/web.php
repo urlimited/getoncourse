@@ -49,10 +49,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 });
 
 $router->get('/test_ampq', function(){
-
-    //app('log')->error('asdadasd');
-
-    app('amqp')->publish(json_encode(time()), 'routing-key', [
+    app('amqp')->publish(json_encode([
+        'initiator' => 'api_gateway',
+        'emergency_level' => 1,
+        'message' => 'Testing the logger'
+    ]), 'routing-key', [
         'exchange' => [
             'type'    => 'direct',
             'name'    => 'direct.exchange',
