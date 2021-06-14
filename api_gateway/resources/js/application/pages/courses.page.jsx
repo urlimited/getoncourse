@@ -4,7 +4,6 @@ import {Course} from "../models/course.model";
 import {Link} from "react-router-dom";
 import {MRouter} from "../../core/mrouter/MRouter";
 import * as routes from "../routes";
-import Loader from "../templates/loader/loader";
 
 export const CoursesPage = ({getCourses, updateCourse, createCourse, deleteCourse}) => {
     const [courses, setCourses] = useState([]);

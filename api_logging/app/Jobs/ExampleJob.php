@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiGateway\Jobs;
+namespace App\Jobs;
 
 class ExampleJob extends Job
 {

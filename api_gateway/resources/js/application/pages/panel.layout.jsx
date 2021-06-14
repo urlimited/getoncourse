@@ -35,7 +35,7 @@ export const PanelLayout = ({Page, getUser, user, currentRoute}) => {
                     title: "Курсы",
                     items: [
                         {
-                            itemTitle: "Курсы",
+                            itemTitle: user.isClient() ? "Мои курсы" : "Список курсов",
                             itemRoute: router.getRoute(ROUTE_TO_COURSES_PAGE_NAME),
                             isAccessible: user.isAdmin() || user.isClient() || user.isStaff()
                         },

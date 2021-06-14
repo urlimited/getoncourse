@@ -61,8 +61,7 @@ $app->singleton(
 
 $app->configure('app');
 $app->configure('jwt');
-
-
+$app->configure('amqp');
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -101,6 +100,7 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(BenSampo\Enum\EnumServiceProvider::class);
+$app->register(Anik\Amqp\ServiceProviders\AmqpServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

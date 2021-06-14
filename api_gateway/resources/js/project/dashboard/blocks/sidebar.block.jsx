@@ -1,15 +1,8 @@
-import React, {useEffect} from "react";
+import React from "react";
 import * as routes from "../../../application/routes";
 import {Link} from "react-router-dom";
-import {NotLoadedUser} from "../../auth/models/user.model";
 
 export const SidebarBlock = ({}) => {
-    //console.log("sidebar")
-   /* useEffect(() => {
-        if (!(user instanceof NotLoadedUser))
-            initSidebar();
-    }, [user]);*/
-
     return (
         <div className="vertical-menu">
             <div data-simplebar="true" className="h-100">

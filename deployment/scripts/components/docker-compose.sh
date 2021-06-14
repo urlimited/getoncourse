@@ -5,5 +5,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-docker-compose build
-docker-compose up -d
+sudo docker-compose build
+sudo docker-compose up -d

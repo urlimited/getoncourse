@@ -48,6 +48,21 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 });
 
+$router->get('/test_ampq', function(){
+
+    //app('log')->error('asdadasd');
+
+    app('amqp')->publish(json_encode(time()), 'routing-key', [
+        'exchange' => [
+            'type'    => 'direct',
+            'name'    => 'direct.exchange',
+        ],
+    ]);
+
+
+    return "End of script";
+});
+
 $router->get('/{path: .*}', function () {
     return view('frontend');
 });

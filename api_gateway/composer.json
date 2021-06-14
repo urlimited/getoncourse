@@ -8,6 +8,7 @@
         "php": "^7.4|^8.0",
         "ext-curl": "*",
         "ext-json": "*",
+        "anik/amqp": "^1.5",
         "anik/form-request": "^3.3",
         "bensampo/laravel-enum": "^3.3",
         "doctrine/dbal": "*",
