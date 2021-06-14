@@ -96,6 +96,7 @@ $app->configure('amqp');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Anik\Amqp\ServiceProviders\AmqpServiceProvider::class);
+$app->register(BenSampo\Enum\EnumServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Anik\Amqp\ConsumableMessage;
+use App\Models\Logger;
 use Illuminate\Console\Command;
 
 class AmqpConsumerConnectCommand extends Command {
@@ -33,7 +34,12 @@ class AmqpConsumerConnectCommand extends Command {
     public function handle()
     {
         app('amqp')->consume(function (ConsumableMessage $message) {
-            echo $message->getStream() . PHP_EOL;
+            try {
+                (new Logger($message->getStream()))->process();
+            } catch (\Exception $e) {
+                app('log')->error($e->getMessage());
+            }
+
             $message->getDeliveryInfo()->acknowledge();
         }, 'routing-key', [
             'connection' => 'rabbitmq',
