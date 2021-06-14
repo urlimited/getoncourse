@@ -60,6 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('amqp');
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +95,7 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+$app->register(Anik\Amqp\ServiceProviders\AmqpServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
