@@ -8,7 +8,7 @@ services:
       dockerfile: deployment/dockers/api_gateway.dockerfile
     image: api_gateway
     container_name: api_gateway
-    #restart: unless-stopped
+    restart: on-failure
     tty: true
     environment:
       SERVICE_NAME: api_gateway
@@ -33,7 +33,7 @@ services:
       dockerfile: deployment/dockers/api_courses.dockerfile
     image: api_courses
     container_name: api_courses
-    #restart: unless-stopped
+    restart: on-failure
     tty: true
     environment:
       SERVICE_NAME: api_courses
@@ -42,6 +42,32 @@ services:
     volumes:
       - ./api_courses/:/var/www/api_courses
       #- ./deployment/configs/php_api_users.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #PHP API_LOGGING
+  api_logging:
+    build:
+      context: .
+      dockerfile: deployment/dockers/api_logging.dockerfile
+    image: api_logging
+    container_name: api_logging
+    restart: on-failure
+    tty: true
+    environment:
+      SERVICE_NAME: api_logging
+      SERVICE_TAGS: dev
+      XDEBUG_ENABLED: 1
+      XDEBUG_REMOTE_AUTOSTART: 1
+      XDEBUG_MAXNESTING_LEVEL: 1000
+      XDEBUG_REMOTE_CONNECT_BACK: 1
+      XDEBUG_REMOTE_HOST: host.docker.internal
+      PHP_IDE_CONFIG: serverName=localhost
+    working_dir: /var/www/api_logging
+    volumes:
+      - ./api_logging/:/var/www/api_logging
+      #- ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    command: bash -c "php-fpm && sleep 20 && php artisan amqp:consumer:connect"
     networks:
       - app-network
 
@@ -110,17 +136,26 @@ services:
 
   #RabbitMQ Service AMPQ service
   service_rabbitmq:
-    image: rabbitmq:3-management-alpine
+    #image: rabbitmq:3-management-alpine
+    build:
+      context: .
+      dockerfile: deployment/dockers/service_rabbitmq.dockerfile
+    image: service_rabbitmq
     container_name: service_rabbitmq
     ports:
       - "5673:5672"
       - "15673:15672"
+    healthcheck:
+      test: ["CMD", "curl", "http://service_rabbitmq:15672"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
     volumes:
       - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    #command: ["/init.sh"]
     networks:
       - app-network
-
 
 #Docker Networks
 networks:

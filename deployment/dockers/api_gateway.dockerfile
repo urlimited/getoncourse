@@ -7,8 +7,8 @@ FROM php:7.4-fpm
 #RUN echo "zend_extension=$(find $(php-config --extension-dir) -name xdebug.so)" \
 #             > /usr/local/etc/php/conf.d/xdebug.ini
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN docker-php-ext-enable pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql sockets
+RUN docker-php-ext-enable pdo_mysql sockets
 
 # Copy composer.lock and composer.json
 #COPY ../../composer.lock composer.json /var/www/

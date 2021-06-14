@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN docker-php-ext-enable pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql sockets
+RUN docker-php-ext-enable pdo_mysql sockets
 
 #RUN pecl install xdebug
 #RUN docker-php-ext-enable xdebug
