@@ -19,7 +19,8 @@ class RunCoverageTests extends Command
      *
      * @var string
      */
-    protected $signature = "tests:run";
+    protected $signature = "tests:run
+        {--filter= : Specify the option in the following format methodName [filePath from microservice folder ./tests/...]}";
 
     /**
      * The console command description.
@@ -36,6 +37,7 @@ class RunCoverageTests extends Command
      */
     public function handle()
     {
-        echo shell_exec('vendor/phpunit/phpunit/phpunit --testdox --color=always --verbose');
+        echo shell_exec('vendor/phpunit/phpunit/phpunit --testdox --color=always --verbose '
+            . ($this->option('filter') ? '--filter ' . $this->option('filter') : ''));
     }
 }
