@@ -2,9 +2,26 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-(new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
-    dirname(__DIR__)
-))->bootstrap();
+//Workaround for accepting environment files
+(function(){
+    $envFileName = ".env";
+
+    if (php_sapi_name() == 'cli') {
+        $input = new \Symfony\Component\Console\Input\ArgvInput();
+        $envParameterOption = $input->getParameterOption('--env');
+        if ($input->hasParameterOption('--env') && file_exists(__DIR__ . '/../' . $envFileName . '.' . $envParameterOption)) {
+            $envFileName .= '.' . $envParameterOption;
+        }
+
+        /*if($input->hasParameterOption('--env') && !file_exists(__DIR__ . '/../' . $envFileName . '.' . $envParameterOption))
+            die('env file \'' . $input->getParameterOption('--env') . '\' does not exist' . PHP_EOL);*/
+    }
+
+    (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
+        dirname(__DIR__), $envFileName
+    ))->bootstrap();
+})();
+//Workaround ends
 
 date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 

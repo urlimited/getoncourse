@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiCourses\Console\Commands;
+namespace ApiGateway\Console\Commands;
 
 use Illuminate\Console\Command;
 

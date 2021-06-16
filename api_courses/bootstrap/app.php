@@ -4,23 +4,26 @@ use Illuminate\Support\Env;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-(new class(
-    dirname(__DIR__),
-    [
-        '.env',
-        //'.env.' . env('APP_ENV', 'testing'),
-    ])
-    extends Laravel\Lumen\Bootstrap\LoadEnvironmentVariables {
-    protected function createDotenv()
-    {
-        return Dotenv::create(
-            Env::getRepository(),
-            $this->filePath,
-            $this->fileName,
-            false // disable the short circuit
-        );
+//Workaround for accepting environment files
+(function(){
+    $envFileName = ".env";
+
+    if (php_sapi_name() == 'cli') {
+        $input = new \Symfony\Component\Console\Input\ArgvInput();
+        $envParameterOption = $input->getParameterOption('--env');
+        if ($input->hasParameterOption('--env') && file_exists(__DIR__ . '/../' . $envFileName . '.' . $envParameterOption)) {
+            $envFileName .= '.' . $envParameterOption;
+        }
+
+        /*if($input->hasParameterOption('--env') && !file_exists(__DIR__ . '/../' . $envFileName . '.' . $envParameterOption))
+            die('env file \'' . $input->getParameterOption('--env') . '\' does not exist' . PHP_EOL);*/
     }
-})->bootstrap();
+
+    (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
+        dirname(__DIR__), $envFileName
+    ))->bootstrap();
+})();
+//Workaround ends
 
 date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 
@@ -119,9 +122,6 @@ $app->configure('filesystems');
 |
 */
 
-// $app->register(ApiCourses\Providers\AppServiceProvider::class);
-// $app->register(ApiCourses\Providers\AuthServiceProvider::class);
-// $app->register(ApiCourses\Providers\EventServiceProvider::class);
 if (class_exists('Laravel\Tinker\TinkerServiceProvider')) {
     $app->configure('tinker');
     $app->register(Laravel\Tinker\TinkerServiceProvider::class);
