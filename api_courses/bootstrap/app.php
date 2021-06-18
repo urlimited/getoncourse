@@ -89,7 +89,7 @@ $app->instance('path.public', app()->basePath() . DIRECTORY_SEPARATOR . 'public'
 */
 
 $app->configure('app');
-
+$app->configure('database');
 $app->configure('filesystems');
 
 /*
@@ -130,6 +130,7 @@ $app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(BenSampo\Enum\EnumServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 // Register Filesystem
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);

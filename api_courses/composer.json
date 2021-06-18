@@ -8,11 +8,13 @@
         "php": "^7.3|^8.0",
         "anik/form-request": "^3.3",
         "bensampo/laravel-enum": "^3.3",
+        "illuminate/redis": "^8.47",
         "laravel-doctrine/migrations": "^2.3",
         "laravel-doctrine/orm": "^1.7",
         "laravel/lumen-framework": "^8.0",
         "laravel/tinker": "^2.6",
-        "league/flysystem-aws-s3-v3": "~1.0"
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
